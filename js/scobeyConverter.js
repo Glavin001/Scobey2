@@ -9,13 +9,14 @@
 (function(scobeyConverter, undefined) {
   // private properties
   var home = "#news.html";
-  
+
   // public methods and properties  
   scobeyConverter.menuHTML = "";
 
   scobeyConverter.init = function() {
     var hash = location.hash || home;
-    $.mobile.changePage(hash);
+    //$.mobile.changePage(hash);
+    navigator.goToPage(hash);
   };
 
   scobeyConverter.loadMenu = function() {
@@ -32,14 +33,15 @@
   };
 
   scobeyConverter.fixLinks = function(data) {
-    console.log("fixLinks",typeof(data));
+    console.log("fixLinks", typeof(data));
     var html = $(data); //(typeof(data) === "object")?(data):$(data);
     scobeyConverter.menuHTML = html;
-    console.log("Started:",html);
+    console.log("Started:", html);
     $.each(html.find("a"), function() {
       //console.log(this);
       var target = $(this).attr('target');
       var href = $(this).attr('href');
+      href = encodeURIComponent(href);
       if (target && target === "display_frame") // Originally sent to frame
       {
         $(this).attr('href', "#" + href);
@@ -49,22 +51,27 @@
       {
         $(this).attr('href', "javascript:void(0);");
         $(this).attr('target', "");
-        
+
         $(this).click(function() {
           var jump = href;
           var new_position = $(jump).offset();
           window.scrollTo(new_position.left, new_position.top);
           return false;
         });
-        
+
       }
-      else
+      else if ( target && target === "_blank")
       {
         $(this).attr('href', href);
         $(this).attr('target', "_blank");
       }
+      else
+      {
+        $(this).attr('href', "#" + href);
+        $(this).attr('target', "");
+      }
     });
-    console.log("Finished:",html);
+    console.log("Finished:", html);
     return html;
   };
 
