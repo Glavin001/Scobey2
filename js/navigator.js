@@ -32,7 +32,7 @@
 
     // We only want to handle changePage() calls where the caller is
     // asking us to load a page by URL.
-    toPage = String(toPage);
+    toPage = decodeURIComponent(toPage);
     var href = "";
     if (typeof(toPage) === "string") {
       href = toPage;
@@ -69,7 +69,7 @@
 
               // Make sure the menu is collapsed
             }});
-          document.location.hash = ("#" + href);
+          document.location.hash = ("#" + encodeURIComponent(href));
 
           //$.mobile.loadPage("/m/" + href);
           //setPageUrl = setPage.hash == "" ? setPage.pathname : setPage.hash.replace('#', '');
