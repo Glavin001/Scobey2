@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 08</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">CSCI 2342 Submission 08
+    <br />
+    Evaluating Prefix and Postfix Expressions</p>
+    <!--
+    <p>
+    <big>
+    <font color="red">
+    Still Under Development
+    </font>
+    </big>
+    </p>
+    -->
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a
+        href="08/demo_eval_pre_post.exe">demo_eval_pre_post.exe</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>eval_pre_post.exe
+        <br />
+         eval_pre_post.cpp</tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Mar 11, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>This week you will design and write a program that can evaluate
+    either prefix or postfix expressions read in from the command line.
+    Each such expression must have positive integer operands and involve
+    only the (binary) operators +, -, * and/or /. No error checking is
+    required on this occasion. If the input is neither a valid postfix
+    expression nor a valid prefix expression, the program is simply not
+    responsible for what happens, if anything.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>
+        Copy the sample executable <tt>demo_evalprepost.exe</tt> and run it several
+        times with different input. Below are several suggestions of
+        typical examples showing how your program must work. Try them (and
+        lots of others of your own choosing) with the sample executable: 
+<pre>
+prompt&gt; demo_eval_pre_post 3 4 5 + *
+3 4 5 + * = 27
+prompt&gt; demo_eval_pre_post 2 3 * 15 5 7 + / +
+2 3 * 15 5 7 + / + = 7
+prompt&gt; demo_eval_pre_post / * + 6 2 3 - 9 7
+/ * + 6 2 3 - 9 7 = 12
+prompt&gt; demo_eval_pre_post + * 2 3 / 15 + 5 7
++ * 2 3 / 15 + 5 7 = 7
+</pre>
+      </li>
+      <li>Write pseudocode for a solution of this problem and revise it
+      until you are convinced that a program that implements your
+      pseudocode will be the one you want.</li>
+      <li>Translate your pseudocode into C++ and continue testing your
+      program until you are convinced it works correctly.</li>
+      <li>Make sure your source code is identified, formatted, and
+      documented properly, according to our current rules and
+      guidelines.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol>
+      <li>You may find it useful to note that if you are dealing with
+      a prefix expression, the first "token" in the input will be an
+      operator, while if you are dealing with a postfix expression,
+      the first token will be an operand.</li>
+    </ol>
+  </body>
+  </body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Computing Science 2342 | Submission 01</title>
+  <link rel="StyleSheet" href="../../../../css/courses.css" type="text/css" />
+</head>
+
+<body>
+  <p class="pageheader">CSCI 2342 Submission 01<br />
+  The Computer As Code Guesser</p>
+  <!-- <p><big><font color="red">Still Under Development</font></big></p> -->
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Supplied file(s)</th>
+
+      <td><tt><a href=
+      "01/demo_computer_guesses_code.exe">demo_computer_guesses_code.exe</a><br />
+
+      <a href=
+      "01/computer_guesses_code.txt">computer_guesses_code.txt</a><br />
+      <a href="01/code.h2html">code.h</a> and <a href=
+      "01/code.obj">code.obj</a><br />
+      <a href="01/score.h2html">score.h</a> and <a href=
+      "01/score.obj">score.obj</a><br />
+      <a href="01/html/index.html">class_documentation</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>computer_guesses_code.cpp<br />
+      computer_guesses_code.exe<br /></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Jan 15, 2011 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>Many computing science students express a desire to become a "game
+  programmer". Not all such students fully realize what is involved. First,
+  you should have a good grounding in mathematics as well as programming.
+  Second, you should realize that it may not be as "glamorous" as you might
+  have thought. For one thing, the vast majority of games fail in the
+  market place, and game programmers are not necessarily the best paid
+  software developers. Furthermore, should you in fact become a game
+  programmer, it is entirely possible you will spend most of your time
+  "gluing together" pieces of software that other people have written,
+  rather than developing anything "from scratch". None of this is meant to
+  discourage you ... just to inject a touch of reality.</p>
+
+  <p>And, speaking of "gluing together" some pieces of code, that is what
+  this assignment involves. The task requires you to write a driver program
+  that "glues together" objects of two provided classes, a <tt>Code</tt>
+  class and a <tt>Score</tt> class, to produce a simple "game" in which the
+  computer guesses a "secret code" chosen by the user. So, not a
+  knock-down-drag-'em-out game in which the pieces are a game "engine", an
+  AI (artificial intelligence) module, avatars in high-definition graphics,
+  and the like; just an old-fashioned text-based game requiring some
+  old-fashioned logical thinking and garden variety programming. Oh, well
+  ...</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>Download the sample executable and its accompanying text items file
+    and run the program a few times. Be sure to check out the "on-line
+    help" provided by the program and make the program guess your code a
+    few times, with and without your providing a starting guess.</li>
+
+    <li>Study the doxygen documentation of the <tt>Code</tt> and
+    <tt>Score</tt> classes, as well as the <tt>code.h</tt> and
+    <tt>score.h</tt> files themselves.</li>
+
+    <li>Design first, then (and <em>on</em>ly then) write a C++ driver
+    program that will emulate as closely as possible the behavior of the
+    sample executable, except that the opening screen will contain your own
+    ID information. You will, of course, have to include the
+    <tt>utilities.h</tt>, <tt>score.h</tt> and <tt>code.h</tt> files into
+    your driver, and link to <tt>utilities.obj</tt>, <tt>score.obj</tt> and
+    <tt>code.obj</tt> to form your final executable.</li>
+
+    <li>When the program is working correctly, make a final check before
+    submission to ensure your source code is identified, formatted, and
+    documented properly. We will discuss what proper identification and
+    documentation means in class and lab, but there are also menu links on
+    the course home page that provide guidelines for submission, program
+    identification, source code documentation, C++ coding style and other
+    good general programming practices.</li>
+
+    <li>Be sure as well that you have completed the self-assessment comment
+    of your submission to inform the marker either that everything is
+    complete and working according to the specifications, or to inform the
+    marker what is still missing or not working properly in your
+    submission.</li>
+
+    <li>This week, and from now on, you must make sure that each of your
+    submissions follows all of the required rules and guidelines, which we
+    have emphasized in class, and which you should by now have read about
+    (at least once) on the course web site.</li>
+
+    <li>Finally, submit the required files over the web, by following the
+    appropriate link on the course home page. Note that you need to "sign
+    up" for the course on the course's web site before you can make a
+    submission.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol class="hardleft">
+    <li>This program contains a bit of an "Easter egg": The default maximum
+    number of guesses the program is allowed for guessing the user's secret
+    code is 10, but you can alter this number by entering a different
+    (positive integer) value as the first parameter on the command line.
+    There is no error checking on this value, so no telling what will
+    happen if what you enter is not a positive integer. You do not have to
+    implement this feature, but you can if you like (it's a one-liner). The
+    only reason it's there is to allow you to experiment with the program
+    and actually get to see all the messages that the program is capable of
+    displaying. Without this feature, and with a default maximum number of
+    guesses equal to 10, you might never get to see the message displayed
+    when the program runs out of guesses.</li>
+
+    <li>Don't worry about any warning like the following when you are
+    linking to code.obj and score.obj:
+      <pre>
+vc100.pdb is missing debugging information for referencing module:
+    linking object as if no debug info
+</pre>
+    </li>
+		<li>You can use whatever algorithm you can think of for having the
+		computer guess the user's secret code. However, here is a brief 
+		description of the one used by the demo executable. First, the program
+		starts with either a user-supplied guess, or a randomly generated one.
+		It keeps track of all guesses and their corresponding scores. Now 
+		suppose it faces the question of whether to offer a new code as a 
+		potential solution. What it needs to do is score this new code against
+		each of the preceding guesses. Unless the scores obtained when doing
+		this match (in each case) the scores obtained when those guesses were
+		scored against the secret code, this new code cannot possibly be the
+		secret code and hence should not be offered as a potential solution.
+		So, when seeking another guess, the program should simply move through
+		the set of all codes, making these checks as it goes, and offering as
+		the next guess the first code that passes all checks.</li>
+  </ol>
+</body>
+</html>
+
+<!-- Localized -->

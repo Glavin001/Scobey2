@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 05</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css" type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">CSCI 2342 Submission 05<br />
+     Information Packets, Part 2</p>
+    <!--
+    <p>
+    <big>
+    <font color="red">
+    Still Under Development
+    </font>
+    </big>
+    </p>
+    -->
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a href="05/demo_packets2.exe">demo_packets2.exe</a><br />
+         Text items file same as last week</tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>packets2.cpp<br />
+         packets2.hpp<br />
+         packets2.exe</tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Feb 12, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <h3>Overview</h3>
+    <p>This week your task is to complete the program for dealing with
+    "information packets" distributed over a number of "packet files" that
+    you began with last week's submission. This means that you will have to
+    implement the code behind options 6 and 7 of the menu, the options that
+    let a user assemble the message contained in a valid collection of packet
+    files, and then display that message.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>Copy the sample executable, <tt>demo_packets2.exe</tt>. The text
+      items file from Part 1 (<tt>packets.txt</tt>) is to be used for Part 2
+      as well.</li>
+      <li>Run the program and note first of all that menu options 6 and 7 are
+      now implemented.</li>
+      <li>Put the program through all of its paces until you have a good
+      sense of how everything works together as whole.</li>
+      <li>Write pseudocode for the message-assembly and display routines, and
+      revise it until you are convinced that a program that implements your
+      pseudocode will be the one you want.</li>
+      <li>Translate your pseudocode into C++ and continue testing your
+      program until you are convinced it works correctly.</li>
+      <li>As you did for the previous submission, divide your code into two
+      files, this time <tt>packets2.cpp</tt> and <tt>packets2.hpp</tt>. In
+      <tt>packets2.cpp</tt> put your <tt>main()</tt> driver function and a
+      function to build your menu, but put every thing else, i.e., everything
+      having to do with the packets, in the "include file"
+      <tt>packets2.hpp</tt>, and <tt>#include</tt> that file into your
+      <tt>packets2.cpp</tt>.</li>
+      <li>Make sure both source code files are identified, formatted, and
+      documented properly, using doxygen documentation and/or regular C++
+      comments as appropriate.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol class="hardleft">
+      <li>What about testing this time? As always, you will want to do
+      standalone testing of your program. Now that you have a complete
+      program of your own, that means making sure that it can perform all of
+      the required actions correctly: creating packet files from a message
+      file, re-assembling the message from the packet files, showing all the
+      packet files, deleting all the packet files, and displaying the
+      re-assembled message. But also, the packets in any group of packet
+      files created by your program from a message file should be able to be
+      re-assembled into the original message (except probably for formatting)
+      by the sample executable. And, conversely, the packets in any group of
+      packet files created from a message file by your program should be able
+      to be re-assembled into the original message (except probably for
+      formatting) by your program. Your testing should involve several
+      instances of both of these scenarios.</li>
+      <li>As we pointed out in the notes at the end of the previous
+      submission, you need to take note of what happens with
+      <tt>packets2.exe</tt> if you happen to choose either option 6 when
+      there are no packet files or option 7 when there is no message to
+      display. The behavior of the program can be classified as "trivially
+      correct". If there are no packet files when you choose option 6, it
+      still says that the message has been assembled from the packet files.
+      This is "trivially true" since there are no packet files and therefore
+      no message. Similarly, if you ask to display the message when there is
+      none, there will be a display in the usual format, but the place where
+      the message would normally appear will be an empty line. Depending on
+      how you implement things in general, these behaviors may be easier to
+      implement than the alternative of going to the trouble of checking for
+      packet files, reporting that there are none, and thus that a message
+      cannot be assembled. Similarly, the program could report that there is
+      no message if asked to display one when none exists, but it may be
+      simpler just to display an empty message. In any case, now that you are
+      implementing these two options, you can choose to emulate the sample
+      executable behavior or have your program provide appropriate warnings
+      when the user chooses either of these menu options "prematurely",
+      whichever you find easier.</li>
+      <li>No global variables are necessary, or even convenient, so none
+      are permitted.</li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

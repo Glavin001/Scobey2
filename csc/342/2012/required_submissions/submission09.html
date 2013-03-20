@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 09</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css" type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">CSCI 2342 Submission 09<br />
+     Implementing an ADT Binary Search Tree of Characters, Part 1</p>
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a
+        href="09/demo_BSTChar_main.exe">demo_BSTChar_main.exe</a><br />
+         <a href="09/BSTChar_main.cpp2html">BSTChar_main.cpp</a><br />
+         <a
+        href="09/BSTChar_globals_shell.hpp2html">BSTChar_globals_shell.hpp</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>BSTChar_main1.cpp<br />
+         BSTChar_globals1.hpp<br />
+         BSTChar_class1.h<br />
+         BSTChar_class1.cpp<br />
+         BSTChar_main1.exe</tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Mar 18, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <h3>Overview</h3>
+    <p>This week you will begin a two-part implementation of an
+    ADTBinarySearchTree class for storing character data. We discussed in
+    class the implementation of a template class for the binary search tree,
+    but your implementation will not be a template class. This will make the
+    implementation simpler, but there will still be plenty to do, and the
+    main goal is to make you familiar with binary search trees and operations
+    on them, rather than give you more C++ template programming practice.</p>
+    <p>For brevity you will name the class <tt>BSTChar</tt>. A driver is
+    supplied, as well as a shell file (<tt>BSTChar_globals_shell.hpp</tt>)
+    containing a couple of "busy work" functions (for building the menu and
+    displaying the program information), as well as prototypes for the
+    high-level functions that deal with user interaction. You will fill in
+    the bodies of these high-level prototypes to complete their definitions,
+    and, of course, design and write the <tt>BSTChar</tt> class in the usual
+    form of a separately compiled <tt>.h/.cpp</tt> file pair.</p>
+    <p>You already have some code that you can adapt for use from the sample
+    programs illustrating binary search trees. Much of the remaining code
+    (for this Part 1 and also for Part 2) you have available in pseudocode
+    form from the on-line notes.</p>
+    <p>The approach in this last two-part submission for the term differs
+    somewhat from previous two-part efforts. You must complete the project by
+    the end of the two weeks, but <em>you</em> get to decide how much and
+    which parts you will complete the first week. Also, the marker can be
+    brutally frank at the end of the first week in his comments about about
+    what you need to do by the end of the second week. This is a double-edged
+    sword, since you could conceivably do nothing the first week and still
+    get a perfect mark. (However, you probably won't be able to do nothing,
+    or almost nothing, the first week and finish the project.) It would be
+    much smarter to do as much as you can the first week, so you have less to
+    do the second week and can fine tune what you have already done. I'll be
+    interested to see how people handle this extra bit of "freedom" in
+    submission preparation.</p>
+		<p><b>In any case, whatever mark you get on the second
+		week's submission, when the project should be complete, will apply to
+		both weeks. So, the same mark will be recorded for each week on
+		Blackboard.</b></p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>Copy all of the sample files.</li>
+      <li>Run the sample executable (which is the complete program, so it
+      is not numbered) and try all of the menu options enough
+      times to get a good feel for how the program behaves.</li>
+      <li>Give some thought to the order in which you will implement the
+      various things that need implementing.</li>
+      <li>Design your class.</li>
+      <li>Write pseudocode for all the global functions for which you have
+      been given the prototypes, as well as all member functions and any
+      helper functions, for your class. Revise your pseudocode until you are
+      convinced that a class that implements your pseudocode will be the one
+      you want.</li>
+      <li>Decide in what sequence you want to "plug in" and test your
+      code.</li>
+      <li>Continue testing until the chosen part of the class for this week
+      is complete and you are convinced everything works correctly.</li>
+      <li>Make sure your source code is identified, formatted, and documented
+      properly, according to our current guidelines.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol class="hardleft">
+      <li>
+        Since you get to choose which parts of the submission you are going
+        to implement this week, these are the changes you will need to make
+        in the driver file <tt>BSTChar_main.cpp</tt>: 
+        <ol type="a">
+          <li>Replace the question marks in the opening comments to 
+          reflect the current submission. [Do this for the shell file
+          as well, after your copy has been renamed appropriately.]</li>
+          <li>The ID info must be changed to be <em>your</em> ID info.</li>
+          <li>The menu options that have not been implemented this week
+          should have their function calls commented out and replaced by a
+          single statement which is a call to the <tt>Pause()</tt> function
+          that reports, "This menu option is not yet implemented." This
+          means, of course, that you will not be implementing the
+          corresponding global function and class member functions this
+          week.</li>
+          <li>The call to <tt>Pause()</tt> after the <tt>switch</tt>
+          statement in <tt>main()</tt> will then have to be "guarded" to
+          avoid having two back-to-back pauses for those non-implemented
+          options.</li>
+        </ol>
+      </li>
+      <li>A high-level goal this week should be to complete the
+      design of your class, roughly half of the implementation,
+      along with the corresponding user-interaction global functions.
+      The tree display might be the most time-consuming part, so
+      you should begin thinking about that this week as well. You
+      can, however, simply output the values anyway you like to
+      confirm that you have the tree you think you have--the display doesn't
+      have to look "tree-like" this week, but there does, obviously, need
+      to be some sort of display so the marker can tell whether you 
+      have a tree or not.</li>
+      <li><font color="red">Be sure that your self-assessment this week
+      includes a description/list of which parts you have completed so
+      the marker knows what to look for.</font></li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

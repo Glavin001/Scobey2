@@ -1,0 +1,285 @@
+/* courses.css */
+
+abbr, acronym, dfn
+{
+    cursor: help;
+    border-bottom: dashed lime 1px;
+}
+
+
+a.regular
+{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 100%;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.regular:link{ color: blue; }
+a.regular:visited{ color: magenta; }
+a.regular:hover{ color: black; }
+
+
+a.course_public
+{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: green;
+}
+a.course_public:link{ color: green; }
+a.course_public:visited{ color: green; }
+a.course_public:hover{ color: blue; }
+a.course_public:active{ color: black; }
+
+
+a.course_protected
+{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.course_protected:link{ color: red; }
+a.course_protected:visited{ color: red; }
+a.course_protected:hover{ color: blue; }
+a.course_protected:active{ color: black; }
+
+
+a.course_webct
+{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-size: 10px;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.course_webct:link{ color: #FF00CC; }
+a.course_webct:visited{ color: #FF00CC; }
+a.course_webct:hover{ color: blue; }
+a.course_webct:active{ color: black; }
+
+
+body
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: ivory;
+}
+
+
+body.csc228
+{
+    font-family: Arial, Helvetica, sans-serif;
+    /*background-color: lightgrey;*/
+    /*background: url(../images/smoothyellow.jpg);*/
+    background: url(../images/steelgrey.gif);
+}
+body.csc341
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(../images/blue_paper.gif);
+    width: 900px;
+}
+body.csc342
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: ivory;
+    width: 900px;
+}
+body.csc355
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: ivory;
+    width: 680;
+}
+body.common341342
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(../images/parch5.jpg);
+}
+body.csc355
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: ivory;
+}
+body.csc465
+{
+    font-family: Arial, Helvetica, sans-serif;
+    background: url(../images/465background.jpg);
+}
+
+
+p.pageheader
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  background-color: ivory;
+  color: #800000;
+  padding-left: 2px;
+}
+
+
+p.advisory
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+  font-weight: bold;
+  background-color: lightblue;
+  color: #FF0000;
+  text-align: left;
+}
+
+
+p.nav
+{
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10pt;
+  font-weight: bold;
+  text-align: left;
+}
+
+p.underdev
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+  color: #FF0000;
+  background-color: ivory;
+  text-align: left;
+}
+
+
+.topics
+{
+  color: #222222;
+  font-style: italic;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+
+.reditalic
+{
+  color: #FF0000;
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+.nowrap
+{
+  white-space: nowrap;
+}
+
+.newpagebefore
+{
+    page-break-before: always;
+}
+
+.newpageafter
+{
+    page-break-after: always;
+}
+
+.pagebreak
+{
+    page-break-before: always;
+}
+
+
+dd
+{
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  /*font-size: 12pt;*/
+  
+  margin-top: 0;
+  padding-top:0;
+}
+
+
+dt
+{
+  font-family: Courier, "Courier New", Prestige, monospace;
+  font-weight: bold;
+  white-space: pre;
+  
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+
+h2
+{
+  color: #800000;
+  text-align: left;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14pt;
+  font-weight: bold;
+}
+
+
+h3
+{
+  color: blue;
+  background-color: lightgrey;
+  border: thin groove;
+  font-size: 12pt;
+  padding: 2px;
+}
+
+
+h3.miscnotes
+{
+  color: white;
+  background-color: lightgrey;
+  border: thin groove;
+}
+
+h3.notation
+{
+  color: red;
+  background-color: lightgrey;
+  border: thin groove;
+}
+
+
+li big
+{
+    font-style: italic;
+}
+
+
+ol.hardleft
+{
+    /*margin-left: 1.5em;*/
+    margin-left: 2em;
+    padding-left: 0;
+}
+
+
+ul.hardleft
+{
+    /*margin-left: 1.5em;*/
+    margin-left: 2em;
+    padding-left: 0;
+}
+
+ul li
+{
+    padding-top: 0.2em;
+    padding-bottom: 0.3em;
+}
+
+ol li
+{
+    padding-top: 0.2em;
+    padding-bottom: 0.3em;
+}
+
+.infowarning
+{
+    font-size: 1.2em;
+    color: red;
+}
+
+/* Localized */

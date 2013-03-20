@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 03</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css" type="text/css" />
+  </head>
+  <body class="csc342">
+    <p class="pageheader">CSCI 2342 Submission 02<br />
+     Finding a Hidden Treasure via Backtracking, Part 2</p>
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a
+        href="03/demo_treasure_hunt2.exe">demo_treasure_hunt2.exe</a></tt><br />
+         Other files same as for Part 1</td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>treasure_hunt2.cpp<br />
+         treasure_hunt2.exe<br />
+        </tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Jan 29, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>This week your task is to complete the backtracking program by
+    implementing the code behind option 7 on the menu in the program from
+    Part 1. Since we presented a full discussion of the problem in the Part 1
+    submission description, we will not repeat any of that discussion
+    here.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>Give careful thought to your recursive backtracking solution for
+      this searching problem, then write out its pseudocode and revise it
+      until you are convinced that a program that implements your pseudocode
+      will be the one you want. If you need more convincing of the fact that
+      "the sooner you start to type, the longer it will take", you might get
+      it on this one.</li>
+      <li>Translate your pseudocode into C++, then "plug it into" your
+      working infrastructure program from Part 1 and continue testing your
+      now-complete program until you are convinced it works correctly.</li>
+      <li>Make sure your source code is identified, formatted, and documented
+      properly, using doxygen documentation and/or regular C++ comments as
+      appropriate.</li>
+      <li>Finally, make sure your self-assessment of your submission is
+      complete, and then submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol>
+      <li>
+        You are permitted to use, and should use, the two global variables 
+        <ul class="hardleft">
+          <li><tt>tracingOn</tt></li>
+          <li><tt>pauseOn</tt></li>
+        </ul>
+        so that the user can switch on the tracing (with or without pauses)
+        each time a search if done, if so desired. The tracing feature must
+        of course be implemented as well. Even though the tracing feature is
+        only used in the recursive routine, you will get a sense of why it's
+        much more convenient to have these "switches" as global variables as
+        you develop that routine.<br /><font color="red">But ... you do not 
+        need, and must not use, any other global variables.</font>
+      </li>
+      <li>As for the tracing "reports" that the user sees when the tracing
+      feature is switched on, you will probably find it useful to think about
+      one or more of the specific C++ features that we discussed last term
+      when implementing this part of the code.</li>
+      <li>Note that when you are starting from a given location, there
+      are four directions in which you may (possibly) go to continue
+      your search: north, south, east or west (or equivalently, up, down,
+      right or left). For the sake of consistency, let's all agree that
+      we will first go right, then down, then left, and finally up.
+      That is, we go in the clockwise direction, starting with a movement
+      to the right. In other words, we arbitrarily pick that particular
+      one of the twenty-four possible orders, which means that all
+      traces should follow the same pattern of steps to the treasure,
+      or to determine that there is none.</li>
+      <li>Note that when the final island configuration is displayed after
+      a search, what is shown depends on the result of the search. If the
+      seach was successful, the island looks the same as it did at the start,
+      except that an 'O' marks every position on the path from the starting
+      point to the treasure. That is, even though there may have been dead
+      ends encountered before finding a successful path to the treasure, they
+      are not shown. On the other hand, if the search was unsuccessful, every
+      position along every dead-end path tried is shown marked by an 'X'.</li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

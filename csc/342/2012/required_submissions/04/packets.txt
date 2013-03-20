@@ -1,0 +1,42 @@
+Filename: packets.txt
+Purpose:  The text items file for packets1.cpp and packets2.cpp.
+========================================
+Program Description
+
+This program allows the user to read in any textfile containing what we will 
+call a "message". That message is then broken up into "information packets"
+(whitespace-delimited sequences of characters), which are distributed among
+a random number of files (numbered file000 to file999). Each file contains a
+random number (from 1 to 5) of these information packets.
+
+If such a collection of files is available, the program also allows the user
+to process those files in such a way as to "assemble" (or "re-assemble") the
+packets and thereby reconstruct the original message, after which the message
+may be displayed (though possibly/probably not in its original format).
+
+The user may also display a list of the names of the generated "packet files",
+and may also delete all of these files (to prepare for another run, say).
+
+A typical packet file has content that looks like this:
+22     as
+121    the
+45     immediately
+-1
+The last line is the same for each such file and represents the "terminator"
+packet for a sequence of information packets in the file. This is a packet
+with a packet number of -1 and containing no information. On each line the
+number and the information packet are separated by a TAB character.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+Utility:RulerGuide70
+1234567890123456789012345678901234567890123456789012345678901234567890
+----------------------------------------
+Information:NotYetImplemented
+
+This menu option has not yet been implemented.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+========================================
+This text at the end of the file is not processed.
+

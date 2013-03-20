@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 11</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">CSCI 2342 Submission 11
+    <br />
+    Implementing a HashTable Class</p>
+    <!--
+    <p>
+    <big>
+    <font color="red">
+    Still Under Development
+    </font>
+    </big>
+    </p>
+    -->
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a
+        href="11/demo_test_hashtable.exe">demo_test_hashtable.exe</a>
+        <br />
+         <a href="11/hashtable.txt">hashtable.txt</a>
+        <br />
+         <a href="11/famous_names.txt">famous_names.txt</a>
+        <br />
+         <a href="11/hashtable.h2html">hashtable.h</a>
+        <br />
+         <a href="11/test_hashtable.obj">test_hashtable.obj</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>hashtable.cpp
+        <br />
+         test_hashtable.exe
+        </tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Apr 01, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>For this submission you will design and write a <tt>HashTable</tt>
+    class that compiles separately and links with the supplied driver and
+    behaves like the supplied demo executable. By now you will recognize
+    this as being pretty much "business as usual".</p>
+    <p>The data items to be stored in the <tt>HashTable</tt> object (the
+    "hash table") are birthdate/name pairs in which the birthdates are the
+    keys and the names are the corresponding information associated with
+    the keys. The names are those of allegedly "famous" people.</p>
+    <p>Once the data is loaded into the hash table, after the user has
+    chosen the table capacity and a probe increment size to use for
+    collision resolution, the user may perform searching, insertion,
+    deletion and updates.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>Copy the demo executable <tt>demo_test_hashtable.exe</tt>, along
+      with its required textitems file <tt>hashtable.txt</tt> and the
+      sample input file <tt>famous_names.txt</tt>. Then run the program,
+      first choosing Option 2 from the menu, and reading carefully the
+      program description displayed. Of course, you can also print off a
+      hard copy of the file <tt>hashtable.txt</tt> and study it off-line,
+      and you may want to do that as well, since there are several screens
+      if you read it on-line.</li>
+      <li>Study the program description until you get a good feel for what
+      to expect when you run the program.</li>
+      <li>When you do run the program, be sure you experiment enough to
+      produce the message indicating each of the various errors described
+      in <tt>hashtable.txt</tt>.</li>
+      <li>Also, be sure to try different table capacities and probe
+      increment sizes and display the resulting <tt>hashLog</tt> file after
+      each attempt. Be sure to use values that fail to put all the data in
+      the hash table, as well as ones that succeed in placing all the data
+      in the hash table.</li>
+      <li>Finally, in your testing, do some searching, additions, deletions
+      and updates using birthdate keys that appear in the table as well as
+      some that don't.</li>
+      <li>Design the class and write pseudocode for its
+      implementation.</li>
+      <li>Translate your pseudocode into C++ and start your (incremental)
+      testing using the supplied driver in the way suggested in previous
+      submissions. Continue testing your program until you are convinced it
+      works correctly in all possible scenarios.</li>
+      <li>Make sure your source code is identified, formatted, and
+      documented properly, according to our current guidelines.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol class="hardleft">
+    <li>
+    As is typical when you have a driver supplied in the form of a
+    <tt>.obj</tt> file, you need to insert the line 
+<pre>
+    extern const string MY_ID_INFO = "Lastname:Firstname:A00??????:CSC342??";
+</pre>
+in the global namespace of your class implementation file, with your own
+identification information replacing the generic information shown here.
+</li>
+      <li>Note that menu options 3, 4, 6, 11 and 12 are present just to
+      allow the user to experiment with the hash table in various ways. If
+      this were a "production" program, those options would not be there.
+      The program would simply allow database creation, followed by
+      searching and possibly further insertions, deletions and
+      updates.</li>
+      <li>
+        Note the use of the <tt>size_t</tt> typedef. This is a typedef
+        similar to the STL's <tt>size_type</tt>, since it too provides a
+        convenient built-in alias for a non-negative integer type. To quote
+        Danny Kalev, of InformIT:
+        
+        <blockquote>
+          ... it was introduced to ensure portability of code. Consider the
+          DOS days, when <tt>size_t</tt> was actually <tt>unsigned
+          long</tt>. Old code that ran on DOS and which used
+          <tt>size_t</tt> can compile on 32 bit systems without forcing the
+          programmer to change every <tt>unsigned long</tt> in function
+          prototypes and variable declarations to <tt>unsigned int</tt>.
+          Instead, <tt>size_t</tt> is automatically mapped to the correct
+          datatype used for storing <tt>sizeof()</tt> values on the target
+          system. In fact, it's not much different from using a symbolic
+          constant, say 
+<pre>
+const int MAX=1024;
+</pre>
+          to ease future maintenance of the code.
+        </blockquote>
+        <p>Bottom line ... it's a very convenient type to use when you need
+        a non-negative integer type here and there throughout your code, as
+        you do here. It apparently lives in a number of different headers,
+        including <tt>&lt;cstddef&gt;</tt>, <tt>&lt;cstdlib&gt;</tt> and
+        <tt>&lt;cstring&gt;</tt>.</p>
+      </li>
+      <li>It is very important to realize that when designing and writing
+      this class, you do not have to arrange for <em>any</em> of the
+      messages that you see displayed when running the program to appear.
+      All of these are produced by the driver that links to your class to
+      produce the executable. On the other hand, it is your class that
+      produces the hashLog file, so your class does have to create that
+      file and place the required and properly formatted contents into it.
+      But, for example, the user interaction determining whether that file
+      is actually produced is handled by the driver.</li>
+      <li>
+        It is also important to realize the various "states" the hash table
+        may be in. Before the user sets the capacity and probe increment,
+        the hash table contains nothing <em>and nothing can be put in
+        it</em>. That is, the user must set the capacity to a strictly
+        positive value if the table is to receive data. When the user does
+        set the capacity (and the probe value at the same time), and
+        thereafter until the program ends or the hash table is cleared,
+        each location in the table has exactly one of the following three
+        states (in which the first value is in the <tt>birthDate</tt> field,
+        and the second value is in the <tt>name</tt> field): 
+<pre xml:space="preserve">
+0    empty
+-1   empty
+date name
+</pre>
+        The first state is the state of each location after the user has
+        set the capacity and probe increment, but before the table has
+        received any data. The second state is the state of a location that
+        once held data but is now empty. The third state is the state of a
+        location that currently holds data.
+      </li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

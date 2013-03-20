@@ -1,0 +1,104 @@
+computer_guesses_code.txt
+========================================
+Program Description
+
+This program is a guessing-game program in which the computer (the program)
+attempts to guess a secret code chosen by the user, using 10 or fewer guesses.
+The secret code must be a positive integer consisting of exactly 4 digits,
+with each digit taken from the range 1..8, and with repetition allowed.
+
+Before the program starts guessing, the user should choose the secret code,
+and preferably write it down. The user has the option of supplying a starting
+guess for the program, or letting the program choose its own (random) guess
+for starting the guess sequence. If a starting guess is supplied by the user
+it must be a valid guess, or the program will terminate.
+
+The user must score each guess by providing a 2-digit score. The first digit
+indicates the number of digits in the computer's guess that exactly match the
+digits in the user's secret code. To be an exact match, the digits must be the
+same and also be in the same position. The second digit counts the number of
+digits in the computer's guess that are the same as a digit in the user's
+secret code, but are not in the same position. In this count, any digit in the
+guess must be compared with only one instance of itself in the user's code.
+Think of it this way: If you count a digit for your score (as either an exact
+match, or non-exact match) you must be able to draw a straight line between
+the counted digit in the guess and in the secret code. Exact matches will have
+vertical lines, and non-exact matches will have "slanted" lines. Also, no
+digit may be connected by more than one line. And now, you're ready to go ...
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+A particular guessing sequence (by the program) may terminate in one of five
+ways, as outlined below:
+
+1. The user enters an invalid code for the program to use as a starting guess.
+In this case the program simply terminates, with the following message:
+
+Error: You must enter a valid code.
+A valid code consists of 4 digits in the range 1..8.
+Program is now terminating. Please try again.
+Press Enter to continue ...
+
+2. The user enters an invalid score. Once again, the program simply terminates,
+with the following message:
+
+Error: You must enter a valid score.
+A valid score consists of 2 digits in the range 0..4.
+Also, the digit sum must be <= 4, and 31 is also invalid.
+Program is now terminating. Please try again.
+Press Enter to continue ...
+
+Note that it is important not to confuse an *invalid* score with a score that
+is simply *incorrect*, given the program's current guess and the user's secret
+code. That is an entirely different matter.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+3. The program's current guess is the user's secret code. In this case the
+following message is (usually) displayed:
+
+Congratulations to me!
+I guessed your secret code in 2 guesses!
+Play again? (y/[n])
+
+Or, should the computer be extremely lucky on its first guess, the following
+message is displayed:
+
+Congratulations to me!
+I guessed your secret code in 1 guess!
+Play again? (y/[n])
+
+
+4. The program runs out of guesses (maximum = 8) without guessing the user's
+secret code. In this case the following message is displayed.
+
+Sorry, but I'm out of guesses.
+Looks like you stumped me. Congratulations!
+Play again? (y/[n])
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+5. The program has examined all possible guesses and has not found the secret
+code. In this case the most likely cause is that the user has in fact scored
+one or more of the program's guesses incorrectly, and so the following message
+is displayed:
+
+Looks like something has gone wrong.
+Please check the scoring of your secret code against my guesses.
+Play again? (y/[n])
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+========================================

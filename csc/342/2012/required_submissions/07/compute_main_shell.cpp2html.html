@@ -1,0 +1,73 @@
+<html>
+<head><title>compute_main_shell.cpp</title>
+<meta name="generator"
+content="java2html 0.9.2">
+</head>
+<body>
+<h1>Source of <a href="compute_main_shell.cpp">compute_main_shell.cpp</a></h1>
+<ul>Structures and functions
+<pre width="80"></pre>
+</ul>
+<hr></hr>
+<pre width="80"><a name="line1">  1: </a><font color="#B22222">//compute_main_shell.cpp</font>
+<a name="line2">  2: </a><font color="#B22222">//Lastname:Firstname:A00123456:csc34101</font>
+<a name="line3">  3: </a><font color="#B22222">//Submission 07</font>
+<a name="line4">  4: </a><font color="#B22222">//Implementing a Simple Four-Function Calculator</font>
+
+<a name="line6">  6: </a><font color="#B22222">/*</font>
+<a name="line7">  7: </a><font color="#B22222">Self-assessment ...</font>
+<a name="line8">  8: </a><font color="#B22222">*/</font>
+
+<a name="line10"> 10: </a><font color="#A020F0">#include whatever standard headers you need here</font>
+<a name="line11"> 11: </a>using namespace std;
+
+<a name="line13"> 13: </a><font color="#A020F0">#include </font><font color="#666666">"utilities.h"</font><font color="#A020F0"></font>
+<a name="line14"> 14: </a>using Scobey::DisplayOpeningScreen;
+<a name="line15"> 15: </a>using Scobey::Pause;
+
+<a name="line17"> 17: </a><font color="#A020F0">#include </font><font color="#666666">"compute_helper_functions.h"</font><font color="#A020F0"></font>
+
+<a name="line19"> 19: </a>void DisplayUsage();
+<a name="line20"> 20: </a><font color="#B22222">/**&lt;</font>
+<a name="line21"> 21: </a><font color="#B22222">Display a brief description of how to use the program.</font>
+<a name="line22"> 22: </a><font color="#B22222">@pre  None</font>
+<a name="line23"> 23: </a><font color="#B22222">@post Program usage description has been displayed on standard output.</font>
+<a name="line24"> 24: </a><font color="#B22222">*/</font>
+
+<a name="line26"> 26: </a>int main(int argc, char* argv[])
+<a name="line27"> 27: </a>{
+<a name="line28"> 28: </a>    <font color="#4169E1">if</font> (argc == 1)
+<a name="line29"> 29: </a>    {
+<a name="line30"> 30: </a>        DisplayOpeningScreen(<font color="#666666">"Lastname:Firstname:A00123456:CSC34201"</font>,
+<a name="line31"> 31: </a>        <font color="#666666">"Submission 07: Implementing a Simple Four-Function Calculator"</font>);
+<a name="line32"> 32: </a>        DisplayUsage();
+<a name="line33"> 33: </a>        <font color="#4169E1">return</font> 1;
+<a name="line34"> 34: </a>    }
+
+<a name="line36"> 36: </a>    <font color="#B22222">//Pseudocode for your main driver ...</font>
+<a name="line37"> 37: </a>    <font color="#4169E1">if</font> (you succeed in reading a valid expression into the expression tree
+<a name="line38"> 38: </a>        and
+<a name="line39"> 39: </a>        there's no garbage on the rest of the line)
+<a name="line40"> 40: </a>        Display the expression, an equals sign, and the expression's value
+<a name="line41"> 41: </a>    <font color="#4169E1">else</font>
+<a name="line42"> 42: </a>        Output the message, <font color="#666666">"Bad input! Could not compute value."</font>
+<a name="line43"> 43: </a>}
+
+<a name="line45"> 45: </a>void DisplayUsage()
+<a name="line46"> 46: </a>{
+<a name="line47"> 47: </a>    cout &lt;&lt; <font color="#666666">"\nThis program is a simple four-function calculator "</font>
+<a name="line48"> 48: </a>        <font color="#666666">"with command-line input.\n\nOnly integer arithmetic using "</font>
+<a name="line49"> 49: </a>        <font color="#666666">"four operators (+, -, *, or /) is permitted.\n\nEach line "</font>
+<a name="line50"> 50: </a>        <font color="#666666">"of input is limited to either a single positive integer, "</font>
+<a name="line51"> 51: </a>        <font color="#666666">"or a\nfully-parenthesized arithmetic expression containing "</font>
+<a name="line52"> 52: </a>        <font color="#666666">"only binary operators\nand positive integer operands.\n\n"</font>
+<a name="line53"> 53: </a>        <font color="#666666">"Extra spaces in the input are ignored, but any characters "</font>
+<a name="line54"> 54: </a>        <font color="#666666">"other than blank\nspaces that appear after a valid expression "</font>
+<a name="line55"> 55: </a>        <font color="#666666">"and on the same line will cause\nthat entire input line to be "</font>
+<a name="line56"> 56: </a>        <font color="#666666">"rejected as bad input.\n\n\n\n\n\n\n\n\n\n\n\n"</font>;
+<a name="line57"> 57: </a>    cout &lt;&lt; <font color="#666666">"\nPress Enter to continue ... "</font>;  cin.ignore(80, '\n');
+<a name="line58"> 58: </a>}
+</pre>
+</body></html>
+
+<!-- Localized -->

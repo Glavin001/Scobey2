@@ -1,0 +1,160 @@
+hashtable.txt
+TextItem file for the hashing program.
+========================================
+Program Description
+
+This program permits the user to experiment with a certain kind of hashing
+scheme, and to view the results of modifying the parameters that determine
+the precise way in which that hashing scheme is implemented.
+
+The data source must be a textfile, whose name will be supplied by the user,
+and which contains birthdate/name pairs of people, in the format
+18950206Babe Ruth
+19320227Elizabeth Taylor
+19290115Dr. Martin Luther King, Jr.
+and in which, for simplicity, birth dates are assumed to be unique.
+
+Note that birthdates are given in what we might (presumptuously) call the
+most "sensible" format, and one that might have avoided the Y2K fiasco.
+
+A sample data file called "famous_names.txt" is supplied. It contains the 
+names of some allegedly "famous" people, as well as their birthdates, most
+of which came from the web site www.famousbirthdays.com.
+
+The program loads this data into a hash table in memory, in which the index 
+for a particular data item is determined in the following way:
+
+- first, forming the product of the two integers obtained by computing the
+  date integer divided by 10000 and the date integer modulus 10000.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+- second, then finding the modulus of the resulting value with respect to the
+  table capacity chosen by the user.
+
+
+If a collision occurs, the next location examined is determined by applying
+the same modulus operation to the current location after the user's probe size
+has been added to the current location.
+
+
+Here is a summary of what the different menu options provide:
+
+Option 1 terminates the program.
+
+Option 2 displays the information you are now reading.
+
+Option 3 allows you to choose the "hashing parameters". Keep in mind that 
+choosing these parameters clears the hash table for new input, and that these
+parameters *must be set* before loading in an input data file.
+
+The two parameters you can choose (in Option 3) are:
+1. the capacity of the hash table
+2. the size of the "probe increment" to use when a collision occurs
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+Option 4 allows you to view the values of the current user-chosen parameters
+(those set in Option 3) at any time, even the default values before they are
+set. Both of the default values are 0.
+
+Option 5 allows you to read in the data from a file and place that data in
+the hash table you have set up in Option 3. If the table capacity and/or the
+probe increment chosen by the user are such that the data cannot be loaded
+into the resulting table using that hashing scheme, the user must be returned
+to the main menu (where the user may opt, among other choices, to try again).
+Also, this option lets the user decide whether to create the hashLog file.
+
+There are several potential errors that are recognized, and reported, if
+they occur. They are:
+
+- attempting to load an input data file before the table capacity and
+  probe size have been set
+
+- attempting to load an input data file that does not exist
+
+- attempting to load an input data file that contains too much data to fit
+  into the hash table; simply put, this means that the number of lines in
+  the file is greater than the capacity of the hash table
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+- the hashing scheme is not able to place the data into the table, i.e.,
+  the table capacity and the probe increment and the data are such that
+  the hashing scheme has failed to find a location to store a data item
+
+- attempting to search for an item, remove an item, or update an item
+  if the "database", i.e., the hash table, is empty
+
+- attempting to insert an item into the database if there is no space
+  to accommodate it, which may occur if the hash table if full, or if
+  it has not yet been initialized with a user-chosen capacity and probe
+  increment
+
+- attempting to display a "hashLog" file before one has been created
+
+  Note that this last potential error will only occur if there is no current
+  (*or previous*) hashLog file in the current directory. [The log file showing
+  the details of an input data file being loaded into the hash table is always
+  given the same name, "hashLog". So ... this error will only occur on the
+  first run of the program, if Option 6 is chosen before a data file has been
+  read in, or on a later run if the last hashLog file created has been deleted
+  (outside the program) and again Option 6 is chosen before reading in another
+  data file.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Option 6 displays some information about how the data was placed in the hash
+table, simply by displaying the contents of a file called hashLog. This file
+must have been created by the program when the data in the input data file was 
+read in and the hash table was created. In fact, this table may be re-created
+(or not) each time a new input data file is read in to create a new hash table.
+
+The contents of the hashLog file are:
+
+- first, a list containing each name, in the order it appeared in the input
+  data file, and followed on the same line by a list of all the locations that
+  were examined up until that data item with that name was actually stored
+
+- second, a list of the complete contents of the hash table, in the order of
+  the index values in the hash table
+
+The exact format of the hashLog file may be observed by running the sample 
+executable with the sample input file.
+
+
+Option 7 allows the user to add an item to the database.
+
+Option 8 allows you to search the hash table database for a person born on a
+given date. Birth dates are always entered in the form yyyymmdd whether for
+searching or for some other purpose.
+
+Option 9 allows the user to remove an item from the database.
+
+Option 10 allows the user to update an item in the database.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+A couple of final notes:
+
+1. Although it is not an "error" to choose a table capacity and probe size
+   that are not relatively prime, when choosing these two values via menu
+   option 3 the user is reminded that not doing so may result in the program's
+   not being able to find places in the table for some of the data. Then the
+   user is given another opportunity to choose different values.
+
+2. When the user chooses to quit, the program permits the user to either
+   delete the current hashLog file or rename it to "move it out of the way".
+   This is probably a good idea, since doing so will help to avoid the
+   potential problem of displaying a hashLog file that does not correspond
+   to the current hash table. The prolem cannot be completely avoided,
+   however, since during a single run of the program a user may opt to
+   generate the hashLog file while reading in one input file, then read
+   in a second input file without generating a hashLog file, at which point
+   the hash table and the hashLog file would be "out of sync".
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+========================================

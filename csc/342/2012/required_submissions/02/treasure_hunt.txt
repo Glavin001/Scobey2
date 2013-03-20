@@ -1,0 +1,77 @@
+Filename: treasure_hunt.txt
+Purpose: The text items file for treasure_hunt1.cpp and treasure_hunt2.cpp.
+========================================
+Program Description
+
+This program concerns itself with searching for hidden treasure on remote
+islands of the South Pacific. The islands are not particularly hospitable
+places and offer many obstacles to treasure seekers, so there may or may
+not be a path to the treasure on a particular island, and whether there is
+or is not a path may depend on where the search is started. But ... if there
+is in fact a path, this program will find it.
+
+Options 1 and 2 of the Menu are the usual "Quit" and "Get info" choices.
+
+Option 3 allows the user to read in an "island configuration" from an external
+textfile. Such a configuration is a rectangle of characters with a border of
+* characters, blank spaces to indicate paths along which a treasure seeker may
+search, and H characters to indicate no-go zones.
+
+Option 4 allows the user to display the current cofiguration at any time.
+Depending on what has happened in the meantime, this display may show any
+of the following:
+1. The original island configuration
+2. A configuration that has had its original state modified by user input
+3. A configuration that shows the result of a successful search by marking
+   the path with a sequence of 'O' characters and also marking dead-end
+   locations (that were examined in the process of finding the successful
+   path) with 'X' characters
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+4. A configuration that shows the result of an unsuccessful search by marking
+   with an 'X' character all dead-end locations that were examined in the
+   process of trying to find a path to the treasure
+   
+Option 5 allows the user to modify the current island configuration by
+changing one character at a time in that configuration. (Perhaps the original
+map was at fault and needs to be updated as the result of information brought
+back by scouting parties sent out after arrival on the island.)
+
+Option 6 allows the island configuration to be reset to its original state at
+any time (possibly after some modifications if the scouting party brought back
+faulty information after all, or even after a full search has been conducted).
+
+Option 7 allows the user to have the program conduct a search based on the
+current island configuration, starting from any valid location, and with or
+without the tracing feature turned on.
+
+
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+Information:DisplayHeader
+
+Here is the current island configuration, with rows and columns numbered.
+Also, if a treasure search has been performed, a successful path is marked
+with O and positions that were examined but led to dead ends are marked with X.
+----------------------------------------
+Information:PathFound
+A path to the treasure has been found.
+O marks the trail from the starting point to the treasure location.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+Information:PathNotFound
+No path to the treasure could be found.
+X marks the examined positions during the unsuccessful search.
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+Information:NotYetImplemented
+
+This menu option has not yet been implemented.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+========================================

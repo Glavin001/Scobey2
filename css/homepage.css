@@ -1,0 +1,121 @@
+/* homepage.css */
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+A.course_link:link
+{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    color: blue;
+    text-decoration: none;
+}
+A.course_link:visited
+{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    color: blue;
+    text-decoration: none;
+}
+A.course_link:hover
+{
+    font-family: verdana, arial, helvetica, sans-serif;
+    font-weight: bold;
+    font-size: 11px;
+    color: red;
+    text-decoration: none;
+}
+
+body
+{
+  background-color: #9C0000;
+  font-family: Arial, sans-serif;
+  font-size: 10pt;
+}
+
+#layout
+{
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  background-color: white;
+  border: 10px outset black
+}
+
+#header
+{
+  height: 71px;
+}
+
+#dept
+{
+  float: left;
+}
+
+#univ
+{
+  float:right;
+}
+
+#content
+{
+  display: block;
+  width: 100%;
+}
+
+#column1
+{
+  clear: both;
+  float: left;
+  width: 175px;
+  height: 187px;
+  text-align: center;
+  background-color: #DDDDDD;
+  margin-top: -5px;
+}
+
+#column2
+{
+  float: left;
+  width: 250px;
+  height: 187px;
+  text-align: center;
+  background-color: #FFFFCC;
+  margin-top: -5px;
+}
+
+#column3
+{
+  float: left;
+  width: 175px;
+  height: 187px;
+  text-align: center;
+  background-color: #DDDDDD;
+  margin-top: -5px;
+}
+
+#footer
+{
+  clear: both;
+  text-align: center;
+  font-weight: bold;
+  background-color: #DDDDDD;
+}
+
+.line
+{
+  padding: 0.1em;
+}
+
+.lineb
+{
+  padding: 0.1em;
+  font-weight: bold;
+  line-height: 1.3em;
+}

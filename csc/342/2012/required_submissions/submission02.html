@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 02</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css" type="text/css" />
+  </head>
+  <body class="csc342">
+    <p class="pageheader">CSCI 2342 Submission 02<br />
+     Finding a Hidden Treasure via Backtracking, Part 1</p>
+    <!--
+        <p>
+        <big>
+        <font color="red">
+        Still Under Development
+        </font>
+        </big>
+        </p>
+        -->
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a
+        href="02/demo_treasure_hunt1.exe">demo_treasure_hunt1.exe</a><br />
+         <a href="02/treasure_hunt.txt">treasure_hunt.txt</a><br />
+         <a href="02/island1.txt">island1.txt</a><br />
+         <a href="02/island2.txt">island2.txt</a><br />
+         <a href="02/island3.txt">island3.txt</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>treasure_hunt1.cpp<br />
+         treasure_hunt1.exe<br />
+        </tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Jan 22, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>We are all familiar from personal experiences of one kind or another
+    with the idea of heading toward a goal but running into a dead end and
+    having to back up and try a new direction. That is the central idea
+    behind <em>backtracking</em>, a problem-solving approach that makes
+    critical use of recursion, often to solve problems such as finding a path
+    through a maze or finding a path from a starting point to a destination
+    of some kind. In fact, any problem that can be described in these terms
+    is potentially solvable by a backtracking approach.</p>
+    <p>So ... this week you will design and write the first phase of a
+    two-phase project which will ultimately consist of a program containing a
+    recursive routine that makes use of backtracking to find a path, if one
+    exists, from a starting point to the location of a hidden treasure. In
+    the first phase you will set up the complete infrastructure, but will not
+    actually conduct any searches. In the second phase you will implement the
+    recursive backtracking search routine.</p>
+    <p>The completed first phase will permit the user to read in an island
+    configuration from an external textfile, to display that configuration at
+    any time, to modify the configuration one position at a time, and to
+    reset the configuration to its original state at any point after it has
+    been modified.</p>
+    <p>This is yet another attempt to help you separate the various issues
+    involved in designing a complete solution to a problem, and another
+    opportunity for you to practice the avoidance of having to deal with and
+    worry about everything at once. On the other hand, as you work on the
+    first phase you will need to "think ahead" about what the second phase
+    will involve, and try make good choices this time around. For that reason
+    we describe the problem and the approach fully here, though you will only
+    be doing a partial implementation this week.</p>
+    <p>The treasure is hidden on an island, which for some reason always
+    happens to be nice and rectangular. Being an island, it is of course
+    surrounded by water, and in fact there may or may not be a path from the
+    starting point to where the treasure is hidden. Or, there may be more
+    than one path. In the latter case, you don't care which path is chosen,
+    as long as you find a path to the treasure. This is not a "shortest path"
+    problem. In fact, as you will likely discover, which path is chosen from
+    among two or more possible paths will depend on how you write your search
+    routine.</p>
+    <p>For example, consider the three figures shown below. They represent
+    three different island configurations. All three of these configurations
+    are provided as sample input in the files <tt>island1.txt</tt>,
+    <tt>island2.txt</tt> and <tt>island3.txt</tt>, but you should, of course,
+    create other, larger, more interesting examples of your own.</p>
+<pre xml:space="preserve">
+        ******    ******    ******
+        * HHH*    * HHH*    * HHH*
+        * HHH*    * HHH*    * HHH*
+        *    *    *    *    *    *
+        * HH *    *H H *    * HHH*
+        *H@  *    *H@  *    *H@  *
+        *HHH *    *HHH *    *HHH *
+        ******    ******    ******
+       Figure 1  Figure 2  Figure 3
+</pre>
+    <p>In each case the border of the island is represented by the <tt>*</tt>
+    characters, and we may not enter or cross this border during a search.
+    Thus you can think of the <tt>*</tt> characters as representing the water
+    of the surrounding ocean. We will start our search at some valid location
+    (represented by a blank space) and we can only move from that blank space
+    to another blank space in the horizontal or vertical direction. So ... no
+    diagonal movement. And we have to stay on the island until we find a path
+    from our starting point to the treasure, or determine that there is no
+    such path.</p>
+    <p>Let's suppose our starting point is the blank space at the top left
+    corner. Then in Figure 1 there is a single direct path from the starting
+    point to the treasure location (<tt>@</tt>), given that we can only move
+    left or right, or up or down, from a given position. And we can only move
+    if the space to which we want to move is open (blank) or contains the goal
+    (<tt>@</tt>). In many directions we may be blocked from moving. Positions
+    to which we cannot move are represented in these figures by an <tt>H</tt>
+    character, perhaps standing for Headhunters, for example, though there
+    could be many other reasons why we could not go in a particular
+    direction, including high mountains, deep valleys with river gorges,
+    swamps full of alligators, and so on. For simplicity, all of these
+    terrible possibilities are represented simply by an <tt>H</tt>.</p>
+    <p>In Figure 2 there are two possible paths from the starting point to
+    the treasure, and in Figure 3 there is no path.</p>
+    <p>Your goal will be to write a program that, whatever the size and
+    configuration of the island, will find a path from a given starting point
+    to the treasure, if one exists, and show that path on the island's
+    configuration, marked with a sequence of 'O' characters. Or, your program
+    will determine that no path exists, and in this case show what locations
+    were examined but led to dead ends and hence no treasure, by marking
+    each of these locations with an 'X' character.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>First, download the sample executable, not from this week's Part 1,
+      but from next week's (complete) Part 2. The text items file is the same
+      for both phases, so this week's text items file
+      (<tt>treasure_hunt.txt</tt>) applies. Run the program and read the
+      program information provided by choosing menu option 2. It will be
+      helpful to be familiar with the final goal program even before starting
+      the first phase.</li>
+      <li>Try reading in each of the sample island configurations, displaying
+      each configuration after reading it in, and then performing a number of
+      treasure searches on that island, starting from different points on the
+      island. Leave the trace feature turned off at this point in your
+      experimentation.</li>
+      <li>Try modifying each of the sample island configurations to see how
+      the outcomes of previous searches on those islands are affected. Try to
+      predict what will happen in each case before actually doing it.</li>
+      <li>Now try turning the trace on (with and without pauses) for several
+      of the configurations and searches you have tried to see how the
+      algorithm actually performs the searches.</li>
+      <li>Next, download the sample executable from this week's Part 1 and
+      run it. Note that the only difference is that the actual search option
+      is not implemented. This is what we mean by saying that this week you
+      will implement the entire "infrastructure" (but not the searching). But
+      ... in the process of implementing that infrastructure you will, as we
+      noted above, need to be thinking about how you will do the searching.
+      The main decision you have to make in this regard is choosing a
+      representation for the island. There are, as is often the case, several
+      possibilities. Once you have made this decision, you will have to
+      implement all of the non-searching menu options this week, and next
+      week the searching option itself, in terms of the structure you have
+      chosen. It goes without saying, then, it is not a decision to be taken
+      lightly.</li>
+      <li>Once you understand what is required, write pseudocode for a
+      solution to the problem and revise it until you are convinced that a
+      program that implements your pseudocode will be the one you want.</li>
+      <li>Translate your pseudocode into C++ and continue testing your
+      program until you are convinced it works correctly.</li>
+      <li>Make sure your source code is identified, formatted, and documented
+      properly, using doxygen documentation and/or regular C++ comments as
+      appropriate.</li>
+      <li>Finally, make sure your self-assessment of your submission is
+      complete, and then submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol>
+      <li>
+        Let's say a little more about the searching process as we look for
+        treasure on one of our islands.
+        <p>First, before we begin an actual search we need to check that we
+        are not in some situation where we are essentially finished before we
+        start (already at the treasure location, or trying to start from a
+        blocked location, for example).</p>
+        <p>Then, if we are at a valid starting position (a blank space), our
+        location may be on a path that will lead to the treasure. So ... we
+        need to mark the current position as part of a potential path (we use
+        an 'O' for this purpose) and continue by heading off in one of the
+        four possible directions to see if we can find the treasure. We must,
+        of course, try all four possible directions before giving up on the
+        current position as a possible valid location on a path to the
+        treasure.</p>
+        <p>If we do give up on the current location, we mark it (using an
+        'X') to indicate it is not on any successful path and prevent
+        ourselves from reconsidering it an any later attempt. Every time we
+        move to a new loation we must repeat this same procedure, which is
+        where the recursion comes in. This is the search problem scenario
+        that you need to solve by recursive backtracking.</p>
+      </li>
+      <li>
+        Here is some very high-level pseudocode to govern our behavior
+        when we are at a paricular location and evaluating whether or not
+        it can be on a successful path to the treasure: 
+<pre xml:space="preserve">
+if we're actually at the treasure location
+    I guess we can quit ... we've found it!
+else if we're about to cross the border
+    Have to quit ... can't do that
+else if we're blocked at this location
+    Might as well quit ... this location can't be on a successful path
+else if we've already been here
+    No point in going that way ... we've previously come from that direction
+else
+    //Our location is OK, and could be on a successful path, so let's continue searching
+    Mark this location with an O since it might be on a successful path
+    if we find the treasure by looking in one of the four possible directions from here
+        We have a successful search
+    else
+        We can't find the treasure starting from here
+        So ... mark this location with an X so we don't try it again
+</pre>
+      </li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

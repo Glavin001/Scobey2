@@ -1,0 +1,151 @@
+<html>
+<head><title>compute_helper_functions.h</title>
+<meta name="generator"
+content="java2html 0.9.2">
+</head>
+<body>
+<h1>Source of <a href="compute_helper_functions.h">compute_helper_functions.h</a></h1>
+<ul>Structures and functions
+<pre width="80"></pre>
+</ul>
+<hr></hr>
+<pre width="80"><a name="line1">  1: </a><font color="#B22222">//compute_helper_functions.h</font>
+<a name="line2">  2: </a><font color="#B22222">//Specification file for the helper functions needed in the compute program.</font>
+
+<a name="line4">  4: </a><font color="#4169E1">enum</font> TagType
+<a name="line5">  5: </a><font color="#B22222">/**</font>
+<a name="line6">  6: </a><font color="#B22222">A type used for labeling the data content of a binary expression tree node.</font>
+<a name="line7">  7: </a><font color="#B22222">*/</font>
+<a name="line8">  8: </a>{
+<a name="line9">  9: </a>    INT_ONLY,
+<a name="line10"> 10: </a>    SUB_NODE
+<a name="line11"> 11: </a>};
+
+
+<a name="line14"> 14: </a><font color="#4169E1">struct NodeType</font>
+<a name="line15"> 15: </a><font color="#B22222">/**</font>
+<a name="line16"> 16: </a><font color="#B22222">The type used for the nodes of a binary expression tree.</font>
+<a name="line17"> 17: </a><font color="#B22222">*/</font>
+<a name="line18"> 18: </a>{
+<a name="line19"> 19: </a>    TagType tag;
+<a name="line20"> 20: </a>    <font color="#4169E1">union</font> <font color="#B22222">//Note that this union type is "anonymous".</font>
+<a name="line21"> 21: </a>    {
+<a name="line22"> 22: </a>        int intValue;
+<a name="line23"> 23: </a>        <font color="#4169E1">struct</font> <font color="#B22222">//And this struct type is also anonymous.</font>
+<a name="line24"> 24: </a>        {
+<a name="line25"> 25: </a>            NodeType* left;
+<a name="line26"> 26: </a>            char op;
+<a name="line27"> 27: </a>            NodeType* right;
+<a name="line28"> 28: </a>        };
+<a name="line29"> 29: </a>    };
+<a name="line30"> 30: </a>};
+
+
+<a name="line33"> 33: </a>bool expressionFound
+<a name="line34"> 34: </a>(
+<a name="line35"> 35: </a>    istringstream&amp; inStream, <font color="#B22222">//inout</font>
+<a name="line36"> 36: </a>    NodeType&amp; eTree          <font color="#B22222">//out</font>
+<a name="line37"> 37: </a>);
+<a name="line38"> 38: </a><font color="#B22222">/**&lt;</font>
+<a name="line39"> 39: </a><font color="#B22222">Tries to read a valid expression from inStream and put it into eTree.</font>
+<a name="line40"> 40: </a><font color="#B22222">Called only by main() (and itself, of course, since it is recursive).</font>
+<a name="line41"> 41: </a><font color="#B22222">@param inStream The stream from which the expression is being read.</font>
+<a name="line42"> 42: </a><font color="#B22222">@param eTree Where the expression is stored if the function succeeds.</font>
+<a name="line43"> 43: </a><font color="#B22222">@return true if expression successfully read into eTree, otherwise false.</font>
+<a name="line44"> 44: </a><font color="#B22222">@pre inStream has been initiallzed and is available for reading.</font>
+<a name="line45"> 45: </a><font color="#B22222">@post A valid expression has been read, the function has returned true,</font>
+<a name="line46"> 46: </a><font color="#B22222">and inStream is still available for reading; or, the function has returned</font>
+<a name="line47"> 47: </a><font color="#B22222">false.</font>
+<a name="line48"> 48: </a><font color="#B22222">*/</font>
+
+
+<a name="line51"> 51: </a>bool integerFound
+<a name="line52"> 52: </a>(
+<a name="line53"> 53: </a>    istringstream&amp; inStream, <font color="#B22222">//inout</font>
+<a name="line54"> 54: </a>    int&amp; i                   <font color="#B22222">//out</font>
+<a name="line55"> 55: </a>);
+<a name="line56"> 56: </a><font color="#B22222">/**&lt;</font>
+<a name="line57"> 57: </a><font color="#B22222">Determines if an integer can be read next and, if so, reads and returns</font>
+<a name="line58"> 58: </a><font color="#B22222">the integer in i. Called only by expressionFound().</font>
+<a name="line59"> 59: </a><font color="#B22222">@param inStream The stream from which the integer is being read.</font>
+<a name="line60"> 60: </a><font color="#B22222">@param i Where the integer is stored if the function succeeds.</font>
+<a name="line61"> 61: </a><font color="#B22222">@return true if an integer is successfully read into i, otherwise false.</font>
+<a name="line62"> 62: </a><font color="#B22222">@pre inStream has been initialized and is open.</font>
+<a name="line63"> 63: </a><font color="#B22222">@post  The function has returned true, and inStream is still open and</font>
+<a name="line64"> 64: </a><font color="#B22222">available for reading; or, the function has returned false.</font>
+<a name="line65"> 65: </a><font color="#B22222">*/</font>
+
+
+<a name="line68"> 68: </a>bool expectedCharFound
+<a name="line69"> 69: </a>(
+<a name="line70"> 70: </a>    istringstream&amp; inStream,       <font color="#B22222">//inout</font>
+<a name="line71"> 71: </a>    char&amp; ch,                      <font color="#B22222">//out</font>
+<a name="line72"> 72: </a>    const set&lt;char&gt;&amp; expectedChars <font color="#B22222">//in</font>
+<a name="line73"> 73: </a>);
+<a name="line74"> 74: </a><font color="#B22222">/**&lt;</font>
+<a name="line75"> 75: </a><font color="#B22222">Reads a character and determines if that character is in a set of</font>
+<a name="line76"> 76: </a><font color="#B22222">expected characters for the current read. Called only by expressionFound().</font>
+<a name="line77"> 77: </a><font color="#B22222">@param inStream The stream from which the character is read.</font>
+<a name="line78"> 78: </a><font color="#B22222">@param ch Where the character read is stored if the function succeeds.</font>
+<a name="line79"> 79: </a><font color="#B22222">@param expectedChars A set of all characters that are valid for the</font>
+<a name="line80"> 80: </a><font color="#B22222">current read.</font>
+<a name="line81"> 81: </a><font color="#B22222">@return true if a character in expectedChars is read into ch,</font>
+<a name="line82"> 82: </a><font color="#B22222">otherwise false.</font>
+<a name="line83"> 83: </a><font color="#B22222">@pre expectedChars has been initialized to contain the set of all</font>
+<a name="line84"> 84: </a><font color="#B22222">characters that are valid for the current character read.</font>
+<a name="line85"> 85: </a><font color="#B22222">@post The function has returned true and inStream is still open and</font>
+<a name="line86"> 86: </a><font color="#B22222">available for reading; or, the function has returned false.</font>
+<a name="line87"> 87: </a><font color="#B22222">*/</font>
+
+
+<a name="line90"> 90: </a>bool garbageFound
+<a name="line91"> 91: </a>(
+<a name="line92"> 92: </a>    istringstream&amp; inStream <font color="#B22222">//inout</font>
+<a name="line93"> 93: </a>);
+<a name="line94"> 94: </a><font color="#B22222">/**&lt;</font>
+<a name="line95"> 95: </a><font color="#B22222">Determines if there are any extraneous (i.e., "garbage") characters</font>
+<a name="line96"> 96: </a><font color="#B22222">following a valid expression on the input line. Called only by main().</font>
+<a name="line97"> 97: </a><font color="#B22222">@param inStream The input source stream.</font>
+<a name="line98"> 98: </a><font color="#B22222">@return true if there are characters between current read cursor</font>
+<a name="line99"> 99: </a><font color="#B22222">location and next newline and at least one of those characters is</font>
+<a name="line100">100: </a><font color="#B22222">not a blank space, otherwise false.</font>
+<a name="line101">101: </a><font color="#B22222">@pre inStream has been ininitalized and is open.</font>
+<a name="line102">102: </a><font color="#B22222">@post A value of true has been returned if anything other than blank</font>
+<a name="line103">103: </a><font color="#B22222">spaces has been seen between the end of a valid expression on the </font>
+<a name="line104">104: </a><font color="#B22222">input line and the newline character at the end of that line, and</font>
+<a name="line105">105: </a><font color="#B22222">false otherwise.</font>
+<a name="line106">106: </a><font color="#B22222">*/</font>
+
+
+<a name="line109">109: </a>int valueOf
+<a name="line110">110: </a>(
+<a name="line111">111: </a>    const NodeType&amp; eTree <font color="#B22222">//in</font>
+<a name="line112">112: </a>);
+<a name="line113">113: </a><font color="#B22222">/**&lt;</font>
+<a name="line114">114: </a><font color="#B22222">Evaluates an arithmetic expression stored in a binary expression tree.</font>
+<a name="line115">115: </a><font color="#B22222">Called only by main() (and itself, of course, since it is recursive).</font>
+<a name="line116">116: </a><font color="#B22222">@param eTree Where the arithmetic expression is stored.</font>
+<a name="line117">117: </a><font color="#B22222">@return Compute the numerical value of the arithmetic expression</font>
+<a name="line118">118: </a><font color="#B22222">stored in eTree.</font>
+<a name="line119">119: </a><font color="#B22222">@pre eTree contains a valid arithmetic expression.</font>
+<a name="line120">120: </a><font color="#B22222">@post The value of the arithmetic expression in eTree has been returned.</font>
+<a name="line121">121: </a><font color="#B22222">*/</font>
+
+
+<a name="line124">124: </a>void DisplayExpression
+<a name="line125">125: </a>(
+<a name="line126">126: </a>    const NodeType&amp; eTree <font color="#B22222">//in</font>
+<a name="line127">127: </a>);
+<a name="line128">128: </a><font color="#B22222">/**&lt;</font>
+<a name="line129">129: </a><font color="#B22222">Displays an arithmetic expression stored in a binary expression tree.</font>
+<a name="line130">130: </a><font color="#B22222">Called only by main() (and itself, of course, since it is recursive).</font>
+<a name="line131">131: </a><font color="#B22222">@param eTree Where the arithmetic expression is stored.</font>
+<a name="line132">132: </a><font color="#B22222">@pre eTree contains a valid arithmetic expression.</font>
+<a name="line133">133: </a><font color="#B22222">@post The expression in eTree has been displayed, in fully parenthesized</font>
+<a name="line134">134: </a><font color="#B22222">form, in a "nicely formatted" form, with a blank space on either side of</font>
+<a name="line135">135: </a><font color="#B22222">each operator.</font>
+<a name="line136">136: </a><font color="#B22222">*/</font>
+</pre>
+</body></html>
+
+<!-- Localized -->

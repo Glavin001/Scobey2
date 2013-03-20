@@ -1,0 +1,83 @@
+<html>
+<head><title>binary_files_of_reals_aux.hpp</title>
+<meta name="generator"
+content="java2html 0.9.2">
+</head>
+<body>
+<h1>Source of <a href="binary_files_of_reals_aux.hpp">binary_files_of_reals_aux.hpp</a></h1>
+<ul>Structures and functions
+<pre width="80"></pre>
+</ul>
+<hr></hr>
+<pre width="80"><a name="line1">  1: </a><font color="#B22222">//binary_file_of_reals_aux.hpp</font>
+<a name="line2">  2: </a>
+<a name="line3">  3: </a>void DisplayProgramInfo()
+<a name="line4">  4: </a>{
+<a name="line5">  5: </a>    cout &lt;&lt; <font color="#666666">"This program allows the user to perform some activities "</font>
+<a name="line6">  6: </a>        <font color="#666666">"with a binary file of\nreals. The program can only work with "</font>
+<a name="line7">  7: </a>        <font color="#666666">"one file at a time. When the program\nstarts, it may be used to "</font>
+<a name="line8">  8: </a>        <font color="#666666">"create such a file at that time, or the user may opt\nto open a "</font>
+<a name="line9">  9: </a>        <font color="#666666">"pre-existing file. During any given run, the current file may be "</font>
+<a name="line10"> 10: </a>        <font color="#666666">"\nclosed and another opened or created."</font>
+<a name="line11"> 11: </a>
+<a name="line12"> 12: </a>        <font color="#666666">"\n\nThe program currently does no error checking, so if the user "</font>
+<a name="line13"> 13: </a>        <font color="#666666">"attempts something\nthat doesn't \"make sense\" for the current "</font>
+<a name="line14"> 14: </a>        <font color="#666666">"file or for the current position in\nthe file, the outcome may "</font>
+<a name="line15"> 15: </a>        <font color="#666666">"be unpredictable."</font>
+<a name="line16"> 16: </a>
+<a name="line17"> 17: </a>        <font color="#666666">"\n\n- Option 1 is the usual Quit option."</font>
+<a name="line18"> 18: </a>        <font color="#666666">"\n\n- Option 2 displays the information you are now reading."</font>
+<a name="line19"> 19: </a>        <font color="#666666">"\n\n- Option 3 creates a new empty binary file of reals with "</font>
+<a name="line20"> 20: </a>        <font color="#666666">"a user-chosen name."</font>
+<a name="line21"> 21: </a>        <font color="#666666">"\n\n- Option 4 opens an already existing binary file of reals."</font>
+<a name="line22"> 22: </a>        <font color="#666666">"\n\n- Option 5 displays the current values of the following "</font>
+<a name="line23"> 23: </a>        <font color="#666666">"stream functions:"</font>
+<a name="line24"> 24: </a>        <font color="#666666">"\n  is_open()\n  good(), bad(), fail(), eof()\n  tellg(), "</font>
+<a name="line25"> 25: </a>        <font color="#666666">"tellp(), gcount()\n\n"</font>;
+<a name="line26"> 26: </a>    Pause();
+<a name="line27"> 27: </a>    cout &lt;&lt; <font color="#666666">"- Option 6 allows the user to move to a specific position "</font>
+<a name="line28"> 28: </a>        <font color="#666666">"in the file to\n  perform a subsequent action (reading or "</font>
+<a name="line29"> 29: </a>        <font color="#666666">"writing a value, for example).\n  That position may be the "</font>
+<a name="line30"> 30: </a>        <font color="#666666">"beginning or end of the file, a particular numbered\n  position "</font>
+<a name="line31"> 31: </a>        <font color="#666666">"in the file, or a new position relative to the current position."</font>
+<a name="line32"> 32: </a>        <font color="#666666">"\n\n- Option 7 writes reals entered by the user to the file, "</font>
+<a name="line33"> 33: </a>        <font color="#666666">"starting at\n  the current location."</font>
+<a name="line34"> 34: </a>        <font color="#666666">"\n\n- Option 8 displays a user-chosen number of reals, one per "</font>
+<a name="line35"> 35: </a>        <font color="#666666">"line, starting\n  at the beginning of the file."</font>
+<a name="line36"> 36: </a>        <font color="#666666">"\n\n- Option 9 displays all real values stored in the file, "</font>
+<a name="line37"> 37: </a>        <font color="#666666">"one per line."</font>
+<a name="line38"> 38: </a>        <font color="#666666">"\n\n- Option 10 displays real values from the file, "</font>
+<a name="line39"> 39: </a>        <font color="#666666">"one per line, starting from\n  the current location."</font>
+<a name="line40"> 40: </a>        <font color="#666666">"\n\n- Option 11 closes the current file (after which a new one "</font>
+<a name="line41"> 41: </a>        <font color="#666666">"may be opened,\n  or created, during the same run)."</font>
+<a name="line42"> 42: </a>        <font color="#666666">"\n\n\n\n\n\n"</font>;
+<a name="line43"> 43: </a>}
+<a name="line44"> 44: </a>
+<a name="line45"> 45: </a>
+<a name="line46"> 46: </a>void AddOptionsToMenu
+<a name="line47"> 47: </a>(
+<a name="line48"> 48: </a>    Menu&amp; m <font color="#B22222">//inout</font>
+<a name="line49"> 49: </a>)
+<a name="line50"> 50: </a>{
+<a name="line51"> 51: </a>    m.addOption(<font color="#666666">"Quit"</font>);
+<a name="line52"> 52: </a>    m.addOption(<font color="#666666">"Get information"</font>);
+<a name="line53"> 53: </a>    m.addOption(<font color="#666666">"Create an empty binary file of reals and "</font>
+<a name="line54"> 54: </a>        <font color="#666666">"leave it open"</font>);
+<a name="line55"> 55: </a>    m.addOption(<font color="#666666">"Open an already existing binary file of reals"</font>);
+<a name="line56"> 56: </a>    m.addOption(<font color="#666666">"Display current status of the binary file"</font>);
+<a name="line57"> 57: </a>    m.addOption(<font color="#666666">"Move to an absolute or relative position in the "</font>
+<a name="line58"> 58: </a>        <font color="#666666">"binary file"</font>);
+<a name="line59"> 59: </a>    m.addOption(<font color="#666666">"Copy one or more reals from the keyboard to the "</font>
+<a name="line60"> 60: </a>        <font color="#666666">"binary file"</font>);
+<a name="line61"> 61: </a>    m.addOption(<font color="#666666">"Copy one or more reals from start of binary file "</font>
+<a name="line62"> 62: </a>        <font color="#666666">"to the screen"</font>);
+<a name="line63"> 63: </a>    m.addOption(<font color="#666666">"Copy all reals from the binary file to the "</font>
+<a name="line64"> 64: </a>        <font color="#666666">"screen"</font>);
+<a name="line65"> 65: </a>    m.addOption(<font color="#666666">"Copy reals from file to screen, starting from the "</font>
+<a name="line66"> 66: </a>        <font color="#666666">"current location"</font>);
+<a name="line67"> 67: </a>    m.addOption(<font color="#666666">"Close the binary file"</font>);
+<a name="line68"> 68: </a>}
+</pre>
+</body></html>
+
+<!-- Localized -->

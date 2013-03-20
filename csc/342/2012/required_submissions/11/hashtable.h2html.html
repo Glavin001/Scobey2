@@ -1,0 +1,206 @@
+<html>
+<head><title>hashtable.h</title>
+<meta name="generator"
+content="java2html 0.9.2">
+</head>
+<body>
+<h1>Source of <a href="hashtable.h">hashtable.h</a></h1>
+<ul>Structures and functions
+<pre width="80"><li><a href="#HashTable">class HashTable</a></li>
+</pre>
+</ul>
+<hr></hr>
+<pre width="80"><a name="line1">  1: </a><font color="#B22222">//hashtable.h</font>
+<a name="line2">  2: </a><font color="#B22222">//Lastname:Firstname:A00??????:CSC342??</font>
+<a name="line3">  3: </a><font color="#B22222">//Submission 11: Implementing a HashTable Class</font>
+
+<a name="line5">  5: </a><font color="#A020F0">#include &lt;iostream&gt;</font>
+<a name="line6">  6: </a><font color="#A020F0">#include &lt;vector&gt;</font>
+<a name="line7">  7: </a>using namespace std;
+
+<a name="line9">  9: </a><font color="#A020F0">#ifndef HASHTABLE_H</font>
+<a name="line10"> 10: </a><strong><font color="#228B22">#define HASHTABLE_H</font></strong>
+
+<a name="line12"> 12: </a><font color="#4169E1">struct FamousPerson</font>
+<a name="line13"> 13: </a>{
+<a name="line14"> 14: </a>    int birthDate;
+<a name="line15"> 15: </a>    string name;
+<a name="line16"> 16: </a>};
+
+<a name="line18"> 18: </a>namespace Student
+<a name="line19"> 19: </a>{
+
+<a name="line21"> 21: </a><strong><font color="#4169E1"><a name="HashTable"></a>class HashTable</font></strong>
+<a name="line22"> 22: </a>{
+<a name="line23"> 23: </a><strong><font color="#FF0000">public:</font></strong>
+<a name="line24"> 24: </a>    HashTable();
+<a name="line25"> 25: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line26"> 26: </a><font color="#B22222">    Default constructor.</font>
+<a name="line27"> 27: </a><font color="#B22222">    Sets the capacity, size and probe increment to zero.</font>
+<a name="line28"> 28: </a><font color="#B22222">    */</font>
+
+<a name="line30"> 30: </a>    bool isEmpty() const;
+<a name="line31"> 31: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line32"> 32: </a><font color="#B22222">    Returns true or false, according as the hash table</font>
+<a name="line33"> 33: </a><font color="#B22222">    is empty or non-empty.</font>
+<a name="line34"> 34: </a><font color="#B22222">    */</font>
+
+<a name="line36"> 36: </a>    bool isFull() const;
+<a name="line37"> 37: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line38"> 38: </a><font color="#B22222">    Returns true or false, according as the hash table </font>
+<a name="line39"> 39: </a><font color="#B22222">    is full or non-full. Note that "full" can mean a</font>
+<a name="line40"> 40: </a><font color="#B22222">    capacity of greater than zero and a table that is</font>
+<a name="line41"> 41: </a><font color="#B22222">    actually full, or a capacity of zero and nothing</font>
+<a name="line42"> 42: </a><font color="#B22222">    in the table. In a certain sense, this latter table</font>
+<a name="line43"> 43: </a><font color="#B22222">    is both "empty" and "full".</font>
+<a name="line44"> 44: </a><font color="#B22222">    */</font>
+
+<a name="line46"> 46: </a>    void setCapacity
+<a name="line47"> 47: </a>    (
+<a name="line48"> 48: </a>        size_t capacity <font color="#B22222">//in</font>
+<a name="line49"> 49: </a>    );
+<a name="line50"> 50: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line51"> 51: </a><font color="#B22222">    Sets (or re-sets) the table capacity to the input value.</font>
+<a name="line52"> 52: </a><font color="#B22222">    */</font>
+
+<a name="line54"> 54: </a>    void setProbeIncrement
+<a name="line55"> 55: </a>    (
+<a name="line56"> 56: </a>        size_t probeIncrement <font color="#B22222">//in</font>
+<a name="line57"> 57: </a>    );
+<a name="line58"> 58: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line59"> 59: </a><font color="#B22222">    Sets (or re-sets) the probe increment to the input value.</font>
+<a name="line60"> 60: </a><font color="#B22222">    */</font>
+
+<a name="line62"> 62: </a>    size_t getSize() const;
+<a name="line63"> 63: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line64"> 64: </a><font color="#B22222">    Returns the current size of the hash table (the number of</font>
+<a name="line65"> 65: </a><font color="#B22222">    data items it contains). This value is &lt;= its capacity.</font>
+<a name="line66"> 66: </a><font color="#B22222">    */</font>
+
+<a name="line68"> 68: </a>    size_t getCapacity() const;
+<a name="line69"> 69: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line70"> 70: </a><font color="#B22222">    Returns the current capacity of the hash table (the number</font>
+<a name="line71"> 71: </a><font color="#B22222">    of data items it is currently capable of holding). This</font>
+<a name="line72"> 72: </a><font color="#B22222">    value is &gt;= its size.</font>
+<a name="line73"> 73: </a><font color="#B22222">    */</font>
+
+<a name="line75"> 75: </a>    size_t getProbeIncrement() const;
+<a name="line76"> 76: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line77"> 77: </a><font color="#B22222">    Returns the current value of the probe increment for the</font>
+<a name="line78"> 78: </a><font color="#B22222">    hashing scheme in use.</font>
+<a name="line79"> 79: </a><font color="#B22222">    */</font>
+
+<a name="line81"> 81: </a>    void clear();
+<a name="line82"> 82: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line83"> 83: </a><font color="#B22222">    Clears the hash table of all data items and resets the </font>
+<a name="line84"> 84: </a><font color="#B22222">    capacity, size and probe increment to zero.</font>
+<a name="line85"> 85: </a><font color="#B22222">    */</font>
+
+<a name="line87"> 87: </a>    bool isLoaded
+<a name="line88"> 88: </a>    (
+<a name="line89"> 89: </a>        ifstream&amp; inFile, <font color="#B22222">//in</font>
+<a name="line90"> 90: </a>        bool loggingOn    <font color="#B22222">//in</font>
+<a name="line91"> 91: </a>    );
+<a name="line92"> 92: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line93"> 93: </a><font color="#B22222">    Tries to load the data from inFile into the hash table and returns</font>
+<a name="line94"> 94: </a><font color="#B22222">    true or false indicating success or failure.</font>
+<a name="line95"> 95: </a><font color="#B22222">    @return true if the data in the input file inFile has been successfully</font>
+<a name="line96"> 96: </a><font color="#B22222">    loaded into the hash table, and otherwise false.</font>
+<a name="line97"> 97: </a><font color="#B22222">    @param inFile The file containing the input data for the hash table.</font>
+<a name="line98"> 98: </a><font color="#B22222">    @param loggingOn Indicates whether or not the hashLog file should be</font>
+<a name="line99"> 99: </a><font color="#B22222">    generated.</font>
+<a name="line100">100: </a><font color="#B22222">    @pre inFile is open and contains one or more lines of data in </font>
+<a name="line101">101: </a><font color="#B22222">    properly formatted form. That is, there is no error checking on</font>
+<a name="line102">102: </a><font color="#B22222">    the format of data in the file.</font>
+<a name="line103">103: </a><font color="#B22222">    @post inFile is still open. As a "side effect", a file called</font>
+<a name="line104">104: </a><font color="#B22222">    "hashLog" has been created. If you were starting from scratch,</font>
+<a name="line105">105: </a><font color="#B22222">    the full description of that file's contents and format would</font>
+<a name="line106">106: </a><font color="#B22222">    be described here. But ... you can obtain an actual hashLog file</font>
+<a name="line107">107: </a><font color="#B22222">    and infer this information from it.</font>
+<a name="line108">108: </a><font color="#B22222">    */</font>
+
+<a name="line110">110: </a>    bool isInserted
+<a name="line111">111: </a>    (
+<a name="line112">112: </a>        const FamousPerson&amp; dataValue
+<a name="line113">113: </a>    );
+<a name="line114">114: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line115">115: </a><font color="#B22222">    Tries to insert the person in dataValue into the hash table.</font>
+<a name="line116">116: </a><font color="#B22222">    @return true if the insertion succeeds, and false otherwise.</font>
+<a name="line117">117: </a><font color="#B22222">    @param dataValue The "famous person" to be inserted into the hash table.</font>
+<a name="line118">118: </a><font color="#B22222">    @pre dataValue has been initialized.</font>
+<a name="line119">119: </a><font color="#B22222">    @post Either the person in dataValue has been successfully inserted into</font>
+<a name="line120">120: </a><font color="#B22222">    the hash table, or the hash table remains unchanged.</font>
+<a name="line121">121: </a><font color="#B22222">    */</font>
+
+<a name="line123">123: </a>    bool isRetrieved
+<a name="line124">124: </a>    (
+<a name="line125">125: </a>        FamousPerson&amp; dataValue <font color="#B22222">//inout</font>
+<a name="line126">126: </a>    ) const;
+<a name="line127">127: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line128">128: </a><font color="#B22222">    Tries to find a person in the hash table who was born on the birth</font>
+<a name="line129">129: </a><font color="#B22222">    date in the birthDate field of dataValue and return the name of that</font>
+<a name="line130">130: </a><font color="#B22222">    person in the name field of dataValue.</font>
+<a name="line131">131: </a><font color="#B22222">    @return true if the search succeeds, and false otherwise.</font>
+<a name="line132">132: </a><font color="#B22222">    @param dataValue Contains the birth date of the "famous person" being</font>
+<a name="line133">133: </a><font color="#B22222">    sought in the table in its birthDate field, and if the search succeeds,</font>
+<a name="line134">134: </a><font color="#B22222">    will also contain the name of that person in its name field; otherwise</font>
+<a name="line135">135: </a><font color="#B22222">    the name field is undefined.</font>
+<a name="line136">136: </a><font color="#B22222">    @pre dataValue.birthDate has been initialized.</font>
+<a name="line137">137: </a><font color="#B22222">    @post dataValue.name contains the name of the person from the table</font>
+<a name="line138">138: </a><font color="#B22222">    who was born on dataValue.birthDate if such a person exists, and is</font>
+<a name="line139">139: </a><font color="#B22222">    otherwise undefined. In any case, the hash table remains unchanged.</font>
+<a name="line140">140: </a><font color="#B22222">    */</font>
+
+<a name="line142">142: </a>    bool isRemoved
+<a name="line143">143: </a>    (
+<a name="line144">144: </a>        FamousPerson&amp; dataValue <font color="#B22222">//in</font>
+<a name="line145">145: </a>    );
+<a name="line146">146: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line147">147: </a><font color="#B22222">    Tries to find the person whose birth date is in dataValue and remove</font>
+<a name="line148">148: </a><font color="#B22222">    that person from the hash table.</font>
+<a name="line149">149: </a><font color="#B22222">    @return true if the removal succeeds, and false otherwise.</font>
+<a name="line150">150: </a><font color="#B22222">    @param dataValue The "famous person" to be removed from the hash table.</font>
+<a name="line151">151: </a><font color="#B22222">    @pre dataValue.birthDate has been initialized.</font>
+<a name="line152">152: </a><font color="#B22222">    @post If a person with birth date dataValue.birthDate has been found in</font>
+<a name="line153">153: </a><font color="#B22222">    the hash table, that person has been removed and that persons name has</font>
+<a name="line154">154: </a><font color="#B22222">    been assigned to dataValue.name. Otherwise dataValue.name is undefined</font>
+<a name="line155">155: </a><font color="#B22222">    and the hash table remains unchanged.</font>
+<a name="line156">156: </a><font color="#B22222">    */</font>
+
+<a name="line158">158: </a>    bool isUpdated
+<a name="line159">159: </a>    (
+<a name="line160">160: </a>        const FamousPerson&amp; dataValue <font color="#B22222">//in</font>
+<a name="line161">161: </a>    );
+<a name="line162">162: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line163">163: </a><font color="#B22222">    Tries to find and update the information (which is only the name)</font>
+<a name="line164">164: </a><font color="#B22222">    for the "famous person" in the input dataValue.</font>
+<a name="line165">165: </a><font color="#B22222">    @return true if the person has been found and updated, false otherwise.</font>
+<a name="line166">166: </a><font color="#B22222">    @param dataValue The birthdate and name of the famous person to be</font>
+<a name="line167">167: </a><font color="#B22222">    updated.</font>
+<a name="line168">168: </a><font color="#B22222">    @pre The hash table has been initialized but may or may not contain</font>
+<a name="line169">169: </a><font color="#B22222">    any data.</font>
+<a name="line170">170: </a><font color="#B22222">    @post The information (name) of the person in dataValue has been updated</font>
+<a name="line171">171: </a><font color="#B22222">    (replaced) if the birth date of that person was found in the table.</font>
+<a name="line172">172: </a><font color="#B22222">    Otherwise, the table remains unchanged.</font>
+<a name="line173">173: </a><font color="#B22222">    */</font>
+
+<a name="line175">175: </a>    void displayContentsSequentially() const;
+<a name="line176">176: </a>    <font color="#B22222">/**&lt;</font>
+<a name="line177">177: </a><font color="#B22222">    Displays the contents of the hash table in sequential index order,</font>
+<a name="line178">178: </a><font color="#B22222">    with a pause at the end, just so you can see what's in the table at</font>
+<a name="line179">179: </a><font color="#B22222">    any given time.</font>
+<a name="line180">180: </a><font color="#B22222">    */</font>
+
+<a name="line182">182: </a><strong><font color="#FF0000">private:</font></strong>
+<a name="line183">183: </a>    vector&lt;FamousPerson&gt; table;
+<a name="line184">184: </a>    size_t size;
+<a name="line185">185: </a>    size_t probeIncrement;
+<a name="line186">186: </a>};
+
+<a name="line188">188: </a>} <font color="#B22222">//End of this part of namespace Student</font>
+
+<a name="line190">190: </a><font color="#A020F0">#endif</font>
+</pre>
+</body></html>
+
+<!-- Localized -->

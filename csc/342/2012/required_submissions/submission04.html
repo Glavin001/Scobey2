@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 04</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css" type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">CSCI 2342 Submission 04<br />
+     Information Packets, Part 1</p>
+    <!--
+    <p>
+    <big>
+    <font color="red">
+    Still Under Development
+    </font>
+    </big>
+    </p>
+    -->
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a href="04/demo_packets1.exe">demo_packets1.exe</a><br />
+         <a href="04/packets.txt">packets.txt</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>packets1.cpp<br />
+         packets1.hpp<br />
+         packets1.exe</tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Feb 05, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>Here we go again ... another two-phase project. This time you will
+    design and write a program that may be viewed either as an exercise in
+    encoding and decoding, or as a simulation of message assembly from
+    "information packets" received over the Internet. However, instead of
+    coming in from the Internet, these packets of information will be
+    retrieved from "packet files" stored in the current directory. As befits
+    a "simulation", the situation has an element of uncertainty, or
+    randomness, since the number of packet files is random (anywhere from 1
+    to 1000 of them), and in any given packet file the number of information
+    packets is also random (anywhere from 1 to 5). Thus there is a
+    "theoretical maximum" of 5000 information packets, which will be adequate
+    for our purposes. This week you will write the first phase of this
+    project, and next week you will complete it. Needless to say, though, you
+    will want to have a good overall view before completing, or even
+    starting, the first phase.</p>
+    <p>The "packet files" are produced by the program taking as input any
+    "message file" of text, breaking the message it contains up into
+    "packets", and distributing these packets among a collection of "packet
+    files".</p>
+    <p>Conversely, if there exists a "valid" collection of such packet files
+    that collectively contain a message, that message can be reconstructed
+    and displayed by the program. The formatting of the original message is
+    not preserved, however, and the reconstructed message is simply displayed
+    one line after another, with each line having a maximum visible length of
+    70 characters.</p>
+    <p>For this Part 1 Submission your program must implement all of the menu
+    options except the last two, which assemble and display the message,
+    respectively. These remaining two options will be implemented in Part
+    2.</p>
+    <p>Each "information packet" consists of two parts:</p>
+    <ul>
+      <li>A packet number, which determines the order of the packet among all
+      packets in the message file. The packet numbers start at 0.</li>
+      <li>The actual "packet information", which is just a string of
+      characters containing no whitespace. Each whitespace-delimited
+      character-string in the message file becomes the information in just
+      such an "information packet". Usually this will be just a word, but it
+      need not be.</li>
+    </ul>
+    <p>The message in the message file is broken up into these information
+    packets and the packets are then distributed randomly into files that
+    have names like <tt>file000</tt>, <tt>file001</tt>, and so on, up to a
+    "maximum" of <tt>file999</tt>. Each such file may have from 1 to 5
+    packets of information in it. There is one packet per line, with the
+    packet number appearing first, followed by the packet information, with
+    the two separated by a TAB character. The last line of the file contains
+    just a -1, which corresponds to the "packet terminator" packet containing
+    a packet number of -1 and an empty string for its information.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>Copy the sample executable, <tt>demo_packets1.exe</tt>, and the
+      corresponding text items file, <tt>packets.txt</tt>, which will be
+      used for Part 2 as well.</li>
+      <li>Run the program and note first of all that menu options 6 and 7 are
+      not yet implemented.</li>
+      <li>Study the above description and the on-line program description
+      (menu option 2) until you get a feel for how a "message file" is
+      dis-assembled into "packet files".</li>
+      <li>Next, see for yourself how it works by providing a message file as
+      input (menu option 3). Then choose menu option 4 to see what "packet
+      files" have been produced. You should also have a look at some or all
+      of those packet files to see what the content looks like. These packet
+      files can be easily deleted by choosing option 5 from the menu, and you
+      should do this before supplying the program with a second message file
+      via option 3. But be sure to run through these steps with at least two
+      or three different message files.</li>
+      <li>Note that to re-assemble and display the message contained in any
+      such collection of packet files you will have to use the sample
+      executable from Part 2, <tt>packets2.exe</tt>. All you need to do this
+      is a copy of that executable, since the text items file used for Part 1
+      is the same for Part 2.</li>
+      <li>So ... for this submission you have essentially to emulate
+      <tt>packets1.exe</tt>. Once you have a good grasp of what is required,
+      write pseudocode for a solution to the problem, and revise it until you
+      are convinced that a program that implements your pseudocode will be
+      the one you want.</li>
+      <li>Translate your pseudocode into C++ and continue testing your
+      program until you are convinced it works correctly.</li>
+      <li>As for code organization, this week you must divide your code into
+      two files: <tt>packets1.cpp</tt> and <tt>packets1.hpp</tt>. In
+      <tt>packets1.cpp</tt> put your <tt>main()</tt> driver function and a
+      function to build your menu, but put every thing else, i.e., everything
+      having to do with the packets, in the "include file"
+      <tt>packets1.hpp</tt> and <tt>#include</tt> that file into your
+      <tt>packets1.cpp</tt>. You will follow this pattern for Part 2 as
+      well.</li>
+      <li>Make sure both source code files are identified, formatted, and
+      documented properly, using doxygen documentation and/or regular C++
+      comments as appropriate.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol class="hardleft">
+			<li>Note that the only earror your program has to check for is a 
+			missing "message file" when it attempts to create the "packet files"
+			from that message file under menu option 3.</li>
+      <li>In this project, once you have a good sense of how the packet files
+      are created from a message file, a good sense of just what a "packet"
+      is, and a good sense of how all the packets are put back together to
+      recreate the message, then how you make all this happen is completely
+      up to you. This is your best opportunity yet for some creative software
+      construction, but we will discuss some possibilities in the lab.</li>
+      <li>What about testing? As always, you need to do whatever standalone
+      testing of your program you can. But since for this submission you are
+      only implementing the generation of the packet files from a message
+      file, you will have to rely on the Part 2 sample executable
+      (<tt>packets2.exe</tt>) to re-assemble your packet files and display
+      the resulting message. If the sample executable can in fact do this,
+      you may be reasonably certain that you are generating packet files
+      having the proper format. You should, of course, try a number of
+      different message files as input.</li>
+      <li>The code used to produce the sample executables
+      <tt>demo_packets1.exe</tt> (Part 1) and <tt>demo_packets2.exe</tt>
+      (Part 2) is necessarily non-portable, since it runs several system
+      commands to perform its various tasks (<tt>dir</tt> for listing
+      directory files and <tt>del</tt> for deleting files). Your program
+      should do the same. In other words, to show all the packet files via
+      menu option 4 the program simply passes a command string starting with
+      the <tt>dir</tt> command as the parameter to a call to the
+      <tt>system()</tt> function. And similarly for menu option 5 with the
+      <tt>del</tt> command.</li>
+      <li>When you are working with <tt>packets2.exe</tt> to re-assemble
+      messages, note what happens if you happen to choose either option 6
+      when there are no packet files or option 7 when there is no message to
+      display. The behavior of the program can be classified as "trivially
+      correct". If there are no packet files when you choose option 6, it
+      still says that the message has been assembled from the packet files.
+      This is "trivially true" since there are no packet files and therefore
+      no message. Similarly, if you ask to display the message when there is
+      none, there will be a display in the usual format, but the place where
+      the message would normally appear will be an empty line. Depending on
+      how you implement things in general, these behaviors may be easier to
+      implement than the alternative of going to the trouble of checking for
+      packet files, reporting that there are none, and thus that a message
+      cannot be assembled. Similarly, the program could report that there is
+      no message if asked to display one when none exists, but it may be
+      simpler just to display an empty message. In any case, when you get to
+      implementing these two options in Part 2, you can choose to emulate the
+      sample executable behavior or have your program provide appropriate
+      warnings when the user chooses either of these menu options
+      "prematurely".</li>
+      <li>No global variables are necessary, or even convenient, so none
+      are permitted.</li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

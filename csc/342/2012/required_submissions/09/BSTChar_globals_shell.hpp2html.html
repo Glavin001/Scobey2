@@ -1,0 +1,247 @@
+<html>
+<head><title>BSTChar_globals_shell.hpp</title>
+<meta name="generator"
+content="java2html 0.9.2">
+</head>
+<body>
+<h1>Source of <a href="BSTChar_globals_shell.hpp">BSTChar_globals_shell.hpp</a></h1>
+<ul>Structures and functions
+<pre width="80"></pre>
+</ul>
+<hr></hr>
+<pre width="80"><a name="line1">  1: </a><font color="#B22222">//BSTChar_globals?.hpp</font>
+<a name="line2">  2: </a><font color="#B22222">//Lastname:Firstname:A00123456:CSC34201</font>
+<a name="line3">  3: </a><font color="#B22222">//Submission ??: Implementing an ADT Binary Search Tree of Characters, Part ?</font>
+<a name="line4">  4: </a><font color="#B22222">//Contains several "high-level" utility functions used by main to handle user</font>
+<a name="line5">  5: </a><font color="#B22222">//interaction for creating and manipulating a binary search tree of characters.</font>
+<a name="line6">  6: </a>
+<a name="line7">  7: </a><font color="#A020F0">#include </font><font color="#666666">"utilities.h"</font><font color="#A020F0"></font>
+<a name="line8">  8: </a>using Scobey::Menu;
+<a name="line9">  9: </a>using Scobey::Pause;
+<a name="line10"> 10: </a>using Scobey::userSaysYes;
+<a name="line11"> 11: </a>
+<a name="line12"> 12: </a>void BuildMenu
+<a name="line13"> 13: </a>(
+<a name="line14"> 14: </a>    Menu&amp; m <font color="#B22222">//inout</font>
+<a name="line15"> 15: </a>)
+<a name="line16"> 16: </a><font color="#B22222">/**&lt;</font>
+<a name="line17"> 17: </a><font color="#B22222">@pre None</font>
+<a name="line18"> 18: </a><font color="#B22222">@post The main menu for the BST test driver, Part 1,</font>
+<a name="line19"> 19: </a><font color="#B22222">has been constructed.</font>
+<a name="line20"> 20: </a><font color="#B22222">*/</font>
+<a name="line21"> 21: </a>{
+<a name="line22"> 22: </a>    m.setTitle(<font color="#666666">"Menu"</font>);
+<a name="line23"> 23: </a>    m.addOption(<font color="#666666">"Quit"</font>);
+<a name="line24"> 24: </a>    m.addOption(<font color="#666666">"Get info"</font>);
+<a name="line25"> 25: </a>    m.addOption(<font color="#666666">"Enter characters from keyboard and place them into a BST"</font>);
+<a name="line26"> 26: </a>    m.addOption(<font color="#666666">"Display contents of the BST"</font>);
+<a name="line27"> 27: </a>    m.addOption(<font color="#666666">"Report the size of the BST"</font>);
+<a name="line28"> 28: </a>    m.addOption(<font color="#666666">"Report the height of the BST"</font>);
+<a name="line29"> 29: </a>    m.addOption(<font color="#666666">"Clear the BST of all values"</font>);
+<a name="line30"> 30: </a>    m.addOption(<font color="#666666">"Search the BST for a particular value"</font>);
+<a name="line31"> 31: </a>    m.addOption(<font color="#666666">"Insert a new value into the BST"</font>);
+<a name="line32"> 32: </a>    m.addOption(<font color="#666666">"Delete a single value from the BST"</font>);
+<a name="line33"> 33: </a>    m.addOption(<font color="#666666">"Modify all values in the BST"</font>);
+<a name="line34"> 34: </a>    m.addOption(<font color="#666666">"Balance the BST"</font>);
+<a name="line35"> 35: </a>}
+<a name="line36"> 36: </a>
+<a name="line37"> 37: </a>
+<a name="line38"> 38: </a>void DescribeProgram()
+<a name="line39"> 39: </a><font color="#B22222">/**&lt;</font>
+<a name="line40"> 40: </a><font color="#B22222">@pre None</font>
+<a name="line41"> 41: </a><font color="#B22222">@post A description of each menu option has been displayed.</font>
+<a name="line42"> 42: </a><font color="#B22222">*/</font>
+<a name="line43"> 43: </a>{
+<a name="line44"> 44: </a>    cout &lt;&lt; <font color="#666666">"\nThis program performs some tests on binary search trees. "</font>
+<a name="line45"> 45: </a>        <font color="#666666">"The user can choose\nvarious options from the menu, in any order."</font>
+<a name="line46"> 46: </a>
+<a name="line47"> 47: </a>        <font color="#666666">"\n\nOptions 1 and 2 provide the usual program termination and "</font>
+<a name="line48"> 48: </a>        <font color="#666666">"information display."</font>
+<a name="line49"> 49: </a>
+<a name="line50"> 50: </a>        <font color="#666666">"\n\nOption 3 builds a binary search tree containing characters "</font>
+<a name="line51"> 51: </a>        <font color="#666666">"entered by the user\nfrom the keyboard."</font>
+<a name="line52"> 52: </a>
+<a name="line53"> 53: </a>        <font color="#666666">"\n\nOption 4 displays the contents of the current binary search "</font>
+<a name="line54"> 54: </a>        <font color="#666666">"tree in a tree-like\nshape that depends on the size of the tree. "</font>
+<a name="line55"> 55: </a>        <font color="#666666">"A tree with a depth greater than 4\ncannot be displayed."</font>
+<a name="line56"> 56: </a>
+<a name="line57"> 57: </a>        <font color="#666666">"\n\nOption 5 gets the size of the current binary search tree."</font>
+<a name="line58"> 58: </a>
+<a name="line59"> 59: </a>        <font color="#666666">"\n\nOption 6 gets the height of the current binary search tree."</font>
+<a name="line60"> 60: </a>
+<a name="line61"> 61: </a>        <font color="#666666">"\n\nOption 7 deletes all vlaues from the current binary seach tree."</font>
+<a name="line62"> 62: </a>
+<a name="line63"> 63: </a>        <font color="#666666">"\n\nOption 8 allows the user to determine if a particular value "</font>
+<a name="line64"> 64: </a>            <font color="#666666">"is in the BST."</font>
+<a name="line65"> 65: </a>
+<a name="line66"> 66: </a>        <font color="#666666">"\n\nOption 9 allows the user to enter a new value into the BST."</font>
+<a name="line67"> 67: </a>
+<a name="line68"> 68: </a>        <font color="#666666">"\n\n"</font>;
+<a name="line69"> 69: </a>
+<a name="line70"> 70: </a>        Pause();
+<a name="line71"> 71: </a>
+<a name="line72"> 72: </a>        cout &lt;&lt; <font color="#666666">"Option 10 allows the user to delete a value from the BST."</font>
+<a name="line73"> 73: </a>
+<a name="line74"> 74: </a>        <font color="#666666">"\n\nOption 11 allows the user to modify all values in the BST."</font>
+<a name="line75"> 75: </a>
+<a name="line76"> 76: </a>        <font color="#666666">"\n\nOption 12 balances the BST."</font>
+<a name="line77"> 77: </a>        <font color="#666666">"\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n"</font>;
+<a name="line78"> 78: </a>}
+<a name="line79"> 79: </a>
+<a name="line80"> 80: </a>
+<a name="line81"> 81: </a>void BuildTree
+<a name="line82"> 82: </a>(
+<a name="line83"> 83: </a>    BSTChar&amp; bst <font color="#B22222">//inout</font>
+<a name="line84"> 84: </a>);
+<a name="line85"> 85: </a><font color="#B22222">/**&lt;</font>
+<a name="line86"> 86: </a><font color="#B22222">Build a new binary search tree from characters entered by the user from</font>
+<a name="line87"> 87: </a><font color="#B22222">the keyboard.</font>
+<a name="line88"> 88: </a><font color="#B22222">@return void</font>
+<a name="line89"> 89: </a><font color="#B22222">@param bst The tree object which will contain the entered characters.</font>
+<a name="line90"> 90: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line91"> 91: </a><font color="#B22222">@post bst contains all characters entered by the user and is a binary</font>
+<a name="line92"> 92: </a><font color="#B22222">search tree.</font>
+<a name="line93"> 93: </a><font color="#B22222">*/</font>
+<a name="line94"> 94: </a>
+<a name="line95"> 95: </a>
+<a name="line96"> 96: </a>
+<a name="line97"> 97: </a>void DisplayTree
+<a name="line98"> 98: </a>(
+<a name="line99"> 99: </a>    BSTChar&amp; bst <font color="#B22222">//in</font>
+<a name="line100">100: </a>);
+<a name="line101">101: </a><font color="#B22222">/**&lt;</font>
+<a name="line102">102: </a><font color="#B22222">Display the contents of a binary search tree, or a message saying the</font>
+<a name="line103">103: </a><font color="#B22222">tree is empty or too large to display, if that is the case.</font>
+<a name="line104">104: </a><font color="#B22222">@return void</font>
+<a name="line105">105: </a><font color="#B22222">@param bst The binary search tree whose contents are to be displayed.</font>
+<a name="line106">106: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line107">107: </a><font color="#B22222">@post The contents of bst, or an appropriate message, have been displayed.</font>
+<a name="line108">108: </a><font color="#B22222">*/</font>
+<a name="line109">109: </a>
+<a name="line110">110: </a>
+<a name="line111">111: </a>
+<a name="line112">112: </a>void GetTreeSize
+<a name="line113">113: </a>(
+<a name="line114">114: </a>    const BSTChar&amp; bst <font color="#B22222">//in</font>
+<a name="line115">115: </a>);
+<a name="line116">116: </a><font color="#B22222">/**&lt;</font>
+<a name="line117">117: </a><font color="#B22222">Display the size of a binary search tree, or a message saying the tree</font>
+<a name="line118">118: </a><font color="#B22222">is empty if that is the case.</font>
+<a name="line119">119: </a><font color="#B22222">@return void</font>
+<a name="line120">120: </a><font color="#B22222">@param bst The binary seach tree whose size is desired.</font>
+<a name="line121">121: </a><font color="#B22222">@pre bst has been initilaized.</font>
+<a name="line122">122: </a><font color="#B22222">@post The size of bst, or an empty-tree message, has been displayed.</font>
+<a name="line123">123: </a><font color="#B22222">*/</font>
+<a name="line124">124: </a>
+<a name="line125">125: </a>
+<a name="line126">126: </a>void GetTreeHeight
+<a name="line127">127: </a>(
+<a name="line128">128: </a>    const BSTChar&amp; bst <font color="#B22222">//in</font>
+<a name="line129">129: </a>);
+<a name="line130">130: </a><font color="#B22222">/**&lt;</font>
+<a name="line131">131: </a><font color="#B22222">Display the height of a binary search tree, or a message saying the tree</font>
+<a name="line132">132: </a><font color="#B22222">is empty if that is the case.</font>
+<a name="line133">133: </a><font color="#B22222">@return void</font>
+<a name="line134">134: </a><font color="#B22222">@param bst The binary seach tree whose height is desired.</font>
+<a name="line135">135: </a><font color="#B22222">@pre bst has been initilaized.</font>
+<a name="line136">136: </a><font color="#B22222">@post The height of bst, or an empty-tree message, has been displayed.</font>
+<a name="line137">137: </a><font color="#B22222">*/</font>
+<a name="line138">138: </a>
+<a name="line139">139: </a>
+<a name="line140">140: </a>void DeleteAllValues
+<a name="line141">141: </a>(
+<a name="line142">142: </a>    BSTChar&amp; bst <font color="#B22222">//inout</font>
+<a name="line143">143: </a>);
+<a name="line144">144: </a><font color="#B22222">/**&lt;</font>
+<a name="line145">145: </a><font color="#B22222">Clear a binary search tree by deleting all of its values, or report that the</font>
+<a name="line146">146: </a><font color="#B22222">tree is already empty, if that is the case.</font>
+<a name="line147">147: </a><font color="#B22222">@return void</font>
+<a name="line148">148: </a><font color="#B22222">@param bst The binary search tree to be cleared.</font>
+<a name="line149">149: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line150">150: </a><font color="#B22222">@post bst has been cleared, or a message has been displayed saying it was</font>
+<a name="line151">151: </a><font color="#B22222">already empty.</font>
+<a name="line152">152: </a><font color="#B22222">*/</font>
+<a name="line153">153: </a>
+<a name="line154">154: </a>
+<a name="line155">155: </a>void FindAValue
+<a name="line156">156: </a>(
+<a name="line157">157: </a>    const BSTChar&amp; bst <font color="#B22222">//in</font>
+<a name="line158">158: </a>);
+<a name="line159">159: </a><font color="#B22222">/**&lt;</font>
+<a name="line160">160: </a><font color="#B22222">Determine whether a value entered by the user is present in the current</font>
+<a name="line161">161: </a><font color="#B22222">binary search tree.</font>
+<a name="line162">162: </a><font color="#B22222">@return void</font>
+<a name="line163">163: </a><font color="#B22222">@param bst The binary search tree to be cleared.</font>
+<a name="line164">164: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line165">165: </a><font color="#B22222">@pre A message indicating whether the tree is empty, or, if not, whether</font>
+<a name="line166">166: </a><font color="#B22222">the value entered by the user is in fact in the current binary search tree.</font>
+<a name="line167">167: </a><font color="#B22222">*/</font>
+<a name="line168">168: </a>
+<a name="line169">169: </a>
+<a name="line170">170: </a>void InsertAValue
+<a name="line171">171: </a>(
+<a name="line172">172: </a>    BSTChar&amp; bst <font color="#B22222">//inout</font>
+<a name="line173">173: </a>);
+<a name="line174">174: </a><font color="#B22222">/**&lt;</font>
+<a name="line175">175: </a><font color="#B22222">Insert a new value into the current BST if it is not already there.</font>
+<a name="line176">176: </a><font color="#B22222">@return void</font>
+<a name="line177">177: </a><font color="#B22222">@param bst The binary search tree into which the value will be inserted.</font>
+<a name="line178">178: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line179">179: </a><font color="#B22222">@post A value entered by the user has been inserted into the BST, or a</font>
+<a name="line180">180: </a><font color="#B22222">message indicating the value is already there has been displayed.</font>
+<a name="line181">181: </a><font color="#B22222">*/</font>
+<a name="line182">182: </a>
+<a name="line183">183: </a>
+<a name="line184">184: </a>void DeleteAValue
+<a name="line185">185: </a>(
+<a name="line186">186: </a>    BSTChar&amp; bst <font color="#B22222">//inout</font>
+<a name="line187">187: </a>);
+<a name="line188">188: </a><font color="#B22222">/**&lt;</font>
+<a name="line189">189: </a><font color="#B22222">Delete a value from the current BST if it is present.</font>
+<a name="line190">190: </a><font color="#B22222">@return void</font>
+<a name="line191">191: </a><font color="#B22222">@param bst The binary search tree from which the value will be deleted.</font>
+<a name="line192">192: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line193">193: </a><font color="#B22222">@post A value entered by the user has been deleted from the BST, or a</font>
+<a name="line194">194: </a><font color="#B22222">message indicating the value is not present has been displayed.</font>
+<a name="line195">195: </a><font color="#B22222">*/</font>
+<a name="line196">196: </a>
+<a name="line197">197: </a><font color="#B22222">//Two simple functions used to modify all values in a BST</font>
+<a name="line198">198: </a><font color="#B22222">//-------------------------------------------------------</font>
+<a name="line199">199: </a><font color="#B22222">//Shift a character value one position to the left</font>
+<a name="line200">200: </a>void ShiftLeftByOne(char&amp; c);
+<a name="line201">201: </a><font color="#B22222">//Shift a character value one position to the right</font>
+<a name="line202">202: </a>void ShiftRightByOne(char&amp; c);
+<a name="line203">203: </a>
+<a name="line204">204: </a>
+<a name="line205">205: </a>void ModifyAllValues
+<a name="line206">206: </a>(
+<a name="line207">207: </a>    BSTChar&amp; bst <font color="#B22222">//inout</font>
+<a name="line208">208: </a>);
+<a name="line209">209: </a><font color="#B22222">/**&lt;</font>
+<a name="line210">210: </a><font color="#B22222">Modify all values in the BST according to the choice entered by the user.</font>
+<a name="line211">211: </a><font color="#B22222">@return void</font>
+<a name="line212">212: </a><font color="#B22222">@param bst The binary search tree whose values are to be modified.</font>
+<a name="line213">213: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line214">214: </a><font color="#B22222">@post All values in the BST have been modified according to the modification</font>
+<a name="line215">215: </a><font color="#B22222">choice entered by the user, or an empty-tree message has been displayed.</font>
+<a name="line216">216: </a><font color="#B22222">*/</font>
+<a name="line217">217: </a>
+<a name="line218">218: </a>
+<a name="line219">219: </a>void BalanceTree
+<a name="line220">220: </a>(
+<a name="line221">221: </a>    BSTChar&amp; bst <font color="#B22222">//in</font>
+<a name="line222">222: </a>);
+<a name="line223">223: </a><font color="#B22222">/**&lt;</font>
+<a name="line224">224: </a><font color="#B22222">Balance the binary search tree so that for each node of the tree, the</font>
+<a name="line225">225: </a><font color="#B22222">height of the left subtree and the height of the right subtree differ</font>
+<a name="line226">226: </a><font color="#B22222">by zero or one.</font>
+<a name="line227">227: </a><font color="#B22222">@return void</font>
+<a name="line228">228: </a><font color="#B22222">@param bst The binary search tree to be balanced.</font>
+<a name="line229">229: </a><font color="#B22222">@pre bst has been initialized.</font>
+<a name="line230">230: </a><font color="#B22222">@post The binary search tree has been balanced, or an empty-tree message</font>
+<a name="line231">231: </a><font color="#B22222">has been displayed.</font>
+<a name="line232">232: </a><font color="#B22222">*/</font>
+</pre>
+</body></html>
+
+<!-- Localized -->

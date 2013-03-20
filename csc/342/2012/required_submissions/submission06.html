@@ -1,0 +1,179 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 06</title>
+    <link rel="StyleSheet" href="../../../../css/courses.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">CSCI 2342 Submission 06
+    <br />
+    Binary Files of Reals</p>
+    <!--
+    <p>
+    <big>
+    <font color="red">
+    Still Under Development
+    </font>
+    </big>
+    </p>
+    -->
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a href="06/demo_binary_files_of_reals.exe">demo_binary_files_of_reals.exe</a>
+        <br />
+         <a
+        href="06/binary_files_of_reals_aux.hpp2html">binary_files_of_reals_aux.hpp</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>binary_files_of_reals.cpp
+        <br />
+        binary_files_of_reals.exe
+        <br />
+        </tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Feb 26, 2012 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>This week your task is to gain a reasonable comfort level working
+    with binary files, and in particular the "random access" aspect of
+    working with binary files. To do that you will write a menu-driven
+    program that allows the user to create a binary file of real numbers and
+    then read from and/or write to that file at various locations within the
+    file. The program also permits the user to display a "status report"
+    after any particular operation.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>Download the sample executable and spend some time "putting it
+      through its paces". Be sure to display the "status report" frequently
+      and reconcile what you have just done with the given output.</li>
+      <li>Now download the supplied <tt>.hpp</tt> file and note the two
+      functions it contains. Having these functions will save you some
+      "busy work". Use this file as a <tt>#include</tt> file.</li>
+      <li>When you feel comfortable that you understand all aspects of what
+      the program is doing, write pseudocode to describe the program's
+      behavior.</li>
+      <li>Translate your pseudocode (incrementally) into C++ and test
+      (incrementally) until you have the complete program working in the
+      same way as the sample executable.</li>
+      <li>When you are finished, make sure your source code file is
+      identified, formatted, and documented properly.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol class="hardleft">
+      <li>This week, perhaps for the first and last time ever, you are
+      permitted to write your program as a single (large) main function. It
+      will be essentially a single <tt>do...while</tt> loop containing a
+      fairly large <tt>switch</tt> statement to handle all the menu
+      options. By not requiring you to break up <tt>main()</tt> into
+      several smaller functions we let you put all your time into dealing
+      with binary file matters.</li>
+      <li>
+        For your information, the prompts and messages that appear during
+        the execution of various menu options are listed below. Many of
+        them are "pause" messages, but the "Press Enter to continue ... "
+        prompt is not shown. 
+<pre>
+Option 1:
+---------
+Program now terminating.
+
+Option 3:
+---------
+Enter name of new file:
+-----------------------
+File name.ext has been created and left open for reading and writing.
+Be sure to close this file before creating or opening another file.
+
+Option 4:
+---------
+Enter name of already existing file:
+------------------------------------
+File name.ext has been opened for reading and writing.
+Be sure to close this file before opening or creating another file.
+
+Option 5:
+---------
+File status:
+
+Option 6:
+---------
+Move to the beginning, the end, or a particular "middle" position?
+Any requested position should make sense, relative to what's in the file.
+Or, move to a (sensible) position relative to your current position?
+Enter b, m, e or r:
+-------------------
+You are now positioned at the beginning of the file.
+----------------------------------------------------
+You are now positioned at the end of the file.
+----------------------------------------------
+There are ? integers in the file.
+Enter number of the integer at which you want to be positioned:
+...
+You are now positioned at number #?.
+If you read or write now, this real will be read or overwritten.
+-------------------------------------------------------------------
+Enter number of positions to move (+ forward, - backward):
+...
+You are now positioned ? positions after [or before] your previous position.
+
+Option 7:
+---------
+Enter real values here:
+--------------------------
+The value ? has been written to the file.
+-----------------------------------------
+
+Option 8:
+---------
+How many reals do you want to read?
+
+Option 9:
+---------
+Contents of file name.ext:
+--------------------------
+All values in the file have been read and displayed.
+
+Option 10:
+---------
+Display all values from current location on?
+--------------------------
+OK ... then how many values?
+--------------------------
+Here are the requested values:
+--------------------------
+All the requested values have been read and displayed.
+
+Option 11:
+----------
+File name.ext has been closed.
+</pre>
+      </li>
+			<li>Keep in mind when you are running the sample executable that you
+			need to keep a mental note of "where you are in the file" and you 
+			should not choose another menu option to do something that doesn't
+			make sense to do from the point where you are in the file (displaying
+			more values if you're already at the end of the file, for example).
+			You need to do this because the program does not do any of that kind
+			of checking for you.</li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

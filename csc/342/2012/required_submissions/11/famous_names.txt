@@ -1,0 +1,63 @@
+14730219Nicolas Copernicus
+14750306Michelangelo Buonarroti
+15960331Rene Descartes
+18020226Victor Hugo
+18070227Henry Wadsworth Longfellow
+18090212Abraham Lincoln
+18100222Frederic Chopin
+18120207Charles Dickens
+18460226William "Buffalo Bill" Cody
+18470211Thomas Alva Edison
+18470303Alexander Graham Bell
+18600229Herman Hollerith
+19040229Jimmy Dorsey
+18740324Harry Houdini
+18790314Albert Einstein
+18820130Franklin D. Roosevelt
+18900210Boris Pasternak
+18920103J. R. Tolkien
+18950101J. Edgar Hoover
+18950206Babe Ruth
+19000101Xavier Cugat
+19010201Clark Gable
+19010228Linus Pauling
+19020204Charles Lindbergh
+19090101Barry Goldwater
+19110206Ronald Reagan
+19110313L. Ron Hubbard
+19120323Wernher von Braun
+19130206Mary Leakey
+19160226Jackie Gleason
+19190101J. D. Salinger
+19190206Zsa Zsa Gabor
+19200102Isaac Asimov
+19200226Tony Randall
+19240403Marlon Brando
+19250512Yogi Berra
+19260409Hugh Hefner
+19280226Antoine "Fats" Domino
+19280227Ariel Sharon
+19290115Dr. Martin Luther King, Jr.
+19300130Gene Hackman
+19310201Boris Yeltsin
+19310206Rip Torn
+19310208James Dean
+19310302Mikail Gorbachev
+19311020Mickey Mantle
+19320226Johnny Cash
+19320227Elizabeth Taylor
+19330125Corazon Aquino
+19330130Louis Rukeyser
+19350108Elvis Presley
+19360102Roger Miller
+19370130Boris Spassky
+19400208Nick Nolte
+19410124Neil Diamond
+19410414Pete Rose
+19450206Bob Marley
+19470325Elton John
+19510130Phil Collins
+19560103Mel Gibson
+19570310Osama bin Laden
+19580130Brett Butler
+19680102Cuba Gooding, Jr.
