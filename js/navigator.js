@@ -13,7 +13,7 @@
       console.log('Page before change: ' + data.toPage);
 
       // Go to the Module
-      navigator.goToModule(data.toPage);
+      navigator.goToPage(data.toPage);
 
     });
 
@@ -24,8 +24,8 @@
   });
 
   // Public methods 
-  navigator.goToModule = function(toPage) {
-    console.log("goToModule(" + toPage + ")");
+  navigator.goToPage = function(toPage) {
+    console.log("goToPage(" + toPage + ")");
     // Check if the module is already loaded
     //$.mobile.changePage("/m/" + moduleAddress); // , {data:{param1:'value1'}}
     //var url = $.url(document.location);
@@ -77,7 +77,7 @@
         }
       }
       console.log(href);
-
+      $(document).scrollTop(0); // Go to top of page after loading new page.
     }
 
 
