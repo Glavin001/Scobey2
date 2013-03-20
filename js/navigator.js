@@ -65,6 +65,8 @@
               var title = $(".content-primary").find('title').text();
               $.mobile.activePage.find("h1").text(title);
               $("#headTitle").text(title);
+              $('.content-primary .pageheader').replaceWith($('<h1/>').html($('.content-primary .pageheader').html()));
+
               // Make sure the menu is collapsed
             }});
           document.location.hash = href;
