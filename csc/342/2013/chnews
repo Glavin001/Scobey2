@@ -1,0 +1,3 @@
+#!/bin/bash
+vi news.html
+echo "\"Last updated: `date`\"" > ~/public_html/includes/newsdate342_2013.html

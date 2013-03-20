@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 03</title>
+    <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+  </head>
+  <body class="csc342">
+    <p class="pageheader">CSCI 2342 Submission 03<br />
+     Finding Anagrams</p>
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a href="03/demo_anagrams.exe">demo_anagrams.exe</a><br />
+         <a href="03/dictionary.txt">dictionary.txt</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>anagrams.cpp<br />
+         anagrams.exe<br />
+        </tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Jan 27, 2013 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>This week you will write a short program that finds <em>anagrams</em>.
+    An <em>anagram</em> is a word or phrase formed from the letters in another
+    word or phrase. For example, the word <em>slot</em> is an anagram of the
+    word <em>lost</em>. We shall only be interested in single-word anagrams,
+    and not phrase anagrams.</p>
+    <p>Our goal is to have a program to which we can supply as input a single
+    word, or a single sequence of characters containing no blanks, but which
+    does not have to be an actual word, and the program will then search through
+    a dictionary of words to find and display all words that can be formed from
+    the letters in the input (in other words, to find and display all anagrams
+    of the input).</p>
+    <p>Although we will not be dealing with them, here for your amusement are a
+    few interesting examples of anagrams that involve more than a single word,
+    and in which we have taken occasional liberties with capitalization:</p>
+<pre>
+    eleven plus two == twelve plus one
+    presbyterians == best in prayers == Britney Spears
+    desperation == a rope ends it
+    the eyes == they see
+    the morse code == here come dots
+    dormitory == dirty room
+    butterfly == flutter by 
+    funeral == real fun
+    slot machines == cash lost in me
+    debit card == bad credit
+    vacation time == I am not active
+    I run to escape == a persecution
+    a gentleman == elegant man
+    Christmas tree == search set trim
+    television programming == permeating living rooms
+    the detectives == detect thieves
+    sunshine and shadow == show in sun and shade
+    software == swear oft
+    sycophant == acts phony
+    The Hilton == hint hotel
+    New York Times == monkeys write
+    George Bush == he bugs Gore
+    Tuesday November Third == Many Voted Bush Retired
+    Clint Eastwood == Old West Action
+    Alec Guinness == genuine class
+    David Letterman == nerd amid late TV
+    The Public Art Galleries == Large Picture Halls I Bet
+    The United States Bureau of Fisheries == I raise the bass to feed us in the future
+</pre>    
+    <h3>Steps to Perform</h3>
+    <ol>
+      <li>Download the sample executable and the accompanying dictionary
+      file.</li>
+      <li>
+        Run the program, enter the name of the dictionary file and then enter
+        some words or letter-sequences and have the program search for
+        corresponding anagrams. Here are some to try: 
+<pre>
+      list, last, lost, lust, gardenia, grow, grinch, groan, emanate, drawback,
+      bacterial, vacate, glare, hate, mental, leap, leapt, slate, name, mate, edit, 
+      item, rinse, stripe, live, stance, tuba, came, care, garden, latucoage
+</pre>
+        Note that since the word <em>grinch</em>, for example, does not
+        appear in the dictionary we get no results at all. The word
+        <em>grow</em>, on the other hand, has no anagrams, so all we get back
+        when it is the input is the word itself, since it <em>is</em> in the
+        dictionary. We could also input the string <em>rogw</em> and get back
+        <em>grow</em>, since <em>grow</em> is an anagram of that string. This
+        is also illustrated by the last example above, which is not a word.
+      </li>
+      <li>Continue experimenting until you thoroughly understand the problem
+      and the behavior of the program. <em>Note in particular the error message
+      output if you enter a bad file name for the dictionary.</em></li>
+      <li>Write pseudocode for a solution of this problem and revise it until
+      you are convinced that a program that implements your pseudocode will
+      be the one you want.</li>
+      <li>Translate your pseudocode into C++.</li>
+      <li>Continue testing your program until you are convinced it works
+      correctly.</li>
+      <li>Make a final check to ensure your source code is identified,
+      formatted, and documented properly and you have included the
+      self-assessment <tt>/* ... */</tt> comment to tell the marker the state
+      of your submission.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol>
+      <li>We said in the Overview above that you would be writing a "short"
+      program, and we meant it, in the following sense. Your submitted source
+      code file must not exceed a page of code, which in Visual Studio is 66
+      lines. If it does, the marker will deduct a point for each line in
+      excess of this limit. This limitation is designed to make you think
+      seriously about your program design and make maximal use of the STL to
+      accomplish whatever tasks need to be done.</li>
+      <li>You must include follow the usual style guidelines, with the
+      exception that since the program must be on one page you need not use
+      blank lines to separate "logical chunks" of your code, or comment your
+      code on separate lines. But that means you need to take even more care
+      than usual to write readable code, possibly with help of in-line
+      comments. You must, however, have the usual self-assessment comment, so
+      there is incentive to have a complete and working program so this can
+      be short!</li>
+      <li>Among the style rules you must follow we mention these in
+      particular: one statement per line; and the rule that requires a brace
+      to be on a line by itself and line up vertically with its matching
+      brace.</li>
+      <li>You may write your program under the assumption that both the string
+      entered by the user and all dictionary entries are in lower case.</li>
+    </ol>
+  </body>
+</html>

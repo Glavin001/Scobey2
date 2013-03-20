@@ -1,0 +1,9 @@
+Options ExecCGI Indexes Includes FollowSymLinks
+
+AuthType Basic
+AuthName "CSCI 2342 Protected Web Page"
+AuthUserFile /faculty/porter/htinfo/342/.pwfile342
+
+<LIMIT GET POST>
+    require valid-user
+</LIMIT>

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342 | Submission 04</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 04<br />
+  Building Concordances</p>
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Supplied file(s)</th>
+
+      <td><tt><a href=
+      "04/demo_find_concordance.exe">demo_find_concordance.exe</a><br />
+      <a href="04/concordance.txt">concordance.txt</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>find_concordance.cpp<br />
+      find_concordance.exe<br /></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Feb 03, 2013 @11:59pm</td>
+    </tr>
+  </table>
+
+  <h3>Overview</h3>
+
+  <p>This week your task is to write a program that produces, and displays
+  on the standard output or writes to a file, a "concordance" for a file of
+  text.</p>
+
+  <p>The Oxford American Dictionary defines "concordance" like this: "An
+  index of the important words used in a book or an author's writings." Our
+  use of the term will be somewhat more liberal. Here is our meaning: "A
+  concordance is a list (in alphabetical order) of all words contained in a
+  file, with each word on a separate line and followed by a list (in
+  increasing numerical order) of all line numbers of the lines of the file
+  in which the word appears." Concordances are very useful to writers when
+  they are preparing indexes for their books, for example.</p>
+
+  <p>We also have a very particular meaning for the term "word" in this
+  context. A "word" will be any contiguous string of alphabetic characters,
+  i.e., any contiguous string of upper case and/or lower case letters.
+  Thus, for example, what we would normally think of as the single word
+  "can't" contains, in this context, two "words", namely "can" and "t".
+  Among other things, this means that our concordance program views some
+  sequences of letters as "words" that would not be considered words in the
+  ordinary everyday sense of the term.</p>
+
+  <p>Also, all words are considered to be in lower case. Thus, in our
+  concordance, "John", "john" and "JOHN" would all be regarded as the same
+  word, namely "john".</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>Download the sample executable and its accompanying text items
+    file.</li>
+
+    <li>Run the program and study the program description until you
+    understand what the input and output of this program are supposed to
+    look like.</li>
+
+    <li>Now try the program on several textfiles of widely varying size and
+    content to get a good feel for the kind of output produced.</li>
+
+    <li>Choose an appropriate data structure for this problem and write
+    pseudocode for a solution.</li>
+
+    <li>Revise your solution until you are convinced that a program that
+    implements your pseudocode will be the one you want.</li>
+
+    <li>Translate your pseudocode into C++ and continue testing your
+    program until you are convinced it works correctly.</li>
+
+    <li>When you are finished, make sure your source code file is
+    identified, formatted, and documented properly.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol class="hardleft">
+    <li>The third command-line parameter, if there is one, should be the
+    name of a concordance file produced by the sample executable (or any
+    other program that produces a concordance file in the proper format),
+    whose contents are to be compared with those of the file appearing as
+    the second command-line parameter (the output from your program, let's
+    say). A list of the differences will be placed in a file called
+    <tt>differences.txt</tt>. This will be useful for testing your
+    program.</li>
+
+    <li>Note that you are only submitting a single source code file for
+    this Submission, so all of your source code has to be in that file. You
+    may just opt to have a <code>main()</code> function, with additional
+    functions to do various tasks, or you may wish to create a
+    <code>Concordance</code> class to handle all the concordance-related
+    activities. If you opt to write such a class, put your class specification
+    (what would normally go into a separate <code>.h</code> file)
+    <em>before</em> your <code>main()</code>, and the definitions of your
+    class member functions (what would normally go into your implementation
+    (<code>.cpp</code>) file corresponding to your <code>.h</code> file)
+    <em>after</em> your <code>main()</code> function.</li>
+  </ol>
+</body>
+</html>

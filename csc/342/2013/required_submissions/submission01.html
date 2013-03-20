@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342 | Submission 01</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 01<br />
+  Processing Names</p>
+  <!-- <p><big><font color="red">Still Under Development</font></big></p> -->
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Supplied file(s)</th>
+
+      <td><tt><a href=
+      "01/demo_process_names.exe">demo_process_names.exe</a><br />
+      <a href="01/process_names.hpp2html">process_names.hpp</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>process_names.cpp<br />
+      process_names.exe<br /></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Jan 13, 2013 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>This week you will write a short (one page) program that will permit
+  the user to randomly generate a fixed number of names and then to display
+  those names in various ways. The size of the program is limited so that
+  you are forced to think about the best ways to accomplish the various
+  tasks. You will need to make good use of the facilities provided by
+  (among other things) the Standard Template Library, and the string class.
+  Successful completion of this program should give you some confidence
+  that you are "up and running" for the new term.</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>Download the sample executable and run it. Generate several groups
+    of names and display them in all possible ways until you are sure you
+    understand the program's behavior. Note in particular that once a given
+    group of names has been generated (option 3), then any of the
+    higher-numbered options (4, 5, 6, 7) may be chosen any number of times
+    in any order and the same output will appear each time for any given
+    option. To get a different group of names the user must choose option 3
+    again.</li>
+
+    <li>Now download and study the supplied source code file
+    <tt>process_names.hpp</tt>. The <tt>.hpp</tt> extension signifies an
+    include file that contains complete code for any functions in it. Thus
+    it is a bit more than just a <tt>.h</tt> file, which would have only
+    prototypes of the functions in it. This use of the <tt>.hpp</tt>
+    extension is reasonably typical, though not perhaps a universally
+    observed convention. The content of this file may be included in your
+    own program file, and is designed both to save you some "busy work",
+    and to permit you to keep the size of your program within the single-page
+    limit.</li>
+
+    <li>Write pseudocode for a solution of this problem and revise it until
+    you are convinced that a program that implements your pseudocode will
+    be the one you want. Keep in mind as you do this that your final
+    program must not exceed a <em>single page</em> of code, according to
+    Visual C++'s notion of a "page" (66 lines). One of those lines will, of
+    course, be a <tt>#include</tt> directive which includes the file
+    <tt>process_names.hpp</tt>.</li>
+
+    <li>Translate your pseudocode into a C++ program and continue testing
+    until you are convinced the program works correctly.</li>
+
+    <li>Make a final check to ensure your source code is identified,
+    formatted, and documented properly. This week, and from now on, you
+    must make sure that each of your submissions follows the necessary
+    guidelines.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol>
+    <li>Remember that the maximum length of your source code submission is
+    66 lines, and the first three of those lines must contain the usual
+    required identification information and look like
+      <pre xml:space="preserve">
+//process_names.cpp
+//Lastname:Firstname:A00??????:csc342??
+//Submission 01: Processing Names
+</pre>except that the second line must be altered to contain your own
+information.
+    </li>
+
+    <li>When your program runs, the opening screen must contain the same
+    three lines of information as the sample executable, except that the
+    personal information must be yours. This must be produced by a call
+    to the <code>DisplayOpeningScreen()</code> function from the instructor-supplied
+    <code>utilities</code> package.</li>
+
+    <li>The only change you may make in the file <tt>process_names.hpp</tt>
+    is the obvious one: the definition of the constant
+    <tt>MY_ID_INFO</tt>, the first parameter for the <code>DisplayOpeningScreen()</code> function.</li>
+
+    <li>On this occasion you may omit the self-assessment comment in your
+    source code file, which will also help limit the size of your source code
+    file.</li>
+
+    <li>If you need to define a short helper function (you may well wish to
+    do so), you may relax the usual formatting requirements and place the
+    complete header (with parameters) on a single line.</li>
+
+    <li>You may <b>not</b> relax our rule that requires matching braces to align
+    vertically, nor the usual four-space indentation level requirement. Also, 
+    the requirement that 
+    all statements at a given level must align vertically continues to apply as well.</li>
+
+    <li>You need not have any comments other than the three lines at the
+    beginning of your file, but that means you need to be extra careful to
+    choose good identifier names and do whatever else it takes to make your
+    code as readable (self-documenting) as possible.</li>
+
+    <li>You will, of course, find the <tt>random_shuffle()</tt> algorithm
+    useful. In order for it to produce a different randomization each time
+    you call the algorithm, and in particular each time you start the
+    program. you should call the <tt>srand()</tt> function first, with its
+    input supplied by a call to the <tt>time()</tt> function. [See
+    <tt>random_functions.cpp</tt> in the <tt>random</tt> subdirectory under
+    the Sample Code link on the course home page.]</li>
+
+    <li>You may write the program assuming that menu option 3 will always
+    be called before any of the higher-numbered options. In other words, no
+    error checking or reporting is done if the user fails to do this.
+    However, since this is a menu-driven program it should behave in the
+    "usual" way if the user enters an invalid menu choice three times in a
+    row. In other words, it should behave like the sample executable and
+    although most of this behavior is supplied by the class itself, not all
+    of it is. To be more specific, your main program must behave in the
+    same way whether the user chooses to quit or is forced to quit. All of
+    this may be easily achieved by using the <code>Menu</code> class from 
+    the instructor-supplied <code>utilities</code> package.</li>
+
+    <li><font color="red">In addition to any other point deductions, the
+    marker will deduct one point for each line exceeding the maximum of 66
+    lines for this program.</font></li>
+  </ol>
+</body>
+</html>

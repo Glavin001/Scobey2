@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Computing Science 2342 | Submission 02</title>
+    <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+  </head>
+  <body class="csc342">
+    <p class="pageheader">CSCI 2342 Submission 02<br />
+     Encrypting and Decrypting Textfiles</p>
+    <table border="3" cellpadding="5" summary="">
+      <tr>
+        <th align="left">Supplied file(s)</th>
+        <td><tt><a
+        href="02/demo_encrypt_decrypt.exe">demo_encrypt_decrypt.exe</a><br />
+         <a href="02/encrypt_decrypt.txt">encrypt_decrypt.txt</a></tt></td>
+      </tr>
+      <tr>
+        <th align="left">Files to submit</th>
+        <td><tt>encrypt_decrypt.cpp<br />
+         encrypt_decrypt.exe</tt></td>
+      </tr>
+      <tr>
+        <th align="left">Where to put them</th>
+        <td>Submit them over the web</td>
+      </tr>
+      <tr>
+        <th align="left">When they're due</th>
+        <td>Sun, Jan 20, 2013 @11:59pm</td>
+      </tr>
+    </table>
+    <br />
+     
+    <h3>Overview</h3>
+    <p>This week you will design and write (another?) program to encrypt and
+    decrypt textfiles. Such programs are nice exercises because they always
+    involve making good choices for the structures and algorithms you need to
+    use, and they require you (or should require you) to think through your
+    approach before starting in a way that some other exercises do not.</p>
+    <p>Also, because you now have quite a number of STL facilities at your
+    disposal, you have quite a variety of things to choose from when solving
+    any problem with a C++ program, including this one. So, feel free to
+    choose and use whatever works, from the STL and (of course) from the
+    <tt>utilities.h/.obj</tt> package. In fact, think of this as another
+    opportunity to get your "STL chops" up to speed.</p>
+    <h3>Steps to Perform</h3>
+    <ol class="hardleft">
+      <li>Copy the demo executable and the accompanying text items file that
+      it needs in order to run.</li>
+      <li>Study the program description (especially the encryption scheme
+      description) you get by choosing option 2 from the menu.</li>
+      <li>Make up a few short (or long, if you like) textfiles and try
+      encrypting and decrypting them. Enter different phrases for doing so
+      from they keyboard and from a file. Do this until you understand how
+      the program works.</li>
+      <li>Write pseudocode for a solution to this problem, and revise it
+      until you are convinced that a program that implements your pseudocode
+      will be the one you want.</li>
+      <li>Translate your pseudocode into C++ and continue testing your
+      program until you are convinced it works correctly.</li>
+      <li>Make sure your source code is identified, formatted, and documented
+      properly, according to our current rules and guidelines.</li>
+      <li>Finally, submit the required files over the web.</li>
+    </ol>
+    <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+    any)</h3>
+    <ol class="hardleft">
+      <li>The phrase used for encrypting/decrypting must be just a single
+      line of text.</li>
+      <li>To compare two files (as in option 6 on the menu), your program
+      need only use the system <tt>fc</tt> command (for "file compare"). Your
+      program should build the appropriate C-string containing this command
+      and the names of the two files to be compared, and then pass it as the
+      parameter in a call to the <tt>system()</tt> function.</li>
+      <li>Don't forget to include in your testing files that are encrypted
+      by your program and decrypted by the sample executable, and vice
+      versa.</li>
+    </ol>
+  </body>
+</html>

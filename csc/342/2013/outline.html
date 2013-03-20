@@ -1,0 +1,808 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342: Topic Outline by Week</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <a id="top" name="top"></a>
+
+  <p class="pageheader">CSCI 2342 Topic Outline by Week<br />
+  (Always tentative, so check frequently for updates.)</p>
+
+  <p><font color="red"><em><strong>Assigned
+  Reading</strong></em></font><br />
+  We will begin this course by discussing a few more STL features before
+  continuing our discussion of sorting algorithms (recursive sorting
+  algorithms in particular). We will also, from time to time, revisit and
+  extend some of the topics from the previous course in various contexts
+  (stacks and queues, in particular). Some additional specific C++ topics
+  will be discussed, including some from Chapter 8 of the text, input and
+  output with binary files, and the remaining STL container classes. Then
+  we will carry on with Chapters 10-14 of the text, looking at trees in
+  general, expressions trees, binary search trees, heaps and priority
+  queues, tables and hashing, and (depending on available time) graphs, C++
+  inheritance and polymorphism with virtual functions and multiple
+  inheritance.</p>
+
+  <p>For those who need a C++ refresher, see Appendix A and Appendix C of
+  the text.</p>
+
+  <p><font color="red"><em><strong>Progress Assessment
+  Quizzes</strong></em></font><br />
+  Students may expect short quizzes on material previously covered in the
+  course at any time. These quizzes are intended to bring to the attention
+  of students some of the things they should know, and to let the
+  instructor know if, in fact, students are acquainted with the material.
+  They may also serve as an "early warning system" to indicate the kinds of
+  questions and their format that students will see on the mid-term test
+  and final exam. These quizzes will not be awarded any grade points, but
+  <em>may</em><em></em> be taken into account in a student's favor, at the end of the term,
+  to help compensate for a poor performance on the evaluation items that
+  <em>do</em> count, if this is warranted by the student's performance on
+  those quizzes.</p>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, January 07, 2013 (Week 01)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Brief discussion of CSCI 2341 results and viewing final exam, if
+    desired</li>
+
+    <li>Distribution (for new students only) of profile forms</li>
+
+    <li>Distribution of "Things To Remember: Highlights" sheets</li>
+
+    <li>Distribution of "Acknowledgment of CSCI 2342 Policy on Cheating"
+    sheets</li>
+
+    <li>Distribution of course account sheets</li>
+
+    <li>Brief overview of course, course infrastructure and course web
+    site</li>
+
+    <li>Brief discussion of first submission and new lab activities</li>
+
+    <li>Especially for new students, but also a reminder to returnees:
+
+      <ul class="hardleft">
+        <li>brief discussion of Visual Studio 2010 and MSDNAA</li>
+
+        <li>the utilities package</li>
+        <!-- <li>the revised and extended STL reference pages</li> -->
+
+        <li>doxygen documentation</li>
+      </ul>
+    </li>
+  </ol>
+
+  <table summary="Week 01 Topics" border="border" width="100%" cellpadding=
+  "3">
+    <tr>
+      <td width="65%">STL stream iterators (See also copy1b.cpp and
+      vector_a.cpp.)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../ref/stl/iterators.html#stream_iterators">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/iterators.html#stream_iterators">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Iterator adaptors for insertion (insert adaptors:
+      back, front and general)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../ref/stl/iterators.html#insert_iterators">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/iterators.html#insert_iterators">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Useful iterator functions (advance, difference)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../ref/stl/iterators.html#iter_funs">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/iterators.html#iter_funs">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Function objects, including the STL built-in function
+      objects (See also sort2b.cpp, vector_e.cpp.) (text p 232)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../ref/stl/function_objects.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/function_objects.html">Code</a></small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <p>Since this first week of classes is a full week, there <b>will</b> be
+  a full lab-recitation on Monday. You will also need to take some time to
+  get familiar with the course web site. Note as well that Submission 01 is
+  due the first Sunday after classes begin.</p>
+
+  <ol class="hardleft">
+    <li>Get your personalized course account sheet from your instructor, in
+    exchange for the "acknowledgment" form.</li>
+
+    <li>Be sure to copy (soon) any material that you wish to retain from
+    your csc341?? account to this new account, so that you do not lose
+    access to any files that you wished to retain when the csc341??
+    accounts are deactivated.</li>
+
+    <li>Log in to your csc342?? account, and change your your password as
+    requested. Remember that if you lose or forget this new password, you
+    will have to get a new one from the HELP DESK.</li>
+
+    <li>Set up a new Visual Studio Test project in your new account for
+    development purposes. Then copy the <tt>utilities.h</tt> and <tt>utilities.obj</tt>
+    files from the <tt>utilities2010</tt> directory under "Sample Code" and
+    add the <code>utilities</code> package to your project.</li>
+
+    <li>Prepare and test a preliminary version of your Submission 01 that
+    includes all files required for submission, so that you can use these
+    files to test the submission system. Further details on what should be
+    in that submission will be given in the lab.</li>
+
+    <li>Next, sign up for the course web site, and <strong>note that for
+    this signup both of the following are true:</strong>
+
+      <ol class="hardleft" type="a">
+        <li><strong>Your username is your A-number.</strong></li>
+
+        <li><strong>Your password is your A-number.</strong></li>
+      </ol>You will, however, have to <strong>change this
+      password</strong>, and you must not forget it or you will not be able
+      to submit any assignments.
+    </li>
+
+    <li>Now submit the preliminary versions of all files required for
+    Submission 01 (the ones you prepared in Step 5 above) and inform the
+    instructor that you have done so, so that he can verify and test your
+    submission. This activity will test the submission mechanism and
+    confirm that it is working for you.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, January 14, 2013 (Week 02)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table summary="Week 01 Topics" border="border" width="100%" cellpadding=
+  "3">
+    <tr>
+      <td width="65%">The priority queue ADT and the STL <code>priority_queue</code>
+      container adaptor (text p 896)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/ADTPriorityQueue.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/cont_priority_queue.html">Notes and
+      Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Recursive Sorts: An Overview</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/alg_sorts_recursive.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="40%">The MergeSort Algorithm (text pp 466-472)</td>
+
+      <td width="10%" align="center"><small><a href=
+      "../../common_341_342/notes/alg_sort_merge.html">Notes</a></small></td>
+
+      <td width="50%" align="center"><small><a href=
+      "../../common_341_342/code/sorting">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="40%">The QuickSort Algorithm (text pp 472-484)</td>
+
+      <td width="10%" align="center"><small><a href=
+      "../../common_341_342/notes/alg_sort_quick.html">Notes</a></small></td>
+
+      <td width="50%" align="center"><small><a href=
+      "../../common_341_342/code/sorting">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="40%">The QuickSearch Algorithm (text pp 98-102) (See also
+      the STL <code>nth_element()</code> algorithm.)</td>
+
+      <td width="10%" align="center"><small><a href=
+      "../../common_341_342/notes/alg_search_quick.html">Notes</a></small></td>
+
+      <td width="50%" align="center"><small><a href=
+      "../../common_341_342/code/searching">Code</a></small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>This week you will be asked to choose a partner and do an in-lab
+    activity as described by the instructor at the time. In this case, you
+    will need to copy the file <tt>addKQdrives.bat</tt> from the Windows
+    subdirectory of the <tt>utilities2010</tt> directory under the Sample
+    Code link on the home page of the course website, and run this file
+    to set up your <code>K:</code> and <code>Q:</code> drives.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, January 21, 2013 (Week 03)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">The <code>pair</code> template struct from the
+      <code>&lt;utility&gt;</code>
+      header in the standard library (text pp 572, 630)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../ref/stl/utilities.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/utilities.html">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">The map ADT and the STL <code>map</code> and 
+      <code>multimap</code> container
+      classes (text pp 630-634 for map, 633-635 for multimap)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/ADTMap.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/cont_map.html">Notes+Code</a></small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, January 28, 2013 (Week 04)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">The set ADT and the STL <code>set</code> and
+      <code>multiset</code> container
+      classes (text pp 635-638 for set, 633 for multiset)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/ADTSet.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/cont_set.html">Notes+Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Stream I/O associated with named files (text and
+      binary): reading, writing, appending (text pp 853-867)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "http://cs.stmarys.ca/~porter/csc/ref/cpp_io.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/files">Code</a></small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, February 04, 2013 (Week 05)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">Direct access (or "random access") to data in binary
+      files (text pp 853-867)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "http://cs.stmarys.ca/~porter/csc/ref/cpp_io.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/files">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Basic tree terminology binary trees: terminology,
+      traversals (preorder, inorder, postorder, level-order) and
+      specializations (<em>binary expression trees</em>, <em>binary search
+      trees</em>, and <em>heaps</em>) (text pp 499-515)</td>
+
+      <td width="15%" align="center">
+      <small><a href=
+      "../../common_341_342/notes/trees.html">Notes</a></small><br />
+      <small><a href=
+      "../../common_341_342/notes/TreesVsGraphs.pdf">Pictures (pdf)</a></small>
+      </td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, February 11, 2013 (Week 06)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">Some questions and answers concerning binary
+      trees</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/trees_btqanda.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">The union data structure (useful for storing binary
+      expression trees)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/union.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/unions">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">String stream I/O, and using an input string stream
+      in a command-line calculator</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/string_streams.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/string_streams">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Arithmetic expressions, binary expression trees, and
+      prefix, infix and postfix expression evaluation with corresponding
+      tree traversals<br />
+      A command-line calculator for fully parenthesized infix arithmetic
+      expressions, and simple prefix expression and postfix expression
+      calculators (text pp 260-269)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/trees_expression.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/trees/expression">Code</a></small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+
+    <li>This week: Subversion.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, February 25, 2013 (Week 07)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">The Binary Search Tree (BST) Abstract Data Type (text
+      pp 536-539)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/ADTBinarySearchTree.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Implementing a BST template class (text pp
+      539-563)<br />
+      - The <tt>TreeNode</tt> structure and the use of auxiliary "helper
+      functions" to preserve interface integrity<br />
+      - Creating an empty BST and testing it to see if it's empty (directly
+      vs. using a member function)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/trees_bst_class.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/trees/bst">Code</a></small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, March 04, 2013 (Week 08)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">Implementing a BST template class (continued) (text
+      pp 539-563)<br />
+      - Building a (not-necessarily-balanced) BST and displaying its values
+      in various ways<br />
+      - The Big 3: destructor, copy constructor, overloaded operator=<br />
+      - The level-order traversal algorithm<br />
+      - Finding and/or updating particular values in a BST<br />
+      - Deleting a particular value, or all values of a BST<br />
+      - Processing all values in a BST<br />
+      - Finding the size, depth and number of leaves in a BST<br />
+      - Building a balanced BST (text pp 569-572, 650-686)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/trees_bst_class.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/trees/bst">Code</a></small></td>
+    </tr>
+    <tr>
+      <td width="65%">More on BSTs: use of "rotations" in tree balancing,
+      and a brief discussion of AVL, red-black, and self-organizing
+      trees</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/trees_bst_class.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+
+    <li><font color="red">This week: Mid-Term on Monday.</font></li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, March 11, 2013 (Week 09)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">Heaps (text pp 614-623)<br />
+      - The "shape property" and the "order property" of a heap<br />
+      - Some uses of heaps: priority queues, heapsort<br />
+      - The contiguous-storage representation of binary trees. and heaps in
+      particular<br />
+      - Deleting from, inserting into, and building a heap</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/trees_heap.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">The STL heap algorithms: <code>make_heap()</code>, 
+      <code>push_heap()</code>,
+      <code>pop_heap()</code>, <code>sort_heap()</code> (text pp 900-901)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/STLHeapAlgorithms.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../ref/stl/alg_in_alph_order.html">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Hashing (text pp 686-701)<br />
+      - What exactly is it, anyway?<br />
+      - Hashing as an extension of "table lookup"<br />
+      - Performance of table lookup compared with previous methods<br />
+      - A higher level view of searching<br />
+      - The central question in hashing</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/hashing.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, March 18, 2013 (Week 10)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">Hashing (continued) (text pp 686-701)<br />
+      - A hashing example, some problems with it, and possible
+      solutions<br />
+      - How do we find a hash function? (text pp 704-706)<br />
+      - Collisions, the need to resolve them, and collision resolution via
+      open and closed addressing (text pp 693-701)<br />
+      - Deletions from a hash table<br />
+      - Linked storage vs. contiguous storage for hashing<br />
+      - A major problem with hashing<br />
+      - Performance of hashing (text pp 701-704)<br />
+      - The "Birthday Surprise"</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/hashing.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small><a href=
+      "../../common_341_342/code/hashing">Code</a></small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Performance summary of various storage and retrieval
+      methods</td>
+
+      <td width="15%" align="center"><small><small><a href=
+      "../../common_341_342/notes/storage_retrieval_summary.html">Notes</a></small></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Stable sorting algorithms (text p 487)</td>
+
+      <td width="15%" align="center"><small><small><a href=
+      "../../common_341_342/notes/sorts_stable.html">Notes</a></small></small></td>
+
+      <td width="20%" align="center"><small>HUSKY1 sort
+      routine</small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, March 25, 2013 (Week 11)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <p><big>Advisory</big><br />
+  From this week onward we will be discussing topics for which there will
+  be no time for you to work on as one of the weekly Submissions. You will
+  therefore lack that additional hands-on experience with these topics.
+  Thus it will be particularly important for you to pay extra attention to
+  the notes and sample programs we discuss in class and in the lab. For
+  example, as a follow-up to our discussion of some "advanced" C++ topics
+  this week, you should take some time to replicate the sample program
+  demonstrations seen in class and/or in lab.</p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">Regular expressions</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/regular_expressions.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><a href=
+      "../../common_341_342/code/regular_expressions"><small>Code</small></a></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Graphs: definitions and terminology, uses, examples
+      (text pp 722-725)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/graphs.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Graph algorithms: overview, graph traversals,
+      depth-first, and breadth-first searches (text pp 732-737)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/graphs.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+  </ol>
+  <hr />
+  <!-- *************************************************************** -->
+
+  <p><a title="Up to start of Topic Outline ..." href="#top"><img src=
+  "/~porter/images/up.gif" alt="up-arrow" width="10" height="10" /></a>
+  <strong>Week of Monday, April 01, 2013 (Week 12)</strong></p>
+
+  <p><font color="red"><em><strong>Lecture Topics</strong></em></font></p>
+
+  <table border="border" width="100%" cellpadding="3" summary="">
+    <tr>
+      <td width="65%">Finding minimum spanning trees (text pp 747-749) and
+      shortest paths (text pp 749-753)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/graphs.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">ADTGraph and possible implementations (text pp
+      725-729)</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/ADTGraph.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">The "three pillars" of OOP revisited: encapsulation,
+      inheritance, polymorphism</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/oop_3pillars.html">Notes</a></small></td>
+
+      <td width="20%" align="center"><small>No Code</small></td>
+    </tr>
+
+    <tr>
+      <td width="65%">Encapsulation, inheritance and polymorphism in C++
+      (text p 143, pp 387-408):<br />
+      - Inheritance syntax and order of construction<br />
+      - The "slicing" problem, the "static binding" problem, and virtual
+      functions</td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/notes/oop_3pillars.html">Notes</a></small></td>
+
+      <td width="15%" align="center"><small><a href=
+      "../../common_341_342/code/oop/time">Code</a></small></td>
+    </tr>
+  </table>
+
+  <p><font color="red"><em><strong>Recitation-Lab
+  Activities</strong></em></font></p>
+
+  <ol class="hardleft">
+    <li>Lab activities will always involve some discussion of the current
+    submission, plus some combination of the following: Visual Studio
+    features, C++ features, programming environment features, a non-credit
+    quiz, or a team-oriented hands-on exercise.</li>
+
+    <li>Some additional problem solving practice</li>
+
+    <li>Discussion of final exam</li>
+  </ol>
+</body>
+</html>

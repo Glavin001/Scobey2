@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+
+  <title>Computing Science 2342 | Submission 07</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 07<br />
+  Implementing a Simple Four-Function Calculator</p>
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Supplied file(s)</th>
+
+      <td><tt>
+      <a href=
+      "07/demo_calculate.exe">demo_calculate.exe</a><br />
+      <a href=
+      "07/demo_calculate_with_trace.exe">demo_calculate_with_trace.exe</a><br />
+      <a href=
+      "07/calculate_shell.cpp2html">calculate_shell.cpp</a><br />
+      <a href=
+      "07/calculator_shell.hpp2html">calculator_shell.hpp</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>calculate.cpp<br />
+      calculator.hpp<br />
+      calculate.exe</tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Mar 03, 2013 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>This submission requires you to implement a simple, four-function
+  calculator which reads its input from the command line. You are supplied
+  with a shell file for your <tt>main()</tt> driver. This file also
+  contains a <tt>DisplayUsage()</tt> function to save you the busy-work of
+  creating it.</p>
+
+  <p>You are also provided with a doxygen-documented .hpp file containing the
+  prototypes of four functions which your main() function can call to perform
+  its task of reading and evaluating an arithmetic expression. You must
+  implement these functions, at a minimum, to complete the program. You
+  are also permitted,should you wish to do so, to implement additional 
+  "helper" functions that may be called by the four specified functions
+  when and as appropriate.</p>
+
+  <p>You will find it very helpful to study the Binary Expression Trees
+  page under Course Notes on the course web site before starting work on
+  this submission. Look in particular at the last section entitled,
+  "Additional notes on implementing a calculator for fully-parenthesized
+  arithmetic expressions".</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>Copy the demo executable and run it, first with no command-line
+    parameters, and note that it displays (in the usual way) an opening
+    screen containing ID information, followed by a short program usage
+    description, and then it terminates. Your program must behave in the
+    same way, except of course that the ID information must be yours.
+    [Note that there is a second demo executable that contains a "trace"
+    feature showing the steps taken to build the binary expression tree
+    in memory before the evaluation takes place. You do not have to 
+    implement this trace feature.]</li>
+
+    <li>Study the implementation notes referred to above until you
+    understand what the input and output of this program look like, for
+    input that is both nicely formatted and valid, and input that is badly
+    formatted but still valid, as well as invalid input.</li>
+
+    <li>Next, run the program with lots of different sample input, both
+    valid and invalid, to confirm your understanding of how the program
+    works.</li>
+
+    <li>Write pseudocode for a solution of this problem and revise it until
+    you are convinced that a program that implements your pseudocode will
+    be the one you want. This essentially means writing pseudocode for the
+    four functions whose prototypes are given, plus any additional helper 
+    functions you think you might need, since you are provided with pseudocode
+    for the main driver.</li>
+
+    <li>Translate your pseudocode into C++ and continue testing your
+    program until you are convinced it works correctly.</li>
+
+    <li>Make sure both of your source code files are identified, formatted, and
+    documented properly, our current rules and guidelines,including
+    doxygen-style documentation for any additional helper function that
+    you implement.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol class="hardleft">
+    <li>A valid expression contains a valid arithmetic expression and
+    <em>nothing else</em>, i.e. no other non-blank space characters. This
+    means, for example, that a valid arithmetic expression followed by one
+    or more garbage characters before the end-of-line would be interpreted
+    as an invalid input line.</li>
+
+    <li>A valid arithmetic expression according to our definition can still
+    cause problems (division by zero, for example) but your program (and
+    <tt>demo_calculate.exe</tt>) are not expected to deal with this kind
+    of problem. It is assumed that a valid arithmetic expression also has a
+    value which can in fact be calculated. Otherwise, the program is not
+    responsible for what happens.</li>
+
+    <li>Note that no matter how badly the input is formatted, that same
+    input is displayed in a consistent, nicely-formatted way, provided of
+    course that it is in fact <em>valid</em> input.</li>
+
+    <li>When you are testing this program, some of the expressions you type
+    in for it to evaluate may be quite complex. If you type such an
+    expression in and there is a problem requiring a code revision the next
+    time you test you will have to type that same expression in again. This
+    can quickly become quite tedious, and this is the typical kind of
+    situation in which you should make use of Visual Studio's ability to
+    provide command-line arguments to your program when it runs.</li>
+
+    <li>For simplicity, and since you are building a single small tree, you
+    need not worry about destroying the tree at the end of the program.
+    This means that you are technically not dealing properly with the
+    memory leak that occurs. But there is no danger of "running out of
+    memory" since the program itself actually ends after each expression is
+    handled, so the operating system will reclaim any memory that was used
+    by the program, in preparation for the next run. This would not be a
+    good idea if the program remained running and asked for a second
+    expression, then a third, and so on.</li>
+
+    <li>You may find it helpful to recall how the <tt>peek()</tt> member
+    function of an input stream is used, and also the fact that the
+    built-in constant <tt>EOF</tt> can be used to test for the end of any
+    input stream (standard input, file input, or string stream input).</li>
+  </ol>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342 | Submission 11</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 11<br />
+  Analyzing Student Info with Regular Expressions</p>
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Supplied file(s)</th>
+
+      <td><tt><a href=
+      "11/demo_analyze_info.exe">demo_analyze_info.exe</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>analyze_info.cpp<br />
+      analyze_info.exe<br /></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Mar 31, 2013 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>This week your task is to put some regular expressions to work
+  analyzing and reformatting a textfile of input data. The input textfile
+  must contain two lines of data for each of an arbitray number of
+  individuals. The two lines for any given individual look like this:</p>
+  <pre>
+Lastname:Firstname:A00123456:csc34201
+(902)420-5790
+</pre>
+
+  <p>The first of these two lines, in each case, may be assumed to be
+  correct, and to have the format shown above. The only thing you need to
+  note here is that <code>Lastname</code> may contain a blank space, a
+  dash, or an apostrophe (single quote), while Firstname consists only of
+  letters.</p>
+
+  <p>The second line, in each case, contains a (North American style) phone
+  number, with no leading or trailing spaces. In other words, there must be
+  nothing on the second line but the phone number. However, this phone
+  number may or may not be a "valid" phone number. To be "valid", in our
+  context, a phone number must satisfy the following criteria:</p>
+
+  <ol class="hardleft">
+    <li>It must have a 3-digit <em>area code</em>, a 3-digit
+    <em>exchange</em>, and a 4-digit <em>number</em>. We refer to these as
+    the "three parts" of the phone number.</li>
+
+    <li>The three parts of the phone number may be separated by nothing, by
+    a space, by a dash, or by a period. When there are no parenthese around
+    the area code, whatever (if anything) separates the first and second
+    part must also separate the second and third parts. That is, for
+    example, you cannot have a dash separating the area code and exchange,
+    with a period separating the exchange and the number in that
+    exchange.</li>
+
+    <li>The area code may, or may not be enclosed in parentheses. That is,
+    if one of the parentheses is present, the other must be present as
+    well. If the area code is enclosed in parentheses, the exchange either
+    begins immediately after the right parenthesis, or is separated from it
+    by a single blank space, and the exchange and number may then be
+    separated by nothing, by a space, by a dash, or by a period.</li>
+  </ol>
+
+  <p>The three lines of output corresponging to the above two lines of
+  input, when the phone number is valid, look like this:</p>
+  <pre>
+Name .......... Firstname Lastname
+                SMU ID: A00123456   Account: csc34201
+                (902)405-2585       Area code: 902  Exchange: 405  Number: 2585
+</pre>
+
+  <p>When the phone number is <em>not</em> valid, the three lines of output
+  corresponding to the above two lines of input look like this:</p>
+  <pre>
+Name .......... Firstname Lastname
+                SMU ID: A00123456  Account: csc34201
+                Invalid number: (902)405!2585
+</pre>
+
+  <p>The information output for each eight individuals (24 lines) occupies
+  one standard screen, with room for a pause at the bottom.</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>Download the sample executable and run it without any command-line
+    parameters. It simply displays the usual opening screen and then
+    terminates. The program does not provide a self-description, so you
+    need to look here for what you need to know.</li>
+
+    <li>Spend some time creating a good test input file, one that you will
+    be comfortable using as test input for your own program. Run the demo
+    executable with this file as you are creating it, after adding each
+    pair of lines for a new individual. This should serve the dual purpose
+    of giving you a good feeling for how the program works, and providing
+    an excellent test suite for your development.</li>
+
+    <li>When you understand what is required, write pseudocode for a
+    program to emulate this executable and revise it until you are
+    convinced that an implementation of your pseudocode will solve the
+    problem.</li>
+
+    <li>Translate your pseudocode into C++ and continue testing your
+    program until you are convinced it works correctly.</li>
+
+    <li>Make sure your source code is identified, formatted, and documented
+    properly, according to our current rules and guidelines.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol class="hardleft">
+    <li>Although there is no formal requirement this time around to keep
+    your code at a single page or less, you should be aware that the
+    program <em>can</em> be done under that restriction. That is, it can be
+    done in a page or less when you use regular expressions, which is part
+    of the requirement. Your program would likely have to be <em>much</em>
+    longer if you did <em>not</em> use regular expressions.</li>
+
+    <li>Here are some valid phone numbers:
+      <pre>
+9024205790
+902 420 5790
+902-420-5790
+902.4205.790
+(902)4205790
+(902) 420 5790
+(902)420-5790
+(902)420.5790
+</pre>And here are some invalid phone numbers:
+      <pre>
+902 4205790
+902420 5790
+902420-5790
+902.4205790
+(902) 4205790
+(902)420 5790
+(902)-420-5790
+(902).4205790
+</pre>
+    </li>
+  </ol>
+</body>
+</html>

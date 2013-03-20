@@ -1,0 +1,66 @@
+filename: encrypt_decrypt.txt
+========================================
+Program Description
+
+This program allows the user to encrypt the contents of a textfile based on an
+easily remembered phrase with which the user is familiar, and which that user
+is unlikely to forget. The program can also decrypt such a file, but the phrase
+used to encrypt the file must be supplied at the time of decrypting as well.
+
+The encryption scheme used is a straightforward "substitution cipher". That is,
+each line of the encoded message contains exactly the same number of characters
+as the corresponding line in the original plain text, and once you have decoded
+each character of the encoded message you immediately have the original plain
+text. This also implies that blank lines in the plain text are preserved in the
+encrypted text, which is in fact the case.
+
+The original plain text of any message may contain any or all of the printable
+characters in the Standard ASCII Character Set. That is, the original textfile
+may contain any or all of those characters with numerical codes from 32 (the
+blank space) through to 126 (the tilde, or '~', character).
+
+The phrase to be used for both encrypting and decrypting is obtained from the
+user, either from the keyboard or from a file whose name is entered by the
+user, after which this is what happens:
+
+1. First, all duplicate characters are removed from this phrase.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+2. Second, the remaining (unique) characters (from the phrase) are placed
+   in their natural ASCII order, and then reversed. Or, I suppose, you could
+   simply say that they are placed in the reverse order of their natural ASCII
+   order.
+
+3. Third, the remaining (missing) characters from the complete set of printable
+   ASCII characters are added to the end of this list of characters, in their
+   natural ASCII order.
+
+4. The now-complete list of printable ASCII characters (in some order) is
+   reversed one final time.
+
+This process results in a list containing all printable ASCII characters in
+some order. Let's call the resulting list of characters "the key".
+
+If you now imagine a line consisting of all the printable ASCII characters
+in their natural order placed underneath the above line (that is, underneath
+"the key"), then the encryption of each character in a message of plain text
+would be performed by finding the character to be encrypted in the bottom line
+and using whatever character lies immediately above it in "the key" as the
+corresponding encrypted character.
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Similarly, when decoding any given character, you would find the encrypted
+character in the top line (that is, in "the key"), and then the character
+immediately below it would be the corresponding plain text character.
+
+The phrase required for encryption (or decryption) may be entered from the
+keyboard at the time of encryption (or decryption), but since such a phrase
+may be quite long, it may also be placed in a single-line textfile and read
+in from that file. The user has the choice whenever such a phrase is required.
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+----------------------------------------
+========================================

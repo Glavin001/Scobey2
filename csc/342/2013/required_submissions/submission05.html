@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342 | Submission 05</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 05<br />
+  Generating and Displaying Power Sets</p>
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Supplied file(s)</th>
+
+      <td><tt><a href=
+      "05/demo_power_set_of_int.exe">demo_power_set_of_int.exe</a></tt><br />
+
+      <tt><a href=
+      "05/power_set_of_int.cpp2html">power_set_of_int.cpp</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>power_set_funs.hpp<br />
+      power_set_of_int.exe<br /></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Feb 10, 2013 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>This week you will have a chance to hone your "recursion chops" by
+  writing a recursive function to compute and display <em>power sets</em>.
+  More specifically, you will write two <em>template</em> functions, a
+  recursive one to compute a power set, and a non-recursive one to display
+  each set in a power set. For the submission you will be working with sets
+  and power sets of integers, but you will be writing template functions
+  that can work with sets of other elements as well (sets of characters,
+  for example).</p>
+
+  <p>The <em>power set</em> of any set is the set of all subsets of that
+  set. One can prove (using mathematical induction, and perhaps other
+  techniques as well) that the number of sets in the power set of a finite
+  set containing n elements is 2^n (2 to the power n). So, for example, the
+  power set of any set containing 3 elements will contain 8 elements. If
+  this is a new concept for you, construct a set of three elements and then
+  write down all of its subsets to confirm the previous statement.</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>Download the sample executable and run the program a few times to
+    see the kind of output you get.</li>
+
+    <li>Next, download the driver file <code>power_set_of_int.cpp</code>
+    and study it to see what you are given and what you need to supply, as
+    well as the overall structure of the program on this occasion. Note
+    that you see the prototypes of two template functions, and it is the
+    definitions of these functions that you must write and place in the
+    "include file", which is included <em>after</em> <code>main()</code>.</li>
+
+    <li>Design the functions you will need for a solution to this problem,
+    and write the ncessary pseudocode for them.</li>
+
+    <li>Revise your solution until you are convinced that the functions
+    that implement your pseudocode will be the ones you want.</li>
+
+    <li>Translate your pseudocode into C++ and continue testing your
+    program until you are convinced it works correctly.</li>
+
+    <li>When you are finished, make sure your source code file is
+    identified, formatted, and documented properly.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol class="hardleft">
+    <li>Note that although the driver cautions the user to keep the set
+    small to limit the amount of output, your function that computes the
+    power set and also your display function should still work fine, whatever
+    the size of the set.</li>
+    <li>Here is some "recursive pseudocode" that you may find helpful when
+    writing your recursive routine to build the power set of a set:
+<pre>
+if (the set is empty)
+    return the empty set
+else
+    Take an element out of the set and then:
+    (1) Find the power set of the "reduced" set
+    (2) Add the removed element to each set in the power set of that reduced set
+    return the "union" of the two sets in (1) and (2) above
+</pre>
+</li>
+<li>Do not change the driver, except for replacing the generic identification
+information with your own in the call to <code>DisplayOpeningScreen()</code>.</li>
+  </ol>
+</body>
+</html>

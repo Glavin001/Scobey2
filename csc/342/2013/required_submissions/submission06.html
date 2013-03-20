@@ -1,0 +1,176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342 | Submission 06</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 06<br />
+  Using a Binary File to Process Club Member Data</p>
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Supplied file(s)</th>
+
+      <td><tt><a href=
+      "06/demo_process_club_members.exe">demo_process_club_members.exe</a><br />
+
+      <a href=
+      "06/process_club_members.txt">process_club_members.txt</a><br />
+      <a href="06/club_members.h2html">club_members.h</a><br />
+      <a href=
+      "06/club_members_shell.cpp2html">club_members_shell.cpp</a><br />
+      <a href=
+      "06/process_club_members.obj">process_club_members.obj</a><br />
+      <a href="06/html">function documentation</a>
+      </tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>club_members.cpp<br />
+      process_club_members.exe<br /></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Feb 24, 2013 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>For this submission you will write a program that reads in "club
+  member" information from a textfile and then writes it out to a binary
+  "working" file which is left open so that it may be "processed" by
+  modifying the data in it, adding new data to it, and displaying all or
+  some of the data in it. Once the processing is finished, the data in the
+  binary file must be written out to an "updated" textfile, so that the
+  whole process may be repeated at some later time. This final step does
+  not happen automatically, and it is the responsibility of the user to
+  pick the appropriate menu option as the last step before quitting the
+  program.</p>
+
+  <p>The data in an input textfile of the required type contains two lines
+  of information for each "club member" of some club. The two lines look
+  like this (name on the first line, age and club account balance on the
+  second):</p>
+  <pre>
+John Smith
+23 $34.56
+</pre>
+
+  <p>Such a textfile may contain information on any number of club members.
+  The output textfile, obtained by writing the binary working file, must be
+  given the same format, so that it can be used as an input textfile for a
+  future run of the program.</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>Download the sample executable and its accompanying text items
+    file, and run the program. Choose menu option 2 and study the program
+    description until you feel comfortable with how you expect the program
+    to behave.</li>
+
+    <li>Create at least a couple of sample input textfiles, a short one of
+    four or five club members, and another one of more than sixteen club
+    members (note that club members are displayed eight at a time when all
+    the data in the working binary file is displayed).</li>
+
+    <li>Now download the <code>club_members.h</code> file and study the
+    comments documenting the functions you have to write. Study as well the
+    doxygen-produced HTML documentation for these functions.</li>
+
+    <li>Design the functions you will need for a solution to this problem,
+    and write the necessary pseudocode for them.</li>
+
+    <li>Revise your solution until you are convinced that the functions
+    that implement your pseudocode will be the ones you need.</li>
+
+    <li>Begin translating your pseudocode into C++. Think about the best
+    order to use for implementing the required functions, and try to use
+    the supplied driver (the <code>.obj</code> file) for your testing. You
+    may use the supplied <code>club_members_shell.cpp</code> file to start,
+    since it contains some of the "busy work" already done for you.</li>
+
+    <li>Continue testing your program (ideally using the supplied driver)
+    until you are convinced it works correctly.</li>
+
+    <li>When you are finished, build the final version of your executable
+    using your function file and the supplied driver, and make sure your
+    source code file is identified, formatted, and documented
+    properly.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol class="hardleft">
+    <li>For this submission you are expressly forbidden to use
+    <strong>any</strong> STL containers or algorithms. This "forces" you to
+    work directly with the binary file on disk, rather that reading the
+    data from the textfile into memory and doing all the manipulation there
+    (in an STL container, for example). You need only work with a small
+    amount of data (and therefore small files), but imagine that you had so
+    many club members that they wouldn't all fit into memory, in which case
+    you would not be able to take the STL route anyway.</li>
+
+    <li>You will find it very useful in writing this program to take full
+    advantage of as many facilities provided by the <code>utilities</code>
+    package as possible, and in particular the various <code>Read*</code>
+    free functions. You don't "need" them but you'll find yourself writing
+    a lot of code you would not have to write if you <em>did</em> use
+    them.</li>
+
+    <li>Study the text items file carefully and note the messages it
+    contains, in addition to the program description. These messages are
+    all displayed at the appropriate places by the supplied driver,
+    <strong>not</strong> by the functions you have to write.</li>
+
+    <li>You must identify yourself in your <code>.cpp</code> file
+    containing your functions in the usual way you have to do whenever you
+    are supplied with a driver in <code>.obj</code> form. That is, you have
+    to place a line like the following (containing <em>your</em>
+    information, of course) in the global namespace at the beginning of
+    your <code>.cpp</code> file:
+      <pre>
+extern const string MY_ID_INFO = "Lastname:Firstname:A00123456:csc34201";
+</pre>
+    </li>
+
+    <li>The file containing your implementations of the required functions
+    must be compiled separately and linked to the supplied driver to form
+    the final executable that you must submit. If you take the right
+    approach to your development, you should be able to use the supplied
+    driver as a test driver as you write those functions, without having to
+    write your own driver (which is also a possibility, of course). Think
+    carefully about how you might do this. You have enough experience at
+    this point that you should be able to figure it out.</li>
+
+    <li>You may be wondering why some of our uses of <code>ioFile</code>
+    have not been passed by <code>const</code> reference (in
+    <code>DisplayAllMembers()</code>, for example), since at that point we
+    are just passing in the file for display purposes and not "changing" it
+    in any way. However, even moving the read and write "file pointers"
+    back and forth over the file referenced by the file variable requires
+    that we pass the file variable by reference in the normal way, and not
+    by <code>const</code> reference.</li>
+  </ol>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342 | Submission 09</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 09<br />
+  Creating and Displaying Balanced Binary Search Trees</p>
+  <!-- <p><big><font color="red">Still Under Development</font></big></p> -->
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Sample file(s)</th>
+
+      <td><tt><a href=
+      "09/demo_test_balanced_bst.exe">demo_test_balanced_bst.exe</a><br />
+      <a href=
+      "09/test_balanced_bst_shell.cpp2html">test_balanced_bst_shell.cpp</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>test_balanced_bst.cpp<br />
+      test_balanced_bst.exe<br />
+      balanced_bst.h<br />
+      balanced_bst.cpp</tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Mar 17, 2013 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>This week you will design and write a program that allows the user to
+  create and display balanced binary search trees of characters. Since we
+  are specifying the type, we are not going to use a template BST class. In
+  fact, we are not using a BST class at all, just old-fashioned free
+  functions to do all the work. You will have enough to keep you busy,
+  probably, without dealing with templates or even "ordinary" class
+  infrastructure.</p>
+
+  <p>We shall only deal with "small" trees (height 3 or less, and therefore
+  15 nodes or fewer).</p>
+
+  <p>Users may enter their own character values, or generate them randomly.
+  The values are first placed into a vector, from which the balanced binary
+  search tree may be generated.</p>
+
+  <p>The tree is displayed as an actual tree shape.</p>
+
+  <p>In the past you have often been given a <code>.h</code> specification
+  file and been required to implement the specifications in that file. This
+  time you are given much more freedom ... to first decide what functions
+  you need, then to put their specifications in your own header file
+  (<code>balanced_bst.h</code>), and their implementations in a
+  separately-compilable implemenation file
+  (<code>balanced_bst.cpp</code>).</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol>
+    <li>Copy the sample executable and run it. Notice there is no "Get
+    information" option, since none is really needed. The menu options
+    themselves, together with the discussion in this document, give you all
+    you need to know.</li>
+
+    <li>When you understand what is required, write pseudocode for a
+    program to emulate this executable and revise it until you are
+    convinced that an implementation of your pseudocode will solve the
+    problem.</li>
+
+    <li>Translate your pseudocode into C++ and continue testing your
+    program until you are convinced it works correctly.</li>
+
+    <li>Make sure all of your source code files are identified, formatted,
+    and documented properly, according to our current rules and
+    guidelines.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol>
+    <li>The shell file is a "starter file" that you can use and fill in the
+    required code. It will save you some "busy work".</li>
+
+    <li>You must use the usual struct as the basis for your tree (this
+    should be placed in your header file):
+      <pre xml:space="preserve">
+struct TreeNode
+{
+    TreeNode* leftPtr;
+    char      data;
+    TreeNode* rightPtr;
+};
+</pre>
+    </li>
+  </ol>
+</body>
+</html>

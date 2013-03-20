@@ -1,0 +1,125 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Computing Science 2342 | Submission 10</title>
+  <link rel="StyleSheet" href="/~porter/css/courses.css" type="text/css" />
+</head>
+
+<body class="csc342">
+  <p class="pageheader">CSCI 2342 Submission 10<br />
+  Creating and Displaying Minimum Heap Trees</p>
+  <!-- <p><big><font color="red">Still Under Development</font></big></p> -->
+
+  <table border="3" cellpadding="5" summary="">
+    <tr>
+      <th align="left">Sample file(s)</th>
+
+      <td><tt><a href=
+      "10/demo_test_minimum_heaps.exe">demo_test_minimum_heaps.exe</a></tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Files to submit</th>
+
+      <td><tt>test_minimum_heaps.cpp<br />
+      test_minimum_heaps.exe<br />
+      minimum_heaps.h<br />
+      minimum_heaps.cpp</tt></td>
+    </tr>
+
+    <tr>
+      <th align="left">Where to put them</th>
+
+      <td>Submit them over the web</td>
+    </tr>
+
+    <tr>
+      <th align="left">When they're due</th>
+
+      <td>Sun, Mar 27, 2011 @11:59pm</td>
+    </tr>
+  </table><br />
+
+  <h3>Overview</h3>
+
+  <p>This week your task is to design and write a program for creating and
+  displaying "small" minimum heaps (15 or fewer nodes). The node values
+  will be single characters, and the heap display will be in the form of a
+  complete binary tree (the "shape property" for heaps) that also exhibits
+  the "order property" for <em>minimum</em> heaps (the value in any node
+  precedes (is "less than") any value in each of that node's subtrees).</p>
+
+  <p>The character values for the tree nodes may be input by the user from
+  the keyboard, or generated randomly after the user has input the desired
+  number of values and the character range from which they are to be drawn.
+  For simplicity we deal only with unique character values in our heaps,
+  and this means that in menu option 2 the user must enter 15 or fewer
+  unique characters and that the randomly generated values in menu option 3
+  must also be unique.</p>
+
+  <p>Note that this week you are provided only with a sample executable.
+  The entire submission is quite analogous to last week's submission,
+  except that this week your binary trees are heaps rather than binary
+  search trees. Among other things, this means you can re-use your tree
+  display routine (and you have another chance to work on it if there were
+  problems with it last week). You can also re-use other pieces of code,
+  such as the code for reading in the user's data and the code for
+  generating random data.</p>
+
+  <h3>Steps to Perform</h3>
+
+  <ol class="hardleft">
+    <li>By now you know the drill ... begin by downloading the demo
+    executable and running it a few times. Be sure to exercise all options
+    enough times and with enough variety in your input to get a good feel
+    for how the program behaves. In particular be sure to confirm that the
+    randomly generated values in menu option 3 are always unique and that
+    you cannot choose to have more than 15. Also, confirm that in menu option
+    2 the user must enter 15 or fewer values, and again those values must
+    be unique.</li>
+
+    <li>When you understand what is required, write pseudocode for a
+    program to emulate this executable and revise it until you are
+    convinced that an implementation of your pseudocode will solve the
+    problem.</li>
+
+    <li>Translate your pseudocode into C++ and continue testing your
+    program until you are convinced it works correctly.</li>
+
+    <li>Make sure your source code is identified, formatted, and documented
+    properly, according to our current rules and guidelines.</li>
+
+    <li>Finally, submit the required files over the web.</li>
+  </ol>
+
+  <h3>Additional Notes, Requirements, Specifications and/or Hints (if
+  any)</h3>
+
+  <ol class="hardleft">
+    <li>The program does not have a "Get information" menu option, since
+    (assuming the user knows what a minimum heap is) the menu options and
+    prompts make the program self-explanatory.</li>
+
+    <li>Recall that in our discussion of heaps we used a vector as the
+    underlying data structure to hold the heap values. That is, we used a
+    sequential binary tree representation rather than the actual tree-like
+    representation we employed when discussing (and implementing) both
+    expression trees and binary search trees. Note that this program
+    displays heaps in actual tree-like form, just as the balanced binary
+    search tree program did, so if you choose to re-use your display routine
+    from that program here, an interesting part of the current problem may
+    be figuring out how to "plug in" your previous display routine to this
+    new situation. Ideally you should be able to do this without any
+    rewriting of that routine. But (presumably) you will have to have your
+    heap in actual tree-like form (using the TreeNode-related structure),
+    or convert it to that form, in order to use the previous display
+    routine. Just some thoughts, not some instructions ...</li>
+    <li>Finally, as for the creating heaps from vectors, feel free to use
+    whatever STL facilities are appropriate.</li>
+  </ol>
+</body>
+</html>
