@@ -1,0 +1,693 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>The STL list Container</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL list Container</p>
+    <p>The <tt>list</tt> class implements a sequential container with fast
+    insertions and deletions anywhere, but without random access to its
+    components values.</p>
+    <ul class="hardleft">
+      <li><a href="#constructors">Constructors and destructor</a></li>
+      <li><a href="#overloaded_ops">Overloaded operators</a></li>
+      <li><a href="#access">Member functions for accessing values</a></li>
+      <li><a href="#status">Member functions for reporting status</a></li>
+      <li><a href="#insertion">Member functions for inserting one or more
+      values</a></li>
+      <li><a href="#deletion">Member functions for deleting one or more
+      values</a></li>
+      <li><a href="#merge_splice">Member functions for merging and
+      splicing</a></li>
+      <li><a href="#misc_funs">Miscellaneous member functions</a></li>
+      <li><a href="#misc_notes">Miscellaneous notes</a></li>
+      <li><a href="#sample_programs">Sample programs</a></li>
+      <li><a href="#prototypes">Member function prototypes</a></li>
+    </ul>
+    <h3><a id="constructors" name="constructors">Constructors and
+    destructor</a></h3>
+    <p>Default Constructor</p>
+    <dl>
+      <dt>list&lt;T&gt; lst;</dt>
+      <dd>Construct an empty list <tt>lst</tt> which can hold values of
+      type <tt>T</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Copy Constructor</p>
+    <p>There is, of course, only one copy constructor, but there are two
+    syntactic forms that invoke it, and both are shown.</p>
+    <dl>
+      <dt>list&lt;T&gt; lst(otherList);</dt>
+      <dd>Construct <tt>lst</tt> as a copy of <tt>otherList</tt>, whose
+      component type must be <tt>T</tt>.</dd>
+      <dt>list&lt;T&gt; lst = otherList;</dt>
+      <dd>Copy constructor (alternate usage syntax).</dd>
+    </dl>
+    <hr />
+    <p>Other Constructors</p>
+    <dl>
+      <dt>list&lt;T&gt; lst;</dt>
+      <dd>Construct an empty list <tt>lst</tt> which can hold values of
+      type <tt>T</tt>.</dd>
+      <dt>list&lt;T&gt; lst(num);</dt>
+      <dd>Construct a list <tt>lst</tt> of size <tt>num</tt> containing
+      <tt>num</tt> values, each equal to the default value of type
+      <tt>T</tt>.</dd>
+      <dt>list&lt;T&gt; lst(num, val);</dt>
+      <dd>Construct a list <tt>lst</tt> of size <tt>num</tt> containing
+      <tt>num</tt> values, each equal to <tt>val</tt>, which must be of
+      type <tt>T</tt>, and which may be supplied by a variable, a literal
+      or named constant, or a function call.</dd>
+      <dt>list&lt;T&gt; lst(inIterBegin, inIterEnd);</dt>
+      <dd>Construct <tt>lst</tt> containing values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily list)
+      container, but whose component type is the same as the component type
+      of <tt>lst</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Destructor</p>
+    <dl>
+      <dt>lst.~list&lt;T&gt;()</dt>
+      <dd>Destroy all components of <tt>lst</tt> and free the associated
+      memory.</dd>
+    </dl>
+    <h3><a id="overloaded_ops" name="overloaded_ops">Overloaded
+    operators</a></h3>
+    <p>Assignment operator</p>
+    <dl>
+      <dt>lst1 = lst2</dt>
+      <dd>Assign <tt>lst2</tt> to <tt>lst1</tt>, and return the common
+      value. The list on the left of an assignment receives the values and
+      size of the one on the right.</dd>
+    </dl>
+    <hr />
+    <p>Relational operators</p>
+    <p>Lists are compared in the "lexicographic ordering" sense. This
+    essentially means that the two lists are compared by comparing their
+    values pairwise, starting at the beginning, with each comparison
+    looking at two values in corresponding positions, until a determination
+    of the relationship between the two lists can be made. Only lists of
+    the same component type can be compared of course, and the <tt>==</tt>
+    and <tt>&lt;</tt> operators must be defined for the component type.</p>
+    <dl>
+      <dt>lst1 == lst2</dt>
+      <dd>Return <tt>true</tt> if <tt>lst1</tt> and <tt>lst2</tt> have the
+      same component type and the same size, and the components in each
+      pair of corresponding locations have the same value; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>lst1 != lst2</dt>
+      <dd>Return <tt>true</tt> if <tt>lst1==lst2</tt> returns
+      <tt>false</tt>; otherwise return <tt>false</tt>.</dd>
+      <dt>lst1 &lt; lst2</dt>
+      <dd>Return <tt>true</tt> if, in the pairwise comparison of values
+      from <tt>lst1</tt> and <tt>lst2</tt>, in the first pair in which the
+      two values differ, the one from <tt>lst1</tt> is less than the one
+      from <tt>lst2</tt>; otherwise return <tt>false</tt>.</dd>
+      <dt>lst1 &lt;= lst2</dt>
+      <dd>Return <tt>true</tt> if either <tt>lst1&lt;lst2</tt> or
+      <tt>lst1==lst2</tt> is <tt>true</tt>; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>lst1 &gt; lst2</dt>
+      <dd>Return <tt>true</tt> if <tt>lst2&lt;lst1</tt> is <tt>true</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>lst1 &gt;= lst2</dt>
+      <dd>Return <tt>true</tt> if either <tt>lst1&gt;lst2</tt> or
+      <tt>lst1==lst2</tt> is <tt>true</tt>, otherwise return
+      <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="access" name="access">Member functions for accessing
+    values</a></h3>
+    <p>Each of the member functions in this section has both a
+    <tt>const</tt> and a non-<tt>const</tt> version.</p>
+    <dl>
+      <dt>lst.front()</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      first component of <tt>lst</tt>.</dd>
+      <dt>lst.back()</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      last component of <tt>lst</tt>.</dd>
+      <dt>lst.begin()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the first component of <tt>lst</tt>.</dd>
+      <dt>lst.end()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to one-past-the-last component of <tt>lst</tt>.</dd>
+      <dt>lst.rbegin()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to the last component of
+      <tt>lst</tt>.</dd>
+      <dt>lst.rend()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to one-before-the-first
+      component of <tt>lst</tt>.</dd>
+    </dl>
+    <h3><a id="status" name="status">Member functions for reporting
+    status</a></h3>
+    <dl>
+      <dt>lst.max_size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the maximum
+      possible size of <tt>lst</tt>, which will depend on the size of the
+      component type <tt>T</tt> of the list object, and the amount of
+      available memory.</dd>
+      <dt>lst.size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the number of
+      values currently in <tt>lst</tt>.</dd>
+      <dt>lst.empty()</dt>
+      <dd>Return <tt>true</tt> if <tt>lst</tt> is empty (contains zero
+      values); otherwise return <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="insertion" name="insertion">Member functions for inserting
+    one or more values</a></h3>
+    <dl>
+      <dt>lst.assign(num, val)</dt>
+      <dd>Assign <tt>num</tt> copies of <tt>val</tt> to <tt>lst</tt>,
+      overwriting the entire previous contents of <tt>lst</tt>.</dd>
+      <dt>lst.assign(inIterBegin, inIterEnd)</dt>
+      <dd>Assign to <tt>lst</tt> the values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily list)
+      container, but whose values are also of type <tt>T</tt>, overwriting
+      the entire previous contents of <tt>lst</tt>.</dd>
+      <dt>lst.insert(iter, val)</dt>
+      <dd>Insert <tt>val</tt> into <tt>lst</tt> immediately before the
+      value pointed to by <tt>iter</tt>, and return an <tt>iterator</tt>
+      pointing at the new component with value <tt>val</tt>.</dd>
+      <dt>lst.insert(iter, num, val)</dt>
+      <dd>Insert <tt>num</tt> copies of <tt>val</tt> into <tt>lst</tt>,
+      immediately before the value pointed to by <tt>iter</tt>.</dd>
+      <dt>lst.insert(iter, inIterBegin, inIterEnd)</dt>
+      <dd>Insert into <tt>lst</tt>, immediately before the value pointed to
+      by <tt>iter</tt>, values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily list)
+      container, but whose values must be of the same type as the values of
+      <tt>lst</tt>.</dd>
+      <dt>lst.push_back(val)</dt>
+      <dd>Add <tt>val</tt> to the end of <tt>lst</tt>, increasing the size
+      of <tt>lst</tt> by one.</dd>
+      <dt>lst.push_front(val)</dt>
+      <dd>Add <tt>val</tt> to the front of <tt>lst</tt>, increasing the
+      size of <tt>lst</tt> by one.</dd>
+    </dl>
+    <h3><a id="deletion" name="deletion">Member functions for deleting one
+    or more values</a></h3>
+    <dl>
+      <dt>lst.clear()</dt>
+      <dd>Delete all values of <tt>lst</tt>. The size of <tt>lst</tt> is
+      reduced to zero.</dd>
+      <dt>lst.erase(iter)</dt>
+      <dd>Delete the value of <tt>lst</tt> pointed to by <tt>iter</tt> and
+      return an <tt>iterator</tt> pointing at the following value, or to
+      one-past-the-last if the value deleted was the last one. The size of
+      <tt>lst</tt> is reduced by one.</dd>
+      <dt>lst.erase(iterBegin, iterEnd)</dt>
+      <dd>Delete all values of <tt>lst</tt> from the range
+      <tt>[iterBegin,iterEnd)</tt> and return <tt>iterEnd</tt>. The size of
+      <tt>lst</tt> is reduced by <tt>iterEnd-iterBegin</tt> (a value of
+      type <tt>difference_type</tt>).</dd>
+      <dt>lst.pop_back()</dt>
+      <dd>Delete the last value of <tt>lst</tt>. The size of <tt>lst</tt>
+      is reduced by one.</dd>
+      <dt>lst.pop_front()</dt>
+      <dd>Delete the first value of <tt>lst</tt>. The size of <tt>lst</tt>
+      is reduced by one.</dd>
+      <dt>lst.remove(val)</dt>
+      <dd>Remove all components with value <tt>val</tt>.</dd>
+      <dt>lst.remove_if(unPred)</dt>
+      <dd>Remove all values for which the unary predicate function
+      <tt>unPred</tt> returns <tt>true</tt>.</dd>
+      <dt>lst.unique()</dt>
+      <dd>Remove all but one of any group of consecutive components
+      containing duplicate items.</dd>
+      <dt>lst.unique(binPred)</dt>
+      <dd>Same as preceding <tt>unique()</tt> but uses <tt>binPred</tt> to
+      determine when two component values are duplicates.</dd>
+    </dl>
+    <h3><a id="merge_splice" name="merge_splice">Member functions for
+    merging and splicing</a></h3>
+    <dl>
+      <dt>lst.merge(otherList)</dt>
+      <dd>Merge the list contained in <tt>otherList</tt> with the invoking
+      list and clear <tt>otherList</tt>. (Both lists are assumed to be
+      ordered and the result is also ordered.)</dd>
+      <dt>lst.merge(otherList, binPred)</dt>
+      <dd>Same as preceding <tt>merge()</tt>, except that in this version a
+      comparitor (comparison function) <tt>binPred</tt> is provided to
+      determine when one component value precedes another.</dd>
+      <dt>lst.splice(iter, otherList)</dt>
+      <dd>Remove all values from <tt>otherList</tt> and insert them just
+      before location <tt>iter</tt>.</dd>
+      <dt>lst.splice(iter, otherList, otherIter)</dt>
+      <dd>Remove value pointed to by <tt>otherIter</tt> from
+      <tt>otherList</tt> and insert it just before location
+      <tt>iter</tt>.</dd>
+      <dt>lst.splice(iter, otherList, otherIterBegin, otherIterEnd)</dt>
+      <dd>Remove values from range <tt>[otherIterBegin,otherIterEnd)</tt>
+      in <tt>otherList</tt> and insert them just before location
+      <tt>iter</tt>.</dd>
+    </dl>
+    <h3><a id="misc_funs" name="misc_funs">Miscellaneous member
+    functions</a></h3>
+    <dl>
+      <dt>lst.resize(num)</dt>
+      <dd>Change size of <tt>lst</tt> to <tt>num</tt>. (If <tt>lst</tt>
+      must be lengthened, default values of its component type are added to
+      the end of <tt>lst</tt>. If <tt>lst</tt> is shortened, values at the
+      end are lost.)</dd>
+      <dt>lst.resize(num, val)</dt>
+      <dd>Change size of <tt>lst</tt> to <tt>num</tt>. (If <tt>lst</tt>
+      must be lengthened, copies of <tt>val</tt> are added to the end of
+      <tt>lst</tt>. If <tt>lst</tt> is shortened, values at the end are
+      lost, and the value of <tt>val</tt> is not used.)</dd>
+      <dt>lst.reverse()</dt>
+      <dd>Reverse the order of all components of a list.</dd>
+      <dt>lst.sort()</dt>
+      <dd>Sort the components of a list into ascending order.</dd>
+      <dt>lst.sort(binPred)</dt>
+      <dd>Sort the components of a list using the comparitor
+      <tt>binPred</tt> to determine when one component value precedes
+      another.</dd>
+      <dt>lst.swap(otherList)</dt>
+      <dd>Exchange values in <tt>lst</tt> with those in <tt>otherList</tt>.
+      The sizes and capacities are swapped as well.</dd>
+      <dt>lst.getallocator()</dt>
+      <dd>Return the allocator of <tt>lst</tt>. (This is possibly the most
+      infrequently used of all member functions of the list class.)</dd>
+    </dl>
+    <h3 class="miscnotes"><a id="misc_notes"
+    name="misc_notes">Miscellaneous notes</a></h3>
+    <dl>
+      <dt>Implementation</dt>
+      <dd>Standard C++ does not say how the STL containers and algorithms
+      must be implemented. It does, however, state certain constraints,
+      such as complexity constraints, to which each implementation must
+      adhere. Thus it is much better to base your programs on the STL's
+      performance guarantees, rather than upon any assumption about how a
+      particular feature, like the <tt>list</tt> class, may be
+      implemented.</dd>
+      <dt>Some performance and usage issues</dt>
+      <dd>
+        The following STL "best practice" applies to use of the list
+        container: For those operations whose names are identical to the
+        names of general STL algorithms (<tt>merge</tt>, <tt>remove</tt>,
+        <tt>remove_if</tt>, <tt>reverse</tt>, <tt>sort</tt>, <tt>swap</tt>,
+        and <tt>unique</tt>), the list-specific versions are to be
+        preferred when working with lists. And, by the way, similar advice
+        applies as well to other STL containers when a choice can be made
+        between using a member function and using an algorithm. 
+        <p>The <tt>list&lt;T&gt;::iterator</tt> and
+        <tt>list&lt;T&gt;::reverse_iterator</tt> iterators are
+        <em>bidirectional</em> access iterators, the second-most powerful
+        kind of STL iterator. The member function <tt>begin()</tt> returns
+        an iterator pointing at the first element of the list, while
+        <tt>end()</tt> is a member function returning an iterator pointing
+        at the position "one past the end" of the list. Analogously,
+        <tt>rbegin()</tt> and <tt>rend()</tt> return iterators pointing at
+        the last and "one before the first" positions, respectively.</p>
+        <p>Note that the <tt>at()</tt> member function and index access via
+        <tt>[ ]</tt> are not supported, but the bidirectional iterators
+        supported by the list container do permit a different kind of
+        access to any element in a list.</p>
+        <p>Neither inserting components into a list, nor deleting
+        components from the list, will invalidate pointers, references or
+        iterators to other components of that list.</p>
+        <p>A list is useful when the order of the components and fast
+        insertion and deletion at arbitrary locations are important. If
+        insertion and deletion only take place at the ends, lists are not
+        as efficient as deques.</p>
+        <p>The list class is one of the three "sequential" container
+        classes in the STL (the <tt>vector</tt> and the <tt>deque</tt> are
+        the other two). Lists provide many of the same operations as
+        vectors and deques. However, the list class also provides a number
+        of "high-powered" list operations like <tt>splice</tt> and
+        <tt>merge</tt> that are not found in the other sequence
+        containers.</p>
+      </dd>
+    </dl>
+    <h3 class="sampleprogs"><a id="sample_programs"
+    name="sample_programs">Sample programs</a></h3>
+    <p>There are two groups of sample programs. The first group involves
+    only STL lists and generic C++, while the second group involves other
+    STL features in addition to lists. The programs should be studied in
+    the sequence given, since the description of each new sample program in
+    the sequence mentions only the new features illustrated for the first
+    time in that particular program, and features seen in earlier sample
+    programs will continue to reappear in later programs.</p>
+    <p>All of the programs have been compiled and run successfully under
+    Microsoft Visual Studio .NET 2005, unless otherwise noted.</p>
+    <h4>Programs involving only lists (and generic C++)</h4>
+    <dl>
+      <dt><a href="programs/list/list01.cpp2html">list01.cpp</a> | <a
+      href="programs/list/list01.exe">Windows_executable</a> | <a
+      href="programs/list/list01.txt">program_output (text)</a></dt>
+      <dd>Illustrates list constructors, <tt>list&lt;T&gt;::iterator</tt>,
+      and the member functions <tt>begin()</tt> and <tt>end()</tt>. Also
+      illustrates how ordinary array pointers can be used, in certain
+      situations, in the same way that STL iterators are used.</dd>
+      <dt><a href="programs/list/list02.cpp2html">list02.cpp</a> | <a
+      href="programs/list/list02.exe">Windows_executable</a> | <a
+      href="programs/list/list02.txt">program_output (text)</a></dt>
+      <dd>Illustrates member functions <tt>size()</tt> and
+      <tt>empty()</tt>.</dd>
+      <dt><a href="programs/list/list03.cpp2html">list03.cpp</a> | <a
+      href="programs/list/list03.exe">Windows_executable</a> | <a
+      href="programs/list/list03.txt">program_output (text)</a></dt>
+      <dd>Illustrates member function <tt>max_size()</tt>, and how the
+      maximum size for a list object depends on the size of its component
+      type.</dd>
+      <dt><a href="programs/list/list04.cpp2html">list04.cpp</a> | <a
+      href="programs/list/list04.exe">Windows_executable</a> | <a
+      href="programs/list/list04.txt">program_output (text)</a></dt>
+      <dd>Illustrates <tt>push_back()</tt> and <tt>push_front()</tt>.</dd>
+      <dt><a href="programs/list/list05.cpp2html">list05.cpp</a> | <a
+      href="programs/list/list05.exe">Windows_executable</a> | <a
+      href="programs/list/list05.txt">program_output (text)</a></dt>
+      <dd>Illustrates typical uses of the default (bidirectional) iterator
+      for the list class, shows additional uses of member functions
+      <tt>begin()</tt> and <tt>end()</tt>, and also shows the use of
+      operators <tt>=</tt>, <tt>++</tt>, <tt>--</tt>, <tt>!=</tt> and
+      <tt>*</tt> with list class iterators.</dd>
+      <dt><a href="programs/list/list06.cpp2html">list06.cpp</a> | <a
+      href="programs/list/list06.exe">Windows_executable</a> | <a
+      href="programs/list/list06.txt">program_output (text)</a></dt>
+      <dd>Illustrates the default (bidirectional) list class iterator in
+      additional situations, and shows the use of operators <tt>-&gt;</tt>,
+      and <tt>==</tt> with list class iterators.</dd>
+      <dt><a href="programs/list/list07.cpp2html">list07.cpp</a> | <a
+      href="programs/list/list07.exe">Windows_executable</a> | <a
+      href="programs/list/list07.txt">program_output (text)</a></dt>
+      <dd>Illustrates reverse iterators for the list class, as well as
+      member functions <tt>rbegin()</tt> and <tt>rend()</tt>.</dd>
+      <dt><a href="programs/list/list08.cpp2html">list08.cpp</a> | <a
+      href="programs/list/list08.exe">Windows_executable</a> | <a
+      href="programs/list/list08.txt">program_output (text)</a></dt>
+      <dd>Illustrates a typical use of a <tt>const</tt> iterator.</dd>
+      <dt><a href="programs/list/list09.cpp2html">list09.cpp</a> | <a
+      href="programs/list/list09.exe">Windows_executable</a> | <a
+      href="programs/list/list09.txt">program_output (text)</a></dt>
+      <dd>Illustrates member functions <tt>front()</tt> and
+      <tt>back()</tt>.</dd>
+      <dt><a href="programs/list/list10.cpp2html">list10.cpp</a> | <a
+      href="programs/list/list10.exe">Windows_executable</a> | <a
+      href="programs/list/list10.txt">program_output (text)</a></dt>
+      <dd>Illustrates the overloaded assignment operator <tt>=</tt> and the
+      <tt>assign()</tt> member function.</dd>
+      <dt><a href="programs/list/list11.cpp2html">list11.cpp</a> | <a
+      href="programs/list/list11.exe">Windows_executable</a> | <a
+      href="programs/list/list11.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>insert()</tt> member function.</dd>
+      <dt><a href="programs/list/list12.cpp2html">list12.cpp</a> | <a
+      href="programs/list/list12.exe">Windows_executable</a> | <a
+      href="programs/list/list12.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>clear()</tt>, <tt>erase()</tt>,
+      <tt>pop_back()</tt> and <tt>pop_front()</tt> member functions.</dd>
+      <dt><a href="programs/list/list13.cpp2html">list13.cpp</a> | <a
+      href="programs/list/list13.exe">Windows_executable</a> | <a
+      href="programs/list/list13.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>resize()</tt> member function.</dd>
+      <dt><a href="programs/list/list14.cpp2html">list14.cpp</a> | <a
+      href="programs/list/list14.exe">Windows_executable</a> | <a
+      href="programs/list/list14.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>swap()</tt> member function.</dd>
+      <dt><a href="programs/list/list15.cpp2html">list15.cpp</a> | <a
+      href="programs/list/list15.exe">Windows_executable</a> | <a
+      href="programs/list/list15.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>remove()</tt> and <tt>remove_if()</tt> member
+      functions.</dd>
+      <dt><a href="programs/list/list16.cpp2html">list16.cpp</a> | <a
+      href="programs/list/list16.exe">Windows_executable</a> | <a
+      href="programs/list/list16.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>unique()</tt> member function.</dd>
+      <dt><a href="programs/list/list17.cpp2html">list17.cpp</a> | <a
+      href="programs/list/list17.exe">Windows_executable</a> | <a
+      href="programs/list/list17.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>reverse()</tt> and <tt>sort()</tt> member
+      functions.</dd>
+      <dt><a href="programs/list/list18.cpp2html">list18.cpp</a> | <a
+      href="programs/list/list18.exe">Windows_executable</a> | <a
+      href="programs/list/list18.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>merge()</tt> member function.</dd>
+      <dt><a href="programs/list/list19.cpp2html">list19.cpp</a> | <a
+      href="programs/list/list19.exe">Windows_executable</a> | <a
+      href="programs/list/list19.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>splice()</tt> member function.</dd>
+    </dl>
+    <h4>Programs involving additional list features and lists in
+    combination with other STL features</h4>
+    <dl>
+      <dt><a href="programs/list/list_a.cpp2html">list_a.cpp</a> | <a
+      href="programs/list/list_a.exe">Windows_executable</a> | <a
+      href="programs/list/list_a.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of stream iterators and the <tt>copy</tt>
+      algorithm for I/O of list values.</dd>
+      <dt><a href="programs/list/list_b.cpp2html">list_b.cpp</a> | <a
+      href="programs/list/list_b.exe">Windows_executable</a> | <a
+      href="programs/list/list_b.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to display the name of the underlying type
+      represented by each typedef defined by a list class.</dd>
+      <dt><a href="programs/list/list_c.cpp2html">list_c.cpp</a> | <a
+      href="programs/list/list_c.exe">Windows_executable</a> | <a
+      href="programs/list/list_c.txt">program_output (text)</a></dt>
+      <dd>Illustrates initialization of a list with values from non-list
+      containers (in this case, a vector and a deque).</dd>
+    </dl>
+    <h3 class="prototypes"><a id="prototypes" name="prototypes">Member
+    function prototypes</a></h3>
+    <p>For enhanced readability in each of the prototypes given below, each
+    parameter in each parameter list appears on a separate line. Also, some
+    formatting liberties are taken, in the interest of greater readability.
+    For example, rather than aligning all prototypes at the left margin,
+    <tt>const</tt> and non-<tt>const</tt> versions of a member function are
+    aligned in such a way as to allow the reader to more easily compare the
+    two visually.</p>
+    <hr />
+    <p>Template specification for the list class</p>
+<pre xml:space="preserve">
+template&lt;class T,
+         class Allocator = allocator&lt;T&gt; &gt;
+class list { ... }
+</pre>
+    <hr />
+    <p>Constructors</p>
+<pre xml:space="preserve">
+explicit list(const Allocator&amp; a = Allocator());
+</pre>
+<pre xml:space="preserve">
+explicit list(size_type num,
+              const T&amp; val = T(),
+              const Allocator&amp; a = Allocator());
+                
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+list(InIterator inIterBegin,
+     InIterator inIterEnd,
+     const Allocator&amp; a = Allocator());
+</pre>
+    <hr />
+    <p>Copy Constructor</p>
+<pre xml:space="preserve">
+list(const list&lt;T, Allocator&gt;&amp; otherList);
+</pre>
+    <hr />
+    <p>Destructor</p>
+<pre xml:space="preserve">
+~list();
+</pre>
+    <hr />
+    <p>assign</p>
+<pre xml:space="preserve">
+void assign(size_type num,
+            const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void assign(InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>back</p>
+<pre xml:space="preserve">
+      reference back();
+const_reference back() const;
+</pre>
+    <hr />
+    <p>begin</p>
+<pre xml:space="preserve">
+      iterator begin();
+const_iterator begin() const;
+</pre>
+    <hr />
+    <p>clear</p>
+<pre xml:space="preserve">
+void clear();
+</pre>
+    <hr />
+    <p>empty</p>
+<pre xml:space="preserve">
+bool empty() const;
+</pre>
+    <hr />
+    <p>end</p>
+<pre xml:space="preserve">
+      iterator end();
+const_iterator end() const;
+</pre>
+    <hr />
+    <p>erase</p>
+<pre xml:space="preserve">
+iterator erase(iterator iter);
+iterator erase(iterator iterBegin,
+               iterator iterEnd);
+</pre>
+    <hr />
+    <p>front</p>
+<pre xml:space="preserve">
+      reference front();
+const_reference front() const;
+</pre>
+    <hr />
+    <p>get_allocator</p>
+<pre xml:space="preserve">
+allocator_type get_allocator() const;
+</pre>
+    <hr />
+    <p>insert</p>
+<pre xml:space="preserve">
+iterator insert(iterator iter,
+                const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+void insert(iterator iter,
+            size_type num,
+            const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void insert(iterator iter,
+            InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>max_size</p>
+<pre xml:space="preserve">
+size_type max_size() const;
+</pre>
+    <hr />
+    <p>merge</p>
+<pre xml:space="preserve">
+void merge(list&lt;T, Allocator&gt;&amp; otherList)
+</pre>
+<pre xml:space="preserve">
+template&lt;typename BinaryPred&gt;
+void merge(list&lt;T, Allocator&gt;&amp; otherList,
+           BinaryPred binPred)
+</pre>
+    <hr />
+    <p>pop_back</p>
+<pre xml:space="preserve">
+void pop_back();
+</pre>
+    <hr />
+    <p>pop_front</p>
+<pre xml:space="preserve">
+void pop_front();
+</pre>
+    <hr />
+    <p>push_back</p>
+<pre xml:space="preserve">
+void push_back(const T&amp; val);
+</pre>
+    <hr />
+    <p>push_front</p>
+<pre xml:space="preserve">
+void push_front(const T&amp; val);
+</pre>
+    <hr />
+    <p>rbegin</p>
+<pre xml:space="preserve">
+      reverse_iterator rbegin();
+const_reverse_iterator rbegin() const;
+</pre>
+    <hr />
+    <p>remove</p>
+<pre xml:space="preserve">
+void remove(const T&amp; val);
+</pre>
+    <hr />
+    <p>remove_if</p>
+<pre xml:space="preserve">
+template&lt;typename UnaryPred&gt;
+void remove_if(UnaryPred unPred);
+</pre>
+    <hr />
+    <p>rend</p>
+<pre xml:space="preserve">
+      reverse_iterator rend();
+const_reverse_iterator rend() const;
+</pre>
+    <hr />
+    <p>resize</p>
+<pre xml:space="preserve">
+void resize(size_type num,
+            T val = T());
+</pre>
+    <hr />
+    <p>reverse</p>
+<pre xml:space="preserve">
+void reverse();
+</pre>
+    <hr />
+    <p>size</p>
+<pre xml:space="preserve">
+size_type size() const;
+</pre>
+    <hr />
+    <p>sort</p>
+<pre xml:space="preserve">
+void sort();
+</pre>
+<pre xml:space="preserve">
+template&lt;typename BinaryPred&gt;
+void sort(BinaryPred binPred);
+</pre>
+    <hr />
+    <p>splice</p>
+<pre xml:space="preserve">
+void splice(iterator iter,
+            list&lt;T, Allocator&gt;&amp; otherList);
+</pre>
+<pre xml:space="preserve">
+void splice(iterator iter,
+            list&lt;T, Allocator&gt;&amp; otherList,
+            iterator otherIter);
+</pre>
+<pre xml:space="preserve">
+void splice(iterator iter,
+            list&lt;T, Allocator&gt;&amp; otherList,
+            iterator otherIterBegin,
+            iterator otherIterEnd);
+</pre>
+    <hr />
+    <p>swap</p>
+<pre xml:space="preserve">
+void swap(list&lt;T, Allocator&gt;&amp; otherList);
+</pre>
+    <hr />
+    <p>unique</p>
+<pre xml:space="preserve">
+void unique();
+</pre>
+<pre xml:space="preserve">
+template&lt;typename BinaryPred&gt;
+void unique(BinaryPred binPred);
+</pre>
+  </body>
+</html>
+
+<!-- Localized -->

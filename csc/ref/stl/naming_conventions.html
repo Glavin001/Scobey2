@@ -1,0 +1,250 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>Naming Conventions for these STL Reference Pages</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     Naming Conventions for these STL Reference Pages</p>
+    <p>In describing the various STL entities (containers, algorithms,
+    function objects, and so on), or showing their syntax, it is often
+    necessary to use a parameter type and/or a parameter name, or a
+    function return type or value. It will be helpful to have, for such
+    items, a consistent naming scheme that conveys as much information as
+    possible about the given item in the given context. This page describes
+    the naming conventions followed in the STL reference pages on this web
+    site. They are collected here for easy reference, and to avoid
+    duplication. Some frequently used specific names are listed, but the
+    general idea is to give a sense that from any name used it should be
+    possible for the reader to infer the type and purpose of the thing
+    named, based on the context and, if necessary, by referring to the
+    conventions described here.</p>
+    <h3>Some underlying STL typedefs and types</h3>
+    <p>Some frequently-appearing names are actual STL typedef names or type
+    names, and it is important not to confuse these with programmer-chosen
+    names. You will see many of both in these pages. The best course of
+    action to avoid confusion on this front is to become increasingly
+    familiar with the STL names so that you recognize one the moment you
+    see it.</p>
+    <p>A typical example that crops up frequently is this one:</p>
+    <dl>
+      <dt>size_type</dt>
+      <dd>A typedef for an unsigned integer type sufficiently large to hold
+      the size of any container in the given context (as in
+      <tt>vector&lt;int&gt;::size_type</tt>, for example).</dd>
+    </dl>
+    <p>For a full list of the STL typedefs found in the container and
+    container adaptor classes see <a
+    href="containers_typedefs.html">here</a>.</p>
+    <p>And here is a class name that you will see much less frequently:</p>
+    <dl>
+      <dt>allocator</dt>
+      <dd>This is the class name of the default allocator type for a
+      container.</dd>
+    </dl>
+    <p>You should know about this class because you know that any container
+    will need storage, and it is an object of this class that does the work
+    of allocating the necessary storage for you in the background. Most of
+    the time you should be happy to just let it do its thing.</p>
+    <p>Needless to say, there are many other STL names that will crop up
+    from time to time. Just be on your guard, and try to distinguish them
+    from the programmer-defined names described here that will also be
+    appearing in the same context.</p>
+    <h3>Naming conventions for quantities and sizes</h3>
+    <dl>
+      <dt>num, size</dt>
+      <dd>These are generic names used for a quantity (<tt>num</tt>) or a
+      size (<tt>size</tt>), and they are generally assumed to be of type
+      <tt>size_type</tt> (relative to some container type).</dd>
+      <dt>i, index</dt>
+      <dd>These are generic names used for index values, and they too are
+      assumed to be of type <tt>size_type</tt>. Index values for container
+      types start at 0, just as they do for arrays.</dd>
+    </dl>
+    <h3>Naming conventions for container component types and container
+    component values</h3>
+    <dl>
+      <dt>T</dt>
+      <dd>This name is used as a generic placeholder for a type which may
+      be either a programmer-defined type or a built-in type.</dd>
+      <dt>val, containerVal, targetVal, initialVal, ... <!--<br />
+                                          valCRef, containerValCRef, targetValCRef, initialValCRef, ...--></dt>
+      <dd>These are placeholder names for values of type <tt>T</tt>, which
+      may be simply generic (<tt>val</tt>), may emphasize that the value is
+      actually from a container (<tt>containerVal</tt>), or suggest the
+      purpose for which the value will be used (<tt>targetVal</tt> or
+      <tt>initialVal</tt>, and so on). Depending on the context, such a
+      name may represent a variable containing a value of type <tt>T</tt>,
+      a literal constant value of type <tt>T</tt>, a named constant value
+      of type <tt>T</tt>, or even a call to a function which returns a
+      value of type <tt>T</tt>. 
+      <!--The suffix <tt>CRef</tt> is used to indicate that
+                                          the value is passed by constant reference (rather than by value),
+                                          which is often the case and for which there may be no other
+                                          contextual sign that this is in fact the case. (In any given
+                                          stiuation, of course, the question may be irrelevant from the
+                                          "operational" viewpoint of the user.)--></dd>
+      <dt>KType, VType</dt>
+      <dd>These names are used as generic placeholders for the types of the
+      first (the key) and second (the value corresponding to the key)
+      components (respectively) of <tt>pair</tt> objects being stored in a
+      map or multimap.</dd>
+      <dt>kVal, vVal, pVal</dt>
+      <dd><tt>kVal</tt> and <tt>vVal</tt> are placeholder names for values
+      of the first (key) and second (value) components (respectively) of
+      <tt>pair</tt> objects being stored in a map or multimap.
+      <tt>kVal</tt> is also used as a placeholder name for the component
+      stored in a set or multiset, and <tt>pVal</tt> as a placeholder name
+      for a <tt>pair</tt> object as a single entity.</dd>
+    </dl>
+    <h3>Naming conventions for container types and container objects</h3>
+    <dl>
+      <dt>ContainerType</dt>
+      <dd>This name is used as a generic placeholder for any container
+      type.</dd>
+      <dt>vector&lt;T&gt;, deque&lt;T&gt;, list&lt;T&gt;, map&lt;KType,
+      VType&gt;, ...</dt>
+      <dd>These names are the specific container types you will see
+      throughout.</dd>
+      <dt>v, v1, v2, ..., otherVector, ...
+      <br />
+       d, d1, d2, ..., otherDeque, ...
+      <br />
+       lst, lst1, lst2, ..., otherList, ...
+      <br />
+       m, m1, m2, ..., otherMap, ...
+      <br />
+       c, c1, c2, ..., otherContainer, otherLikeContainer, ...</dt>
+      <dd>These names are typical of the kinds of generic names one uses
+      for containers that don't have any particular application and are
+      just being used to illustrate properties and behaviors of the
+      containers themselves. Note our response to the usual frustration
+      stemming from the fact that the single lowercase letter <tt>l</tt>
+      should not be used for a generic list since it too closely resembles
+      <tt>1</tt>, the first positive integer. The term
+      <tt>otherLikeContainer</tt> simply means another container of the
+      same kind that you're already dealing with in the current context
+      (some other vector, for example, if you're already dealing with a
+      vector).</dd>
+    </dl>
+    <h3>Naming conventions for iterator types and values</h3>
+    <dl>
+      <dt>InIterator, OutIterator, ForIterator, BiIterator,
+      RandIterator</dt>
+      <dd>These are generic type names used for (respectively) input
+      iterators, output iterators, forward iterators, bidirectional
+      iterators, and random access iterators. For example,
+      <tt>vector&lt;int&gt;::iterator</tt> is a <tt>RandIterator</tt>,
+      while <tt>list&lt;string&gt;::iterator</tt> is a
+      <tt>BiIterator</tt>.</dd>
+      <dt>iter, r_iter</dt>
+      <dd>These are generic variable names used for the default type of
+      <tt>iterator</tt> (or <tt>reverse_iterator</tt>) for a given
+      container. For example, when used in the <tt>vector</tt> context,
+      <tt>iter</tt> would represent a random access <tt>iterator</tt> type,
+      since that is the default <tt>iterator</tt> type for a
+      <tt>vector</tt> container.</dd>
+      <dt>p, r_p</dt>
+      <dd>These are analogues of <tt>iter</tt> and <tt>r_inter</tt>
+      (above), but are shorter and will be used frequently in the sample
+      programs. The use of <tt>p</tt> seems appropriate, since it suggests
+      "pointer" and <tt>i</tt> has already been used for "index".</dd>
+      <dt>iter1, iter2, ...
+      <br />
+       otherIter1, otherIter2, ...
+      <br />
+       inIter1, inIter2, ...
+      <br />
+       outIter1, outIter2, ...
+      <br />
+       forIter1, forIter2, ...
+      <br />
+       biIter1, biIter2, ...
+      <br />
+       randIter1, randIter2</dt>
+      <dd>These are generic variable names used for two (or more) iterators
+      of a particular kind in a given context.</dd>
+      <dt>[iter?Begin, iter?End)
+      <br />
+       [otherIter?Begin, otherIter?End)
+      <br />
+       [inIter?Begin, inIter?End)
+      <br />
+       [outIter?Begin, outIter?End)
+      <br />
+       [forIter?Begin, forIter?End)
+      <br />
+       [biIter?Begin, biIter?End)
+      <br />
+       [randIter?Begin, randIter?End)</dt>
+      <dd>These symbols denote STL ranges of values in a container. The
+      question mark (<tt>?</tt>) may be replaced by nothing, by a number
+      and/or by additional descriptive terms in any given situation.</dd>
+    </dl>
+    <p>Occasionally a variation of one or more of these forms may appear,
+    and its meaning and usage will, with luck, be apparent from the
+    context.</p>
+    <h3>Naming conventions for function/functor types and values</h3>
+    <dl>
+      <dt>UnaryFunc</dt>
+      <dd>A type of value-returning unary function, generally taking as a
+      parameter an item of the same type as the component values of the
+      container which appears in the same context.</dd>
+      <dt>UnaryPred</dt>
+      <dd>Like a unary function, but returning a value of type
+      <tt>bool</tt>, thus making it a "unary predicate function", or "unary
+      predicate" for short, since it is testing a "predicate", or statement
+      about a container value (of a container in the same context) and
+      returning a value of <tt>true</tt> or <tt>false</tt> for that
+      statement.</dd>
+      <dt>UnaryProc</dt>
+      <dd>A type of <tt>void</tt> unary function (also called a
+      "procedure"), generally taking as a parameter an item of the same
+      type as the components of a container in the same context.</dd>
+      <dt>BinaryFunc</dt>
+      <dd>A type of value-returning binary function, generally taking as
+      parameters two items of the same type as the components of the
+      container which appears in the same context.</dd>
+      <dt>BinaryPred</dt>
+      <dd>Like a binary function, but returning a value of type
+      <tt>bool</tt>, thus making it a "binary predicate function", or
+      "binary predicate" for short, since it is testing a "predicate", or
+      statement about two container values (from a container in the same
+      context), and returning a value of <tt>true</tt> or <tt>false</tt>
+      for that statement. A special kind of binary predicate function that
+      compares two values and returns <tt>true</tt> if the first value is
+      ordered in some way with respect to the second, and <tt>false</tt>
+      otherwise. A binary predicate may also be referred to as a <em>comparison
+      function</em>, or sometimes simply as a <em>comparitor</em>.</dd>
+      <dt>BinaryProc</dt>
+      <dd>A type of <tt>void</tt> binary function (also called a
+      "procedure"), generally taking as parameters two items of the same
+      type as the components of the container which appears in the same
+      context.</dd>
+      <!--
+                                                <dt>ComparisonFunc</dt>
+                                                <dd>A special kind of binary predicate function (<tt>BinaryPred</tt>)
+                                                that compares two values and returns true if the first value is
+                                                ordered in some way with respect to the second, and false otherwise.
+                                                Such functions are also called "comparison functions", or sometimes
+                                                simply "comparitors".</dd>
+                                                -->
+      <dt>GeneratorFunc</dt>
+      <dd>A type of function that generates (returns) values or
+      objects.</dd>
+      <dt>unFunc, unPred, unProc, binFunc, binPred, binProc, 
+      <!--compFunc,-->
+       genFunc</dt>
+      <dd>These are generic parameter names for functions of the preceding
+      seven types.</dd>
+    </dl>
+  </body>
+</html>
+
+<!-- Localized -->

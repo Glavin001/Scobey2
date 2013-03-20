@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>STL Algorithm Overview</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body bgcolor="#FFFFFF">
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Algorithm Overview
+    <br />
+    </p>
+    <!--
+                <p>The pages on algorithms contain several listings of STL algorithms:
+                all algorithms in alphabetical order, all algorithms by purpose, and
+                all algorithms that take function parameters grouped by the kind of
+                function parameter they take. The last two lists give abbreviated forms
+                of the algorithms, so the alphabetical listing is the most detailed and
+                complete and it is that listing that is described in the rest of this
+                section.</p>
+                -->
+    <p>The pages on algorithms contain both a listing of all STL algorithms
+    in alphabetical order, and all algorithms grouped by purpose. The
+    alphabetical listing is the most detailed and complete and it is that
+    listing that is described in what follows.</p>
+    <p>The entry for each algorithm shows each variation of the algorithm
+    interface, and includes a brief description of what each version of the
+    algorithm does.</p>
+    <p>Each algorithm entry also includes one or more links to sample
+    programs illustrating the use of each algorithm version. So, for
+    example, <tt>doit1a.cpp</tt> is the first sample program for the first
+    (or only) listed interface of algorithm <tt>doit</tt>, while
+    <tt>doit2c.cpp</tt> would be used for the name of the third sample
+    program for the second interface of that same algorithm, if there were
+    in fact such an interface and such a program.</p>
+    <p>Note that, for simplicity and consistency, unless there is a good
+    reason to do otherwise, the first sample program illustrating any given
+    algorithm will use one or more "vector of integer" containers only,
+    wherever this is possible and makes sense. Additional sample programs
+    for that algorithm, if any, may or may not use other kinds of
+    containers, other kinds of component values, and/or other STL
+    features.</p>
+    <p>To be most helpful in the shortest possible time, an algorithm is
+    first shown as it would look in a typical invocation. However, each
+    algorithm entry also includes the full prototype for that algorithm, or
+    that version of the algorithm. The formatting style of algorithm
+    prototypes is designed to provide maximum readability in the current
+    context, not to be conformant to any particular C++ formatting style
+    guidelines.</p>
+    <p>Note also that in the "typical invocation" form of an algorithm, the
+    name of a parameter is meant to suggest its type. The purpose of each
+    parameter is given in the brief description which follows the "typical
+    invocation" form of the algorithm, according to the <a
+    href="naming_conventions.html">naming conventions</a> used on this
+    site. In the full prototype form of any algorithm, both parameter types
+    and parameter names appear, so in this context a parameter name can be
+    used to indicate the purpose of the parameter. Thus it may be helpful,
+    even for a casual user, to look at both the typical invocation form and
+    the full prototype form of any algorithm of interest.</p>
+    <p>Many algorithms are implemented as <tt>void</tt> functions, for
+    which the return value is indicated as "none". For those that are not,
+    a description of the value returned by the algorithm is given.</p>
+    <p>Most of the algorithms are made accessible by including the header
+    file <tt>&lt;algorithm&gt;</tt> in your source code, but a few come
+    from <tt>&lt;numeric&gt;</tt>. In actual fact, the algorithms in
+    <tt>&lt;numeric&gt;</tt> are not technically part of the STL. However,
+    they are fully compatible with the STL, and virtually indistinguishable
+    from the "official" STL algorithms, and so are included here for the
+    sake of completeness and convenience. Which of the two header files
+    should be used to get access to any particular algorithm is indicated
+    in the subsection header for that algorithm, following the name of the
+    algorithm.</p>
+    <p>Once again, a reminder that before studying or using a particular
+    algorithm it would be wise to familiarize yourself with the <a
+    href="naming_conventions.html">naming conventions used on this
+    site</a>.</p>
+    <h3>Things to remember when using the algorithms</h3>
+    <ol class="hardleft">
+      <li><big>Prefer a member function to a similarly named algorithm for
+      performing a given task.</big> If you have the choice of using either
+      a member function or a similarly named algorithm to perform a given
+      action on a container, it is generally better to use the member
+      function, since the member function will be optimized for that
+      container. For example, there is a <tt>lower_bound</tt> algorithm
+      which can be used on any first-class container, but each of the
+      associative containers has an analogous <tt>lower_bound</tt> member
+      function which should be used in preference to the algorithm.</li>
+      <li><big>Don't be afraid to use ordinary array pointers in a manner
+      analogous to the use of iterators, where appropriate.</big> Ordinary
+      array pointers can often be used in the same context or situation
+      where you might think an STL iterator would be required.</li>
+      <li><big>You can generally use a more powerful iterator in place of a
+      less powerful one, if it is more convenient or "natural" to do
+      so.</big> Remember, when actually using an algorithm, that a more
+      powerful iterator can always be used in place of one that is less
+      powerful. The STL iterators in order of decreasing "power" are:
+      random access iterators, bidirectional iterators, forward iterators,
+      input iterators, and output iterators. Thus, for example, if only a
+      forward iterator is required in a particular algorithm, either a
+      bidirectional iterator or a random access iterator may be used in its
+      place.</li>
+      <li><big>Ensure a container's size is large enough to accept all
+      components being transferred into it.</big> If you are using an
+      algorithm (<tt>copy</tt>, for example) to copy or move components
+      from one container to another, make sure that the destination
+      container is large enough to accommodate those components, since in
+      general the container will not grow as needed. Alternatively, you can
+      make use of an <tt>inserter</tt> to grow the container as necessary,
+      if one is available.</li>
+    </ol>
+  </body>
+</html>
+
+<!-- Localized -->

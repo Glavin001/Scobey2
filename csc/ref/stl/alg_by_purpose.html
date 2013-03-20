@@ -1,0 +1,793 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>The STL Algorithms Classified by Purpose</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL Algorithms Classified by Purpose</p>
+     <p><font color="red">Still needs some work ...</font></p>
+    <p><small><a href="#Applying">Applying</a> | <a
+    href="#Bounding">Bounding</a> | <a href="#Comparing">Comparing</a> | <a
+    href="#Copying">Copying</a> | <a href="#Counting">Counting</a> | <a
+    href="#Filling">Filling</a> | <a href="#Filtering">Filtering</a> | <a
+    href="#Generating">Generating</a> | <a href="#HeapOperations">Heap
+    Operations</a> | <a href="#MathOperations">Math Operations</a> | <a
+    href="#Merging">Merging</a> | <a href="#MinMax">Min/Max</a> | <a
+    href="#Partitioning">Partitioning</a> | <a
+    href="#Permuting">Permuting</a> | <a
+    href="#RandomizingShuffling">Randomizing/Shuffling</a> | <a
+    href="#Removing">Removing</a> | <a href="#Replacing">Replacing</a> | <a
+    href="#Reversing">Reversing</a> | <a href="#Rotating">Rotating</a> | <a
+    href="#Searching">Searching</a> | <a href="#SetOperations">Set
+    Operations</a> | <a href="#Sorting">Sorting</a> | <a
+    href="#Swapping">Swapping</a> | <a
+    href="#Transforming">Transforming</a></small></p>
+    <p>This page contains two tables. The first one gives an "algorithm
+    interface key". The second gives a list of all STL algorithms grouped
+    by purpose, and uses the algorithm interface key from the first table
+    to keep the list as concise as possible. Each algorithm interface will
+    (eventually) be a link to the more detailed description and any
+    associated sample program(s) for that algorithm which appear in the
+    (more complete) alphabetical algorithm listing.</p>
+    <h3>Algorithm interface key for the algorithm catalog</h3>
+    <p>This algorithm "interface key" shown in the first table below is an
+    extended version of the one found in <a
+    href="references.html#primer">The STL &lt;PRIMER&gt;</a>, and contains
+    a few more symbols to help provide a little more information in the
+    abbreviated forms of the algorithms shown here. Also, because the
+    notation here is based on that source, it differs (though not
+    confusingly so, one hopes) from the notation used on the other STL
+    reference pages on this site.</p>
+    <p>Here are some notes on the table and its use with the algorithm
+    "catalog" which follows:</p>
+    <ol class="hardleft newpageafter">
+      <li>The notation <tt>(f,f)</tt> is a shorthand for an actual
+      <tt>pair</tt> of the form
+      <tt>pair&lt;FowardIterator,ForwardIterator&gt;</tt>.</li>
+      <li>When a sequence of iterators like <tt>(...i1,i1,i2...)</tt> or
+      <tt>(...f1,f1,f2,f2,...)</tt> appears in an algorithm parameter list,
+      the different digits are used to indicate that there are two
+      different iterators of the same iterator type at play in the same
+      situation.</li>
+      <li>Whenever two iterators designated by the same letter or
+      letter-digit combination (as in <tt>(...i,i...)</tt> or
+      <tt>(...f2,f2...)</tt>) follow one another, they should be
+      interpreted as determining a range of values (in the usual STL sense
+      of a <em>range</em>). When there are three such iterators in the
+      sequence (as in <tt>(...i,i,i...)</tt> or <tt>(...f2,f2,f2...)</tt>),
+      the first and last iterators should be interpreted as determining a
+      range within which the middle iterator points to an intermediate, or
+      "middle" value.</li>
+      <li>Often there are two versions of an algorithm. The brief
+      description is always for the first version. The second version is
+      generally one that takes an additional (functional) parameter that
+      modifies a test or behavior of the first version in what may be an
+      obvious way, given the nature of the algorithm. For more details in
+      any particular case, follow the link and consult the description of
+      the longer version of the algorithm.</li>
+    </ol>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Algorithm interface key">
+      <caption>
+        <big>Algorithm Interface Key</big>
+      </caption>
+      <tr>
+        <th colspan="2" align="left">Iterators</th>
+      </tr>
+      <tr>
+        <th>Key</th>
+        <th align="left">Meaning</th>
+      </tr>
+      <tr>
+        <th>b</th>
+        <td valign="top">a bidirectional iterator</td>
+      </tr>
+      <tr>
+        <th>f</th>
+        <td valign="top">a forward iterator</td>
+      </tr>
+      <tr>
+        <th>i</th>
+        <td valign="top">an input iterator</td>
+      </tr>
+      <tr>
+        <th>o</th>
+        <td valign="top">an output iterator</td>
+      </tr>
+      <tr>
+        <th>r</th>
+        <td valign="top">a random access iterator</td>
+      </tr>
+      <tr>
+        <th>(?, ?)</th>
+        <td valign="top">a pair of iterators as a return value, as in
+        <tt>(f,f)</tt></td>
+      </tr>
+      <tr>
+        <th colspan="2" align="left">Predicates and other functions</th>
+      </tr>
+      <tr>
+        <th>Key</th>
+        <th align="left">Meaning</th>
+      </tr>
+      <tr>
+        <th>upred</th>
+        <td valign="top">a unary predicate (boolean function or function
+        object)
+        <br />
+         (generally used to test a single value from a container)</td>
+      </tr>
+      <tr>
+        <th>bpred</th>
+        <td valign="top">a binary predicate (boolean function or function
+        object)
+        <br />
+         (generally used to compare the order of two values from a
+        container)</td>
+      </tr>
+      <tr>
+        <th>ufunc</th>
+        <td valign="top">a unary (value-returning) function (or function
+        object)</td>
+      </tr>
+      <tr>
+        <th>bfunc</th>
+        <td valign="top">a binary (value-returning) function (or function
+        object)</td>
+      </tr>
+      <tr>
+        <th>pfunc</th>
+        <td valign="top">a "parameterless" (value-returning) function (or
+        function object)
+        <br />
+         (often used to "generate" a value of some kind)</td>
+      </tr>
+      <tr>
+        <th>uproc</th>
+        <td valign="top">a unary procedure (void function or function
+        object)</td>
+      </tr>
+      <tr>
+        <th>bproc</th>
+        <td valign="top">a binary procedure (void function or function
+        object)</td>
+      </tr>
+      <tr>
+        <th>pproc</th>
+        <td valign="top">a "parameterless" procedure (void function or
+        function object)</td>
+      </tr>
+      <tr>
+        <th colspan="2" align="left">Other items</th>
+      </tr>
+      <tr>
+        <th>key</th>
+        <th align="left">meaning</th>
+      </tr>
+      <tr>
+        <th>n</th>
+        <td valign="top">a quantity (or size)</td>
+      </tr>
+      <tr>
+        <th>v</th>
+        <td valign="top">a value</td>
+      </tr>
+      <tr>
+        <th>&amp;</th>
+        <td valign="top">a (generally <tt>const</tt>) reference to a
+        value</td>
+      </tr>
+    </table>
+    <h3 class="newpagebefore">Algorithm catalog with algorithms grouped by
+    purpose</h3>
+    <p>One or more algorithms may conceptually fit into more than one
+    grouping. For example, the <tt>includes</tt> algorithm could be placed
+    either where it is (in the <strong>Set Operations</strong> group), or
+    in the <strong>Searching</strong> group of algorithms. However, to
+    avoid any potential confusion caused by such duplication, each
+    algorithm appears only once, in what we hope is its most appropriate
+    location. Every use of the term "function" can be read as "function or
+    function object", and every use of the phrase "end of a/the range" can
+    be interpreted as "one-past-the-last position of the range".</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="STL algorihtm catalog with groupings by purpose">
+      <caption>
+        <big>Catalog of Algorithms Grouped by Purpose</big>
+      </caption>
+      <tr>
+        <th align="left" id="Applying">Applying</th>
+      </tr>
+      <tr>
+        <td><tt>ufunc for_each(i,i,ufunc)</tt>
+        <br />
+         Apply a function to every item in a range and return the
+        function.</td>
+      </tr>
+      <tr>
+        <th align="left" colspan="2" id="Bounding">Bounding</th>
+      </tr>
+      <tr>
+        <td><tt>(f,f) equal_range(f,f,&amp;)
+        <br />
+         (f,f) equal_range(f,f,&amp;,bpred)</tt>
+        <br />
+         Find the lower bound and upper bound of a value within a range and
+        return a pair of iterators pointing to those two values (in that
+        order).</td>
+      </tr>
+      <tr>
+        <td><tt>f lower_bound(f,f,&amp;)
+        <br />
+         f lower_bound(f,f,&amp;,bpred)</tt>
+        <br />
+         Find the lower bound of a value within a range and return an
+        iterator pointing to it.</td>
+      </tr>
+      <tr>
+        <td><tt>f upper_bound(f,f,&amp;)
+        <br />
+         f upper_bound(f,f,&amp;,bpred)</tt>
+        <br />
+         Find the upper bound of a value within a range and return an
+        iterator pointing to it.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Comparing">Comparing</th>
+      </tr>
+      <tr>
+        <td><tt>bool equal(i1,i1,i2)
+        <br />
+         bool equal(i1,i1,i2,bpred)</tt>
+        <br />
+         Check if the values in two ranges match.</td>
+      </tr>
+      <tr>
+        <td><tt>bool lexicographical_compare(i1,i1,i2,i2)
+        <br />
+         bool lexicographical_compare(i1,i1,i2,i2,bpred)</tt>
+        <br />
+         Compare two ranges lexicographically, and return <tt>true</tt> if
+        the first range is less than the second; otherwise return
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>(i1,i2) mismatch(i1,i1,i2)
+        <br />
+         (i1,i2) mismatch(i1,i1,i2, bpred)</tt>
+        <br />
+         Search two ranges for the first two items in corresponding
+        positions that don't match, and return a pair of iterators pointing
+        to those two items.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Copying">Copying</th>
+      </tr>
+      <tr>
+        <td><tt>o copy(i,i,o)</tt>
+        <br />
+         Copy a range of items to a destination and return an iterator
+        pointing to the end of the copied range.</td>
+      </tr>
+      <tr>
+        <td><tt>b2 copy_backward(b1,b1,b2)</tt>
+        <br />
+         Copy a range of items backwards to a destination and return an
+        iterator pointing to the end of the copied range.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Counting">Counting</th>
+      </tr>
+      <tr>
+        <td><tt>n count(i,i,&amp;)</tt>
+        <br />
+         Count the items in a range that match a value and return that
+        count.</td>
+      </tr>
+      <tr>
+        <td><tt>n count_if(i,i,upred)</tt>
+        <br />
+         Count the items in a range that satisfy a predicate and return
+        that count.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Filling">Filling</th>
+      </tr>
+      <tr>
+        <td><tt>fill(f,f,&amp;)</tt>
+        <br />
+         Set every item in a range to a particular value.</td>
+      </tr>
+      <tr>
+        <td><tt>fill_n(o,n,&amp;)</tt>
+        <br />
+         Set n items to a particular value.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Filtering">Filtering</th>
+      </tr>
+      <tr>
+        <td><tt>f unique(f,f)
+        <br />
+         f unique(f,f,bpred)</tt>
+        <br />
+         Collapse each group of consecutive duplicate values in a range of
+        values to a single value, and return an iterator pointing to the
+        end of the modified range. .</td>
+      </tr>
+      <tr>
+        <td><tt>o unique_copy(i,i,o)
+        <br />
+         o unique_copy(i,i,o,bpred)</tt>
+        <br />
+         Copy a range of values, performing the same action as
+        <tt>unique</tt> above, and return an iterator pointing to the end
+        of the new range. .</td>
+      </tr>
+      <tr>
+        <th align="left" id="Generating">Generating</th>
+      </tr>
+      <tr>
+        <td><tt>generate(f,f,pfunc)</tt>
+        <br />
+         Fill a range with generated values.</td>
+      </tr>
+      <tr>
+        <td><tt>generate_n(o,n,pfunc)</tt>
+        <br />
+         Generate a specified number of values.</td>
+      </tr>
+      <tr>
+        <th align="left" id="HeapOperations">Heap Operations</th>
+      </tr>
+      <tr>
+        <td><tt>make_heap(r,r)
+        <br />
+         make_heap(r,r,bpred)</tt>
+        <br />
+         Make a range of values into a heap.</td>
+      </tr>
+      <tr>
+        <td><tt>pop_heap(r,r)
+        <br />
+         pop_heap(r,r,bpred)</tt>
+        <br />
+         Delete the first value from a heap.</td>
+      </tr>
+      <tr>
+        <td><tt>push_heap(r,r)
+        <br />
+         push_heap(r,r,bpred)</tt>
+        <br />
+         Insert the last value of a range into a heap.</td>
+      </tr>
+      <tr>
+        <td><tt>sort_heap(r,r)
+        <br />
+         sort_heap(r,r,bpred)</tt>
+        <br />
+         Sort a heap.</td>
+      </tr>
+      <tr>
+        <th align="left" id="MathOperations">Math Operations (from
+        <tt>&lt;numeric&gt;</tt>)</th>
+      </tr>
+      <tr>
+        <td><tt>v accumulate(i,i,v)
+        <br />
+         v accumulate(i,i,v,bfunc)</tt>
+        <br />
+         Sum an initial value and the values in a range, and return the
+        sum.</td>
+      </tr>
+      <tr>
+        <td><tt>o adjacent_difference(i,i,o)
+        <br />
+         o adjacent_difference(i,i,o,bfunc)</tt>
+        <br />
+         Calculate the difference between adjacent pairs of values, write
+        the differences to an output range, and return an iterator pointing
+        to the end of that output range.</td>
+      </tr>
+      <tr>
+        <td><tt>v inner_product(i1,11,i2,vInitial)
+        <br />
+         v inner_product(i1,i1,i2,v,bfunc1,bfunc2)</tt>
+        <br />
+         Calculate the inner product of two ranges and return that value
+        plus vInitial.</td>
+      </tr>
+      <tr>
+        <td><tt>o partial_sum(i,i,o)
+        <br />
+         o partial_sum(i,i,o, bfunc)</tt>
+        <br />
+         Fill a range with running totals and return an iterator pointing
+        to ... .</td>
+      </tr>
+      <tr>
+        <th align="left" id="Merging">Merging</th>
+      </tr>
+      <tr>
+        <td><tt>inplace_merge(b,b,b)
+        <br />
+         inplace_merge(b,b,b,bpred)</tt>
+        <br />
+         Merge two sorted ranges, in place, into a single sorted range.</td>
+      </tr>
+      <tr>
+        <td><tt>o merge(i1,i1,i2,i2,o)
+        <br />
+         o merge(i1,i1,i2,i2,o,bpred)</tt>
+        <br />
+         Merge two sorted ranges into a single sorted range.</td>
+      </tr>
+      <tr>
+        <th align="left" id="MinMax">Min/Max</th>
+      </tr>
+      <tr>
+        <td><tt>&amp; min(&amp;,&amp;)
+        <br />
+         &amp; min(&amp;,&amp;,bpred)</tt>
+        <br />
+         Find the minimum of two values and return a reference to that
+        value.</td>
+      </tr>
+      <tr>
+        <td><tt>&amp; max(&amp;,&amp;)
+        <br />
+         &amp; max(&amp;,&amp;,bpred)</tt>
+        <br />
+         Find the maximum of two values and return a reference to that
+        value.</td>
+      </tr>
+      <tr>
+        <td><tt>f min_element(f,f)
+        <br />
+         f min_element(f,f,bpred)</tt>
+        <br />
+         Find the minimum value in a range and return an iterator pointing
+        to that value.</td>
+      </tr>
+      <tr>
+        <td><tt>f max_element(f,f)
+        <br />
+         f max_element(f,f,bpred)</tt>
+        <br />
+         Find the maximum value in a range and return an iterator pointing
+        to that value.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Partitioning">Partitioning</th>
+      </tr>
+      <tr>
+        <td><tt>nth_element(r,r,r)
+        <br />
+         nth_element(r,r,r,bpred)</tt>
+        <br />
+         Partition a range of values so that the value pointed to by the
+        middle <tt>r</tt> in the parameter list is in its correct sorted
+        position, and no element to its left is greater than any element to
+        its right.</td>
+      </tr>
+      <tr>
+        <td><tt>b partition(b,b,upred)</tt>
+        <br />
+         Partition a range of values using a predicate, and return an
+        iterator pointing to the first value for which <tt>upred</tt>
+        returns <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>b stable_partition(b,b,upred)</tt>
+        <br />
+         Partition a range using a predicate without altering the relative
+        order of the values, and return an iterator pointing to the first
+        value for which <tt>upred</tt> returns <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Permuting">Permuting</th>
+      </tr>
+      <tr>
+        <td><tt>bool next_permutation(b,b)
+        <br />
+         bool next_permutation(b,b,bpred)</tt>
+        <br />
+         Change a range of values to the next lexicographic permutation of
+        those values, and return <tt>true</tt>, or return <tt>false</tt> if
+        no next permuation exists.</td>
+      </tr>
+      <tr>
+        <td><tt>bool prev_permutation(b,b)
+        <br />
+         bool prev_permutation(b,b,bpred)</tt>
+        <br />
+         Change a range of values to the previous lexicographic permutation
+        of those values, and return <tt>true</tt>, or return <tt>false</tt>
+        if no previous permuation exists.</td>
+      </tr>
+      <tr>
+        <th align="left" id="RandomizingShuffling">
+        Randomizing/Shuffling</th>
+      </tr>
+      <tr>
+        <td><tt>random_shuffle(r,r)
+        <br />
+         random_shuffle(r,r,ranGen)</tt>
+        <br />
+         Randomize a range of values, and use the random generator function
+        ranGen, if supplied, rather than an internal random generator.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Removing">Removing</th>
+      </tr>
+      <tr>
+        <td><tt>remove(f,f,&amp;)</tt>
+        <br />
+         Remove from a range of values all values that match a give
+        value.</td>
+      </tr>
+      <tr>
+        <td><tt>remove_if(f,f,upred)</tt>
+        <br />
+         Remove values that satisfy a predicate from a range of
+        values.</td>
+      </tr>
+      <tr>
+        <td><tt>remove_copy(i,i,o,&amp;)</tt>
+        <br />
+         Copy a range of values, removing all values that match a given
+        value.</td>
+      </tr>
+      <tr>
+        <td><tt>remove_copy_if(i,i,o,upred)</tt>
+        <br />
+         Copy a range of values, removing all values that satisfy a
+        predicate.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Replacing">Replacing</th>
+      </tr>
+      <tr>
+        <td><tt>replace(f,f,&amp;,&amp;)</tt>
+        <br />
+         Replace, within a range of values, one specified value with
+        another value.</td>
+      </tr>
+      <tr>
+        <td><tt>replace_if(f,f,upred,&amp;)</tt>
+        <br />
+         Replace, within a range of values, each value that satisfies a
+        predicate with a specified value.</td>
+      </tr>
+      <tr>
+        <td><tt>replace_copy(i,i,o,&amp;,&amp;)</tt>
+        <br />
+         Copy a range of values, replacing one specified value with another
+        specified value.</td>
+      </tr>
+      <tr>
+        <td><tt>replace_copy_if(i,i,o,upred,&amp;)</tt>
+        <br />
+         Copy a range of values, replacing each value that satisfies a
+        predicate with a specified value.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Reversing">Reversing</th>
+      </tr>
+      <tr>
+        <td><tt>reverse(b,b)</tt>
+        <br />
+         Reverse the order of all values in a range of values.</td>
+      </tr>
+      <tr>
+        <td><tt>reverse_copy(b,b,o)</tt>
+        <br />
+         Write to an output destination a reversed copy of a range of
+        values.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Rotating">Rotating</th>
+      </tr>
+      <tr>
+        <td><tt>rotate(f,f,f)</tt>
+        <br />
+         Rotate a range of values by n positions.</td>
+      </tr>
+      <tr>
+        <td><tt>rotate_copy(f,f,f,o)</tt>
+        <br />
+         Copy a range of values to an output destination, rotating it by n
+        position.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Searching">Searching</th>
+      </tr>
+      <tr>
+        <td><tt>f adjacent_find(f,f)
+        <br />
+         f adjacent_find(f,f, bpred)</tt>
+        <br />
+         Search for the first pair of equal adjacent values in a range of
+        values, and return an iterator pointing to the first value of the
+        pair.</td>
+      </tr>
+      <tr>
+        <td><tt>bool binary_search(f,f,&amp;)</tt>
+        <br />
+         Search for a value in a sorted range of values and return
+        <tt>true</tt> if found, <tt>false</tt> if not found.</td>
+      </tr>
+      <tr>
+        <td><tt>i find(i,i,&amp;)</tt>
+        <br />
+         Search for a value in a range of values, and return an iterator
+        pointing to the value or to the end of the range if the value was
+        not found.</td>
+      </tr>
+      <tr>
+        <td><tt>f1 find_end(f1,f1,f2,f2)
+        <br />
+         f1 find_end(f1,f1,f2,f2,bpred)</tt>
+        <br />
+         Search for the last occurrence of a second range of values in a
+        first range of values and return an iterator pointing to the first
+        value of that last match within the first range, or pointing to the
+        end of the first range if the second range of values does not occur
+        within the first range of values.</td>
+      </tr>
+      <tr>
+        <td><tt>f1 find_first_of(f1,f1,f2,f2)
+        <br />
+         f1 find_first_of(f1,f1,f2,f2,bpred)</tt>
+        <br />
+         Search for any of the values from a second range in a first range
+        and return an iterator pointing to the first such value found, or
+        to the end of the first range if no such value was found.</td>
+      </tr>
+      <tr>
+        <td><tt>i find_if(i,i,upred)</tt>
+        <br />
+         Search for a value that satisfies a predicate and return an
+        iterator pointing to the first such value, or to the end of the
+        range if there is no such value.</td>
+      </tr>
+      <tr>
+        <td><tt>f1 search(f1,f1,f2,f2)
+        <br />
+         f1 search(f1,f1,f2,f2)</tt>
+        <br />
+         Search for the first occurrence of a second range of values within
+        a first range of values and return an iterator pointing to the
+        first value of that first match within the first range, or pointing
+        to the end of the first range if the second range of values does
+        not occur within the first range of values.</td>
+      </tr>
+      <tr>
+        <td><tt>f search_n(f,f,n,&amp;)
+        <br />
+         f search_n(f,f,n,&amp;,bpred)</tt>
+        <br />
+         Search in a range of values for a contiguous sequence of n values
+        each equal to &amp;, and return an iterator pointing to the first
+        of those values, or to the end of the range if the search is
+        unsuccessful.</td>
+      </tr>
+      <tr>
+        <th align="left" id="SetOperations">Set Operations</th>
+      </tr>
+      <tr>
+        <td><tt>bool includes(i1,i1,i2,i2)
+        <br />
+         bool includes(i1,i1,i2,i2,bpred)</tt>
+        <br />
+         Search for all values from the second range in the first range and
+        return <tt>true</tt> if found, otherwise return
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>o set_difference(i1,i1,i2,i2,o)
+        <br />
+         o set_difference(i1,i1,i2,i2,o,bpred)</tt>
+        <br />
+         Create an output range of values that are in the first range but
+        not in the second range and return an iterator pointing to the end
+        of that output range.</td>
+      </tr>
+      <tr>
+        <td><tt>o set_intersection(i1,i1,i2,i2,o)
+        <br />
+         o set_intersection(i1,i1,i2,i2,o,bpred)</tt>
+        <br />
+         Create an output range of values that are in the first range and
+        also in the second range and return an iterator pointing to the end
+        of that output range.</td>
+      </tr>
+      <tr>
+        <td><tt>o set_symmetric_difference(i1,i1,i2,i2,o)
+        <br />
+         o set_symmetric_difference(i1,i1,i2,i2,o,bpred)</tt>
+        <br />
+         Create an output range of values that are not common to both
+        ranges and return an iterator pointing to the end of that output
+        range.</td>
+      </tr>
+      <tr>
+        <td><tt>o set_union(i1,i1,i2,i2,o)
+        <br />
+         o set_union(i1,i1,i2,i2,o,bpred)</tt>
+        <br />
+         Create an output range of values that are either in the first
+        range or in the second range and return an iterator pointing to the
+        end of that output range.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Sorting">Sorting</th>
+      </tr>
+      <tr>
+        <td><tt>partial_sort(r,r,r)
+        <br />
+         partial_sort(r,r,r,bpred)</tt>
+        <br />
+         Sort all values till first part of range is in sorted order.</td>
+      </tr>
+      <tr>
+        <td><tt>r partial_sort_copy(i,i,r,r)
+        <br />
+         r partial_sort_copy(i,i,r,r,bpred)</tt>
+        <br />
+         Partially sort a range of values (as above) and copy as many
+        values as will fit into an output range.</td>
+      </tr>
+      <tr>
+        <td><tt>sort(r,r)
+        <br />
+         sort(r,r,bpred)</tt>
+        <br />
+         Sort a range of values.</td>
+      </tr>
+      <tr>
+        <td><tt>stable_sort(r,r)
+        <br />
+         stable_sort(r,r,bpred)</tt>
+        <br />
+         Sort a range of values, maintaining the same relative order of
+        duplicate values.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Swapping">Swapping</th>
+      </tr>
+      <tr>
+        <td><tt>iter_swap(f,f)</tt>
+        <br />
+         Swap the values pointed to by the two iterators.</td>
+      </tr>
+      <tr>
+        <td><tt>swap(&amp;,&amp;)</tt>
+        <br />
+         Swap the two values.</td>
+      </tr>
+      <tr>
+        <td><tt>f2 swap_ranges(f1,f1,f2)</tt>
+        <br />
+         Swap the corresponding values in two ranges of values and return
+        an iterator pointing to the end of the second range.</td>
+      </tr>
+      <tr>
+        <th align="left" id="Transforming">Transforming</th>
+      </tr>
+      <tr>
+        <td><tt>o transform(i,i,o,ufunc)
+        <br />
+         o transform(i,i,o,bfunc)</tt>
+        <br />
+         Transform one range of values into another.</td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<!-- Localized -->

@@ -1,0 +1,339 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Associative Container Member Function Summary</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Associative Container Classes
+    <br />
+     Member Function Summary</p>
+    <p>This page contains two tables. The first lists all member functions
+    common to all four associative containers (<tt>map</tt>,
+    <tt>multimap</tt>, <tt>set</tt>, <tt>multiset</tt>). The second table
+    lists all member functions that appear in one or more of these four
+    containers, but not in all four.</p>
+    <h3>Member functions present in all associative containers</h3>
+    <table border="5" cellspacing="0" cellpadding="3" width="670"
+    summary="Member functions common to all associative containers">
+      <tr>
+        <th>assignment operator</th>
+      </tr>
+      <tr>
+        <td><tt>c1 = c2</tt>
+        <br />
+         Assign one container to another like container (map to map, set to
+        set, and so on).</td>
+      </tr>
+      <tr>
+        <th>comparison operators</th>
+      </tr>
+      <tr>
+        <td><tt>c1 == c2</tt>
+        <br />
+         Return <tt>true</tt> if <tt>c1</tt> and <tt>c2</tt> are two like
+        containers which have the same size and contain the same values in
+        the same order, and otherwise return <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>c1 != c2</tt>
+        <br />
+         Return <tt>true</tt> if <tt>c1 == c2</tt> returns <tt>false</tt>,
+        and otherwise return <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>c1 &lt; c2</tt>
+        <br />
+         Return <tt>true</tt> if <tt>c1</tt> and <tt>c2</tt> are two like
+        containers and if, in the pairwise comparison of the values from
+        <tt>c1</tt> and <tt>c2</tt>, in the first pair in which the two
+        differ the component from <tt>c1</tt> is less than the component
+        from <tt>c2</tt>, and otherwise return <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>c1 &lt;= c2</tt>
+        <br />
+         Return <tt>true</tt> if either <tt>c1 &lt; c2</tt> or <tt>c1 ==
+        c2</tt> is <tt>true</tt>, and otherwise return <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>c1 &gt; c2</tt>
+        <br />
+         Return <tt>true</tt> if <tt>c2 &lt; c1</tt> is <tt>true</tt>, and
+        otherwise return <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>c1 &gt;= c2</tt>
+        <br />
+         Return <tt>true</tt> if either <tt>c1 &gt; c2</tt> or <tt>c1 ==
+        c2</tt> is <tt>true</tt>, and otherwise return <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <th>testing for empty</th>
+      </tr>
+      <tr>
+        <td><tt>bool empty() const</tt>
+        <br />
+         Return <tt>true</tt> if container is empty, and otherwise return
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <th>getting container size</th>
+      </tr>
+      <tr>
+        <td><tt>size_type size() const</tt>
+        <br />
+         Return number of components currently in container.</td>
+      </tr>
+      <tr>
+        <td><tt>size_type max_size() const</tt>
+        <br />
+         Return maximum number of components a container of the given type
+        can hold.</td>
+      </tr>
+      <tr>
+        <th>getting iterator access to container locations</th>
+      </tr>
+      <tr>
+        <td><tt>iterator begin()</tt>
+        <br />
+         <tt>const_iterator begin() const</tt>
+        <br />
+         Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+        to the first component of a container.</td>
+      </tr>
+      <tr>
+        <td><tt>iterator end()</tt>
+        <br />
+         <tt>const_iterator end() const</tt>
+        <br />
+         Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+        to one-past-the-last component of a container.</td>
+      </tr>
+      <tr>
+        <td><tt>reverse_iterator rbegin()</tt>
+        <br />
+         <tt>const_reverse_iterator rbegin() const</tt>
+        <br />
+         Return a <tt>reverse_iterator</tt> (or
+        <tt>const_reverse_iterator</tt>) pointing to the last component of
+        a container.</td>
+      </tr>
+      <tr>
+        <td><tt>reverse_iterator rend()</tt>
+        <br />
+         <tt>const_reverse_iterator rend() const</tt>
+        <br />
+         Return a <tt>reverse_iterator</tt> (or
+        <tt>const_reverse_iterator</tt>) pointing to one-before-the-first
+        component of a container.</td>
+      </tr>
+      <tr>
+        <th>inserting one or more values</th>
+      </tr>
+      <tr>
+        <td><tt>iterator insert(iterator p, const value_type&amp; val)</tt>
+        <br />
+         Insert <tt>val</tt>, using <tt>p</tt> as a "hint" as to where to
+        start looking for the insertion point, and return an iterator
+        pointing to the element inserted if the insertion succeeded or to
+        the element that was already there if (in the case of a map or a
+        set) the insertion failed because the element was already
+        present.</td>
+      </tr>
+      <tr>
+        <td><tt>template&lt;typename InputIterator&gt;</tt>
+        <br />
+         <tt>void insert(InputIterator start, InputIterator end)</tt>
+        <br />
+         Insert the elements from the range <tt>[start, end)</tt>, possibly
+        from another kind of container. If the receiving container is a map
+        or a set, elements from the incoming range that are already present
+        in the receiving container will not be inserted.</td>
+      </tr>
+      <tr>
+        <th>deleting one or more values</th>
+      </tr>
+      <tr>
+        <td><tt>size_type erase(const key_type&amp; someKey)</tt>
+        <br />
+         Remove all elements with key value <tt>someKey</tt> and return
+        number of elements removed.</td>
+      </tr>
+      <tr>
+        <td><tt>void erase(iterator p)</tt>
+        <br />
+         Remove the element pointed to by <tt>p</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>void erase(iterator start, iterator end)</tt>
+        <br />
+         Remove all elements in the range <tt>[start, end)</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>void clear()</tt>
+        <br />
+         Remove all elements from the container.</td>
+      </tr>
+      <tr>
+        <th>counting/searching operations</th>
+      </tr>
+      <tr>
+        <td><tt>size_type count(const key_type&amp; someKey) const</tt>
+        <br />
+         Return the number of times that <tt>someKey</tt> occurs (0 or 1
+        for map or set).</td>
+      </tr>
+      <tr>
+        <td><tt>iterator find(const key_type&amp; someKey) const</tt>
+        <br />
+         Return an iterator to the (first or only) element of the container
+        whose key is <tt>someKey</tt>, or an iterator to one-past-the-last
+        if <tt>someKey</tt> not found.</td>
+      </tr>
+      <tr>
+        <td><tt>iterator lower_bound(const key_type&amp; someKey)</tt>
+        <br />
+         <tt>const_iterator lower_bound(const key_type&amp; someKey)
+        const</tt>
+        <br />
+         Return a [<tt>const</tt>] iterator to the (first or only) element
+        of the container whose key is greater than or equal to
+        <tt>someKey</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>iterator upper_bound(const key_type&amp; someKey)</tt>
+        <br />
+         <tt>const_iterator upper_bound(const key_type&amp; someKey)
+        const</tt>
+        <br />
+         Return a [<tt>const</tt>] iterator to the (first or only) element
+        of the container whose key is greater than <tt>someKey</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>pair&lt;iterator, iterator&gt; equal_range(const
+        key_type&amp; someKey)</tt>
+        <br />
+         <tt>pair&lt;const_iterator, const_iterator&gt; equal_range(const
+        key_type&amp; someKey) const</tt>
+        <br />
+         Return a pair of iterators in which the first iterator points to
+        the lower bound, and the second points to the upper bound, of
+        <tt>someKey</tt> in the container.</td>
+      </tr>
+      <tr>
+        <th>miscellaneous operations</th>
+      </tr>
+      <tr>
+        <td><tt>void swap(otherLikeContainer)</tt>
+        <br />
+         Exchange elements in the invoking container with those in
+        <tt>otherLikeContainer</tt> (map with map, set with set, multimap
+        with multimap, multiset with multiset).</td>
+      </tr>
+      <tr>
+        <td><tt>allocator_type get_allocator() const</tt>
+        <br />
+         Return the allocator of the container.</td>
+      </tr>
+      <tr>
+        <td><tt>key_compare key_comp() const</tt>
+        <br />
+         Return the function object that compares keys.</td>
+      </tr>
+      <tr>
+        <td><tt>value_compare value_comp() const</tt>
+        <br />
+         Return the function object that compares values.</td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">Member functions present in some associative
+    containers
+    <br />
+     but not common to all</h3>
+    <table border="5" cellspacing="0" cellpadding="3" width="670"
+    summary="Member functions not common to all associative containers">
+      <tr>
+        <th>map-multimap constructors</th>
+      </tr>
+      <tr>
+        <td><tt>ContainerType&lt;keyType, ValueType&gt; c;</tt>
+        <br />
+         Constructs an empty container.</td>
+      </tr>
+      <tr>
+        <td><tt>ContainerType&lt;KeyType, ValueType&gt; c(inIterBegin,
+        inIterEnd);</tt>
+        <br />
+         Constructs a container with elements from the range
+        <tt>[inIterBegin, inIterEnd)</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>ContainerType&lt;KeyType, ValueType&gt;
+        c(otherLikeContainer);</tt>
+        <br />
+         Copy constructor.</td>
+      </tr>
+      <tr>
+        <th>set-multiset constructors</th>
+      </tr>
+      <tr>
+        <td><tt>ContainerType&lt;T&gt; c;</tt>
+        <br />
+         Constructs an empty container.</td>
+      </tr>
+      <tr>
+        <td><tt>ContainerType&lt;T&gt; c(inIterBegin, inIterEnd);</tt>
+        <br />
+         Constructs a container with elements from the range
+        <tt>[inIterBegin, inIterEnd)</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>ContainerType&lt;T&gt; c(otherLikeContainer);</tt>
+        <br />
+         Copy constructor.</td>
+      </tr>
+      <tr>
+        <th>map-only member function</th>
+      </tr>
+      <tr>
+        <td><tt>reference operator[const key_type&amp; someKey]</tt>
+        <br />
+         Return a reference to the value associated with the key specified
+        by <tt>someKey</tt>. If this key does not already exist in the map,
+        it is inserted. The value corresponding to key <tt>someKey</tt> in
+        the inserted <tt>pair</tt> is the default value of
+        <tt>value_type</tt> for the current container.</td>
+      </tr>
+      <tr>
+        <th>map-and-set-only member function</th>
+      </tr>
+      <tr>
+        <td><tt>pair&lt;iterator, bool&gt; insert(const value_type&amp;
+        val)</tt>
+        <br />
+         Insert <tt>val</tt> into invoking container, if it is not already
+        there. Return <tt>pair&lt;iterator, true&gt;</tt> if inserted, and
+        otherwise return <tt>pair&lt;iterator, false&gt;</tt>, and with the
+        <tt>iterator</tt> component of <tt>pair</tt> pointing to the
+        inserted element if insertion succeeded, and to the element that
+        was already there if insertion did not succeed.</td>
+      </tr>
+      <tr>
+        <th>multimap-and-multiset-only member function</th>
+      </tr>
+      <tr>
+        <td><tt>iterator, insert(const value_type&amp; val)</tt>
+        <br />
+         Insert <tt>val</tt> into invoking container. Return an iterator
+         pointing to the inserted element.</td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<!-- Localized -->

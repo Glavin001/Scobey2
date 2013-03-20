@@ -1,0 +1,570 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>The STL set and multiset Containers</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL set and multiset Containers</p>
+    <p>The set and the multiset are both containers that manage data
+    components that have keys, but the keys and the rest of the data are
+    not separated and placed in <tt>pair</tt> values like they are in maps
+    and multimaps. In the simplest cases the data in a set or multiset
+    component consists of just the key alone. The essential difference
+    between the set and the multiset is that in a set the keys must be
+    unique, while a multiset permits duplicate keys. This is analogous to
+    the situation with maps and multimaps. In both sets and multisets, the
+    sort order of components is the sort order of the keys, so the
+    components in a multiset that have duplicate keys may appear in any
+    order. Nearly everything said here about sets is also true of
+    multisets, with minor differences showing up in the <tt>count()</tt>
+    member function and one of the <tt>insert()</tt> member functions.</p>
+    <ul class="hardleft">
+      <li><a href="#constructors">Constructors and destructor</a></li>
+      <li><a href="#overloaded_ops">Overloaded operators</a></li>
+      <li><a href="#access">Member functions for accessing values</a></li>
+      <li><a href="#status">Member functions for reporting status</a></li>
+      <li><a href="#insertion">Member functions for inserting one or more
+      values</a></li>
+      <li><a href="#deletion">Member functions for deleting one or more
+      values</a></li>
+      <li><a href="#count_search">Member functions for counting and
+      searching</a></li>
+      <li><a href="#misc_funs">Miscellaneous member functions</a></li>
+      <li><a href="#misc_notes">Miscellaneous notes</a></li>
+      <li><a href="#sample_programs">Sample programs</a></li>
+      <li><a href="#prototypes">Member function prototypes</a></li>
+    </ul>
+    <h3><a id="constructors" name="constructors">Constructors and
+    destructor</a></h3>
+    <p>Default Constructor</p>
+    <dl>
+      <dt>set&lt;Ktype&gt; s;</dt>
+      <dd>Construct an empty set <tt>s</tt> which can hold values of type
+      <tt>Ktype</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Copy Constructor</p>
+    <p>There is, of course, only one copy constructor, but there are two
+    syntactic forms that invoke it, and both are shown.</p>
+    <dl>
+      <dt>set&lt;Ktype&gt; s(otherSet);</dt>
+      <dd>Construct <tt>s</tt> as a copy of <tt>otherSet</tt>, whose
+      component type must be <tt>Ktype</tt>. The copy has the same size as
+      the original.</dd>
+      <dt>set&lt;Ktype&gt; s = otherSet;</dt>
+      <dd>Copy constructor (alternate usage syntax).</dd>
+    </dl>
+    <hr />
+    <p>Other Constructors</p>
+    <dl>
+      <dt>set&lt;Ktype&gt; s(binPred);</dt>
+      <dd>Construct an empty set <tt>s</tt> which can hold values of type
+      <tt>Ktype</tt>, and which uses <tt>binPred</tt> to sort keys.</dd>
+      <dt>set&lt;Ktype&gt; s(inIterBegin, inIterEnd);</dt>
+      <dd>Construct <tt>s</tt> containing values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily set)
+      container, but whose component type is the same as the component type
+      of <tt>s</tt>.</dd>
+      <dt>set&lt;Ktype&gt; s(inIterBegin, inIterEnd, binPred);</dt>
+      <dd>Construct <tt>s</tt> containing values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily set)
+      container, but whose component type is the same as the component type
+      of <tt>s</tt>, and which uses <tt>binPred</tt> to sort keys.</dd>
+    </dl>
+    <p>Destructor</p>
+    <dl>
+      <dt>s.~set&lt;Ktype&gt;()</dt>
+      <dd>Destroy all components of <tt>s</tt> and free the associated
+      memory.</dd>
+    </dl>
+    <h3><a id="overloaded_ops" name="overloaded_ops">Overloaded
+    operators</a></h3>
+    <p>Assignment operator</p>
+    <dl>
+      <dt>s1 = s2</dt>
+      <dd>Assign <tt>s2</tt> to <tt>s1</tt>, and return the common value.
+      The set on the left of an assignment receives the values and size of
+      the one on the right.</dd>
+    </dl>
+    <hr />
+    <p>Relational operators</p>
+    <p>Sets are compared in the "lexicographic ordering" sense. This
+    essentially means that the two sets are compared by comparing their
+    values pairwise, starting at the beginning, with each comparison
+    looking at two values in corresponding positions, until a determination
+    of the relationship between the two sets can be made. Only sets of the
+    same component type can be compared of course.</p>
+    <dl>
+      <dt>s1 == s2</dt>
+      <dd>Return <tt>true</tt> if <tt>s1</tt> and <tt>s2</tt> have the same
+      component type and the same size, and the components with the same
+      keys have the same value; otherwise return <tt>false</tt>.</dd>
+      <dt>s1 != s2</dt>
+      <dd>Return <tt>true</tt> if <tt>s1==s2</tt> returns <tt>false</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>s1 &lt; s2</dt>
+      <dd>Return <tt>true</tt> if, in the pairwise comparison of values
+      from <tt>s1</tt> and <tt>s2</tt>, in the first pair in which the two
+      values differ, the one from <tt>s1</tt> is less than the one from
+      <tt>s2</tt>; otherwise return <tt>false</tt>.</dd>
+      <dt>s1 &lt;= s2</dt>
+      <dd>Return <tt>true</tt> if either <tt>s1&lt;s2</tt> or
+      <tt>s1==s2</tt> is <tt>true</tt>; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>s1 &gt; s2</dt>
+      <dd>Return <tt>true</tt> if <tt>s2&lt;s1</tt> is <tt>true</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>s1 &gt;= s2</dt>
+      <dd>Return <tt>true</tt> if either <tt>s1&gt;s2</tt> or
+      <tt>s1==s2</tt> is <tt>true</tt>, otherwise return
+      <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="access" name="access">Member functions for accessing
+    values</a></h3>
+    <p>Each of the member functions in this section has both a
+    <tt>const</tt> and a non-<tt>const</tt> version.</p>
+    <dl>
+      <dt>s.begin()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the first component of <tt>s</tt>.</dd>
+      <dt>s.end()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to one-past-the-last component of <tt>s</tt>.</dd>
+      <dt>s.rbegin()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to the last component of
+      <tt>s</tt>.</dd>
+      <dt>s.rend()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to one-before-the-first
+      component of <tt>s</tt>.</dd>
+    </dl>
+    <h3><a id="status" name="status">Member functions for reporting
+    status</a></h3>
+    <dl>
+      <dt>s.max_size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the maximum
+      possible size of <tt>s</tt>, which will depend on the size of the
+      component type <tt>&lt;Ktype&gt;</tt> of the set object, and the
+      amount of available memory.</dd>
+      <dt>s.size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the number of
+      values currently in <tt>s</tt>.</dd>
+      <dt>s.empty()</dt>
+      <dd>Return <tt>true</tt> if <tt>s</tt> is empty (contains zero
+      values); otherwise return <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="insertion" name="insertion">Member functions for inserting
+    one or more values</a></h3>
+    <dl>
+      <dt>s.insert(kVal)</dt>
+      <dd>
+        Try to insert <tt>kVal</tt> into <tt>s</tt> and return 
+        <ul class="hardleft">
+          <li>for a set, a value of type <tt>pair&lt;iterator,
+          bool&gt;</tt>, with the <tt>iterator</tt> value pointing at the
+          new component, if it actually went into the set, and the
+          <tt>bool</tt> value being <tt>true</tt> if the insertion
+          succeeded; otherwise the iterator points at the value that was
+          already in the set, and the <tt>bool</tt> value is
+          <tt>false</tt></li>
+          <li>for a multiset, an iterator pointing at the newly inserted
+          component</li>
+        </ul>
+      </dd>
+      <dt>s.insert(iter, kVal)</dt>
+      <dd>Try to insert <tt>kVal</tt> into <tt>s</tt>, using <tt>iter</tt>
+      as a "hint" for where the search for the insertion point should
+      begin, and return an iterator pointing to the new component, or to
+      the old component if the value was already in <tt>s</tt>.</dd>
+      <dt>s.insert(inIterBegin, inIterEnd)</dt>
+      <dd>Try to insert into <tt>s</tt> the values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily set)
+      container, but whose values must be of the same type as the values of
+      <tt>s</tt>.</dd>
+    </dl>
+    <h3><a id="deletion" name="deletion">Member functions for deleting one
+    or more values</a></h3>
+    <dl>
+      <dt>s.clear()</dt>
+      <dd>Delete all values of <tt>s</tt>. The size of <tt>s</tt> is
+      reduced to zero.</dd>
+      <dt>s.erase(kVal)</dt>
+      <dd>Delete all components for which the key is <tt>kVal</tt> and
+      return the number of deleted values (0 or 1). The size of <tt>s</tt>
+      is reduced by this value.</dd>
+      <dt>s.erase(iter)</dt>
+      <dd>Delete the value of <tt>s</tt> pointed to by <tt>iter</tt>. The
+      size of <tt>s</tt> is reduced by one.</dd>
+      <dt>s.erase(iterBegin, iterEnd)</dt>
+      <dd>Delete all values of <tt>s</tt> from the range
+      <tt>[iterBegin,iterEnd)</tt>. The size of <tt>s</tt> is reduced by
+      the number of values in this range.</dd>
+    </dl>
+    <h3><a id="count_search" name="count_search">Member functions for
+    counting and searching</a></h3>
+    <dl>
+      <dt>s.count(kVal)</dt>
+      <dd>Return the number of components in <tt>s</tt> which have their
+      key equal to <tt>kVal</tt>. This number is restricted to be 0 or 1
+      for a set, since keys are unique.</dd>
+      <dt>s.find(kVal)</dt>
+      <dd>Return an <tt>iterator</tt> pointing to the component in
+      <tt>s</tt> in which the key value is <tt>kVal</tt>, or to
+      one-past-the-last if this component does not exist.</dd>
+      <dt>s.lower_bound(kVal)</dt>
+      <dd>Return an <tt>iterator</tt> pointing to the first component in
+      <tt>s</tt> in which the key value is &gt;= <tt>kVal</tt>, or to
+      one-past-the-last if this component does not exist. (This is the
+      first place that a component with a key value of <tt>kVal</tt> could
+      be inserted.)</dd>
+      <dt>s.upper_bound(kVal)</dt>
+      <dd>Return an <tt>iterator</tt> pointing to the first component in
+      <tt>s</tt> in which the key value is &gt; <tt>kVal</tt>, or to
+      one-past-the-last if this component does not exist. (This is the last
+      place that a component with a key value of <tt>kVal</tt> could be
+      inserted.)</dd>
+      <dt>s.equal_range(kVal)</dt>
+      <dd>Return a pair with both components of type <tt>iterator</tt>
+      containing the same two iterators that would be returned by
+      <tt>lower_bound()</tt> and <tt>upper_bound()</tt> (in that
+      order).</dd>
+    </dl>
+    <h3><a id="misc_funs" name="misc_funs">Miscellaneous member
+    functions</a></h3>
+    <dl>
+      <dt>s.swap(otherSet)</dt>
+      <dd>Exchange values in <tt>s</tt> with those in <tt>otherSet</tt>.
+      The sizes are swapped as well.</dd>
+      <dt>s.key_comp()</dt>
+      <dd>Return the function object used to compare values of type
+      <tt>Ktype</tt>.</dd>
+      <dt>s.value_comp()</dt>
+      <dd>Return the function object used to compare values of type
+      <tt>VType</tt>.</dd>
+      <dt>s.getallocator()</dt>
+      <dd>Return the allocator of <tt>s</tt>. (This is possibly the most
+      infrequently used of all member functions of the set class.)</dd>
+    </dl>
+    <h3 class="miscnotes"><a id="misc_notes"
+    name="misc_notes">Miscellaneous notes</a></h3>
+    <dl>
+      <dt>Implementation</dt>
+      <dd>Standard C++ does not say how the STL containers and algorithms
+      must be implemented. It does, however, state certain constraints,
+      such as complexity constraints, to which each implementation must
+      adhere. Thus it is much better to base your programs on the STL's
+      performance guarantees, rather than upon any assumption about how a
+      particular feature, like the set or multiset classes, may be
+      implemented. As users, all we have a right to assume is that sets and
+      multisets sort their components automatically according to the sort
+      order of the component keys. That having been said, we can also say
+      that sets and multisets are generally implelmented using some
+      variation of a balanced binary search tree, not because the Standard
+      mandates this, but because that is the most logical choice, given the
+      perfomance constraints imposed on these two contiainers.</dd>
+    </dl>
+    <h3 class="sampleprogs"><a id="sample_programs"
+    name="sample_programs">Sample programs</a></h3>
+    <p>There are two groups of sample programs:</p>
+    <ul>
+      <li>The first group involves only STL sets and generic C++.</li>
+      <li>The second group highlights the differences between sets and
+      multisets.</li>
+    </ul>
+    <p>The programs should be studied in the sequence given, since the
+    description of each new sample program in the sequence mentions only
+    the new features illustrated for the first time in that particular
+    program, and features seen in earlier sample programs will continue to
+    reappear in later programs.</p>
+    <p>All of the programs have been compiled and run successfully under
+    Microsoft Visual Studio .NET 2005, unless otherwise noted.</p>
+    <h4>Programs involving only sets (and generic C++)</h4>
+    <dl>
+      <dt><a href="programs/set/set01.cpp2html">set01.cpp</a> | <a
+      href="programs/set/set01.exe">Windows_executable</a> | <a
+      href="programs/set/set01.txt">program_output (text)</a></dt>
+      <dd>Illustrates a non-default set constructor, the <tt>size()</tt>
+      member function, and the default (bidirectional) iterator for the set
+      class, as well as member functions <tt>begin()</tt> and
+      <tt>end()</tt>.</dd>
+      <dt><a href="programs/set/set02.cpp2html">set02.cpp</a> | <a
+      href="programs/set/set02.exe">Windows_executable</a> | <a
+      href="programs/set/set02.txt">program_output (text)</a></dt>
+      <dd>Illustrates the set copy constructor and the overloaded
+      assignment operator for sets, as well as the default constructor for
+      the set class, and the <tt>empty()</tt> member function.</dd>
+      <dt><a href="programs/set/set03.cpp2html">set03.cpp</a> | <a
+      href="programs/set/set03.exe">Windows_executable</a> | <a
+      href="programs/set/set03.txt">program_output (text)</a></dt>
+      <dd>Illustrates member function <tt>max_size()</tt>, and how the
+      maximum size for a set object depends on the size of its component
+      type.</dd>
+      <dt><a href="programs/set/set04.cpp2html">set04.cpp</a> | <a
+      href="programs/set/set04.exe">Windows_executable</a> | <a
+      href="programs/set/set04.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to use a built-in function object to alter the
+      sort order from the default used by the set class.</dd>
+      <dt><a href="programs/set/set05.cpp2html">set05.cpp</a> | <a
+      href="programs/set/set05.exe">Windows_executable</a> | <a
+      href="programs/set/set05.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of operators <tt>=</tt>, <tt>++</tt>,
+      <tt>--</tt>, <tt>==</tt>, <tt>!=</tt>, <tt>-&gt;</tt> and <tt>*</tt>
+      with set iterators.</dd>
+      <dt><a href="programs/set/set06.cpp2html">set06.cpp</a> | <a
+      href="programs/set/set06.exe">Windows_executable</a> | <a
+      href="programs/set/set06.txt">program_output (text)</a></dt>
+      <dd>Illustrates more set construction and manipulation.</dd>
+      <dt><a href="programs/set/set07.cpp2html">set07.cpp</a> | <a
+      href="programs/set/set07.exe">Windows_executable</a> | <a
+      href="programs/set/set07.txt">program_output (text)</a></dt>
+      <dd>Illustrates reverse iterators for the set class, as well as
+      member functions <tt>rbegin()</tt> and <tt>rend()</tt>.</dd>
+      <dt><a href="programs/set/set08.cpp2html">set08.cpp</a> | <a
+      href="programs/set/set08.exe">Windows_executable</a> | <a
+      href="programs/set/set08.txt">program_output (text)</a></dt>
+      <dd>Illustrates a typical use of a <tt>const</tt> iterator.</dd>
+      <dt><a href="programs/set/set09.cpp2html">set09.cpp</a> | <a
+      href="programs/set/set09.exe">Windows_executable</a> | <a
+      href="programs/set/set09.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>count()</tt> member function.</dd>
+      <dt><a href="programs/set/set10.cpp2html">set10.cpp</a> | <a
+      href="programs/set/set10.exe">Windows_executable</a> | <a
+      href="programs/set/set10.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>find()</tt> member function.</dd>
+      <dt><a href="programs/set/set11.cpp2html">set11.cpp</a> | <a
+      href="programs/set/set11.exe">Windows_executable</a> | <a
+      href="programs/set/set11.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>insert()</tt> member function.</dd>
+      <dt><a href="programs/set/set12.cpp2html">set12.cpp</a> | <a
+      href="programs/set/set12.exe">Windows_executable</a> | <a
+      href="programs/set/set12.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>clear()</tt> and <tt>erase()</tt> member
+      functions.</dd>
+      <dt><a href="programs/set/set13.cpp2html">set13.cpp</a> | <a
+      href="programs/set/set13.exe">Windows_executable</a> | <a
+      href="programs/set/set13.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>lower_bound()</tt> member function.</dd>
+      <dt><a href="programs/set/set14.cpp2html">set14.cpp</a> | <a
+      href="programs/set/set14.exe">Windows_executable</a> | <a
+      href="programs/set/set14.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>upper_bound()</tt> member function.</dd>
+      <dt><a href="programs/set/set15.cpp2html">set15.cpp</a> | <a
+      href="programs/set/set15.exe">Windows_executable</a> | <a
+      href="programs/set/set15.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>equal_range()</tt> member function.</dd>
+      <dt><a href="programs/set/set16.cpp2html">set16.cpp</a> | <a
+      href="programs/set/set16.exe">Windows_executable</a> | <a
+      href="programs/set/set16.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>swap()</tt> member function.</dd>
+      <dt><a href="programs/set/set17.cpp2html">set17.cpp</a> | <a
+      href="programs/set/set17.exe">Windows_executable</a> | <a
+      href="programs/set/set17.txt">program_output (text)</a></dt>
+      <dd>Illustrates how the relational operators can be used to compare
+      one set with another.</dd>
+      <dt><a href="programs/set/set18.cpp2html">set18.cpp</a> | <a
+      href="programs/set/set18.exe">Windows_executable</a> | <a
+      href="programs/set/set18.txt">program_output (text)</a></dt>
+      <dd>Illustrates a set in which each component is a class object
+      containing the name of a Canadian province and the name of its
+      capital city.</dd>
+    </dl>
+    <h4>Programs highlighting the differences between sets and
+    multisets</h4>
+    <p>Since the multiset interface is very nearly the same as the set
+    interface, the sample programs in this section are designed to
+    highlight the differences between sets and multisets.</p>
+    <dl>
+      <dt><a href="programs/set/multiset01.cpp2html">multiset01.cpp</a> |
+      <a href="programs/set/multiset01.exe">Windows_executable</a> | <a
+      href="programs/set/multiset01.txt">program_output (text)</a></dt>
+      <dd>Illustrates the difference in behavior when you try to insert
+      duplicate keys into a set and into a multiset.</dd>
+      <dt><a href="programs/set/multiset02.cpp2html">multiset02.cpp</a> |
+      <a href="programs/set/multiset02.exe">Windows_executable</a> | <a
+      href="programs/set/multiset02.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to find the first of several duplicate keys and
+      then process all components with that key.</dd>
+      <dt><a href="programs/set/multiset03.cpp2html">multiset03.cpp</a> |
+      <a href="programs/set/multiset03.exe">Windows_executable</a> | <a
+      href="programs/set/multiset03.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to store and retrieve book objects in a
+      multiset.</dd>
+      <dt><a href="programs/set/multiset04.cpp2html">multiset04.cpp</a> |
+      <a href="programs/set/multiset04.exe">Windows_executable</a> | <a
+      href="programs/set/multiset04.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of a multiset to record responses to a
+      polling question. First we create a multiset of responses, some of
+      which are, of course, duplicates. Then we display a summary of the
+      responses.</dd>
+      <dt><a href="programs/set/multiset05.cpp2html">multiset05.cpp</a> |
+      <a href="programs/set/multiset05.exe">Windows_executable</a> | <a
+      href="programs/set/multiset05.txt">program_output (text)</a></dt>
+      <dd>Displays first a set, then a multiset, of positive integer
+      values. In each case, the user is permitted to enter values of the
+      user's choice and the program provides the lower and upper bound of
+      each value entered, relative to the set of values, or the multiset of
+      values, as the case may be.</dd>
+    </dl>
+    <h3 class="prototypes"><a id="prototypes" name="prototypes">Member
+    function prototypes</a></h3>
+    <p>For enhanced readability in each of the prototypes given below, each
+    parameter in each parameter list appears on a separate line. Also, some
+    formatting liberties are taken, in the interest of greater readability.
+    For example, rather than aligning all prototypes at the left margin,
+    <tt>const</tt> and non-<tt>const</tt> versions of a member function are
+    aligned in such a way as to allow the reader to more easily compare the
+    two visually.</p>
+    <hr />
+    <p>Template specification for the set class</p>
+<pre xml:space="preserve">
+template&lt;class Ktype,
+         class BinaryPred less&lt;Ktype&gt;,
+         class Allocator = allocator&lt;Ktype&gt; &gt;
+class set { ... }
+</pre>
+    <hr />
+    <p>Constructors</p>
+<pre xml:space="preserve">
+explicit set(const BinaryPred&amp; binPred = BinaryPred(),
+             const Allocator&amp; a = Allocator());
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+set(InIterator inIterBegin,
+    InIterator inIterEnd,
+    const BinaryPred&amp; binPred = BinaryPred(),
+    const Allocator&amp; a = Allocator());
+</pre>
+    <hr />
+    <p>Copy Constructor</p>
+<pre xml:space="preserve">
+set(const set&lt;Ktype, BinaryPred, Allocator&gt;&amp; otherSet);
+</pre>
+    <hr />
+    <p>Destructor</p>
+<pre xml:space="preserve">
+~set();
+</pre>
+    <hr />
+    <p>begin</p>
+<pre xml:space="preserve">
+      iterator begin();
+const_iterator begin() const;
+</pre>
+    <hr />
+    <p>clear</p>
+<pre xml:space="preserve">
+void clear();
+</pre>
+    <hr />
+    <p>count</p>
+<pre xml:space="preserve">
+size_type count(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>empty</p>
+<pre xml:space="preserve">
+bool empty() const;
+</pre>
+    <hr />
+    <p>end</p>
+<pre xml:space="preserve">
+      iterator end();
+const_iterator end() const;
+</pre>
+    <hr />
+    <p>equal_range</p>
+<pre xml:space="preserve">
+pair&lt;iterator, iterator&gt; equal_range(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>erase</p>
+<pre xml:space="preserve">
+size_type erase(const Ktype&amp; kVal);
+     void erase(iterator iter);
+     void erase(iterator iterBegin,
+                iterator iterEnd);
+</pre>
+    <hr />
+    <p>find</p>
+<pre xml:space="preserve">
+iterator find(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>get_allocator</p>
+<pre xml:space="preserve">
+allocator_type get_allocator() const;
+</pre>
+    <hr />
+    <p>insert</p>
+<pre xml:space="preserve">
+pair&lt;iterator, bool&gt; insert(const Ktype&amp; kVal);
+</pre>
+<pre xml:space="preserve">
+iterator insert(iterator iter,
+                const Ktype&amp; kVal);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void insert(InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>key_comp</p>
+<pre xml:space="preserve">
+key_compare key_comp() const;
+</pre>
+    <hr />
+    <p>lower_bound</p>
+<pre xml:space="preserve">
+iterator lower_bound(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>max_size</p>
+<pre xml:space="preserve">
+size_type max_size() const;
+</pre>
+    <hr />
+    <p>rbegin</p>
+<pre xml:space="preserve">
+      reverse_iterator rbegin();
+const_reverse_iterator rbegin() const;
+</pre>
+    <hr />
+    <p>rend</p>
+<pre xml:space="preserve">
+      reverse_iterator rend();
+const_reverse_iterator rend() const;
+</pre>
+    <hr />
+    <p>size</p>
+<pre xml:space="preserve">
+size_type size() const;
+</pre>
+    <hr />
+    <p>swap</p>
+<pre xml:space="preserve">
+void swap(set&lt;T, BinaryPred, Allocator&gt;&amp; otherSet);
+</pre>
+    <hr />
+    <p>upper_bound</p>
+<pre xml:space="preserve">
+iterator upper_bound(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>value_comp</p>
+<pre xml:space="preserve">
+value_compare value_comp() const;
+</pre>
+  </body>
+</html>
+
+<!-- Localized -->

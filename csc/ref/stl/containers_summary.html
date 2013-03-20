@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Container and Container Adaptor Classes: A Summary</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Container and Container Adaptor Classes: A Summary</p>
+    <p>This page lists the STL container and container adaptor class types.
+    These are all template classes that provide containers for holding and
+    manipulating elements of any user-chosen or user-defined type.</p>
+    <p>The term <em>first-class container</em>, when applied to a container
+    type, simply means that the container class has all the characteristics
+    and behaviors that a user would expect of any data type, given the
+    user's previous experience (with built-in data types, for example). The
+    first-class containers include the <tt>vector</tt>, <tt>deque</tt>,
+    <tt>list</tt>, <tt>map</tt>, <tt>multimap</tt>, <tt>set</tt>, and
+    <tt>multiset</tt> classes.</p>
+    <p>The term <em>container adaptor</em>, on the other hand refers to an
+    "adaptation" of one of the first-class containers by modifying and
+    restricting its interface for some special purpose. These container
+    adaptors include the <tt>stack</tt> and <tt>queue</tt>, which are
+    based (by default) on the <tt>deque</tt>, as well as the
+    <tt>priority_queue</tt>, which is based (by default) on the
+    <tt>vector</tt>.</p>
+    <h3>First-class containers</h3>
+    <h4>Sequential containers</h4>
+    <dl>
+      <dt>vector</dt>
+      <dd>Provides linear, contiguous storage, with fast inserts at the
+      "back" end only. This class is often referred to as a "better array"
+      that we should all now use in place of arrays. Like a great deal of
+      free advice, this too should be followed with caution.</dd>
+      <dt>deque</dt>
+      <dd>Provides linear, non-contiguous storage, with fast inserts at
+      both ends.</dd>
+      <dt>list</dt>
+      <dd>Provides linear, doubly-linked storage, with fast inserts
+      anywhere.</dd>
+    </dl>
+    <hr />
+    <h4>Associative containers</h4>
+    <dl>
+      <dt>map</dt>
+      <dd>Provides a collection of 1-to-1 mappings, i.e. a collection of
+      key/value "pairs" (<tt>pair</tt> objects) in which the first element
+      of such a <tt>pair</tt> is a key and the second element of the
+      <tt>pair</tt> is the value corresponding to that key, and the
+      <tt>pair</tt> objects are maintained in sorted key order. In a map
+      the keys must be unique.</dd>
+      <dt>multimap</dt>
+      <dd>Like a map, except that pairs with duplicate keys are
+      permitted.</dd>
+      <dt>set</dt>
+      <dd>Provides a set of items which must have keys (or themselves be
+      keys, in the simplest cases), with fast associative lookup. In a set
+      the item keys must be unique, but (somewhat counter intuitively for a
+      set) the item keys are ordered.</dd>
+      <dt>multiset</dt>
+      <dd>Like a set, except that items with duplicate keys are
+      permitted.</dd>
+    </dl>
+    <h3>Container adaptors</h3>
+    <p>Each of these "container adaptors" is constructed by taking one of
+    the sequential containers given above and "adapting"
+    (restricting/modifying) its interface to provide the desired
+    behavior.</p>
+    <dl>
+      <dt>stack</dt>
+      <dd>Adapts the deque container to provide strict last-in, first-out
+      (LIFO) behavior.</dd>
+      <dt>queue</dt>
+      <dd>Adapts the deque container to provide strict first-in, first-out
+      (FIFO) behavior.</dd>
+      <dt>priority_queue</dt>
+      <dd>Adapts the vector container to maintain items in a sorted
+      order.</dd>
+    </dl>
+    <h3>Other (non-STL) classes with STL-like characteristics and
+    behaviors</h3>
+    There are some other classes that are regarded as near-containers, in
+    that (for example) they can be used with iterators, which makes them
+    accessible to manipulation via the STL algorithms. 
+    <dl>
+      <dt>string</dt>
+      <dd>Not to be confused with the legacy C-string data type, inherited
+      from the C-language, and consisting of a simple character array with
+      the characters of interest terminated with a null character. The C++
+      <tt>string</tt> class is indeed a bona fide class, with much more
+      flexibility (and safety) than the older C-string, and should probably
+      be used anywhere the C-string is not explicitly required. (But that's
+      more free advice.)</dd>
+      <dt>bitset</dt>
+      <dd>Provides a model for a fixed-size array of bits or boolean
+      values, which is used to manage a set of "on-off switches" (or
+      "flags") and where the state of a <tt>bitset</tt> object at any time
+      will represent some combination of such flags (or on-off
+      switches).</dd>
+      <dt>valarray</dt>
+      <dd>Provides a representation for the mathematical concept of a
+      linear sequence of values and is designed to permit the efficient
+      performance of certain numerical calculations. That having been said,
+      some writers argue that the <tt>valarray</tt> class is poorly
+      designed and that there are better alternatives if you wish to do
+      serious numerical calculations in C++.</dd>
+    </dl>
+    <p>Note that for many purposes even "ordinary" C-style arrays (which
+    are not classes) and C-strings (which are also not classes) can be
+    accessed from the STL with C-style pointers in the same way that STL
+    containers are accessed with STL iterators.</p>
+  </body>
+</html>
+
+<!-- Localized -->

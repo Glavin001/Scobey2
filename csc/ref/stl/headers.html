@@ -1,0 +1,311 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Headers</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Headers</p>
+    <p>In order to make use of any STL facility (container, algorithm, or
+    whatever) you must of course be sure to include the header file that
+    provides access to the facility you want. This page contains six
+    tables, showing which header file you would have to include in your
+    source file to provide your code with access to a particular container,
+    iterator feature, algorithm, function object, or other feature.
+    Unfortunately, the C++ Standard does not specify which headers may,
+    should or must be included in other headers, so implementations will
+    differ in this area. For example, you will generall find the
+    <tt>&lt;utility&gt;</tt> header automatically included in the
+    <tt>&lt;map&gt;</tt> header so that maps and multimaps have ready
+    access to the <tt>pair</tt> struct.</p>
+    <p>It is always a good idea to include the header where you know
+    something you are using lives, even if its inclusion is redundant.
+    Where not doing this may come back to bite you is when you move your
+    code to a different platform, re-compile, and that "redundant" header
+    on the first platform is not redundant on the new platform, giving rise
+    to a something-not-found compile-time error.</p>
+    <h3>Headers that provide access to STL containers and container
+    adaptors</h3>
+    <p>There are seven standard "first-class" container classes (three
+    sequential and four associative) and three container adaptor classes,
+    but only seven header files that provide access to these containers or
+    container adaptors, as shown in the table below.</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Container headers">
+      <tr>
+        <th valign="middle">Header</th>
+        <th valign="middle">Container Class(es) or
+        <br />
+         Container Adaptor Class(es) Provided</th>
+        <th valign="middle">Container Category</th>
+      </tr>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;vector&gt;</tt></td>
+        <td align="center" valign="middle"><tt>vector</tt></td>
+        <td rowspan="3" align="center" valign="middle">sequential
+        <br />
+         (first-class)</td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;deque&gt;</tt></td>
+        <td align="center" valign="middle"><tt>deque</tt></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;list&gt;</tt></td>
+        <td align="center" valign="middle"><tt>list</tt></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;map&gt;</tt></td>
+        <td align="center" valign="middle"><tt>map</tt>,
+        <tt>multimap</tt></td>
+        <td rowspan="2" align="center" valign="middle">associative
+        <br />
+         (first-class)</td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;set&gt;</tt></td>
+        <td align="center" valign="middle"><tt>set</tt>,
+        <tt>multiset</tt></td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;stack&gt;</tt></td>
+        <td align="center" valign="middle"><tt>stack</tt></td>
+        <td rowspan="2" align="center" valign="middle">adaptor</td>
+      </tr>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;queue&gt;</tt></td>
+        <td align="center" valign="middle"><tt>queue</tt>,
+        <tt>priority_queue</tt></td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">Header that provides access to STL iterator
+    facilities</h3>
+    <p>Somewhat counterintuitively, even though as an STL programmer you
+    will be using STL iterators virtually every time you write some STL
+    code, you will not often need to include the <tt>&lt;iterator&gt;</tt>
+    header. In particular, you will not need to include this header to get
+    the usual kinds of iterators you use to work with the STL containers.
+    The reason for this is that each container class provides its own
+    iterators, needs the contents of <tt>&lt;iterator&gt;</tt> to do so,
+    and therefore itself includes <tt>&lt;iterator&gt;</tt>. Thus, by
+    including <tt>&lt;vector&gt;</tt> (for example) you get
+    <tt>&lt;iterator&gt;</tt> "for free".</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Iterator header">
+      <thead>
+        <tr>
+          <th valign="middle">Header</th>
+          <th valign="middle">Iterator Classes Provided</th>
+          <th>Iterator Functions Provided</th>
+        </tr>
+      </thead>
+      <tr>
+        <td valign="top" rowspan="3"><tt>&lt;iterator&gt;</tt></td>
+        <td valign="top"><tt>iterator</tt>
+        <br />
+         <tt>reverse_iterator</tt>
+        <br />
+         <tt>iterator_traits</tt>
+        <br />
+         <tt>insert_iterator</tt>
+        <br />
+         <tt>back_insert_iterator</tt>
+        <br />
+         <tt>front_insert_iterator</tt>
+        <br />
+         <tt>istream_iterator</tt>
+        <br />
+         <tt>ostream_iterator</tt>
+        <br />
+         <tt>istreambuf_iterator</tt>
+        <br />
+         <tt>ostreambuf_iterator</tt></td>
+        <td valign="top"><tt>advance()</tt>
+        <br />
+         <tt>distance()</tt>
+        <br />
+         <tt>back_inserter()</tt>
+        <br />
+         <tt>front_inserter()</tt>
+        <br />
+         <tt>inserter()</tt></td>
+      </tr>
+    </table>
+    <h3>Headers that provide access to STL algorithms</h3>
+    <p>The table below is deceptively small, and effectively hides the fact
+    that there are nearly seventy algorithms available from the
+    <tt>&lt;algorithm&gt;</tt> header, along with the four from the
+    <tt>&lt;numeric&gt;</tt> header explicitly shown.</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Algorithm headers">
+      <thead>
+        <tr>
+          <th valign="middle">Header</th>
+          <th valign="middle">Algorithms Provided</th>
+        </tr>
+      </thead>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;algorithm&gt;</tt></td>
+        <td align="center" valign="middle">All except those in
+        <tt>&lt;numeric&gt;</tt></td>
+      </tr>
+      <tr>
+        <td align="center" valign="top"><tt>&lt;numeric&gt;</tt></td>
+        <td align="left" valign="middle"><tt>accumulate</tt>
+        <br />
+         <tt>adjacent_difference</tt>
+        <br />
+         <tt>inner_product</tt>
+        <br />
+         <tt>partial_sum</tt></td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">Header that provides access to STL functors,
+    binders, negators and function adaptors</h3>
+    <p>The following table gives a list of built-in functors, binders,
+    negators, and function adaptors provided in the
+    <tt>&lt;functional&gt;</tt> header. A functor (function object) is an
+    object of a class that implements <tt>operator()</tt>, which allows the
+    object to be used like a function, but is a more versatile (and useful)
+    than a simple function since (being an object) it also has a state.
+    Binders and negators can modify the behavior of functors in useful
+    ways, and function adaptors allow you to adapt "old-fashioned" function
+    pointers to a form that can be used by various STL components.</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Header functional and its facilities">
+      <tr>
+        <th rowspan="2" valign="middle">Header</th>
+        <th colspan="5" valign="middle">Facilities Provided</th>
+      </tr>
+      <tr>
+        <th colspan="2" valign="middle">Functors</th>
+        <th valign="middle">Binders</th>
+        <th valign="middle">Negators</th>
+        <th valign="middle">Function Adaptors</th>
+      </tr>
+      <tr>
+        <td rowspan="9" align="center" valign="top">
+        <tt>&lt;functional&gt;</tt></td>
+        <th colspan="2"><small>arithmetic</small></th>
+        <td rowspan="9" align="left" valign="top"><tt>bind_1st
+        <br />
+         bind_2nd</tt></td>
+        <td rowspan="9" align="left" valign="top"><tt>not1
+        <br />
+         not2</tt></td>
+        <td rowspan="9" align="left" valign="top"><tt>ptr_fun</tt>
+        <br />
+         <tt>mem_fun</tt>
+        <br />
+         <tt>mem_fun1</tt>
+        <br />
+         <tt>mem_fun_ref</tt>
+        <br />
+         <tt>mem_fun1_ref</tt></td>
+      </tr>
+      <tr>
+        <th valign="middle"><small>binary</small></th>
+        <th valign="middle"><small>unary</small></th>
+      </tr>
+      <tr>
+        <td align="left" valign="top"><tt>plus</tt>
+        <br />
+         <tt>minus</tt>
+        <br />
+         <tt>multiplies</tt>
+        <br />
+         <tt>divides</tt>
+        <br />
+         <tt>modulus</tt></td>
+        <td align="left" valign="top"><tt>negate</tt></td>
+      </tr>
+      <tr>
+        <th align="center" colspan="2"><small>relational</small></th>
+      </tr>
+      <tr>
+        <th valign="middle"><small>binary</small></th>
+        <th valign="middle"><small>unary</small></th>
+      </tr>
+      <tr>
+        <td align="left" valign="top"><tt>equal_to</tt>
+        <br />
+         <tt>not_equal_to</tt>
+        <br />
+         <tt>greater</tt>
+        <br />
+         <tt>greater_equal</tt>
+        <br />
+         <tt>less</tt>
+        <br />
+         <tt>less_equal</tt>
+        <br />
+         <tt>logical_and</tt>
+        <br />
+         <tt>logical_or</tt></td>
+        <td align="left" valign="top"> </td>
+      </tr>
+      <tr>
+        <th align="center" colspan="2"><small>logical</small></th>
+      </tr>
+      <tr>
+        <th valign="middle"><small>binary</small></th>
+        <th valign="middle"><small>unary</small></th>
+      </tr>
+      <tr>
+        <td align="left" valign="top"><tt>logical_and</tt>
+        <br />
+         <tt>logical_or</tt></td>
+        <td align="left" valign="top"><tt>logical_not</tt></td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">Header that provides access to STL utilities</h3>
+    <p>This header declares the <tt>pair&lt;&gt;</tt> template, which is
+    essential when using maps and multimaps, but also finds many uses in
+    everyday programming. Though it may or may not be of interest to the
+    average programmer, this header also defines the rel-ops namespace,
+    which in turn defines relational operators in terms of <tt>==</tt> and
+    <tt>&lt;</tt>.</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Header for STL utilities">
+      <thead>
+        <tr>
+          <th valign="middle">Header</th>
+          <th valign="middle">Utilities Provided</th>
+        </tr>
+      </thead>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;utility&gt;</tt></td>
+        <td align="left" valign="middle">The <tt>pair</tt> struct
+        <br />
+        The <tt>make_pair()</tt> function</td>
+      </tr>
+    </table>
+    <h3>Header that provides access to STL memory facilities</h3>
+    <p>This header declares functions and class templates for allocating
+    and using memory. The average programmer will not need to include this
+    header, since the default container "allocators" are perfectly adequate
+    most of the time. Programmers who are developing their own containers,
+    iterators and algorithms will be more inclined to find a use for what's
+    in this header. If anything, the feature most likely to be used by the
+    average programmer is <tt>auto_ptr</tt></p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Header for STL memory facilities">
+      <thead>
+        <tr>
+          <th valign="middle">Header</th>
+          <th valign="middle">Memory Facilities Provided</th>
+        </tr>
+      </thead>
+      <tr>
+        <td align="center" valign="middle"><tt>&lt;memory&gt;</tt></td>
+        <td valign="middle"><tt>auto_ptr</tt></td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<!-- Localized -->

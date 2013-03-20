@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Container Adaptor Member Function Summary</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material<br />
+    STL Container Adaptor Classes<br />
+    Member Function Summary</p>
+    <h3>Member functions present in all container adaptors</h3>
+    <table border="5" cellspacing="0" cellpadding="3" width="670"
+    summary="Member functions common to all associative containers">
+      <tr>
+        <th>assignment operator</th>
+      </tr>
+      <tr>
+        <td><tt>c1 = c2</tt>
+        <br />
+         Assign one container adaptor to another like container adaptor 
+         (stack to stack,
+        queue to queue, priority_queue to priority_queue).</td>
+      </tr>
+      <tr>
+        <th>testing for empty</th>
+      </tr>
+      <tr>
+        <td><tt>bool empty() const</tt>
+        <br />
+         Return <tt>true</tt> if container is empty, and otherwise
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <th>getting container size</th>
+      </tr>
+      <tr>
+        <td><tt>size_type size() const</tt>
+        <br />
+         Return number of elements currently in container.</td>
+      </tr>
+      <tr>
+        <th>inserting a value</th>
+      </tr>
+      <tr>
+        <td><tt>void push(const T&amp; val)</tt>
+        <br />
+         Add an element to the container.</td>
+      </tr>
+      <tr>
+        <th>deleting a value</th>
+      </tr>
+      <tr>
+        <td><tt>void pop()</tt>
+        <br />
+         Remove the appropriate element from the container (top element for
+        a stack, front element for a queue, and highest-priority element
+        for a priority queue).</td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">Member functions present in some container adaptors
+    <br />
+     but not common to all</h3>
+    <table border="5" cellspacing="0" cellpadding="3" width="670"
+    summary="Member functions not common to all associative containers">
+      <tr>
+        <th>queue-only member functions</th>
+      </tr>
+      <tr>
+        <td><tt>value_type&amp; front()</tt>
+        <br />
+         <tt>const value_type&amp; front() const</tt>
+        <br />
+         Return a [<tt>const</tt>] reference to the first element in a
+        queue.</td>
+      </tr>
+      <tr>
+        <td><tt>value_type&amp; back()</tt>
+        <br />
+         <tt>const value_type&amp; back() const</tt>
+        <br />
+         Return a [<tt>const</tt>] reference to the last element in a
+        queue.</td>
+      </tr>
+      <tr>
+        <th>stack-and-priority_queue-only member functions</th>
+      </tr>
+      <tr>
+        <td><tt>value_type&amp; top()</tt>
+        <br />
+         <tt>const value_type&amp; top() const</tt>
+        <br />
+         Return a [<tt>const</tt>] reference to the top element in a stack,
+        or to the element with highest priority in a priority queue.</td>
+      </tr>
+      <tr>
+        <th>priority_queue-only comparison operators</th>
+      </tr>
+      <tr>
+        <td><tt>==</tt>
+        <br />
+         Return <tt>true</tt> if two like containers are equal (contain the
+        same elements in the same order), and otherwise
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>!=</tt>
+        <br />
+         Return <tt>true</tt> if two like containers are not equal, and
+        otherwise <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>&lt;</tt>
+        <br />
+         Return <tt>true</tt> if first of two like containers is less than
+        the second (in the lexicographic sense), and otherwise
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>&lt;=</tt>
+        <br />
+         Return <tt>true</tt> if first of two like containers is less than
+        or equal to the second (in the lexicographic sense), and otherwise
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>&gt;</tt>
+        <br />
+         Return <tt>true</tt> if first of two like containers is greater
+        than the second (in the lexicographic sense), and otherwise
+        <tt>false</tt>.</td>
+      </tr>
+      <tr>
+        <td><tt>&gt;=</tt>
+        <br />
+         Return <tt>true</tt> if first of two like containers is greater
+        than or equal to the second (in the lexicographic sense), and
+        otherwise <tt>false</tt>.</td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<!-- Localized -->

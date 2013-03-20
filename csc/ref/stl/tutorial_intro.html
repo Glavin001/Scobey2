@@ -1,0 +1,379 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=windows-1252" />
+    <title>STL Tutorial Introduction</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Tutorial Introduction</p>
+    <p>Given the complexity and power of the STL (the Standard Template
+    Library of C++), and the fact that its use is not exactly intuitive for
+    beginners, putting together even a "tutorial introduction" becomes a
+    somewhat daunting task right from the get go. Especially if one wants
+    to keep it short, as I do.</p>
+    <h3>Assumptions</h3>
+    <p>So, how shall we proceed? First, we shall assume a couple of
+    things:</p>
+    <ol class="hardleft">
+      <li>You have a reasonable background in basic C++, up to and
+      including templates (both classes and functions), since these play a
+      key role in the STL. If this is true, you probably have at least
+      heard of the STL, though you may not have used it.</li>
+      <li>You have read the <a href="faq.html">STL FAQ</a> on this site, so
+      that we don't have to repeat that material in detail here.</li>
+    </ol>
+    <p>Thus, you know that the STL has things called <em>containers</em>,
+    <em>iterators</em> and <em>algorithms</em>. Our purpose here will be to
+    see how these three things come together in what might be called
+    "typical STL fashion". Though there is much else to learn about the
+    STL, once you have a handle on this, you have made considerable
+    progress toward becoming an STL user.</p>
+    <h3>Analogies</h3>
+    <p>Fortunately, we can begin by drawing some analogies between STL
+    containers, iterators and algorithms and things you already know
+    about.</p>
+    <p>We begin by noting that, at a superficial level at least, any STL
+    <em>container</em> is analogous to an <em>array</em>, in that it is
+    something that allows you to store and retrieve elements. All STL
+    containers are implemented by <em>template</em> classes, which means
+    that any given container can easily be used to hold elements of
+    virtually any type. So, you have a choice of containers and you can
+    choose what kind of values you would like to store in whatever
+    container you happen to be using at the time. For example, the STL has
+    a container called <tt>vector</tt>, which the most array-like of all
+    the STL containers, and in in fact it is often billed as a "better
+    array". This is everyone's favorite STL container, and we will use
+    it in the examples which follow.</p>
+    <p>Your C++ experience will have provided you with an opportunity to
+    use <em>pointers</em> to "point at" and manipulate array elements. STL
+    <em>iterators</em> are used to "point at" and manipulate STL container
+    elements in a manner quite analogous to the way in which pointers are
+    used in the array context. But ... each STL container class will have
+    its own kind of iterator, one which is most appropriate for that
+    particular container. And, in general, STL iterators are much "safer"
+    to use than old-fashioned pointers. Interestingly, though, those
+    "old-fashioned" pointers can be, and often are, used with STL
+    containers in the same way that STL iterators themselves are used,
+    bolstering the claim that an STL iterator is, after all, "just a
+    generalized pointer to an array".</p>
+    <p>And <em>algorithms</em> ... well, you know what they are. Often they
+    come in the form of stand-alone or "free" functions which usually take
+    in some data via a parameter list and perform some task and/or return
+    one or more computed values. And all of this is true of STL algorithms
+    as well. But ... where STL algorithms get their additional power and
+    flexibility is from the fact that many of their parameters are <em>STL
+    iterators</em> rather than STL containers. Since these iterators can
+    point at the elements of many different kinds of STL containers this
+    means that STL algorithms have a "built-in" ability to deal with a
+    variety of containers containing a variety of element types. In other
+    words, an algorithm can work on the elements of a container without
+    knowing or caring what kind of container it is.</p>
+    <h3>Pushing the analogies further with some specific (<tt>vector</tt>)
+    examples</h3>
+    <p>And now, let's cut to the chase. Consider the line of C++ code</p>
+<pre xml:space="preserve">
+vector&lt;int&gt; v(10);
+</pre>
+    <p>which declares a "vector of integers" of size 10, i.e. a place to
+    store 10 values of type <tt>int</tt>. To include such a declaration in
+    your program you would also need the following compiler include
+    directive:</p>
+<pre xml:space="preserve">
+#include &lt;vector&gt;
+</pre>
+    <p>The above declaration of <tt>v</tt> is somewhat analogous to the
+    line of code</p>
+<pre xml:space="preserve">
+int a[10];
+</pre>
+    <p>which declares an ordinary C++ "array of integers" of size 10, also
+    a place to store 10 values of type <tt>int</tt>. So ... what's the
+    difference, and why the big fuss about vectors? Well ... consider the
+    following points:</p>
+    <ol class="hardleft">
+      <li>
+        <big>Index type</big> First, the elements of <tt>v</tt> are
+        <tt>v[0]</tt>, <tt>v[1]</tt>, ... <tt>v[9]</tt>, just as the
+        elements of <tt>a</tt> are <tt>a[0]</tt>, <tt>a[1]</tt>, ...
+        <tt>a[9]</tt>, and both are used in the same way. But even here
+        there is a "hidden" and potentially confusing difference to be
+        aware of in the <em>type</em> of the index variable. To output the
+        values in the array <tt>a</tt> one would normally use a loop idiom
+        like the following: 
+<pre xml:space="preserve">
+int i;
+for (i=0; i&lt;10; i++) cout &lt;&lt; a[i];
+</pre>
+        If we try the same thing with vector <tt>v</tt>, i.e. 
+<pre xml:space="preserve">
+int i;
+for (i=0; i&lt;10; i++) cout &lt;&lt; v[i];
+</pre>
+        it may in fact work, but an up-to-date compiler will at least warn
+        you that the index variable <tt>i</tt> has the "wrong" type, and
+        the code should really be written like this: 
+<pre xml:space="preserve">
+vector&lt;int&gt;::size_type i;
+for (i=0; i&lt;10; i++) cout &lt;&lt; v[i];
+</pre>
+        The reason for this is that the <tt>int</tt> data type has values
+        (all the negative ones) that cannot possibly be valid indices for a
+        vector. Thus the <tt>vector</tt> class would like to be sure that
+        we always use non-negative index values when accessing vector
+        components and provides for us a <tt>typedef</tt> alias called
+        <tt>size_type</tt> (an unsigned integral type) for just this
+        purpose.
+      </li>
+      <li>
+        <big>A vector, unlike an array, has self-knowledge: it knows how
+        big it is</big> When outputting values for an array, the programmer
+        needs to know the size of the array. Another advantage of a vector
+        over an array is that (because the vector is a <em>class
+        object</em>) the vector knows its own size. Hence we can (and
+        should) write 
+<pre xml:space="preserve">
+vector&lt;int&gt;::size_type i;
+for (i=0; i&lt;v.size(); i++) cout &lt;&lt; v[i];
+</pre>
+        which will work for any vector of whatever size. We no longer need
+        to know and remember that (in the above case) the size of the
+        vector <tt>v</tt> is 10.
+      </li>
+      <li><big>Component initialization</big> Unlike <tt>a</tt>, <tt>v</tt>
+      is a <em>class object</em>, and we have used one of several
+      constructors from the <tt>vector</tt> container class to create
+      <tt>v</tt>. Among other things, this means that each element of
+      <tt>v</tt> is guaranteed to be initialized with the default value of
+      the component type (0 here, since the component type is
+      <tt>int</tt>). On the other hand, the elements of <tt>a</tt> may or
+      may not be initialized to 0, depending on where the declaration is
+      located in the program, for example.</li>
+      <li>
+        <big>Adding new elements</big> Once declared as above, the size of
+        <tt>a</tt> is fixed and cannot be altered later in the program. But
+        the vector class contains a <tt>push_back()</tt> member function
+        which can be used like this 
+<pre xml:space="preserve">
+v.push_back(17);
+</pre>
+        to add the value 17 (for example) to the end of the vector. After
+        execution of this statement the size of the vector <tt>v</tt> has
+        increased to 11 and <tt>v[10]</tt> contains the value 17. (Remember
+        that the first 10 values of <tt>v</tt> are all 0, and are found in
+        the locations with indices in the range 0..9.) This ability of a
+        vector to "grow" in order to accommodate the addition of new values
+        to its "back end" is one of the major advantages of vectors over
+        arrays.
+      </li>
+      <li>
+        <big>Initializing a vector with elements from an array</big>
+        Although declaring an empty array, as in 
+<pre xml:space="preserve">
+int a[0];
+</pre>
+        makes no sense, since nothing can ever be stored in it, declaring
+        an empty vector and then adding some values makes perfect sense: 
+<pre xml:space="preserve">
+vector&lt;int&gt; v;  //construct an empty vector to hold some integers
+v.push_back(3); // v now contains 3 in v[0]
+v.push_back(6); // v now contains 3 in v[0], 6 in v[1]
+v.push_back(4); // v now contains 3 in v[0], 6 in v[1], 4 in v[2]
+</pre>
+        This is clearly a rather laborious and inconvenient way to get
+        values into a vector. Since an array containing the same values can
+        be initialized with the statement 
+<pre xml:space="preserve">
+int a[3] = {3, 6, 4};
+</pre>
+        or even 
+<pre xml:space="preserve">
+int a[] = {3, 6, 4};
+</pre>
+        one might hope that something like 
+<pre xml:space="preserve">
+vector&lt;int&gt; v = {3. 6, 4}; //syntax error!
+</pre>
+        would work for vectors, but unfortunately (as the comment
+        indicates) this does not work. However, a useful way of combining
+        the old and the new to initialize a vector with a sequence of
+        specific values is illustrated by the following two lines of code: 
+<pre xml:space="preserve">
+int a[] = {3, 6, 4};   //initialize array a first
+vector&lt;int&gt; v(a, a+3); //construct vector v containing values from a
+</pre>
+        This vector definition (declaration with initialization) requires a
+        few words of explanation. We are using another constructor from the
+        <tt>vector</tt> class, this time the one that takes two input
+        parameters which are "iterators" (or in this case, ordinary
+        pointers acting as iterators) pointing at the beginning element,
+        and "one-past-the-last" element of a range of values to be placed
+        in the newly constructed vector. In this case the first parameter
+        (<tt>a</tt>), is a pointer to the first element of the array
+        <tt>a</tt>, and the second parameter (<tt>a+3</tt>) is a pointer to
+        the "first position beyond the last element" of the array
+        <tt>a</tt>. This notion of a "range" of elements being determined
+        by a pair of iterators (or pointers) pointing to the first element
+        and "one-past-the-last" element (as opposed to the last element
+        itself) of a sequence of values permeates the STL and is something
+        beginning STL programmers need to get a handle on right up front.
+        An even better way to create <tt>v</tt> with the values from
+        <tt>a</tt> would be 
+<pre xml:space="preserve">
+int a[] = {3, 6, 4}; //initialize array a first
+vector&lt;int&gt; v(a, a+sizeof(a)/sizeof(int)); //construct v with values from a
+</pre>
+        which works independently of the size of the array <tt>a</tt>.
+      </li>
+      <li>
+        <big>Vector iterators</big> The STL <tt>vector</tt> class provides
+        an <tt>iterator</tt> which can be used to access the component
+        values of any vector in the same way that ordinary pointers are
+        used to access array elements. The member function <tt>begin()</tt>
+        returns an <tt>iterator</tt> object pointing to the first component
+        of the vector on which it is invoked and the member function
+        <tt>end()</tt> returns an <tt>iterator</tt> object pointing to
+        one-past-the-last component. The fact that it is one-past-the-last
+        and not the last makes it convenient when writing a loop to process
+        all vector elements, as in the following example. 
+<pre xml:space="preserve">
+int a[] = {3, 6, 4}; //initialize array a first
+vector&lt;int&gt; v(a, a+sizeof(a)/sizeof(int)); //construct v with values from a
+vector&lt;int&gt;::iterator p; //declare an iterator for a vector of integers
+for (p=v.begin(); p!=v.end(); p++) cout &lt;&lt; *p &lt;&lt; " "; //output all values of v
+</pre>
+        Note that the <tt>iterator</tt> object <tt>p</tt> is incremented in
+        the same way that an ordinary array pointer would be incremented,
+        and that <tt>*p</tt> is used to dereference <tt>p</tt> and get
+        access to the value to which <tt>p</tt> is pointing, once again in
+        the same way that a pointer would be dereferenced to gain access to
+        an array element.
+      </li>
+      <li>
+        <big>Using algorithms and function objects with vectors</big> One
+        particularly nice feature of the STL is that it provides a large
+        collection of algorithms that perform many of the common
+        programming tasks that programmers frequently need to have done in
+        their programs. Most of those algorithms are available from the
+        <tt>&lt;algorithm&gt;</tt> header, but a few are located in the
+        <tt>&lt;numeric&gt;</tt> header. To quickly get a sense of how this
+        works, look at this code 
+<pre xml:space="preserve">
+#include &lt;algorithm&gt;
+...
+sort(v.begin(), v.end());
+</pre>
+        which shows the STL <tt>sort</tt> algorithm being used to sort the
+        values in a vector. By default this algorithm sorts in ascending
+        order and will work for a vector of any items whatsoever, as long
+        as <tt>operator&lt;()</tt> is defined for the components of
+        <tt>v</tt>, so that the sort algorithm knows what it means for one
+        component to precede another. If a sort in descending order is
+        required instead, this can be accomplished with 
+<pre xml:space="preserve">
+#include &lt;algorithm&gt;
+#include &lt;functional&gt;
+...
+sort(v.begin(), v.end(), greater&lt;T&gt;());
+</pre>
+        in which <tt>T</tt> must be the component type of <tt>v</tt>, and
+        the expression <tt>greater&lt;T&gt;()</tt> provides a <em>function
+        object</em> (from STL's built-in collection of function objects,
+        available from the header <tt>&lt;functional&gt;</tt>) that tells
+        the sort algorithm to change its thinking to consider one component
+        as preceding another when it is <em>greater than</em> the other
+        (which requires that <tt>operator&gt;()</tt> be defined for the
+        component type of the vector). Many STL algorithms have an
+        overloaded version that permits their default behavior to be
+        altered by providing an additional function object parameter (or
+        ordinary function parameter) which is used by the algorithm to help
+        it perform its task in a different way. 
+        <p>As a second example of an STL algorithm applied to a vector,
+        consider</p>
+<pre xml:space="preserve">
+#include &lt;algorithm&gt;
+...
+cout &lt;&lt; *max_element(v.begin(), v.end()) &lt;&lt; endl;
+</pre>
+        which outputs the "largest" value in the vector (whatever that
+        means for the given vector). The <tt>max_element</tt> algorithm
+        actually returns an <tt>iterator</tt> object pointing to the
+        largest value, rather than the largest value itself. This is why we
+        have to dereference the return value of the algorithm: to obtain,
+        for output, the value to which the returned <tt>iterator</tt>
+        object is pointing.
+      </li>
+      <li>
+        <big>Vector assignment and comparisons</big> A number of other
+        operations are available for vectors that that have no counterpart
+        when you are working with arrays. For example, it is possible to
+        assign one vector to another, as in 
+<pre xml:space="preserve">
+v1 = v2;
+</pre>
+        and the relational operators also work with vectors, so that you
+        can make tests like 
+<pre xml:space="preserve">
+if (v1 == v2)
+...
+</pre>
+        or 
+<pre xml:space="preserve">
+if (v1 &lt; v2)
+...
+</pre>
+        provided you understand how these things work. Assignment of
+        vectors works just like assignment always works (or should work)
+        ... the thing on the right of the assignment operator replaces the
+        thing on the left of the assignment operator. The relational
+        operators are potentially a little trickier. We can summarize the
+        situation by saying the comparisons are "lexicographic". That's a
+        big word meaning this: when two vectors are being compared (to see
+        if one is "less than" the other, for example), corresponding pairs
+        of components are compared (starting at the beginning) until a
+        determination can be made. How the vectors compare is determined by
+        how the first two components that are different compare. That is,
+        if the component in the first vector is less than the corresponding
+        component in the second vector, then the first vector is itself
+        less than the second vector. This is just like "alphabetic"
+        comparison, but instead of comparing letters you are comparing
+        components (whatever they may be). This of course implies that
+        components can in fact be compared.
+      </li>
+    </ol>
+    <h3>Now what?</h3>
+    <p>In this brief introduction you have seen just one of the STL
+    container types (vector) and you have seen how much more versatile
+    vectors are than arrays. You have also seen how STL algorithms can be
+    used to manipulate or "process" the components of a vector through
+    iterators. All of this just scratches the surface, of course, but it
+    should give you a reasonable sense of "how things work" in the STL, at
+    least enough to get you started.</p>
+    <p>What you need to do now is learn about some of the other STL
+    containers (deque, list, map, multimap, set, multiset) and container
+    adaptors (stack, queue, priority_queue), and get familiar with as many
+    of the STL algorithms as you can manage. In doing so you will also want
+    to learn more about how iterators behave and about the iterator
+    adaptors for streams that are very convenient for I/O operations. And
+    do not forget that function objects can be usefully employed in many
+    different situations when using the STL, so you should make sure that
+    function objects are in your personal STL toolkit if you expect to
+    become a competent STL programmer.</p>
+    <p>As you learn about these new STL features, you should be struck by
+    how much what you already know about vectors carries over to the other
+    containers, particularly if your very next step is to digest the <a
+    href="cont_vector.html">detail page on vectors</a> provided on this web
+    site. So ... that's what we recommend. Do note, however, that that page
+    is a reference page, not a tutorial page. But you will also find there
+    a large number of sample programs that should show you nearly all you
+    would ever need to know about vectors, and a few other things along the
+    way.</p>
+  </body>
+</html>
+
+<!-- Localized -->

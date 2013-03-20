@@ -1,0 +1,159 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Function Objects (Functors)</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Function Objects (Functors)</p>
+    <h3>Overview</h3>
+    <p>Function objects (also called <em>functors</em>) are an STL feature
+    that you may not employ immediately when you start using the STL. They
+    are, however, very useful in many situations and an STL facility with
+    which you should become acquainted. They give the STL a flexibility
+    that it would not otherwise have, and also contribute to STL
+    efficiency.</p>
+    <p>A function object (or functor) is simply any object of a class that
+    provides a definition for <tt>operator()</tt> What this means is that
+    if you then declare an object <tt>f</tt> of the class in which this
+    <tt>operator()</tt> is defined you can subsequently use that object
+    <tt>f</tt> just like you would use an "ordinary" function. For example,
+    you could have an assignment statement like</p>
+<pre xml:space="preserve">
+someValue = f(arg1, arg2);
+</pre>
+    <p>which is the same as</p>
+<pre xml:space="preserve">
+someValue = f.operator()(arg1, arg2);
+</pre>
+    <p>so long as <tt>operator()</tt> for the given class had been defined
+    to do the following two things:</p>
+    <ol class="hardleft">
+      <li>It must take two parameters (<tt>par1</tt> and <tt>par2</tt>,
+      say, of whatever type(s)), with <tt>arg1</tt> and <tt>arg2</tt> in
+      the above assignment statement being actual parameters of the
+      corresponding type(s).</li>
+      <li>It must return a value of the type of the variable
+      <tt>someValue</tt></li>
+    </ol>
+    <p>If you were only going to use a functor as illustrated in the
+    assignment statement example or the sample program given above, you
+    might as well use an ordinary function. In the STL, algorithms often
+    take a parameter which is a function (or functor) telling the algorithm
+    how to perform some part of its task, and functors are generally more
+    versatile and hence more useful for this purpose. In particular, the
+    built-in functors are objects of template classes, and so the same
+    computations performed by a given functor can be applied to different
+    types.</p>
+    <p>Binary functors (or ordinary binary functions) that return a
+    <em>boolean</em> value are called <em>binary predicates</em> or
+    <em>comparitors</em> or <em>comparison functions</em>. Unary functors
+    (or ordinary unary functions) that return a <em>boolean</em> value are
+    called <em>unary predicates</em>. Either variety of functor that
+    returns a boolean value may be referred to simply as a <em>predicate
+    function</em>.</p>
+    <h3 class="pagebreak">Programmer-defined functors of binary or unary
+    type</h3>
+    <p>Clearly any C++ programmer may define a class which includes an
+    overloaded <tt>operator()</tt>. Once this is done, that C++ programmer
+    just as clearly has a <em>programmer-defined functor</em> at his or her
+    disposal, a <em>binary functor</em> if it has two parameters and a
+    <em>unary functor</em> if it has a single paramter (for example).</p>
+    <h3 class="pagebreak">Built-in functors of binary type (available from
+    &lt;functional&gt;)</h3>
+    <p>In each of the functors of this section <tt>arg1</tt> and
+    <tt>arg2</tt> both have type <tt>T</tt>.</p>
+    <hr />
+    <h4>Arithmetic binary functors</h4>
+    <dl>
+      <dt>plus&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 +
+      arg2</tt>.</dd>
+      <dt>minus&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 -
+      arg2</tt>.</dd>
+      <dt>multiplies&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 *
+      arg2</tt>.</dd>
+      <dt>divides&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 /
+      arg2</tt>.</dd>
+      <dt>modulus&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 %
+      arg2</tt>.</dd>
+    </dl>
+    <hr />
+    <h4>Relational binary functors</h4>
+    <dl>
+      <dt>equal_to&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 ==
+      arg2</tt>.</dd>
+      <dt>not_equal_to&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 !=
+      arg2</tt>.</dd>
+      <dt>greater&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 &gt;
+      arg2</tt>.</dd>
+      <dt>greater_equal&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 &gt;=
+      arg2</tt>.</dd>
+      <dt>less&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 &lt;
+      arg2</tt>.</dd>
+      <dt>less_equal&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 &lt;=
+      arg2</tt>.</dd>
+    </dl>
+    <hr />
+    <h4>Logical binary functors</h4>
+    <dl>
+      <dt>logical_and&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 &amp;&amp;
+      arg2</tt>.</dd>
+      <dt>logical_or&lt;T&gt; f;</dt>
+      <dd><tt>f(arg1, arg2)</tt> returns the value <tt>arg1 ||
+      arg2</tt>.</dd>
+    </dl>
+    <h3>Built-in functors of unary type (available from
+    &lt;functional&gt;)</h3>
+    <p>In each of the functors of this section <tt>arg</tt> has type
+    <tt>T</tt>.</p>
+    <hr />
+    <h4>Arithmetic unary functor</h4>
+    <dl>
+      <dt>negate&lt;T&gt; f;</dt>
+      <dd><tt>f(arg)</tt> returns the value <tt>-arg</tt>.</dd>
+    </dl>
+    <hr />
+    <h4>Logical unary functor</h4>
+    <dl>
+      <dt>logical_not&lt;T&gt; f;</dt>
+      <dd><tt>f(arg)</tt> returns the value <tt>!arg</tt>.</dd>
+    </dl>
+    <h3>Sample Programs</h3>
+    <dl>
+      <dt><a
+      href="programs/function_objects/function_object.cpp2html">function_object.cpp</a>
+      | <a
+      href="programs/function_objects/function_object.exe">Windows_executable</a>
+      | <a
+      href="programs/function_objects/function_object.txt">program_output
+      (text)</a></dt>
+      <dd>Illustrates a very simple <em>function object</em>.</dd>
+      <dt><a
+      href="programs/function_objects/function_objects_stl.cpp2html">function_objects_stl.cpp</a>
+      | <a
+      href="programs/function_objects/function_objects_stl.exe">Windows_executable</a>
+      | <a
+      href="programs/function_objects/function_objects_stl.txt">program_output
+      (text)</a></dt>
+      <dd>Illustrates several STL built-in function objects.</dd>
+    </dl>
+  </body>
+</html>
+
+<!-- Localized -->

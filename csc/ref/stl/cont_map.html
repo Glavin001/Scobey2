@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>The STL map and multimap Containers</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL map and multimap Containers</p>
+    <p>The map and the multimap are both containers that manage key/value
+    pairs as single components. The essential difference between the two is
+    that in a map the keys must be unique, while a multimap permits
+    duplicate keys. In both containers, the sort order of components is the
+    sort order of the keys, with the values corresponding to keys
+    determining the order for duplicate keys in a multimap. Nearly
+    everything said here about maps is also true of multimaps, with minor
+    differences showing up in the <tt>count()</tt> member function and one
+    of the <tt>insert()</tt> member functions.</p>
+    <ul class="hardleft">
+      <li><a href="#constructors">Constructors and destructor</a></li>
+      <li><a href="#overloaded_ops">Overloaded operators</a></li>
+      <li><a href="#access">Member functions for accessing values</a></li>
+      <li><a href="#status">Member functions for reporting status</a></li>
+      <li><a href="#insertion">Member functions for inserting one or more
+      values</a></li>
+      <li><a href="#deletion">Member functions for deleting one or more
+      values</a></li>
+      <li><a href="#count_search">Member functions for counting and
+      searching</a></li>
+      <li><a href="#misc_funs">Miscellaneous member functions</a></li>
+      <li><a href="#misc_notes">Miscellaneous notes</a></li>
+      <li><a href="#sample_programs">Sample programs</a></li>
+      <li><a href="#prototypes">Member function prototypes</a></li>
+    </ul>
+    <h3><a id="constructors" name="constructors">Constructors and
+    destructor</a></h3>
+    <p>Default Constructor</p>
+    <dl>
+      <dt>map&lt;Ktype, Vtype&gt; m;</dt>
+      <dd>Construct an empty map <tt>m</tt> which can hold values of type
+      <span class="nowrap"><tt>pair&lt;Ktype, Vtype&gt;</tt></span>.</dd>
+    </dl>
+    <hr />
+    <p>Copy Constructor</p>
+    <p>There is, of course, only one copy constructor, but there are two
+    syntactic forms that invoke it, and both are shown.</p>
+    <dl>
+      <dt>map&lt;Ktype, Vtype&gt; m(otherMap);</dt>
+      <dd>Construct <tt>m</tt> as a copy of <tt>otherMap</tt>, whose
+      component type must be <span class="nowrap"><tt>pair&lt;Ktype,
+      Vtype&gt;</tt></span>. The copy has the same size as the
+      original.</dd>
+      <dt>map&lt;Ktype, Vtype&gt; m = otherMap;</dt>
+      <dd>Copy constructor (alternate usage syntax).</dd>
+    </dl>
+    <hr />
+    <p>Other Constructors</p>
+    <dl>
+      <dt>map&lt;Ktype, Vtype&gt; m(binPred);</dt>
+      <dd>Construct an empty map <tt>m</tt> which can hold values of type
+      <span class="nowrap"><tt>pair&lt;Ktype, Vtype&gt;</tt></span>, and
+      which uses <tt>binPred</tt> to sort keys.</dd>
+      <dt>map&lt;Ktype, Vtype&gt; m(inIterBegin, inIterEnd);</dt>
+      <dd>Construct <tt>m</tt> containing values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily map)
+      container, but whose component type is the same as the component type
+      of <tt>m</tt>.</dd>
+      <dt>map&lt;Ktype, Vtype&gt; m(inIterBegin, inIterEnd, binPred);</dt>
+      <dd>Construct <tt>m</tt> containing values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily map)
+      container, but whose component type is the same as the component type
+      of <tt>m</tt>, and which uses <tt>binPred</tt> to sort keys.</dd>
+    </dl>
+    <p>Destructor</p>
+    <dl>
+      <dt>m.~map&lt;Ktype, Vtype&gt;()</dt>
+      <dd>Destroy all components of <tt>m</tt> and free the associated
+      memory.</dd>
+    </dl>
+    <h3><a id="overloaded_ops" name="overloaded_ops">Overloaded
+    operators</a></h3>
+    <p>Assignment operator</p>
+    <dl>
+      <dt>m1 = m2</dt>
+      <dd>Assign <tt>m2</tt> to <tt>m1</tt>, and return the common value.
+      The map on the left of an assignment receives the values and size of
+      the one on the right.</dd>
+    </dl>
+    <hr />
+    <p>Relational operators</p>
+    <p>Maps are compared in the "lexicographic ordering" sense. This
+    essentially means that the two maps are compared by comparing their
+    pair values pairwise, starting at the beginning, with each comparison
+    looking at two pair values in corresponding positions, until a
+    determination of the relationship between the two maps can be made.
+    Only maps of the same component type can be compared of course, and the
+    <tt>==</tt> and <tt>&lt;</tt> operators must be defined for the types
+    used as the Ktype and Vtype for the pairs in the component type of the
+    maps.</p>
+    <dl>
+      <dt>m1 == m2</dt>
+      <dd>Return <tt>true</tt> if <tt>m1</tt> and <tt>m2</tt> have the same
+      component type and the same size, and the components with the same
+      keys have the same value; otherwise return <tt>false</tt>.</dd>
+      <dt>m1 != m2</dt>
+      <dd>Return <tt>true</tt> if <tt>m1==m2</tt> returns <tt>false</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>m1 &lt; m2</dt>
+      <dd>Return <tt>true</tt> if, in the pairwise comparison of values
+      from <tt>m1</tt> and <tt>m2</tt>, in the first pair in which the two
+      values differ, the one from <tt>m1</tt> is less than the one from
+      <tt>m2</tt>; otherwise return <tt>false</tt>.</dd>
+      <dt>m1 &lt;= m2</dt>
+      <dd>Return <tt>true</tt> if either <tt>m1&lt;m2</tt> or
+      <tt>m1==m2</tt> is <tt>true</tt>; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>m1 &gt; m2</dt>
+      <dd>Return <tt>true</tt> if <tt>m2&lt;m1</tt> is <tt>true</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>m1 &gt;= m2</dt>
+      <dd>Return <tt>true</tt> if either <tt>m1&gt;m2</tt> or
+      <tt>m1==m2</tt> is <tt>true</tt>, otherwise return
+      <tt>false</tt>.</dd>
+    </dl>
+    <hr />
+    <p>operator[ ]</p>
+    <dl>
+      <dt>m[key]</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      component of <tt>m</tt> whose key value is <tt>key</tt>, if this
+      component exists. If this component does not exist, insert a new
+      component into <tt>m</tt>, the value of whose key is <tt>key</tt>,
+      and for which the corresponding value is the default value of type
+      Vtype.</dd>
+    </dl>
+    <h3><a id="access" name="access">Member functions for accessing
+    values</a></h3>
+    <p>Each of the member functions in this section has both a
+    <tt>const</tt> and a non-<tt>const</tt> version.</p>
+    <dl>
+      <dt>m.begin()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the first component of <tt>m</tt>.</dd>
+      <dt>m.end()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to one-past-the-last component of <tt>m</tt>.</dd>
+      <dt>m.rbegin()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to the last component of
+      <tt>m</tt>.</dd>
+      <dt>m.rend()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to one-before-the-first
+      component of <tt>m</tt>.</dd>
+    </dl>
+    <h3><a id="status" name="status">Member functions for reporting
+    status</a></h3>
+    <dl>
+      <dt>m.max_size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the maximum
+      possible size of <tt>m</tt>, which will depend on the size of the
+      component type <tt>&lt;Ktype, Vtype&gt;</tt> of the map object, and
+      the amount of available memory.</dd>
+      <dt>m.size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the number of
+      values currently in <tt>m</tt>.</dd>
+      <dt>m.empty()</dt>
+      <dd>Return <tt>true</tt> if <tt>m</tt> is empty (contains zero
+      values); otherwise return <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="insertion" name="insertion">Member functions for inserting
+    one or more values</a></h3>
+    <dl>
+      <dt>m.insert(pVal)</dt>
+      <dd>
+        Try to insert the pair value <tt>pVal</tt> into <tt>m</tt> and
+        return 
+        <ul class="hardleft">
+          <li>for a map, a value of type <tt>pair&lt;iterator,
+          bool&gt;</tt>, with the <tt>iterator</tt> value pointing at the
+          new component, if it actually went into the map, and the
+          <tt>bool</tt> value being <tt>true</tt> if the insertion
+          succeeded; otherwise the iterator points at the pair value that
+          was already in the map, and the <tt>bool</tt> value is
+          <tt>false</tt></li>
+          <li>for a multimap, an iterator pointing at the newly inserted
+          component</li>
+        </ul>
+      </dd>
+      <dt>m.insert(iter, pVal)</dt>
+      <dd>Try to insert the pair value <tt>pVal</tt> into <tt>m</tt>, using
+      <tt>iter</tt> as a "hint" for where the search for the insertion
+      point should begin, and return an iterator pointing to the new
+      component, or to the old component if the value was already in
+      <tt>m</tt>.</dd>
+      <dt>m.insert(inIterBegin, inIterEnd)</dt>
+      <dd>Try to insert into <tt>m</tt> the pair values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily map)
+      container, but whose values must be of the same type as the values of
+      <tt>m</tt>.</dd>
+    </dl>
+    <h3><a id="deletion" name="deletion">Member functions for deleting one
+    or more values</a></h3>
+    <dl>
+      <dt>m.clear()</dt>
+      <dd>Delete all values of <tt>m</tt>. The size of <tt>m</tt> is
+      reduced to zero.</dd>
+      <dt>m.erase(kVal)</dt>
+      <dd>Delete all components for which the key is <tt>kVal</tt> and
+      return the number of deleted values (0 or 1). The size of <tt>m</tt>
+      is reduced by this value.</dd>
+      <dt>m.erase(iter)</dt>
+      <dd>Delete the value of <tt>m</tt> pointed to by <tt>iter</tt>. The
+      size of <tt>m</tt> is reduced by one.</dd>
+      <dt>m.erase(iterBegin, iterEnd)</dt>
+      <dd>Delete all values of <tt>m</tt> from the range
+      <tt>[iterBegin,iterEnd)</tt>. The size of <tt>m</tt> is reduced by
+      the number of values in this range.</dd>
+    </dl>
+    <h3><a id="count_search" name="count_search">Member functions for
+    counting and searching</a></h3>
+    <dl>
+      <dt>m.count(kVal)</dt>
+      <dd>Return the number of components in <tt>m</tt> which have their
+      key equal to <tt>kVal</tt>. This number is restricted to be 0 or 1
+      for a map, since keys are unique.</dd>
+      <dt>m.find(kVal)</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the component in <tt>m</tt> in which the key value is
+      <tt>kVal</tt>, or to one-past-the-last if this component does not
+      exist.</dd>
+      <dt>m.lower_bound(kVal)</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the first component in <tt>m</tt> in which the key value is &gt;=
+      <tt>kVal</tt>, or to one-past-the-last if this component does not
+      exist. (This is the first place that a component with a key value of
+      <tt>kVal</tt> could be inserted.)</dd>
+      <dt>m.upper_bound(kVal)</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the first component in <tt>m</tt> in which the key value is &gt;
+      <tt>kVal</tt>, or to one-past-the-last if this component does not
+      exist. (This is the last place that a component with a key value of
+      <tt>kVal</tt> could be inserted.)</dd>
+      <dt>m.equal_range(kVal)</dt>
+      <dd>Return a pair with both components of type <tt>iterator</tt> (or
+      <tt>const_iterator</tt>) containing the same two iterators that would
+      be returned by <tt>lower_bound()</tt> and <tt>upper_bound()</tt> (in
+      that order).</dd>
+    </dl>
+    <h3><a id="misc_funs" name="misc_funs">Miscellaneous member
+    functions</a></h3>
+    <dl>
+      <dt>m.swap(otherMap)</dt>
+      <dd>Exchange values in <tt>m</tt> with those in <tt>otherMap</tt>.
+      The sizes are swapped as well.</dd>
+      <dt>m.key_comp()</dt>
+      <dd>Return the function object used to compare values of type
+      <tt>Ktype</tt> (the type of the first component of the pairs stored
+      in the map).</dd>
+      <dt>m.value_comp()</dt>
+      <dd>Return the function object used to compare values of type
+      <tt>Vtype</tt> (the type of the second component of the pairs stored
+      in the map).</dd>
+      <dt>m.getallocator()</dt>
+      <dd>Return the allocator of <tt>m</tt>. (This is possibly the most
+      infrequently used of all member functions of the map class.)</dd>
+    </dl>
+    <h3 class="miscnotes"><a id="misc_notes"
+    name="misc_notes">Miscellaneous notes</a></h3>
+    <dl>
+      <dt>The somewhat unusual behavior of m[kVal] for maps</dt>
+      <dd>If you have used the STL vector and deque container classes, then
+      you will have certain expectations about the use of m[kVal] in the
+      context of the map container class. So, be sure to read carefully the
+      description of the behavior of <tt>operator[ ]</tt> for maps (see the
+      relevant section above).</dd>
+      <dt>Implementation</dt>
+      <dd>Standard C++ does not say how the STL containers and algorithms
+      must be implemented. It does, however, state certain constraints,
+      such as complexity constraints, to which each implementation must
+      adhere. Thus it is much better to base your programs on the STL's
+      performance guarantees, rather than upon any assumption about how a
+      particular feature, like the map or multimap classes, may be
+      implemented. As users, all we have a right to assume is that maps and
+      multimaps sort their components automatically according to the sort
+      order of the keys in the key/value pairs. That having been said, we
+      can also say that maps and multimaps are generally implelmented using
+      some variation of a balanced binary search tree, not because the
+      Standard mandates this, but because that is the most logical choice,
+      given the perfomance constraints imposed on these two
+      containers.</dd>
+    </dl>
+    <h3 class="sampleprogs"><a id="sample_programs"
+    name="sample_programs">Sample programs</a></h3>
+    <p>There are two groups of sample programs:</p>
+    <ul>
+      <li>The first group involves only STL maps and generic C++.</li>
+      <li>The second group highlights the differences between maps and
+      multimaps.</li>
+    </ul>
+    <p>The programs should be studied in the sequence given, since the
+    description of each new sample program in the sequence mentions only
+    the new features illustrated for the first time in that particular
+    program, and features seen in earlier sample programs will continue to
+    reappear in later programs.</p>
+    <p>All of the programs have been compiled and run successfully under
+    Microsoft Visual Studio .NET 2005, unless otherwise noted.</p>
+    <h4>Programs involving only maps (and generic C++)</h4>
+    <dl>
+      <dt><a href="programs/map/map01.cpp2html">map01.cpp</a> | <a
+      href="programs/map/map01.exe">Windows_executable</a> | <a
+      href="programs/map/map01.txt">program_output (text)</a></dt>
+      <dd>Illustrates the default map constructor, inserting and accessing
+      map values with <span class="nowrap"><tt>m[kVal]</tt></span>, and the
+      member functions <tt>size()</tt> and <tt>empty()</tt>.</dd>
+      <dt><a href="programs/map/map02.cpp2html">map02.cpp</a> | <a
+      href="programs/map/map02.exe">Windows_executable</a> | <a
+      href="programs/map/map02.txt">program_output (text)</a></dt>
+      <dd>Illustrates the copy constructor and the overloaded assignment
+      operator <tt>=</tt> for maps.</dd>
+      <dt><a href="programs/map/map03.cpp2html">map03.cpp</a> | <a
+      href="programs/map/map03.exe">Windows_executable</a> | <a
+      href="programs/map/map03.txt">program_output (text)</a></dt>
+      <dd>Illustrates member function <tt>max_size()</tt>, and how the
+      maximum size for a map object depends on the size of its component
+      type.</dd>
+      <dt><a href="programs/map/map04.cpp2html">map04.cpp</a> | <a
+      href="programs/map/map04.exe">Windows_executable</a> | <a
+      href="programs/map/map04.txt">program_output (text)</a></dt>
+      <dd>Illustrates the unusual behavior of <tt>m[kVal]</tt>.</dd>
+      <dt><a href="programs/map/map05.cpp2html">map05.cpp</a> | <a
+      href="programs/map/map05.exe">Windows_executable</a> | <a
+      href="programs/map/map05.txt">program_output (text)</a></dt>
+      <dd>Illustrates another map constructor, the default (bidirectional)
+      iterator for the map class, member functions <tt>begin()</tt> and
+      <tt>end()</tt>, and the use of operators <tt>=</tt>, <tt>++</tt>,
+      <tt>--</tt>, <tt>==</tt>, <tt>!=</tt>, <tt>-&gt;</tt> and <tt>*</tt>
+      with map iterators.</dd>
+      <dt><a href="programs/map/map06.cpp2html">map06.cpp</a> | <a
+      href="programs/map/map06.exe">Windows_executable</a> | <a
+      href="programs/map/map06.txt">program_output (text)</a></dt>
+      <dd>Illustrates more map construction and manipulation, as well as
+      the use of the <tt>make_pair()</tt> function from
+      <tt>&lt;utility&gt;</tt> to create some pairs for a map.</dd>
+      <dt><a href="programs/map/map07.cpp2html">map07.cpp</a> | <a
+      href="programs/map/map07.exe">Windows_executable</a> | <a
+      href="programs/map/map07.txt">program_output (text)</a></dt>
+      <dd>Illustrates reverse iterators for the map class, as well as
+      member functions <tt>rbegin()</tt> and <tt>rend()</tt>.</dd>
+      <dt><a href="programs/map/map08.cpp2html">map08.cpp</a> | <a
+      href="programs/map/map08.exe">Windows_executable</a> | <a
+      href="programs/map/map08.txt">program_output (text)</a></dt>
+      <dd>Illustrates a typical use of a <tt>const</tt> iterator.</dd>
+      <dt><a href="programs/map/map09.cpp2html">map09.cpp</a> | <a
+      href="programs/map/map09.exe">Windows_executable</a> | <a
+      href="programs/map/map09.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>count()</tt> member function.</dd>
+      <dt><a href="programs/map/map10.cpp2html">map10.cpp</a> | <a
+      href="programs/map/map10.exe">Windows_executable</a> | <a
+      href="programs/map/map10.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>find()</tt> member function.</dd>
+      <dt><a href="programs/map/map11.cpp2html">map11.cpp</a> | <a
+      href="programs/map/map11.exe">Windows_executable</a> | <a
+      href="programs/map/map11.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>insert()</tt> member function.</dd>
+      <dt><a href="programs/map/map12.cpp2html">map12.cpp</a> | <a
+      href="programs/map/map12.exe">Windows_executable</a> | <a
+      href="programs/map/map12.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>clear()</tt> and <tt>erase()</tt> member
+      functions.</dd>
+      <dt><a href="programs/map/map13.cpp2html">map13.cpp</a> | <a
+      href="programs/map/map13.exe">Windows_executable</a> | <a
+      href="programs/map/map13.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>lower_bound()</tt> member function.</dd>
+      <dt><a href="programs/map/map14.cpp2html">map14.cpp</a> | <a
+      href="programs/map/map14.exe">Windows_executable</a> | <a
+      href="programs/map/map14.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>upper_bound()</tt> member function.</dd>
+      <dt><a href="programs/map/map15.cpp2html">map15.cpp</a> | <a
+      href="programs/map/map15.exe">Windows_executable</a> | <a
+      href="programs/map/map15.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>equal_range()</tt> member function.</dd>
+      <dt><a href="programs/map/map16.cpp2html">map16.cpp</a> | <a
+      href="programs/map/map16.exe">Windows_executable</a> | <a
+      href="programs/map/map16.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>swap()</tt> member function.</dd>
+      <dt><a href="programs/map/map17.cpp2html">map17.cpp</a> | <a
+      href="programs/map/map17.exe">Windows_executable</a> | <a
+      href="programs/map/map17.txt">program_output (text)</a></dt>
+      <dd>Illustrates how the relational operators can be used to compare
+      one map with another.</dd>
+      <dt><a href="programs/map/map18.cpp2html">map18.cpp</a> | <a
+      href="programs/map/map18.exe">Windows_executable</a> | <a
+      href="programs/map/map18.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of a map to create a "phone book".</dd>
+    </dl>
+    <h4>Programs highlighting the differences between maps and
+    multimaps</h4>
+    <p>Since the multimap interface is very nearly the same as the map
+    interface, the sample programs in this section are designed to
+    highlight the differences between maps and multimaps.</p>
+    <dl>
+      <dt><a href="programs/map/multimap01.cpp2html">multimap01.cpp</a> |
+      <a href="programs/map/multimap01.exe">Windows_executable</a> | <a
+      href="programs/map/multimap01.txt">program_output (text)</a></dt>
+      <dd>Illustrates the difference in behavior when you try to insert
+      pairs with duplicate keys into a map and into a multimap.</dd>
+      <dt><a href="programs/map/multimap02.cpp2html">multimap02.cpp</a> |
+      <a href="programs/map/multimap02.exe">Windows_executable</a> | <a
+      href="programs/map/multimap02.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to find the first of several duplicate keys and
+      then process all components with that key.</dd>
+      <dt><a href="programs/map/multimap03.cpp2html">multimap03.cpp</a> |
+      <a href="programs/map/multimap03.exe">Windows_executable</a> | <a
+      href="programs/map/multimap03.txt">program_output (text)</a></dt>
+      <dd>Illustrates why a multimap makes a "better phone book" than the
+      map did when we used a map for the same purpose in map18.cpp.</dd>
+    </dl>
+    <h3 class="prototypes"><a id="prototypes" name="prototypes">Member
+    function prototypes</a></h3>
+    <p>For enhanced readability in each of the prototypes given below, each
+    parameter in each parameter list appears on a separate line. Also, some
+    formatting liberties are taken, in the interest of greater readability.
+    For example, rather than aligning all prototypes at the left margin,
+    <tt>const</tt> and non-<tt>const</tt> versions of a member function are
+    aligned in such a way as to allow the reader to more easily compare the
+    two visually.</p>
+    <hr />
+    <p>Template specification for the map class</p>
+<pre xml:space="preserve">
+template&lt;class Ktype,
+         class Vtype,
+         class BinaryPred less&lt;Ktype&gt;,
+         class Allocator = allocator&lt;Ktype, Vtype&gt; &gt;
+class map { ... }
+</pre>
+    <hr />
+    <p>Constructors</p>
+<pre xml:space="preserve">
+explicit map(const BinaryPred&amp; binPred = BinaryPred(),
+             const Allocator&amp; a = Allocator());
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+map(InIterator inIterBegin,
+    InIterator inIterEnd,
+    const BinaryPred&amp; binPred = BinaryPred(),
+    const Allocator&amp; a = Allocator());
+</pre>
+    <hr />
+    <p>Copy Constructor</p>
+<pre xml:space="preserve">
+map(const map&lt;Ktype, Vtype, BinaryPred, Allocator&gt;&amp; otherMap);
+</pre>
+    <hr />
+    <p>Destructor</p>
+<pre xml:space="preserve">
+~map();
+</pre>
+    <hr />
+    <p>begin</p>
+<pre xml:space="preserve">
+      iterator begin();
+const_iterator begin() const;
+</pre>
+    <hr />
+    <p>clear</p>
+<pre xml:space="preserve">
+void clear();
+</pre>
+    <hr />
+    <p>count</p>
+<pre xml:space="preserve">
+size_type count(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>empty</p>
+<pre xml:space="preserve">
+bool empty() const;
+</pre>
+    <hr />
+    <p>end</p>
+<pre xml:space="preserve">
+      iterator end();
+const_iterator end() const;
+</pre>
+    <hr />
+    <p>equal_range</p>
+<pre xml:space="preserve">
+            pair&lt;iterator, iterator&gt; equal_range(const Ktype&amp; kVal);
+pair&lt;const_iterator, const_iterator&gt; equal_range(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>erase</p>
+<pre xml:space="preserve">
+size_type erase(const Ktype&amp; kVal);
+     void erase(iterator iter);
+     void erase(iterator iterBegin,
+                iterator iterEnd);
+</pre>
+    <hr />
+    <p>find</p>
+<pre xml:space="preserve">
+      iterator find(const Ktype&amp; kVal);
+const_iterator find(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>get_allocator</p>
+<pre xml:space="preserve">
+allocator_type get_allocator() const;
+</pre>
+    <hr />
+    <p>insert</p>
+<pre xml:space="preserve">
+pair&lt;iterator, bool&gt; insert(const pair&lt;Ktype, Vtype&gt;&amp; vVal);
+</pre>
+<pre xml:space="preserve">
+iterator insert(iterator iter,
+                const pair&lt;Ktype, Vtype&gt;&amp; vVal);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void insert(InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>key_comp</p>
+<pre xml:space="preserve">
+key_compare key_comp() const;
+</pre>
+    <hr />
+    <p>lower_bound</p>
+<pre xml:space="preserve">
+      iterator lower_bound(const Ktype&amp; kVal);
+const_iterator lower_bound(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>max_size</p>
+<pre xml:space="preserve">
+size_type max_size() const;
+</pre>
+    <hr />
+    <p>operator[ ]</p>
+<pre xml:space="preserve">
+      reference operator[](size_type i);
+const_reference operator[](size_type i) const;
+</pre>
+    <hr />
+    <p>rbegin</p>
+<pre xml:space="preserve">
+      reverse_iterator rbegin();
+const_reverse_iterator rbegin() const;
+</pre>
+    <hr />
+    <p>rend</p>
+<pre xml:space="preserve">
+      reverse_iterator rend();
+const_reverse_iterator rend() const;
+</pre>
+    <hr />
+    <p>size</p>
+<pre xml:space="preserve">
+size_type size() const;
+</pre>
+    <hr />
+    <p>swap</p>
+<pre xml:space="preserve">
+void swap(map&lt;T, Allocator&gt;&amp; otherMap);
+</pre>
+    <hr />
+    <p>upper_bound</p>
+<pre xml:space="preserve">
+      iterator upper_bound(const Ktype&amp; kVal);
+const_iterator upper_bound(const Ktype&amp; kVal) const;
+</pre>
+    <hr />
+    <p>value_comp</p>
+<pre xml:space="preserve">
+value_compare value_comp() const;
+</pre>
+  </body>
+</html>
+
+<!-- Localized -->

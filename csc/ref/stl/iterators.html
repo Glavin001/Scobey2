@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Iterators</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Iterators and Iterator Adaptors</p>
+    <p>An STL iterator may be thought of as a generalized array pointer,
+    which usually (but not always) points to a container component and is
+    used to provide access to the value in that component for various
+    purposes. This page contains a discussion of what is meant by an STL
+    "range", and five tables:</p>
+    <ol class="hardleft">
+      <li>A table showing the five iterator types and the operations each
+      provides.</li>
+      <li>A table showing the type of iterator provided by each
+      (first-class) container with its <tt>iterator</tt> typedef. (The
+      container adaptor classes&mdash;stack, queue and
+      priority_queue&mdash; do not support iterators of any kind.)</li>
+      <li>A table of iterator adaptors used with streams for input and
+      output.</li>
+      <li>A table of iterator adaptors used for insertion.</li>
+      <li>A table of useful iterator functions.</li>
+    </ol>
+    <h3>What is meant by an STL <em>range</em>?</h3>
+    <p>One of the first ideas a programmer needs to grasp when dealing with
+    the STL is the idea of an STL <em>range</em>, as given by a pair of
+    iterators.</p>
+    <p>Probably the best analogy for an STL range is the notion of a
+    half-open interval of integer values in mathematics, for which the
+    notation is <span class="nowrap"><tt>[a,b)</tt></span>, where the
+    relationship of <tt>a</tt> to <tt>b</tt> is understood to be <span
+    class="nowrap"><tt>a &lt; b</tt></span>. This notation means the
+    collection of all values from <tt>a</tt> to <tt>b</tt>, including
+    <tt>a</tt> but <em>not</em> including <tt>b</tt>. Similar notation may
+    have any of the four possible combinations of round and square
+    brackets, and the meaning is that the value adjacent to a square
+    bracket <em>is</em> in the set, but the value adjacent to a round
+    bracket is <em>not</em> in the set. In all cases, all values strictly
+    between the two values <tt>a</tt> and <tt>b</tt> <em>are</em> in the
+    set.</p>
+    <p>In the context of the STL we use a similar notation to mean a
+    similar thing. For example, we might use <span
+    class="nowrap"><tt>[iterBegin,iterEnd)</tt></span> to refer to the
+    collection of all iterator values from <tt>iterBegin</tt> to
+    <tt>iterEnd</tt>, including <tt>iterBegin</tt> but not including
+    <tt>iterEnd</tt>. This is a rocky shoal upon which many an STL
+    programmer has foundered (particularly beginners).</p>
+    <h3 class="pagebreak">The five iterator types</h3>
+    <p>Any given iterator is a class object, and there are (conceptually)
+    five types of iterators, as shown in the table below. These iterators
+    are listed in order from "most powerful" (random access iterators) to
+    "least powerful" (output iterators).</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Iterators and their operations">
+      <tr>
+        <th valign="top">Iterator Type</th>
+        <th valign="top">Behavioral Description</th>
+        <th valign="top">Operations Supported</th>
+      </tr>
+      <tr>
+        <td valign="top">random access
+        <br />
+         (most powerful)</td>
+        <td valign="top">Store and retrieve values
+        <br />
+         Move forward and backward
+        <br />
+         Access values randomly</td>
+        <td valign="middle"><tt>* = ++ &ndash;&gt; == != &ndash;&ndash;
+        <br />
+         + &ndash; [] &lt; &gt; &lt;= &gt;= += &ndash;=</tt></td>
+      </tr>
+      <tr>
+        <td valign="top">bidirectional</td>
+        <td valign="top">Store and retrieve values
+        <br />
+         Move forward and backward</td>
+        <td valign="middle"><tt>* = ++ &ndash;&gt; == !=
+        &ndash;&ndash;</tt></td>
+      </tr>
+      <tr>
+        <td valign="top">forward</td>
+        <td valign="top">Store and retrieve values
+        <br />
+         Move forward only</td>
+        <td valign="middle"><tt>* = ++ &ndash;&gt; == !=</tt></td>
+      </tr>
+      <tr>
+        <td valign="top">input</td>
+        <td valign="top">Retrieve but not store values
+        <br />
+         Move forward only</td>
+        <td valign="middle"><tt>* = ++ &ndash;&gt; == !=</tt></td>
+      </tr>
+      <tr>
+        <td valign="top">output
+        <br />
+         (least powerful)</td>
+        <td valign="top">Store but not retrieve values
+        <br />
+         Move forward only</td>
+        <td valign="middle"><tt>* = ++</tt></td>
+      </tr>
+    </table>
+    <p>Some notes on the above table:</p>
+    <ul class="hardleft">
+      <li>In the iterator descriptions we could just as easily have used
+      the terms "read" and "write" where we used "retrieve" and "store".
+      The "reading and writing" terminology is particularly appropriate if
+      the iterator in question is being used on an "input stream" or
+      "output stream", either of which may often be regarded as a
+      "container" in the STL sense.</li>
+      <li>Element access for reading and writing is performed via the
+      <tt>*</tt> dereference operator, in a manner precisely analogous to
+      the way in which this operator is employed in the "usual" pointer
+      context.</li>
+      <li>In general, if a certain kind of iterator is required for a
+      certain kind of access in a given context, a more powerful iterator
+      can also be used for the same kind of access in the same
+      context.</li>
+    </ul>
+    <h3 class="pagebreak">Container classes and their associated iterator
+    types</h3>
+    <p>The table below shows, first of all, that the container adaptors
+    have <em>no</em> iterators. Each of the other classes (the three
+    sequential containers and the four associative containers) has a
+    default iterator of the type shown. Any such iterator is obtained by
+    declaring an object in a manner analogous to the declaration
+    <br />
+     <tt>vector&lt;int&gt;::iterator iter;</tt>
+    <br />
+     which supplies an iterator <tt>iter</tt> capable of pointing at the
+    elements in a vector container of values of type <tt>int</tt>. Each of
+    the seven container classes that have iterators has a typedef name
+    called <tt>iterator</tt> which is an alias for the class (i.e., the
+    type) of iterator that "goes with" that particular container class of
+    values. There is more to the story, of course, but that gives the
+    general idea.</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Containers and their iterators">
+      <tr>
+        <th valign="top">Container Class</th>
+        <th valign="top">Iterator Type</th>
+        <th valign="top">Container Category</th>
+      </tr>
+      <tr>
+        <td valign="top">vector</td>
+        <td valign="top">random access</td>
+        <td align="center" valign="middle" rowspan="3">sequential</td>
+      </tr>
+      <tr>
+        <td valign="top">deque</td>
+        <td valign="top">random access</td>
+      </tr>
+      <tr>
+        <td valign="top">list</td>
+        <td valign="top">bidirectional</td>
+      </tr>
+      <tr>
+        <td valign="top">set</td>
+        <td valign="top">bidirectional</td>
+        <td align="center" valign="middle" rowspan="4">associative</td>
+      </tr>
+      <tr>
+        <td valign="top">multiset</td>
+        <td valign="top">bidirectional</td>
+      </tr>
+      <tr>
+        <td valign="top">map</td>
+        <td valign="top">bidirectional</td>
+      </tr>
+      <tr>
+        <td valign="top">multimap</td>
+        <td valign="top">bidirectional</td>
+      </tr>
+      <tr>
+        <td valign="top">stack</td>
+        <td valign="top">none</td>
+        <td align="center" valign="middle" rowspan="3">adaptor</td>
+      </tr>
+      <tr>
+        <td valign="top">queue</td>
+        <td valign="top">none</td>
+      </tr>
+      <tr>
+        <td valign="top">priority_queue</td>
+        <td valign="top">none</td>
+      </tr>
+    </table>
+    <h3 class="pagebreak" id="stream_iterators">Iterator adaptors for
+    streams (stream iterators)</h3>
+    <p>Sometimes a class will have the functionality you seek but not the
+    right interface for accessing that functionality. For example, the STL
+    <tt>copy()</tt> algorithm requires a pair of input iterators as its
+    first two parameters to give the range of values to be copied. An
+    istream object can act as a source of such data values but it does not
+    have any iterators that the copy algorithm can use.</p>
+    <p>Similarly the third parameter of the <tt>copy()</tt> algorithm is an
+    output iterator that directs the copied values to their proper
+    destination. That destination could be an output stream but output
+    streams do not directly provide any output iterators.</p>
+    <p>An <em>adaptor class</em> is one that acts like a "translator" by
+    "adapting" the messages you want to send to produce messages that the
+    other class object wants to receive.</p>
+    <p>There is an iterator adaptor class called <tt>istream_iterator</tt>
+    that provides the interface that the <tt>copy()</tt> algorithm expects
+    for input and translates requests from this algorithm into appropriate
+    <tt>istream</tt> operations. And there is another one called
+    <tt>ostream_iterator</tt> that provides the interface that the
+    <tt>copy()</tt> algorithm expects for output and translates requests
+    from the algorithm into appropriate <tt>ostream</tt> operations.</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Stream iterators">
+      <tr>
+        <th valign="top">Stream</th>
+        <th valign="top">Iterator Adaptor</th>
+      </tr>
+      <tr>
+        <td valign="top">istream</td>
+        <td valign="top">istream_iterator
+        <br />
+         istreambuf_iterator</td>
+      </tr>
+      <tr>
+        <td valign="top">ostream</td>
+        <td valign="top">ostream_iterator
+        <br />
+         ostreambuf_iterator</td>
+      </tr>
+    </table>
+    <dl>
+      <dt><a
+      href="programs/iterators/stream_iterators.cpp2html">stream_iterators.cpp</a>
+      | <a
+      href="programs/iterators/stream_iterators.exe">Windows_executable</a>
+      | <a href="programs/iterators/stream_iterators.txt">program_output
+                                  (text)</a></dt>
+      <dd>Illustrates the use of both input and output stream iterators
+      with standard input and output and files, and uses the STL
+      <tt>copy()</tt> and <tt>transform()</tt> algorithms.</dd>
+    </dl>
+    <h3 class="pagebreak"  id="insert_iterators">Iterator adaptors for insertion (insert
+    iterators)</h3>
+    <p>Inserters (also called "insert iterators") are "iterator adaptors"
+    that permit algorithms (the <tt>copy</tt> algorithm, for example) to
+    operate in insert mode rather than overwrite mode, which is the
+    default. Thus they solve the problem that crops up when an algorithm
+    tries to write elements to a destination container not already big
+    enough to hold them, by making the destination grow as needed. There
+    are three kinds of inserters, as shown in the table below:</p>
+    <ol class="hardleft">
+      <li>The back_inserter(), which can be used if the recipient container
+      supports the push_back() member function.</li>
+      <li>The front_inserter(), which can be used if the recipient
+      container supports the push_front() member function.</li>
+      <li>The inserter(), which can be used if the recipient container
+      supports the insert() member function.</li>
+    </ol>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Containers and their iterators">
+      <tr>
+        <td valign="top">
+        <tt>back_inserter(container_supporting_push_back)</tt>
+        <br />
+         Used to permit an algorithm to operate in "insert mode" at the
+        "back" of a container that supports the push_back() member
+        function.</td>
+      </tr>
+      <tr>
+        <td valign="top">
+        <tt>front_inserter(container_supporting_push_front)</tt>
+        <br />
+         Used to permit an algorithm to operate in "insert mode" at the
+        "front" of a container that supports the push_front() member
+        function.</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>inserter(container_supporting_insert, insert_start_location)</tt>
+        <br />
+         Used to permit an algorithm to operate in "insert mode" at any
+        "interior" point of a container that supports the insert() member
+        function.</td>
+      </tr>
+    </table>
+    <dl>
+      <dt><a
+      href="programs/iterators/back_inserters.cpp2html">back_inserters.cpp</a>
+      | <a
+      href="programs/iterators/back_inserters.exe">Windows_executable</a> 
+      | <a href="programs/iterators/back_inserters.txt">program_output
+                                  (text)</a></dt>
+      <dd>Illustrates the use of a back_inserter() to insert several values
+      into an empty container.</dd>
+      <dt><a
+      href="programs/iterators/front_inserters.cpp2html">front_inserters.cpp</a>
+      | <a
+      href="programs/iterators/front_inserters.exe">Windows_executable</a> 
+      | <a href="programs/iterators/front_inserters.txt">program_output
+                                  (text)</a></dt>
+      <dd>Illustrates the use of front_inserter() to insert several values
+      into an empty container.</dd>
+      <dt><a
+      href="programs/iterators/general_inserters.cpp2html">general_inserters.cpp</a>
+      | <a
+      href="programs/iterators/general_inserters.exe">Windows_executable</a>
+      | <a href="programs/iterators/general_inserters.txt">program_output
+                                  (text)</a></dt>
+      <dd>Illustrates the use of a general inserter() to insert several
+      values into the interior of a container.</dd>
+    </dl>
+    <h3 class="pagebreak"  id="iter_funs">Useful iterator functions</h3>
+    <p>Among other things, the functions shown in the table below help us
+    to overcome the difficulties caused by the fact that</p>
+    <ul class="hardleft">
+      <li>Only random-access iterators permit a integer value to be added
+      to or subtracted from an iterator. The advance() function can be used
+      to achieve the same effect when the iterator is not of the the random
+      access variety, and can also be used with random access
+      iterators.</li>
+      <li>Only random access iterators permit one iterator to be subtracted
+      from another. The distance() function can be used to achieve the same
+      effect for non-random-access iterators, and can also be used with
+      random access iterators.</li>
+    </ul>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Containers and their iterators">
+      <tr>
+        <td valign="top"><tt>advance(inIter, num)</tt>
+        <br />
+         Moves inIter |num| positions forward if num &gt; 0 and backward if
+        num &lt; 0.</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>distance(inIterBegin, inIterEnd)</tt>
+        <br />
+         Returns the number of values (or positions) in the range
+        <tt>[inIterBegin, inIterEnd)</tt>. Note, however, that the return
+        value must be cast to an <tt>int</tt> (or <tt>unsigned int</tt>),
+        since its type is actually more complicated.</td>
+      </tr>
+    </table>
+    <dl>
+      <dt><a href="programs/iterators/advance.cpp2html">advance.cpp</a> |
+      <a href="programs/iterators/advance.exe">Windows_executable</a> 
+      | <a href="programs/iterators/advance.txt">program_output
+                                  (text)</a></dt>
+      <dd>Illustrates the use of the advance() function to move an iterator
+      a given number of positions.</dd>
+      <dt><a href="programs/iterators/distance.cpp2html">distance.cpp</a> |
+      <a href="programs/iterators/distance.exe">Windows_executable</a> 
+      | <a href="programs/iterators/distance.txt">program_output
+                                  (text)</a></dt>
+      <dd>Illustrates the use of the distance() function to compute the
+      number of positions between two iterators.</dd>
+    </dl>
+  </body>
+</html>
+
+<!-- Localized -->

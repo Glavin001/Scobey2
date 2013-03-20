@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=windows-1252" />
+    <title>STL FAQ: A Few Questions and Answers</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL FAQ: A Few Questions and Answers</p>
+    <p>These questions are of the rhetorical variety, by which I mean that
+    they have been made up and answered by the page author, rather than
+    collected from users. (This may even be taking liberties with the term
+    "rhetorical".) In any case, they form a short and probably inadequate
+    selection of some of the queries that might occur to a programmer upon
+    a first encounter with the STL, from one person's point of view.</p>
+    <dl>
+      <dt class="faq">What is the STL?</dt>
+      <dd>It's a sophisticated and powerful library of template classes and
+      template functions that implement many common data structures and
+      algorithms, and forms part of the C++ Standard Library.</dd>
+    </dl>
+    <dl>
+      <dt class="faq">Who developed the STL?</dt>
+      <dd>The STL was developed at Hewlett Packard by Alexander Stepanov,
+      with major contributions by David Musser and Meng Lee. It was deemed
+      by the C++ Standards Committee to be so important to the future of
+      C++ that the approval of the C++ Standard was delayed for several
+      years so that the STL could be incorporated into that Standard. A
+      version of the Standard that incorporated the STL was first approved
+      in the fall of 1998.</dd>
+    </dl>
+    <dl>
+      <dt class="faq">Why should a C++ programmer be interested in the
+      STL?</dt>
+      <dd>Because the STL embodies the concept of <em>reusable software
+      components</em>, and provides off-the-shelf solutions to a wide
+      variety of programming problems. It is also <em>extensible</em>, in
+      the sense that any programmer can write new software (containers and
+      algorithms, for example), that "fit in" to the STL and work with the
+      already-existing parts of the STL, provided the programmer follows
+      the appropriate design guidelines.</dd>
+    </dl>
+    <dl>
+      <dt class="faq">What is the design philosophy of the STL?</dt>
+      <dd>The STL exemplifies <em>generic programming</em> rather than
+      <em>object-oriented programming</em>, and derives its power and
+      flexibility from the use of templates, rather than inheritance and
+      polymorphism. It also avoids <tt>new</tt> and <tt>delete</tt> for
+      memory management in favor of <em>allocators</em> for storage
+      allocation and deallocation. The STL also provides <em>performance
+      guarantees</em>, i.e., its specification requires that the containers
+      and algorithms be implemented in such a way that a user can be
+      confident of optimal runtime performance independent of the STL
+      implementation being used.</dd>
+    </dl>
+    <dl>
+      <dt class="faq">What are the major components of the STL?</dt>
+      <dd>The <em>containers</em> and <em>container adaptors</em> (both are
+      objects that can hold other objects), the <em>iterators</em>
+      (generalized pointers that point at items in containers), and the
+      <em>algorithms</em> (that work on containers through iterators) will
+      be the most frequently used components of the STL.</dd>
+    </dl>
+    <dl>
+      <dt class="faq">What are some other components of the STL?</dt>
+      <dd>Other STL components include <em>function objects</em> (objects
+      of a class that defines <tt>operator()</tt>), and <em>allocators</em>
+      (which manage memory allocation and deallocation for containers).
+      Function objects are essential for effective use of the STL, but the
+      average user will be able to ignore allocators most of the time by
+      simply accepting the default allocator for each container used.</dd>
+    </dl>
+    <dl>
+      <dt class="faq">How do you use the STL?</dt>
+      <dd>By including the necessary header files to permit access to the
+      parts of the STL that you need, by declaring objects of the
+      appropriate container, iterator and function types, and then using
+      member functions and/or algorithms, as appropriate, to perform
+      whatever tasks your application requires. It is also generally
+      necessary to ensure that whatever objects you plan to put into your
+      container(s) are objects of classes that have a default constructor,
+      a copy constructor, and an overloaded <tt>operator=</tt>. In
+      addition, if you plan to sort or compare such container objects, the
+      corresponding classes must provide definitions for
+      <tt>operator==</tt> and <tt>operator&lt;</tt>. Finally, since it is
+      often the case that different containers can be used in the same
+      problem situation, the user needs to be able to make an appropriate
+      choice for each occasion, and this choice will usually be based on
+      performance characteristics.</dd>
+    </dl>
+    <dl>
+      <dt class="faq">What are some of the things a programmer should be
+      aware of when using the STL?
+      <br />
+       (Many of these may not make sense until you have actually tried to
+      use the STL.)</dt>
+      <dd>
+        <ul class="hardleft">
+          <li>Understand member functions <tt>size()</tt>,
+          <tt>max_size()</tt> and <tt>resize()</tt>.</li>
+          <li>Understand member functions <tt>begin()</tt>, <tt>end()</tt>,
+          <tt>rbegin()</tt> and <tt>rend()</tt>.</li>
+          <li>Understand the fact that a reference to a "range" of values
+          in STL generally means those values from (and including) the
+          first value in the range up to (but not including) the last value
+          in the range. Such a range can extend forward or backward,
+          depending on the kinds of iterators being used.</li>
+          <li>Even though it may (sometimes) work, it is better
+          <em>not</em> use a loop like
+          <br />
+           <tt>for (i = c.begin(); i &lt; c.end(); i++) ...</tt>
+          <br />
+           for processing all the elements of a container <tt>c</tt>; it is
+          preferable instead to use a loop like this:
+          <br />
+           <tt>for (i = c.begin(); i != c.end(); i++) ...</tt>
+          <br />
+           This second form is often necessary, in fact, since not all
+          container iterators support <tt>operator&lt;</tt>.</li>
+          <li>Remember that the container adaptors (<tt>stack</tt>,
+          <tt>queue</tt>, <tt>priority_queue</tt>) have <em>no</em>
+          iterators.</li>
+          <li>
+            Know that any <tt>insert()</tt> member function applied to a
+            container may (or may not) invalidate iterators and references
+            already pointing at elements of that container. In particular: 
+            <ul class="hardleft">
+              <li>It is safest to assume that insert() applied to a deque
+              or a vector will invalidate any iterators or references to
+              elements of the deque or vector.</li>
+              <li>On the other hand, <tt>insert()</tt> applied to any of
+              the <em>other</em> first-class containers (<tt>list</tt>,
+              <tt>map</tt>, <tt>multimap</tt>, <tt>set</tt>,
+              <tt>multiset</tt>) does <em>not</em> invalidate any of the
+              iterators or references to elements of the container, and
+              deletions from these containers invalidate only iterators or
+              references to the elements deleted.</li>
+            </ul>
+          </li>
+          <li>Remember that if you are using the STL for a given purpose in
+          a situation that requires (as a minimal requirement) that a
+          certain kind of iterator be used, a more powerful iterator may
+          also be used in that situation</li>
+          <li>Remember that if you have the choice between using an STL
+          algorithm and using an STL container class method to accomplish
+          the same purpose, you should prefer the class method.</li>
+          <li>Know that any container that is the target of an algorithm
+          must be large enough to hold all elements it will receive, since
+          it will not automatically be increased in size. Or, plan to use
+          an <em>inserter</em>.</li>
+        </ul>
+      </dd>
+    </dl>
+  </body>
+</html>
+
+<!-- Localized -->

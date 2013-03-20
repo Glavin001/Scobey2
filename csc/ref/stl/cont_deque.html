@@ -1,0 +1,592 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>The STL deque Container</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL deque Container</p>
+    <p>The <tt>deque</tt> class implements a double-ended queue and, in its
+    STL incarnation, has an interface which is very similar to that of the
+    vector class. The major conceptual difference is that a deque provides
+    fast insertion and deletion at <em>both</em> ends.</p>
+    <ul class="hardleft">
+      <li><a href="#constructors">Constructors and destructor</a></li>
+      <li><a href="#overloaded_ops">Overloaded operators</a></li>
+      <li><a href="#access">Member functions for accessing values</a></li>
+      <li><a href="#status">Member functions for reporting status</a></li>
+      <li><a href="#insertion">Member functions for inserting one or more
+      values</a></li>
+      <li><a href="#deletion">Member functions for deleting one or more
+      values</a></li>
+      <li><a href="#misc_funs">Miscellaneous member functions</a></li>
+      <li><a href="#misc_notes">Miscellaneous notes</a></li>
+      <li><a href="#sample_programs">Sample programs</a></li>
+      <li><a href="#prototypes">Member function prototypes</a></li>
+    </ul>
+    <h3><a id="constructors" name="constructors">Constructors and
+    destructor</a></h3>
+    <p>Default Constructor</p>
+    <dl>
+      <dt>deque&lt;T&gt; d;</dt>
+      <dd>Construct an empty deque <tt>d</tt> which can hold values of type
+      <tt>T</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Copy Constructor</p>
+    <p>There is, of course, only one copy constructor, but there are two
+    syntactic forms that invoke it, and both are shown.</p>
+    <dl>
+      <dt>deque&lt;T&gt; d(otherDeque);</dt>
+      <dd>Construct <tt>d</tt> as a copy of <tt>otherDeque</tt>, whose
+      component type must be <tt>T</tt>. The copy has the same size as the
+      original.</dd>
+      <dt>deque&lt;T&gt; d = otherDeque;</dt>
+      <dd>Copy constructor (alternate usage syntax).</dd>
+    </dl>
+    <hr />
+    <p>Other Constructors</p>
+    <dl>
+      <dt>deque&lt;T&gt; d(num);</dt>
+      <dd>Construct a deque <tt>d</tt> of size <tt>num</tt> containing
+      <tt>num</tt> values, each equal to the default value of type
+      <tt>T</tt>.</dd>
+      <dt>deque&lt;T&gt; d(num, val);</dt>
+      <dd>Construct a deque <tt>d</tt> of size <tt>num</tt> containing
+      <tt>num</tt> values, each equal to <tt>val</tt>, which must be of
+      type <tt>T</tt>, and which may be supplied by a variable, a literal
+      or named constant, or a function call.</dd>
+      <dt>deque&lt;T&gt; d(inIterBegin, inIterEnd);</dt>
+      <dd>Construct <tt>d</tt> containing values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily deque)
+      container, but whose component type is the same as the component type
+      of <tt>d</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Destructor</p>
+    <dl>
+      <dt>d.~deque&lt;T&gt;()</dt>
+      <dd>Destroy all components of <tt>d</tt> and free the associated
+      memory.</dd>
+    </dl>
+    <h3><a id="overloaded_ops" name="overloaded_ops">Overloaded
+    operators</a></h3>
+    <p>Assignment operator</p>
+    <dl>
+      <dt>d1 = d2</dt>
+      <dd>Assign <tt>d2</tt> to <tt>d1</tt>, and return the common value.
+      The deque on the left of an assignment receives the values and size
+      of the one on the right.</dd>
+    </dl>
+    <hr />
+    <p>Relational operators</p>
+    <p>Deques are compared in the "lexicographic ordering" sense. This
+    essentially means that the two deques are compared by comparing their
+    values pairwise, starting at the beginning, with each comparison
+    looking at two values in corresponding positions, until a determination
+    of the relationship between the two deques can be made. Only deques of
+    the same component type can be compared of course, and the <tt>==</tt>
+    and <tt>&lt;</tt> operators must be defined for the component type.</p>
+    <dl>
+      <dt>d1 == d2</dt>
+      <dd>Return <tt>true</tt> if <tt>d1</tt> and <tt>d2</tt> have the same
+      component type and the same size, and the components in each pair of
+      corresponding locations have the same value; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>d1 != d2</dt>
+      <dd>Return <tt>true</tt> if <tt>d1==d2</tt> returns <tt>false</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>d1 &lt; d2</dt>
+      <dd>Return <tt>true</tt> if, in the pairwise comparison of values
+      from <tt>d1</tt> and <tt>d2</tt>, in the first pair in which the two
+      values differ, the one from <tt>d1</tt> is less than the one from
+      <tt>d2</tt>; otherwise return <tt>false</tt>.</dd>
+      <dt>d1 &lt;= d2</dt>
+      <dd>Return <tt>true</tt> if either <tt>d1&lt;d2</tt> or
+      <tt>d1==d2</tt> is <tt>true</tt>; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>d1 &gt; d2</dt>
+      <dd>Return <tt>true</tt> if <tt>d2&lt;d1</tt> is <tt>true</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>d1 &gt;= d2</dt>
+      <dd>Return <tt>true</tt> if either <tt>d1&gt;d2</tt> or
+      <tt>d1==d2</tt> is <tt>true</tt>, otherwise return
+      <tt>false</tt>.</dd>
+    </dl>
+    <hr />
+    <p>operator[ ]</p>
+    <dl>
+      <dt>d[i]</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      component of <tt>d</tt> with index <tt>i</tt>. (Index values start at
+      0, and there is no checking for an index out of bounds.)</dd>
+    </dl>
+    <h3><a id="access" name="access">Member functions for accessing
+    values</a></h3>
+    <p>Each of the member functions in this section has both a
+    <tt>const</tt> and a non-<tt>const</tt> version.</p>
+    <dl>
+      <dt>d.at(i)</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      component of <tt>d</tt> with index <tt>i</tt>. (Throws an
+      <tt>out_of_range</tt> exception if <tt>i</tt> is not a valid index
+      for <tt>d</tt>.)</dd>
+      <dt>d.front()</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      first component of <tt>d</tt>.</dd>
+      <dt>d.back()</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      last component of <tt>d</tt>.</dd>
+      <dt>d.begin()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the first component of <tt>d</tt>.</dd>
+      <dt>d.end()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to one-past-the-last component of <tt>d</tt>.</dd>
+      <dt>d.rbegin()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to the last component of
+      <tt>d</tt>.</dd>
+      <dt>d.rend()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to one-before-the-first
+      component of <tt>d</tt>.</dd>
+    </dl>
+    <h3><a id="status" name="status">Member functions for reporting
+    status</a></h3>
+    <dl>
+      <dt>d.max_size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the maximum
+      possible size of <tt>d</tt>, which will depend on the size of the
+      component type <tt>T</tt> of the deque object, and the amount of
+      available memory.</dd>
+      <dt>d.size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the number of
+      values currently in <tt>d</tt>.</dd>
+      <dt>d.empty()</dt>
+      <dd>Return <tt>true</tt> if <tt>d</tt> is empty (contains zero
+      values); otherwise return <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="insertion" name="insertion">Member functions for inserting
+    one or more values</a></h3>
+    <dl>
+      <dt>d.assign(num, val)</dt>
+      <dd>Assign <tt>num</tt> copies of <tt>val</tt> to <tt>d</tt>,
+      overwriting the entire previous contents of <tt>d</tt>.</dd>
+      <dt>d.assign(inIterBegin, inIterEnd)</dt>
+      <dd>Assign to <tt>d</tt> the values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily deque)
+      container, but whose values are also of type <tt>T</tt>, overwriting
+      the entire previous contents of <tt>d</tt>.</dd>
+      <dt>d.insert(iter, val)</dt>
+      <dd>Insert <tt>val</tt> into <tt>d</tt> immediately before the value
+      pointed to by <tt>iter</tt>, and return an <tt>iterator</tt> pointing
+      at the new component with value <tt>val</tt>.</dd>
+      <dt>d.insert(iter, num, val)</dt>
+      <dd>Insert <tt>num</tt> copies of <tt>val</tt> into <tt>d</tt>,
+      immediately before the value pointed to by <tt>iter</tt>.</dd>
+      <dt>d.insert(iter, inIterBegin, inIterEnd)</dt>
+      <dd>Insert into <tt>d</tt>, immediately before the value pointed to
+      by <tt>iter</tt>, values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily deque)
+      container, but whose values must be of the same type as the values of
+      <tt>d</tt>.</dd>
+      <dt>d.push_back(val)</dt>
+      <dd>Add <tt>val</tt> to the end of <tt>d</tt>, increasing the size of
+      <tt>d</tt> by one.</dd>
+      <dt>d.push_front(val)</dt>
+      <dd>Add <tt>val</tt> to the front of <tt>d</tt>, increasing the size
+      of <tt>d</tt> by one.</dd>
+    </dl>
+    <h3><a id="deletion" name="deletion">Member functions for deleting one
+    or more values</a></h3>
+    <dl>
+      <dt>d.clear()</dt>
+      <dd>Delete all values of <tt>d</tt>. The size of <tt>d</tt> is
+      reduced to zero.</dd>
+      <dt>d.erase(iter)</dt>
+      <dd>Delete the value of <tt>d</tt> pointed to by <tt>iter</tt> and
+      return an <tt>iterator</tt> pointing at the following value, or to
+      one-past-the-last if the value deleted was the last one. The size of
+      <tt>d</tt> is reduced by one.</dd>
+      <dt>d.erase(iterBegin, iterEnd)</dt>
+      <dd>Delete all values of <tt>d</tt> from the range
+      <tt>[iterBegin,iterEnd)</tt> and return <tt>iterEnd</tt>. The size of
+      <tt>d</tt> is reduced by <tt>iterEnd-iterBegin</tt> (a value of type
+      <tt>difference_type</tt>).</dd>
+      <dt>d.pop_back()</dt>
+      <dd>Delete the last value of <tt>d</tt>. The size of <tt>d</tt> is
+      reduced by one.</dd>
+      <dt>d.pop_front()</dt>
+      <dd>Delete the first value of <tt>d</tt>. The size of <tt>d</tt> is
+      reduced by one.</dd>
+    </dl>
+    <h3><a id="misc_funs" name="misc_funs">Miscellaneous member
+    functions</a></h3>
+    <dl>
+      <dt>d.resize(num)</dt>
+      <dd>Change size of <tt>d</tt> to <tt>num</tt>. (If <tt>d</tt> must be
+      lengthened, default values of its component type are added to the end
+      of <tt>d</tt>. If <tt>d</tt> is shortened, values at the end are
+      lost.)</dd>
+      <dt>d.resize(num, val)</dt>
+      <dd>Change size of <tt>d</tt> to <tt>num</tt>. (If <tt>d</tt> must be
+      lengthened, copies of <tt>val</tt> are added to the end of
+      <tt>d</tt>. If <tt>d</tt> is shortened, values at the end are lost,
+      and the value of <tt>val</tt> is not used.)</dd>
+      <dt>d.swap(otherDeque)</dt>
+      <dd>Exchange values in <tt>d</tt> with those in <tt>otherDeque</tt>.
+      The sizes are swapped as well.</dd>
+      <dt>d.getallocator()</dt>
+      <dd>Return the allocator of <tt>d</tt>. (This is possibly the most
+      infrequently used of all member functions of the deque class.)</dd>
+    </dl>
+    <h3 class="miscnotes"><a id="misc_notes"
+    name="misc_notes">Miscellaneous notes</a></h3>
+    <dl>
+      <dt>Differences in the use of d[i] and d.at(i)</dt>
+      <dd>The "safer" choice to access an element of <tt>d</tt> via an
+      index <tt>i</tt> is <tt>d.at(i)</tt> rather than <tt>d[i]</tt>. This
+      is because <tt>d.at(i)</tt> throws an <tt>out_of_range</tt> exception
+      if <tt>i</tt> is not a valid index value for <tt>d</tt>, unlike
+      <tt>d[i]</tt>, which behaves just as if <tt>d</tt> were an ordinary
+      array, and thus does not give you any warning if your index goes out
+      of bounds. If it does go out of bounds, you may get a run-time error,
+      or your program may simply use whatever is stored at the invalid
+      location as though it were a piece of valid data.</dd>
+      <dt>Danger of invalidation of iterators, references and pointers</dt>
+      <dd>Although it may not be strictly true in all situations, it is
+      probably safest to assume that any member function that inserts or
+      removes values or changes the size of a deque will invalidate any
+      iterators, references or pointers already associated with values of
+      that deque.</dd>
+      <dt>Implementation</dt>
+      <dd>Standard C++ does not say how the STL containers and algorithms
+      must be implemented. It does, however, state certain constraints,
+      such as complexity constraints, to which each implementation must
+      adhere. Thus it is much better to base your programs on the STL's
+      performance guarantees, rather than upon any assumption about how a
+      particular feature, like the <tt>deque</tt> class, may be
+      implemented.</dd>
+      <dt>Some performance and usage issues</dt>
+      <dd>
+        Deques tend to be useful in situations where order of components,
+        compact storage, and fast insertions and deletions at the ends are
+        important. They can be used to implement any FIFO (First In First
+        Out) structure, though a queue should be used if there must be
+        strict FIFO behavior with no direct access by numeric index
+        permitted. If fast insertions near the middle need to be made, a
+        list is the better choice. 
+        <p>The deque is one of the three "sequential" container classes in
+        the STL (the vector and the list are the other two). Usually, if
+        you're wondering about using a deque, the choice will be between
+        using a deque or using a vector, since they have so much in common.
+        Element access tends to be a bit faster in vectors, though both
+        vectors and deques offer constant-time access to elements (from a
+        big-Oh perspective). If there are to be many insertions and
+        deletions at the ends, and particularly at the front, the deque
+        would be a better choice. In general, though, when an array-like
+        object which can grow and shrink dynamically is needed, the vector
+        tends to be the container of choice.</p>
+      </dd>
+    </dl>
+    <h3 class="sampleprogs"><a id="sample_programs"
+    name="sample_programs">Sample programs</a></h3>
+    <p>There are two groups of sample programs. The first group involves
+    only STL deques and generic C++, while the second group involves other
+    STL features in addition to deques. The programs should be studied in
+    the sequence given, since the description of each new sample program in
+    the sequence mentions only the new features illustrated for the first
+    time in that particular program, and features seen in earlier sample
+    programs will continue to reappear in later programs.</p>
+    <p>All of the programs have been compiled and run successfully under
+    Microsoft Visual Studio .NET 2005, unless otherwise noted.</p>
+    <h4>Programs involving only deques (and generic C++)</h4>
+    <dl>
+      <dt><a href="programs/deque/deque01.cpp2html">deque01.cpp</a> | <a
+      href="programs/deque/deque01.exe">Windows_executable</a> | <a
+      href="programs/deque/deque01.txt">program_output (text)</a></dt>
+      <dd>Illustrates deque constructors, accessing deque values with
+      <tt>d[i]</tt>, the typedef <tt>deque&lt;T&gt;::size_type</tt>, and
+      the member functions <tt>size()</tt> and <tt>empty()</tt>. Also
+      illustrates how ordinary array pointers can be used, in certain
+      situations, in the same way that STL iterators are used.</dd>
+      <dt><a href="programs/deque/deque02.cpp2html">deque02.cpp</a> | <a
+      href="programs/deque/deque02.exe">Windows_executable</a> | <a
+      href="programs/deque/deque02.txt">program_output (text)</a></dt>
+      <dd>Illustrates the similarities and differences between
+      <tt>d[i]</tt> and <tt>d.at(i)</tt>.</dd>
+      <dt><a href="programs/deque/deque03.cpp2html">deque03.cpp</a> | <a
+      href="programs/deque/deque03.exe">Windows_executable</a> | <a
+      href="programs/deque/deque03.txt">program_output (text)</a></dt>
+      <dd>Illustrates member function <tt>max_size()</tt>, and how the
+      maximum size for a deque object depends on the size of its component
+      type.</dd>
+      <dt><a href="programs/deque/deque04.cpp2html">deque04.cpp</a> | <a
+      href="programs/deque/deque04.exe">Windows_executable</a> | <a
+      href="programs/deque/deque04.txt">program_output (text)</a></dt>
+      <dd>Illustrates <tt>push_back()</tt> and <tt>push_front()</tt>.</dd>
+      <dt><a href="programs/deque/deque05.cpp2html">deque05.cpp</a> | <a
+      href="programs/deque/deque05.exe">Windows_executable</a> | <a
+      href="programs/deque/deque05.txt">program_output (text)</a></dt>
+      <dd>Illustrates typical uses of the default (random-access) iterator
+      for the deque class, shows additional uses of member functions
+      <tt>begin()</tt> and <tt>end()</tt>, and also shows the use of
+      operators =, +, -, <tt>++</tt>, <tt>--</tt>, <tt>!=</tt> and * with
+      deque class iterators.</dd>
+      <dt><a href="programs/deque/deque06.cpp2html">deque06.cpp</a> | <a
+      href="programs/deque/deque06.exe">Windows_executable</a> | <a
+      href="programs/deque/deque06.txt">program_output (text)</a></dt>
+      <dd>Illustrates the default (random-access) deque class iterator in
+      additional situations, and shows the use of operators <tt>-&gt;</tt>,
+      <tt>[ ]</tt>, &lt;, &gt;, <tt>&lt;=</tt>, <tt>&gt;=</tt>,
+      <tt>+=</tt>, <tt>-=</tt> and <tt>==</tt> with deque class
+      iterators.</dd>
+      <dt><a href="programs/deque/deque07.cpp2html">deque07.cpp</a> | <a
+      href="programs/deque/deque07.exe">Windows_executable</a> | <a
+      href="programs/deque/deque07.txt">program_output (text)</a></dt>
+      <dd>Illustrates reverse iterators for the deque class, as well as
+      member functions <tt>rbegin()</tt> and <tt>rend()</tt>.</dd>
+      <dt><a href="programs/deque/deque08.cpp2html">deque08.cpp</a> | <a
+      href="programs/deque/deque08.exe">Windows_executable</a> | <a
+      href="programs/deque/deque08.txt">program_output (text)</a></dt>
+      <dd>Illustrates a typical use of a <tt>const</tt> iterator.</dd>
+      <dt><a href="programs/deque/deque09.cpp2html">deque09.cpp</a> | <a
+      href="programs/deque/deque09.exe">Windows_executable</a> | <a
+      href="programs/deque/deque09.txt">program_output (text)</a></dt>
+      <dd>Illustrates member functions <tt>front()</tt> and
+      <tt>back()</tt>.</dd>
+      <dt><a href="programs/deque/deque10.cpp2html">deque10.cpp</a> | <a
+      href="programs/deque/deque10.exe">Windows_executable</a> | <a
+      href="programs/deque/deque10.txt">program_output (text)</a></dt>
+      <dd>Illustrates the overloaded assignment operator <tt>=</tt> and the
+      <tt>assign()</tt> member function.</dd>
+      <dt><a href="programs/deque/deque11.cpp2html">deque11.cpp</a> | <a
+      href="programs/deque/deque11.exe">Windows_executable</a> | <a
+      href="programs/deque/deque11.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>insert()</tt> member function.</dd>
+      <dt><a href="programs/deque/deque12.cpp2html">deque12.cpp</a> | <a
+      href="programs/deque/deque12.exe">Windows_executable</a> | <a
+      href="programs/deque/deque12.txt">program_output (text)</a></dt>
+      <dd>Illustrates <tt>clear()</tt>, <tt>erase()</tt>,
+      <tt>pop_back()</tt> and <tt>pop_front()</tt> member functions.</dd>
+      <dt><a href="programs/deque/deque13.cpp2html">deque13.cpp</a> | <a
+      href="programs/deque/deque13.exe">Windows_executable</a> | <a
+      href="programs/deque/deque13.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>resize()</tt> member function.</dd>
+      <dt><a href="programs/deque/deque14.cpp2html">deque14.cpp</a> | <a
+      href="programs/deque/deque14.exe">Windows_executable</a> | <a
+      href="programs/deque/deque14.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>swap()</tt> member function.</dd>
+    </dl>
+    <h4>Programs involving additional deque features and deques in
+    combination with other STL features</h4>
+    <dl>
+      <dt><a href="programs/deque/deque_a.cpp2html">deque_a.cpp</a> | <a
+      href="programs/deque/deque_a.exe">Windows_executable</a> | <a
+      href="programs/deque/deque_a.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of stream iterators and the <tt>copy</tt>
+      algorithm for I/O of deque values.</dd>
+      <dt><a href="programs/deque/deque_b.cpp2html">deque_b.cpp</a> | <a
+      href="programs/deque/deque_b.exe">Windows_executable</a> | <a
+      href="programs/deque/deque_b.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to display the name of the underlying type
+      represented by each typedef defined by a deque class.</dd>
+      <dt><a href="programs/deque/deque_c.cpp2html">deque_c.cpp</a> | <a
+      href="programs/deque/deque_c.exe">Windows_executable</a> | <a
+      href="programs/deque/deque_c.txt">program_output (text)</a></dt>
+      <dd>Illustrates initialization of a deque with values from non-deque
+      containers (in this case, a vector and a list).</dd>
+    </dl>
+    <h3 class="prototypes"><a id="prototypes" name="prototypes">Member
+    function prototypes</a></h3>
+    <p>For enhanced readability in each of the prototypes given below, each
+    parameter in each parameter list appears on a separate line. Also, some
+    formatting liberties are taken, in the interest of greater readability.
+    For example, rather than aligning all prototypes at the left margin,
+    <tt>const</tt> and non-<tt>const</tt> versions of a member function are
+    aligned in such a way as to allow the reader to more easily compare the
+    two visually.</p>
+    <hr />
+    <p>Template specification for the deque class</p>
+<pre xml:space="preserve">
+template&lt;class T,
+         class Allocator = allocator&lt;T&gt; &gt;
+class deque { ... }
+</pre>
+    <hr />
+    <p>Constructors</p>
+<pre xml:space="preserve">
+explicit deque(const Allocator&amp; a = Allocator());
+</pre>
+<pre xml:space="preserve">
+explicit deque(size_type num,
+               const T&amp; val = T(),
+               const Allocator&amp; a = Allocator());
+                
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+deque(InIterator inIterBegin,
+      InIterator inIterEnd,
+      const Allocator&amp; a = Allocator());
+</pre>
+    <hr />
+    <p>Copy Constructor</p>
+<pre xml:space="preserve">
+deque(const deque&lt;T, Allocator&gt;&amp; otherDeque);
+</pre>
+    <hr />
+    <p>Destructor</p>
+<pre xml:space="preserve">
+~deque();
+</pre>
+    <hr />
+    <p>assign</p>
+<pre xml:space="preserve">
+void assign(size_type num,
+            const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void assign(InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>at</p>
+<pre xml:space="preserve">
+      reference at(size_type i);
+const_reference at(size_type i) const;
+</pre>
+    <hr />
+    <p>back</p>
+<pre xml:space="preserve">
+      reference back();
+const_reference back() const;
+</pre>
+    <hr />
+    <p>begin</p>
+<pre xml:space="preserve">
+      iterator begin();
+const_iterator begin() const;
+</pre>
+    <hr />
+    <p>clear</p>
+<pre xml:space="preserve">
+void clear();
+</pre>
+    <hr />
+    <p>empty</p>
+<pre xml:space="preserve">
+bool empty() const;
+</pre>
+    <hr />
+    <p>end</p>
+<pre xml:space="preserve">
+      iterator end();
+const_iterator end() const;
+</pre>
+    <hr />
+    <p>erase</p>
+<pre xml:space="preserve">
+iterator erase(iterator iter);
+iterator erase(iterator iterBegin,
+               iterator iterEnd);
+</pre>
+    <hr />
+    <p>front</p>
+<pre xml:space="preserve">
+      reference front();
+const_reference front() const;
+</pre>
+    <hr />
+    <p>get_allocator</p>
+<pre xml:space="preserve">
+allocator_type get_allocator() const;
+</pre>
+    <hr />
+    <p>insert</p>
+<pre xml:space="preserve">
+iterator insert(iterator iter,
+                const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+void insert(iterator iter,
+            size_type num,
+            const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void insert(iterator iter,
+            InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>max_size</p>
+<pre xml:space="preserve">
+size_type max_size() const;
+</pre>
+    <hr />
+    <p>operator[ ]</p>
+<pre xml:space="preserve">
+      reference operator[](size_type i);
+const_reference operator[](size_type i) const;
+</pre>
+    <hr />
+    <p>pop_back</p>
+<pre xml:space="preserve">
+void pop_back();
+</pre>
+    <hr />
+    <p>pop_front</p>
+<pre xml:space="preserve">
+void pop_front();
+</pre>
+    <hr />
+    <p>push_back</p>
+<pre xml:space="preserve">
+void push_back(const T&amp; val);
+</pre>
+    <hr />
+    <p>push_front</p>
+<pre xml:space="preserve">
+void push_front(const T&amp; val);
+</pre>
+    <hr />
+    <p>rbegin</p>
+<pre xml:space="preserve">
+      reverse_iterator rbegin();
+const_reverse_iterator rbegin() const;
+</pre>
+    <hr />
+    <p>rend</p>
+<pre xml:space="preserve">
+      reverse_iterator rend();
+const_reverse_iterator rend() const;
+</pre>
+    <hr />
+    <p>resize</p>
+<pre xml:space="preserve">
+void resize(size_type num,
+            T val = T());
+</pre>
+    <hr />
+    <p>size</p>
+<pre xml:space="preserve">
+size_type size() const;
+</pre>
+    <hr />
+    <p>swap</p>
+<pre xml:space="preserve">
+void swap(deque&lt;T, Allocator&gt;&amp; otherDeque);
+</pre>
+  </body>
+</html>
+
+<!-- Localized -->

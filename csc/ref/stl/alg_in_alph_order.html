@@ -1,0 +1,4672 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>The STL Algorithms in Alphabetical Order</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body bgcolor="#FFFFFF">
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL Algorithms in Alphabetical Order
+    <br />
+    </p>
+    <p>Before using this page, you may find it useful to read the <a
+    href="naming_conventions.html">naming conventions</a> used on this STL
+    reference site, and the <a href="alg_overview.html">algorithm
+    overview</a> page. Or not.</p>
+    <p><small><a href="#accumulate">accumulate</a> | <a
+    href="#adjacent_difference">adjacent_difference</a> | <a
+    href="#adjacent_find">adjacent_find</a> | <a
+    href="#binary_search">binary_search</a> | <a href="#copy">copy</a> | <a
+    href="#copy_backward">copy_backward</a> | <a href="#count">count</a> |
+    <a href="#count_if">count_if</a> | <a href="#equal">equal</a> | <a
+    href="#equal_range">equal_range</a> | <a href="#fill">fill</a> | <a
+    href="#fill_n">fill_n</a> | <a href="#find">find</a> | <a
+    href="#find_end">find_end</a> | <a
+    href="#find_first_of">find_first_of</a> | <a
+    href="#find_if">find_if</a> | <a href="#for_each">for_each</a> | <a
+    href="#generate">generate</a> | <a href="#generate_n">generate_n</a> |
+    <a href="#includes">includes</a> | <a
+    href="#inner_product">inner_product</a> | <a
+    href="#inplace_merge">inplace_merge</a> | <a
+    href="#iter_swap">iter_swap</a> | <a
+    href="#lexicographical_compare">lexicographical_compare</a> | <a
+    href="#lower_bound">lower_bound</a> | <a
+    href="#make_heap">make_heap</a> | <a href="#max">max</a> | <a
+    href="#max_element">max_element</a> | <a href="#merge">merge</a> | <a
+    href="#min">min</a> | <a href="#min_element">min_element</a> | <a
+    href="#mismatch">mismatch</a> | <a
+    href="#next_permutation">next_permutation</a> | <a
+    href="#nth_element">nth_element</a> | <a
+    href="#partial_sort">partial_sort</a> | <a
+    href="#partial_sort_copy">partial_sort_copy</a> | <a
+    href="#partial_sum">partial_sum</a> | <a
+    href="#partition">partition</a> | <a href="#pop_heap">pop_heap</a> | <a
+    href="#prev_permutation">prev_permutation</a> | <a
+    href="#push_heap">push_heap</a> | <a
+    href="#random_shuffle">random_shuffle</a> | <a
+    href="#remove">remove</a> | <a href="#remove_copy">remove_copy</a> | <a
+    href="#remove_copy_if">remove_copy_if</a> | <a
+    href="#remove_if">remove_if</a> | <a href="#replace">replace</a> | <a
+    href="#replace_copy">replace_copy</a> | <a
+    href="#replace_copy_if">replace_copy_if</a> | <a
+    href="#replace_if">replace_if</a> | <a href="#reverse">reverse</a> | <a
+    href="#reverse_copy">reverse_copy</a> | <a href="#rotate">rotate</a> |
+    <a href="#rotate_copy">rotate_copy</a> | <a href="#search">search</a> |
+    <a href="#search_n">search_n</a> | <a
+    href="#set_difference">set_difference</a> | <a
+    href="#set_intersection">set_intersection</a> | <a
+    href="#set_symmetric_difference">set_symmetric_difference</a> | <a
+    href="#set_union">set_union</a> | <a href="#sort">sort</a> | <a
+    href="#sort_heap">sort_heap</a> | <a
+    href="#stable_partition">stable_partition</a> | <a
+    href="#stable_sort">stable_sort</a> | <a href="#swap">swap</a> | <a
+    href="#swap_ranges">swap_ranges</a> | <a
+    href="#transform">transform</a> | <a href="#unique">unique</a> | <a
+    href="#unique_copy">unique_copy</a> | <a
+    href="#upper_bound">upper_bound</a> |</small></p>
+    <h3><a id="accumulate" name="accumulate">accumulate (from
+    &lt;numeric&gt;)</a></h3>
+    <dl>
+      <dt>accumulate(inIterBegin, inIterEnd, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform <tt>val=val+containerVal</tt> for each
+        <tt>containerVal</tt> in the container range
+        <tt>[inIterBegin,inIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The final value of <tt>val</tt>, or the original value of
+        <tt>val</tt> if the input range is empty.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Addition must be defined for the container component type, and
+        <tt>val</tt> must be of the same type as the container component
+        type. Thus, in effect, the algorithm computes and returns the sum
+        of <tt>val</tt> and all the values in the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/accumulate1a.cpp2html">accumulate1a.cpp</a>
+          | <a
+          href="programs/algorithms/accumulate1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/accumulate1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to compute the sum of all integers in a
+          vector, and the sum of an initial value and all the integers in a
+          contiguous subrange of those integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class T&gt;
+T accumulate(InIterator inputBegin,
+             InIterator inputEnd,
+             T val);
+</pre>
+      </dd>
+      <dt>accumulate(inIterBegin, inIterEnd, val, binFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform <tt>val=binFunc(val,containerVal)</tt> for each
+        <tt>containerVal</tt> in the container range
+        <tt>[inIterBegin,inIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The final value of <tt>val</tt>, or the original value of
+        <tt>val</tt> if the input range is empty.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         <tt>binFunc</tt> must be defined for a pair of values of the
+        container component type, and <tt>val</tt> must be of the same type
+        as the container component type. Thus, in effect, the algorithm
+        computes and returns the "accumulated" value performed by
+        <tt>binFunc</tt> on all the values in the input range. This is a
+        more general notion of accumulation than the simple addition
+        performed by the default version of the algorithm given above. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/accumulate2a.cpp2html">accumulate2a.cpp</a>
+          | <a
+          href="programs/algorithms/accumulate2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/accumulate2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to compute the product of all integers in a
+          vector, and the product of an initial value and the values in a
+          contiguous subrange of those integers, using a programmer-defined
+          multiplication function to compute the product of two
+          integers.</dd>
+          <dt><a
+          href="programs/algorithms/accumulate2b.cpp2html">accumulate2b.cpp</a>
+          | <a
+          href="programs/algorithms/accumulate2b.exe">Windows_executable</a>
+          | <a href="programs/algorithms/accumulate2b.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates the same computations as the previous example,
+          but this time using a built-in STL functor to compute the product
+          of two integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class T,
+         class BinaryFunc&gt;
+T accumulate(InIterator inputBegin,
+             InIterator inputEnd,
+             T val,
+             BinaryFunc binFunc);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="adjacent_difference"
+    name="adjacent_difference">adjacent_difference (from
+    &lt;numeric&gt;)</a></h3>
+    <dl>
+      <dt>adjacent_difference(inIterBegin, inIterEnd, outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Write an output sequence in which the first value is the same as
+        the first value of the input sequence, and each subsequent value is
+        the difference between adjacent values in the input sequence.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range, i.e., to the
+        first position beyond the last value of the output sequence.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Values in the output range are overwritten, starting with the
+        value at <tt>outIterBegin</tt>. The value at position n in the
+        output range is obtained by subtracting the value at position n-1
+        is subtracted from the value at position n in the input range. The
+        range <tt>[inIterBegin,inIterEnd)</tt> determines the portion of
+        the input container to which the algorithm will be applied and
+        <tt>outIterBegin</tt> points to the first value of the output range
+        in the output container. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/adjacent_difference1a.cpp2html">adjacent_difference1a.cpp</a>
+          | <a
+          href="programs/algorithms/adjacent_difference1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/adjacent_difference1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to compute adjacent differences for the
+          integer values in one vector and write those values to a second
+          vector. Also shows the value pointed to by the iterator returned
+          by the algorithm.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator&gt;
+OutIterator adjacent_difference(InIterator inIterBegin,
+                                InIterator inIterEnd,
+                                OutIterator outIterBegin);
+</pre>
+      </dd>
+      <dt>adjacent_difference(inIterBegin, inIterEnd, outIterBegin,
+      binFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the version of the algorithm given
+        above, except that this time <tt>binFunc</tt> is applied to
+        adjacent elements, rather than simply computing their difference.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range, i.e., to the
+        first position beyond the last value of the output sequence.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Values in the output range are overwritten, starting with the
+        value at <tt>outIterBegin</tt>. The value at position n in the
+        output range is obtained by supplying the value at position n in
+        the input range as the first argument of <tt>binFunc</tt> and the
+        value at position n-1 in the input range as the second argument of
+        <tt>binFunc</tt>, and then evaluating <tt>binFunc</tt>. The range
+        <tt>[inIterBegin,inIterEnd)</tt> determines the portion of the
+        input container to which the algorithm will be applied and
+        <tt>outIterBegin</tt> points to the first value of the output range
+        in the output container. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/adjacent_difference2a.cpp2html">adjacent_difference2a.cpp</a>
+          | <a
+          href="programs/algorithms/adjacent_difference2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/adjacent_difference2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to apply the simple function
+          <tt>f(a,b)=2*a+b</tt> to successive pairs of integer values in
+          one vector, and write the resulting values to a second vector.
+          Also shows the value pointed to by the iterator returned by the
+          algorithm.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class BinaryFunc&gt;
+OutIterator adjacent_difference(InIterator inputBegin,
+                                InIterator inputEnd,
+                                OutIterator outputBegin,
+                                BinaryFunc binFunc);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="adjacent_find" name="adjacent_find">adjacent_find (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>adjacent_find(forIterBegin,forIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search for adjacent equal values in the range
+        <tt>[forIterBegin,forIterEnd).</tt>
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first element of the first equal
+        adjacent pair, or to <tt>forIterEnd</tt> if no such matching pair
+        is found.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/adjacent_find1a.cpp2html">adjacent_find1a.cpp</a>
+          | <a
+          href="programs/algorithms/adjacent_find1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/adjacent_find1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the first pair of equal values within
+          a range of values.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator&gt;
+ForIterator adjacent_find(ForIterator searchRangeBegin,
+                          ForIterator searchRangeEnd);
+</pre>
+      </dd>
+      <dt>adjacent_find(forIterBegin, forIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the version of the algorithm
+        given above, except that in this case <tt>binPred</tt> is applied
+        to adjacent values to determine if they match.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value of the first matching pair
+        of values, or to <tt>forIterEnd</tt> if no such matching pair is
+        found.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/adjacent_find2a.cpp2html">adjacent_find2a.cpp</a>
+          | <a
+          href="programs/algorithms/adjacent_find2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/adjacent_find2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find, within a range of values, the first
+          adjacent pair of values that are both divisible by 5.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class BinaryPred&gt;
+ForIterator adjacent_find(ForIterator searchRangeBegin,
+                          ForIterator searchRangeEnd,
+                          BinaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="binary_search" name="binary_search">binary_search (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>binary_search(forIterBegin, forIterEnd, targetVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform a binary search for a value equal to <tt>targetVal</tt>
+        within the range <tt>[forIterBegin,forIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if the value is found, and otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm the values in the search range
+        are assumed to be sorted in ascending order. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/binary_search1a.cpp2html">binary_search1a.cpp</a>
+          | <a
+          href="programs/algorithms/binary_search1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/binary_search1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to determine whether a specific value is one
+          of the values in a given range of values that have been sorted
+          into ascending order.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T&gt;
+bool binary_search(ForIterator searchRangeBegin,
+                   ForIterator searchRangeEnd,
+                   const T&amp; targetVal);
+</pre>
+      </dd>
+      <dt>binary_search(forIterBegin, forIterEnd, targetVal, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the version of the algorithm
+        given above, except that in this case the criterion for ordering
+        the values in the search range is the one give by
+        programmer-supplied comparison function <tt>binPred</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if the value is found, and otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/binary_search2a.cpp2html">binary_search2a.cpp</a>
+          | <a
+          href="programs/algorithms/binary_search2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/binary_search2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to determine whether an integer having the
+          same digit sum as a given integer is present among the integers
+          within a given range of integers. The given range of integers is
+          assumed to be ordered in the sense that a first integer precedes
+          a second integer if the sum of the digits in the first integer is
+          less than the sum of the digits in the second integer.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T,
+         class BinaryPred&gt;
+bool binary_search(ForIterator searchRangeBegin,
+                   ForIterator searchRangeEnd,
+                   const T&amp; targetVal,
+                   BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="copy" name="copy">copy (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>copy(inIterBegin, inIterEnd, outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy, in forward order, the sequence of values from the input
+        range <tt>[inIterBegin,inIterEnd)</tt> in a source container to a
+        destination container output range whose first element is pointed
+        to by <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end (one-past-the-last) of the copied
+        range in the destination container.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range in the destination container must be large enough
+        to receive the copied values. Values in the destination container
+        are overwritten by default, starting with the value at position
+        <tt>outIterBegin</tt>. The range to be copied must not overlap with
+        <tt>outIterBegin</tt> in any case where the source container and
+        the destination container are the same. 
+        <dl>
+          <dt><a href="programs/algorithms/copy1a.cpp2html">copy1a.cpp</a>
+          | <a href="programs/algorithms/copy1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/copy1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to copy integers (in the forward direction)
+          from one vector to another, and also illustrates what value is
+          pointed to by the iterator returned by the algorithm.</dd>
+        </dl>
+        <dl>
+          <dt><a href="programs/algorithms/copy1b.cpp2html">copy1b.cpp</a>
+          | <a href="programs/algorithms/copy1b.exe">Windows_executable</a>
+          | <a href="programs/algorithms/copy1b.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to copy integers (in the forward direction)
+          from a vector to an output stream using an output stream
+          iterator.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator&gt;
+OutIterator copy(InIterator sourceRangeBegin,
+                 InIterator sourceRangeEnd,
+                 OutIterator destinationRangeBegin);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="copy_backward" name="copy_backward">copy_backward (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>copy_backward(biIter1Begin, biIter1End, biIter2End)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy, in reverse order, the sequence of values from an input range
+        <tt>[biIter1Begin,biIter1End)</tt> in a source container to an
+        output range in a destination container. The end of the output
+        range is pointed to by <tt>biIter2End</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the last value copied.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range in the destination container must be large enough
+        to receive the copied values. Values in the destination container
+        are overwritten by default. The iterator <tt>biIter2End</tt> marks
+        the end of the range of copied values in the destination container.
+        Conceptually, this implies that the first value copied is the value
+        at position <tt>biIter1End-1</tt>, and it is copied to position
+        <tt>biIter2End-1</tt>. The range to be copied must not overlap with
+        <tt>biIter2End</tt>, in the case where the source container and the
+        destination container are the same. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/copy_backward1a.cpp2html">copy_backward1a.cpp</a>
+          | <a
+          href="programs/algorithms/copy_backward1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/copy_backward1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to copy integers (in the backward direction)
+          from one vector to another, and also illustrates what value is
+          pointed to by the iterator returned by the algorithm.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator1,
+         class BiIterator2&gt;
+BiIterator2 copy_backward(BiIterator1 sourceRangeBegin,
+                          BiIterator1 sourceRangeEnd,
+                          BiIterator2 destinationRangeEnd);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="count" name="count">count (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>count(inIterBegin, inIterEnd, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Count the number of values in an input range
+        <tt>[inIterBegin,inIterEnd)</tt> that equal <tt>val</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The number of such values.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/count1a.cpp2html">count1a.cpp</a> | <a
+          href="programs/algorithms/count1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/count1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to count the integers in a vector that equal
+          a particular integer value.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class T&gt;
+difference_type count(InIterator inputBegin,
+                      InIterator inputEnd,
+                      const T&amp; targetValue);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="count_if" name="count_if">count_if (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>count_if(inIterBegin, inIterEnd, unPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Count the number of values in an input range
+        <tt>[inIterBegin,inIterEnd)</tt> for which the unary predicate
+        <tt>unPred</tt> returns <tt>true</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The number of such values.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/count_if1a.cpp2html">count_if1a.cpp</a>
+          | <a
+          href="programs/algorithms/count_if1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/count_if1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to count the integer values that are
+          divisible by 3 in a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class UnaryPred&gt;
+difference_type count_if(InIterator inputBegin,
+                         InIterator inputEnd,
+                         UnaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="equal" name="equal">equal (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>equal(inIter1Begin, inIter1End, inIter2Begin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+        Compare the sequence of values from the
+        range <tt>[inIter1Begin,inIter1End)</tt> with the sequence in the
+        range whose first value is pointed to by <tt>inIter2Begin</tt>.
+        <br />
+         <strong>Return value:</strong>
+         <br />
+         <tt>true</tt> if both ranges
+        contain equal values in corresponding positions, and otherwise
+        <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+         <br />The range starting at
+        <tt>inIter2Begin</tt> may contain more, but not fewer, values than
+        the range given by <tt>[inIter1Begin,inIter1End)</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/equal1a.cpp2html">equal1a.cpp</a> | <a
+          href="programs/algorithms/equal1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/equal1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to test whether the integers in a range of
+          integers in one vector are the same as the integers in another
+          range in a different vector.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2&gt;
+bool equal(InIterator1 input1Begin,
+           InIterator1 input1End,
+           InIterator2 input2Begin);
+</pre>
+      </dd>
+      <dt>equal(inIter1Begin, inIter1End, inIter2Begin, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+        Perform in a manner analogous to the
+        previous version of the algorithm given above, except that in this
+        case <tt>binPred</tt> is used to determine when two values match
+        (i.e., are "equal").
+        <br />
+         <strong>Return value:</strong>
+         <br />
+         <tt>true</tt> if both ranges
+        contain matching values in corresponding positions, and otherwise
+        <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+         <br />
+         The range starting at
+        <tt>inIter2Begin</tt> may contain more, but not fewer, values than
+        the range given by <tt>[inIter1Begin,inIter1End)</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/equal2a.cpp2html">equal2a.cpp</a> | <a
+          href="programs/algorithms/equal2a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/equal2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to test whether the integers in a range of
+          integers in one vector match the integers in another range in a
+          different vector, in the sense of values in corresponding
+          positions having the same digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class BinaryPred&gt;
+bool equal(InIterator1 input1Begin,
+           InIterator1 input1End,
+           InIterator2 input2Begin,
+           BinaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="equal_range" name="equal_range">equal_range (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>pair&lt;ForIterator, ForIterator&gt; equal_range(forIterBegin,
+      forIterEnd, targetVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+        Find the lower and upper bounds of
+        <tt>targetVal</tt> within the range
+        <tt>[forIterBegin,forIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+         <br />
+         A <tt>pair</tt> of iterators in
+        which the first iterator points to the location of the lower bound
+        of <tt>targetVal</tt> within the given range and the second
+        iterator points to the upper bound of <tt>targetVal</tt> within
+        that range.
+        <br />
+         <strong>Notes:</strong>
+         <br />The values in
+        <tt>[forIterBegin,forIterEnd)</tt> are assumed to be sorted in
+        ascending order. A lower and/or upper bound iterator may in fact be
+        the end (one-past-the-last) of the range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/equal_range1a.cpp2html">equal_range1a.cpp</a>
+          | <a
+          href="programs/algorithms/equal_range1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/equal_range1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the lower and upper bounds of integer
+          values in a vector of integers that are sorted in ascending
+          order.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T&gt;
+pair&lt;ForIterator, ForIterator&gt; equal_range(ForIterator inputBegin,
+                                           ForIterator inputEnd,
+                                           const T&amp; targetVal);
+</pre>
+      </dd>
+      <dt>pair&lt;ForIterator, ForIterator&gt; equal_range(forIterBegin,
+      forIterEnd, targetVal, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+        Perform in a manner analogous to the
+        previous version of the algorithm given above, except that in this
+        case <tt>binPred</tt> determines the ordering of the values in
+        <tt>[forIterBegin,forIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+         <br />
+         A <tt>pair</tt> of iterators in
+        which the first iterator points to the location of the lower bound
+        of <tt>targetVal</tt> within the given range and the second
+        iterator points to the upper bound of <tt>targetVal</tt> within
+        that range.
+        <br />
+         <strong>Notes:</strong>
+         <br />
+         The values in
+        <tt>[forIterBegin,forIterEnd)</tt> are assumed to be ordered in the
+        sense that <tt>a</tt> precedes <tt>b</tt> if and only if
+        <tt>binPred(a,b)</tt> is <tt>true</tt>. A lower and/or upper bound
+        iterator may in fact be the end (one-past-the-last) of the range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/equal_range2a.cpp2html">equal_range2a.cpp</a>
+          | <a
+          href="programs/algorithms/equal_range2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/equal_range2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find lower and upper bounds of integers in
+          a vector of integers that have been ordered in the sense that one
+          integer precedes another if the first has a smaller digit sum
+          than the second.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T,
+         class BinaryPred&gt;
+pair&lt;ForIterator, ForIterator&gt; equal_range(ForIterator inputBegin,
+                                           ForIterator inputEnd,
+                                           const T&amp; targetVal,
+                                           BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="fill" name="fill">fill (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>fill(forIterBegin, forIterEnd, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Set every item in a range <tt>[forIterBegin,forIterEnd)</tt> to
+        <tt>val</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The type of <tt>val</tt> must be the same as the component type of
+        values in the range <tt>[forIterBegin,forIterEnd)</tt>. 
+        <dl>
+          <dt><a href="programs/algorithms/fill1a.cpp2html">fill1a.cpp</a>
+          | <a href="programs/algorithms/fill1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/fill1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to set all values in a range of values within
+          a vector of integers to a given value.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T&gt;
+void fill(ForIterator outputBegin,
+          ForIterator outputEnd,
+          const T&amp; val);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="fill_n" name="fill_n">fill_n (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>fill_n(outIterBegin, num, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Set <tt>num</tt> items to <tt>val</tt> in a range that begins at
+        <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The type of <tt>val</tt> must be the same as the component type of
+        values in the range beginning at <tt>outIterBegin</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/fill_n1a.cpp2html">fill_n1a.cpp</a> |
+          <a href="programs/algorithms/fill_n1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/fill_n1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to set a particular number of integers in a
+          vector of integers, starting at a specific point in the vector,
+          to a given value.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class OutIterator,
+         class size_type,
+         class T&gt;
+void fill_n(OutIterator outputBegin,
+            size_type num,
+            const T&amp; val);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="find" name="find">find (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>find(inIterBegin, inIterEnd, targetVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search for a value equal to <tt>targetVal</tt> in a range
+        <tt>[inIterBegin,inIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing at the first occurrence of such a value, or
+        at <tt>inIterEnd</tt> if no such value is found.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The type of <tt>targetVal</tt> must be the same as the component
+        type of values in the range <tt>[inIterBegin,inIterEnd)</tt> This
+        is a sequential search, so no assumptions are made about any
+        ordering of the values in the input range. 
+        <dl>
+          <dt><a href="programs/algorithms/find1a.cpp2html">find1a.cpp</a>
+          | <a href="programs/algorithms/find1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/find1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find a given integer value within a vector
+          of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class T&gt;
+InIterator find(InIterator inputBegin,
+                InIterator inputEnd,
+                const T&amp; targetVal);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="find_end" name="find_end">find_end (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>find_end(forIter1Begin, forIter1End, forIter2Begin,
+      forIter2End)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search for the last occurrence of the range of values given by
+        <tt>[forIter2Begin,forIter2End)</tt> within the range of values
+        given by <tt>[forIter1Begin,forIter1End)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value of the matching range
+        within <tt>[forIter1Begin,forIter1End)</tt> if such a matching
+        range is found, and to <tt>forIter1End</tt> if there is no matching
+        range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         For a "matching range" to exist, corresponding values in the
+        ranges must be equal. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/find_end1a.cpp2html">find_end1a.cpp</a>
+          | <a
+          href="programs/algorithms/find_end1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/find_end1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the last occurrence of one range of
+          integer values in a vector within another range of integer values
+          in a vector.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2&gt;
+ForIterator1 find_end(ForIterator1 input1Begin,
+                      ForIterator1 input1End,
+                      ForIterator2 input2Begin,
+                      ForIterator2 input2End);
+</pre>
+      </dd>
+      <dt>find_end(forIter1Begin, forIter1End, forIter2Begin, forIter2End,
+      binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the test applied to
+        corresponding elements to determine if the ranges match is
+        performed by <tt>binPred</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value of the matching range
+        within <tt>[forIter1Begin,forIter1End)</tt> if such a matching
+        range is found, and to <tt>forIter1End</tt> if there is no matching
+        range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         For a "matching range" to exist, <tt>binPred</tt> applied to
+        corresponding values from the two ranges must return <tt>true</tt>.
+        
+        <dl>
+          <dt><a
+          href="programs/algorithms/find_end2a.cpp2html">find_end2a.cpp</a>
+          | <a
+          href="programs/algorithms/find_end2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/find_end2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the last occurrence of one range of
+          integer values in a vector within another range of integer values
+          in a vector, and for which corresponding values in the two ranges
+          match if and only if they have the same digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2,
+         class BinaryPred&gt;
+ForIterator1 find_end(ForIterator1 input1Begin,
+                      ForIterator1 input1End,
+                      ForIterator2 input2Begin,
+                      ForIterator2 input2End,
+                      BinaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="find_first_of" name="find_first_of">find_first_of (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>find_first_of(forIter1Begin, forIter1End, forIter2Begin,
+      forIter2End)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search for the first instance of any of the values in
+        <tt>[forIter2Begin,forIter2End)</tt> also occurring in the range
+        <tt>[forIter1Begin,forIter1End)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to this first such instance if one is found,
+        and to <tt>forIter1End</tt> if there is no matching value.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this search, values match if they are equal. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/find_first_of1a.cpp2html">find_first_of1a.cpp</a>
+          | <a
+          href="programs/algorithms/find_first_of1a.exe">Windows_executable</a>|
+          <a href="programs/algorithms/find_first_of1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the first occurrence of any one of a
+          range of integer values in a vector within another range of
+          integer values, also in a vector.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2&gt;
+ForIterator1 find_first_of(ForIterator1 input1Begin,
+                           ForIterator1 input1End,
+                           ForIterator2 input2Begin,
+                           ForIterator2 input2End);
+</pre>
+      </dd>
+      <dt>find_first_of(forIter1Begin, forIter1End, forIter2Begin,
+      forIter2End, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the test applied to
+        corresponding values to determine if they match is performed by
+        <tt>binPred</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to this first such instance if one is found,
+        and to <tt>forIter1End</tt> if there is no matching value.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this search, values <tt>valFromFirstRange</tt> and
+        <tt>valFromSecondRange</tt> match if
+        <tt>binPred(valFromFirstRange,valFromSecondRange)</tt> returns
+        <tt>true</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/find_first_of2a.cpp2html">find_first_of2a.cpp</a>
+          | <a
+          href="programs/algorithms/find_first_of2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/find_first_of2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the first occurrence of any one of a
+          range of integer values in a vector within another range of
+          integer values, also in a vector, and where corresponding values
+          match if and only if they have the same digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2,
+         class BinaryPred&gt;
+ForIterator1 find_first_of(ForIterator1 input1Begin,
+                           ForIterator1 input1End,
+                           ForIterator2 input2Begin,
+                           ForIterator2 input2End,
+                           BinaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="find_if" name="find_if">find_if (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>find_if(inIterBegin, inIterEnd, unPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search the range <tt>[inIterBegin, inIterEnd)</tt> for a value
+        that satisfies the unary predicate <tt>unPred</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value from the given range that
+        satisfies <tt>unPred</tt>, or <tt>inIterEnd</tt> if no such value
+        is found.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         <tt>unPred</tt> must take a single parameter that has the same
+        type as the component type of the values in the given range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/find_if1a.cpp2html">find_if1a.cpp</a> |
+          <a
+          href="programs/algorithms/find_if1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/find_if1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find an integer divisible by 3 in a vector
+          of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class UnaryPred&gt;
+InIterator find_if(InIterator inputBegin,
+                   InIterator inputEnd,
+                   UnaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="for_each" name="for_each">for_each (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>for_each(inIterBegin, inIterEnd, unProc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Apply the unary procedure <tt>unProc</tt> to every item in a range
+        <tt>[inIterBegin,inIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>unProc</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The unary procedure <tt>unProc</tt> must take a single parameter
+        that has the same type as the values in the range
+        <tt>[inIterBegin,inIterEnd)</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/for_each1a.cpp2html">for_each1a.cpp</a>
+          | <a
+          href="programs/algorithms/for_each1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/for_each1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates finding cube of, and how to display, values in a
+          vector of doubles using the for_each() algorithm.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class UnaryProc&gt;
+UnaryProc for_each(InIterator inputBegin,
+                   InIterator inputEnd,
+                   UnaryProc unProc);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="generate" name="generate">generate (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>generate(forIterBegin, forIterEnd, genFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Fill the range <tt>[forIterBegin, forIterEnd)</tt> with values
+        generated by the generator function <tt>genFunc</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         <tt>genFunc</tt> is a function that takes no parameters and
+        returns a value of the same type as the component type of the
+        values in the range <tt>[forIterBegin, forIterEnd)</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/generate1a.cpp2html">generate1a.cpp</a>
+          | <a
+          href="programs/algorithms/generate1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/generate1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to generate a range of random integer values
+          in a vector by using the <tt>rand</tt> function from
+          <tt>&lt;cstdlib&gt;</tt>.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class GeneratorFunc&gt;
+void generate(ForIterator inputBegin,
+              ForIterator inputEnd,
+              GeneratorFunc genFunc);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="generate_n" name="generate_n">generate_n (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>generate_n(outIterBegin, num, genFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Fill the range starting at <tt>outIterBegin</tt> with <tt>num</tt>
+        values generated by the generator function <tt>genFunc</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         <tt>genFunc</tt> is a function that takes no parameters and
+        returns a value of the same type as the component type of the
+        values in the output range starting at <tt>outIterBegin</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/generate_n1a.cpp2html">generate_n1a.cpp</a>
+          | <a
+          href="programs/algorithms/generate_n1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/generate_n1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to generate <tt>num</tt> random integer
+          values for a vector range of values starting at
+          <tt>outIterBegin</tt> by using the <tt>rand</tt> function from
+          <tt>&lt;cstdlib&gt;</tt>. The output range starting at
+          <tt>outIterBegin</tt> must be large enough to receive the
+          generated values.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class OutIterator,
+         class size_type,
+         class GeneratorFunc&gt;
+void generate_n(OutIterator outputBegin,
+                size_type num,
+                GeneratorFunc genFunc);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="includes" name="includes">includes (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>includes(inIter1Begin, inIter1End, inIter2Begin, inIter2End)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search for each value from the range
+        <tt>[inIter2Begin,inIter2End)</tt> in the range
+        <tt>[inIter1Begin,inIter1End)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if all the values from the second range are found in
+        the first range, and otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Both ranges are assumed to be sorted in ascending order. The
+        values from the second range do not have to be contiguous in the
+        first range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/includes1a.cpp2html">includes1a.cpp</a>
+          | <a
+          href="programs/algorithms/includes1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/includes1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to test whether the values in a second
+          (sorted ascending) range of integer values in a vector of
+          integers are all present in a first (sorted ascending) range of
+          integer values, also in a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2&gt;
+bool includes(InIterator1 input1Begin,
+              InIterator1 input1End,
+              InIterator2 input2Begin,
+              InIterator2 input2End);
+</pre>
+      </dd>
+      <dt>includes(inIter1Begin, inIter1End, inIter2Begin, inIter2End,
+      binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary
+        predicate <tt>binPred</tt> determines the ordering of values in the
+        given range.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if each value from the second range matches a value
+        found in the first range, and otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Both ranges are assumed to be ordered in the sense that value
+        <tt>a</tt> precedes value <tt>b</tt> if and only if
+        <tt>binPred(a,b)</tt> returns <tt>true</tt>. The values from the
+        second range do not have to be contiguous in the first range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/includes2a.cpp2html">includes2a.cpp</a>
+          | <a
+          href="programs/algorithms/includes2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/includes2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to test whether the values in a second range
+          of (ordered) integer values in a vector of integers are all
+          present in a first (ordered) range of integer values, also in a
+          vector of integers. In this case the integers are ordered in the
+          sense that a first integer precedes a second if and only if its
+          digit sum is less than the digit sum of the second integer.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class BinaryPred&gt;
+bool includes(InIterator1 input1Begin,
+              InIterator1 input1End,
+              InIterator2 input2Begin,
+              InIterator2 input2End,
+              BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="inner_product" name="inner_product">inner_product (from
+    &lt;numeric&gt;)</a></h3>
+    <dl>
+      <dt>inner_product(inIter1Begin, inIter1End, inIter2Begin, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Calculate the sum of the products of two ranges of values,
+        <tt>[inIter1Begin,inIter1End)</tt> and the one beginning at
+        <tt>inIter2Begin</tt>, by taking the corresponding values in each
+        range, multiplying those values, and then adding the result to a
+        total initialized by <tt>val</tt>. In other word, the algorithm
+        performs <tt>val=val+(container1Val*container2Val)</tt> for each
+        corresponding pair of values in the two container ranges.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The final value of <tt>val</tt> or, if the first range is empty,
+        the initial value of <tt>val</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The range starting with <tt>inIter2Begin</tt> must contain at
+        least the number of values in the range
+        <tt>[inIter1Begin,inIter1End)</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/inner_product1a.cpp2html">inner_product1a.cpp</a>
+          | <a
+          href="programs/algorithms/inner_product1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/inner_product1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to compute the "standard" inner product
+          (i.e., the sum of the products) of two ranges of integer values
+          from two vectors of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class T&gt;
+T inner_product(InIterator1 input1Begin,
+                InIterator1 input1End,
+                InIterator2 input2Begin,
+                T initializerVal);
+</pre>
+      </dd>
+      <dt>inner_product(inIter1Begin, inIter1End, inIter2Begin, val,
+      binFunc1, binFunc2)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the programmer can
+        compute a non-standard inner product by supplying two function
+        operators to replace the addition and multiplication operations
+        that are used in the first (standard) version. In other words, this
+        version of the algorithm performs
+        <tt>val=binFunc1(val,binFunc2(container1Val,container2Val))</tt>
+        for each corresponding pair of values in the two container ranges.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The final value of <tt>val</tt> or, if the first range is empty,
+        the initial value of <tt>val</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The range starting with <tt>inIter2Begin</tt> must contain at
+        least the number of values in the range
+        <tt>[inIter1Begin,inIter1End)</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/inner_product2a.cpp2html">inner_product2a.cpp</a>
+          | <a
+          href="programs/algorithms/inner_product2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/inner_product2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to compute the inner product of two ranges of
+          integer values from two vectors of integers. This time
+          multiplication is replaced by addition and addition by
+          multiplication, so that instead of the "usual" inner product,
+          which is the sum of products, we have the product of sums.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class T,
+         class BinaryFunc1,
+         class BinaryFunc2&gt;
+T inner_product(InIterator1 inputBegin1,
+                InIterator1 inputEnd1,
+                InIterator2 inputBegin2,
+                T initializerVal,
+                BinaryFunc1 binFunc1,
+                BinaryFunc2 binFunc2);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="inplace_merge" name="inplace_merge">inplace_merge (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>inplace_merge(biIterBegin, biIterMid, biIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Combine the two (sorted) ranges of values in <tt>[biIterBegin,
+        biIterMid)</tt> and <tt>[biIterMid, biIterEnd)</tt> into a single
+        (sorted) range of values in <tt>[biIterBegin, biIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The two input ranges must be sorted in ascending order and the
+        combined output range will also be sorted in ascending order. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/inplace_merge1a.cpp2html">inplace_merge1a.cpp</a>
+          | <a
+          href="programs/algorithms/inplace_merge1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/inplace_merge1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to merge two sorted ranges of in the same
+          container into a single sorted range of values within that same
+          container.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator&gt;
+void inplace_merge(BiIterator inputOutputBegin,
+                   BiIterator inputOutputMid,
+                   BiIterator inputOutputEnd);
+</pre>
+      </dd>
+      <dt>inplace_merge(biIterBegin, biIterMid, biIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version, except that
+        in this case the order of values is determined by the supplied
+        comparison function.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The two input ranges must be ordered by the comparison predicate
+        <tt>binPred</tt> in the sense that the value <tt>a</tt> precedes
+        the value <tt>b</tt> if and only if <tt>binPred(a,b</tt>) returns
+        <tt>true</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/inplace_merge2a.cpp2html">inplace_merge2a.cpp</a>
+          | <a
+          href="programs/algorithms/inplace_merge2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/inplace_merge2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to merge two ordered ranges in the same
+          container into a single ordered range of values within that same
+          container. In this case the order of values is determined by one
+          value preceding another if the first has a smaller digit sum than
+          the second.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator,
+         class BinaryPred&gt;
+void inplace_merge(BiIterator inputOutputBegin,
+                   BiIterator inputOutputMid,
+                   BiIterator inputOutputEnd,
+                   BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="iter_swap" name="iter_swap">iter_swap (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>iter_swap(forIter1, forIter2)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Swap the values pointed to by the two iterators <tt>forIter1</tt>
+        and <tt>forIter2</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The values to be swapped may be in the same container or different
+        containers. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/iter_swap1a.cpp2html">iter_swap1a.cpp</a>
+          | <a
+          href="programs/algorithms/iter_swap1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/iter_swap1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to swap integer values that are pointed to by
+          two different iterators that may point into the same vector of
+          integers, or into two different vectors of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2&gt;
+void iter_swap(ForIterator1 forIter1,
+               ForIterator2 forIter2);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="lexicographical_compare"
+    name="lexicographical_compare">lexicographical_compare (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>lexicographical_compare(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Determine whether the range <tt>[inIter1Begin,inIter1End)</tt>
+        precedes the range <tt>[inIter2Begin,inIter2End)</tt> in
+        "dictionary order".
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if the first range would precede the second in
+        "dictionary order", and otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Both ranges must be sorted in ascending order. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/lexicographical_compare1a.cpp2html">lexicographical_compare1a.cpp</a>
+          | <a
+          href="programs/algorithms/lexicographical_compare1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/lexicographical_compare1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to test whether a range of integers in one
+          vector precedes, in the lexicographical (dictionary) sense,
+          another range of integers, in the same vector, or in another
+          vector.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2&gt;
+bool lexicographical_compare(InIterator1 input1Begin,
+                             InIterator1 input1End,
+                             InIterator2 input2Begin,
+                             InIterator2 input2End);
+</pre>
+      </dd>
+      <dt>lexicographical_compare(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the order of values
+        is determined by the supplied comparison predicate.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if the first range would precede the second in
+        "dictionary order", and otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Both ranges must be ordered as determined by the supplied
+        comparison predicate. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/lexicographical_compare2a.cpp2html">lexicographical_compare2a.cpp</a>
+          | <a
+          href="programs/algorithms/lexicographical_compare2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/lexicographical_compare2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to test whether a range of integers in one
+          vector precedes, in the lexicographical (dictionary) sense,
+          another range of integers, in the same vector, or in another
+          vector. In this case, the integer values are ordered in the sense
+          that one integer precedes another if and only if the digit sum of
+          the first is less than the digit sum of the second.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class BinaryPred&gt;
+bool lexicographical_compare(InIterator1 input1Begin,
+                             InIterator1 input1End,
+                             InIterator2 input2Begin,
+                             InIterator2 input2End,
+                             BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="lower_bound" name="lower_bound">lower_bound (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>lower_bound(forIterBegin, forIterEnd, targetVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Find the location of the lower bound of <tt>targetVal</tt> within
+        the (sorted) range <tt>[forIterBegin,forIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to this location, which will be the first
+        location in the given range where the value is not less than
+        <tt>targetVal</tt>, or the end of the range if there is no such
+        value. Equivalently, it's the first location where
+        <tt>targetVal</tt> could be inserted without destroying the sort
+        order.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The values in the range <tt>[forIterBegin,forIterEnd)</tt> must be
+        sorted in ascending order. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/lower_bound1a.cpp2html">lower_bound1a.cpp</a>
+          | <a
+          href="programs/algorithms/lower_bound1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/lower_bound1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the lower bound location of a given
+          target value in a vector of integers sorted in ascending
+          order.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T&gt;
+ForIterator lower_bound(ForIterator inputBegin,
+                        ForIterator inputEnd,
+                        const T&amp; targetVal);
+</pre>
+      </dd>
+      <dt>lower_bound(forIterBegin, forIterEnd, targetVal, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version, except that
+        in this case the order of values is determined by the supplied
+        comparison predicate <tt>binPred</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the location of the lower bound of
+        <tt>targetVal</tt>, which will be the first location in the given
+        range where <tt>targetVal</tt> could be inserted without destroying
+        the given value order determined by <tt>binPred</tt>, or the end of
+        the range if there is no such value.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The range of values <tt>[forIterBegin,forIterEnd)</tt> must be
+        ordered as determined by the supplied comparison predicate. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/lower_bound2a.cpp2html">lower_bound2a.cpp</a>
+          | <a
+          href="programs/algorithms/lower_bound2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/lower_bound2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates ...</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T,
+         class BinaryPred&gt;
+ForIterator lower_bound(ForIterator inputBegin,
+                        ForIterator inputEnd,
+                        const T&amp; targetVal,
+                        BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="make_heap" name="make_heap">make_heap (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>make_heap(randIterBegin, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Make a range of values <tt>[randIterBegin,randIterEnd)</tt> into a
+        (maximum) heap.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         To understand and make use of this algorithm you should already
+        know what a heap is and how it is represented in contiguous
+        storage, or you should look up this information elsewhere. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/make_heap1a.cpp2html">make_heap1a.cpp</a>
+          | <a
+          href="programs/algorithms/make_heap1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/make_heap1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to convert an arbitrary vector of integers
+          into a (maximum) heap.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void make_heap(RandIterator inputBegin,
+               RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>make_heap(randIterBegin, randIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the programmer can
+        supply a comparison predicate that determines when one element
+        comes before another.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         To understand and make use of this algorithm you should already
+        know what a heap is and how it is represented in contiguous
+        storage, or you should look up this information elsewhere. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/make_heap2a.cpp2html">make_heap2a.cpp</a>
+          | <a
+          href="programs/algorithms/make_heap2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/make_heap2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to convert an arbitrary vector of integers
+          into a heap. In this case, the built-in predicate functor
+          greater&lt;int&gt;() is used to order the values.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void make_heap(RandIterator inputBegin,
+               RandIterator inputEnd,
+               BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="max" name="max">max (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>max(val1, val2)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Find the greater of two values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The greater of <tt>val1</tt> and <tt>val2</tt>, or <tt>val1</tt>
+        if the two values are equal.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        usual <tt>&lt;</tt> operator. 
+        <dl>
+          <dt><a href="programs/algorithms/max1a.cpp2html">max1a.cpp</a> |
+          <a href="programs/algorithms/max1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/max1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the maximum of two literal integer
+          values, two integer values stored in simple integer variables,
+          and two integer values stored as array elements.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class T&gt;
+const T&amp; max(const T&amp; val1,
+             const T&amp; val2);
+</pre>
+      </dd>
+      <dt>max(val1, val2, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The greater of <tt>val1</tt> and <tt>val2</tt>, or <tt>val1</tt>
+        if the two values are equal.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        predicate function <tt>binPred</tt>, in the sense that
+        <tt>val1</tt> "precedes" or "is less than" <tt>val2</tt> if and
+        only if <tt>binPred(val1,val2)</tt> returns <tt>true</tt>. 
+        <dl>
+          <dt><a href="programs/algorithms/max2a.cpp2html">max2a.cpp</a> |
+          <a href="programs/algorithms/max2a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/max2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the maximum of two literal integer
+          values, two integer values stored in simple integer variables,
+          and two integer values stored as array elements, when the
+          criterion for one integer to be greater than another is that it
+          have a greater digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class T,
+         class BinaryPred&gt;
+const T&amp; max(const T&amp; val1,
+             const T&amp; val2,
+             BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="max_element" name="max_element">max_element (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>max_element(forIterBegin, forIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Find the largest value in the range
+        <tt>[forIterBegin,forIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the largest value in the given range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        usual <tt>&lt;</tt> operator. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/max_element1a.cpp2html">max_element1a.cpp</a>
+          | <a
+          href="programs/algorithms/max_element1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/max_element1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the largest value in a vector of
+          integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator&gt;
+ForIterator max_element(ForIterator inputBegin,
+                        ForIterator inputEnd);
+</pre>
+      </dd>
+      <dt>max_element(forIterBegin, forIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the largest value in the given range,
+        according to the criterion determined by <tt>binPred</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        predicate function <tt>binPred</tt>, in the sense that a value
+        <tt>a</tt> "precedes" or "is less than" a value <tt>b</tt> if and
+        only if <tt>binPred(a,b2)</tt> returns <tt>true</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/max_element2a.cpp2html">max_element2a.cpp</a>
+          | <a
+          href="programs/algorithms/max_element2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/max_element2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the largest value in a vector of
+          integers, when one integer is greater than another if and only if
+          it has a greater digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class BinaryPred&gt;
+ForIterator max_element(ForIterator inputBegin,
+                        ForIterator inputEnd,
+                        BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="merge" name="merge">merge (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>merge(inIter1Begin, inIter1End, inIter2Begin, inIter2End,
+      outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Combine two sorted ranges <tt>[inIter1Begin,inIter1End)</tt> and
+        <tt>[inIter2Begin,inIter2End)</tt> into a single sorted range
+        pointed to by <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Both input ranges must be sorted in ascending order, and the output
+        range will be as well. The algorithm is stable, in that both the
+        relative order of values within each input range is preserved, and
+        for equivalent values in both ranges the value from the first range
+        precedes the value from the second range. The output range must be
+        large enough to receive the merged range of values. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/merge1a.cpp2html">merge1a.cpp</a> | <a
+          href="programs/algorithms/merge1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/merge1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to merge two sorted ranges of integers in a
+          vector of integers into a single sorted range of integers, also
+          in a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator&gt;
+OutIterator merge(InIterator1 input1Begin,
+                  InIterator1 input1End,
+                  InIterator2 input2Begin,
+                  InIterator2 input2End,
+                  OutIterator outputBegin);
+</pre>
+      </dd>
+      <dt>merge(inIter1Begin, inIter1End, inIter2Begin, inIter2End,
+      outIterBegin, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Both input ranges must be ordered by <tt>binPred</tt> in the sense
+        that a value <tt>a</tt> "precedes" or "is less than" a value
+        <tt>b</tt> if and only if <tt>binPred(a,b2)</tt> returns
+        <tt>true</tt>, and the output range will also be ordered in this
+        way. The algorithm is stable, in that both the relative order of
+        values within each input range is preserved, and for equivalent
+        values in both ranges the value from the first range precedes the
+        value from the second range. The output range must be large enough
+        to receive the merged range of values. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/merge2a.cpp2html">merge2a.cpp</a> | <a
+          href="programs/algorithms/merge2a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/merge2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to merge two sorted ranges of integers in a
+          vector of integers into a single sorted range of integers, also
+          in a vector of integers, when one integer precedes another if and
+          only if it has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator,
+         class BinaryPred&gt;
+OutIterator merge(InIterator1 input1Begin,
+                  InIterator1 input1End,
+                  InIterator2 input2Begin,
+                  InIterator2 input2End,
+                  OutIterator outputBegin,
+                  BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="min" name="min">min (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>min(val1, val2)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Find the smaller of two values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The smaller of <tt>val1</tt> and <tt>val2</tt>, or <tt>val1</tt>
+        if the two values are equal.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        usual <tt>&lt;</tt> operator. 
+        <dl>
+          <dt><a href="programs/algorithms/min1a.cpp2html">min1a.cpp</a> |
+          <a href="programs/algorithms/min1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/min1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the minimum of two literal integer
+          values, two integer values stored in simple integer variables,
+          and two integer values stored as array elements.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class T&gt;
+const T&amp; min(const T&amp; i,
+             const T&amp; j);
+</pre>
+      </dd>
+      <dt>min(val1, val2, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         The smaller of <tt>val1</tt> and <tt>val2</tt>, or <tt>val1</tt>
+        if the two values are equal.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        predicate function <tt>binPred</tt>, in the sense that
+        <tt>val1</tt> "precedes" or "is less than" <tt>val2</tt> if and
+        only if <tt>binPred(val1,val2)</tt> returns <tt>true</tt>. 
+        <dl>
+          <dt><a href="programs/algorithms/min2a.cpp2html">min2a.cpp</a> |
+          <a href="programs/algorithms/min2a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/min2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the minimum of two literal integer
+          values, two integer values stored in simple integer variables,
+          and two integer values stored as array elements, when the
+          criterion for one integer to be less than another is that it
+          have a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class T,
+         class BinaryPred&gt;
+const T&amp; min(const T&amp; i,
+             const T&amp; j,
+             BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="min_element" name="min_element">min_element (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>min_element(forIterBegin, forIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Find the smallest value in the range
+        <tt>[forIterBegin,forIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the smallest value in the given range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        usual <tt>&lt;</tt> operator. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/min_element1a.cpp2html">min_element1a.cpp</a>
+          | <a
+          href="programs/algorithms/min_element1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/min_element1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the smallest value in a vector of
+          integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator&gt;
+ForIterator min_element(ForIterator inputBegin,
+                        ForIterator inputEnd);
+</pre>
+      </dd>
+      <dt>min_element(forIterBegin, forIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the smallest value in the given range,
+        according to the criterion determined by <tt>binPred</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this version of the algorithm, values are compared using the
+        predicate function <tt>binPred</tt>, in the sense that a value
+        <tt>a</tt> "precedes" or "is less than" a value <tt>b</tt> if and
+        only if <tt>binPred(a,b2)</tt> returns <tt>true</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/min_element2a.cpp2html">min_element2a.cpp</a>
+          | <a
+          href="programs/algorithms/min_element2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/min_element2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the smallest value in a vector of
+          integers, when one integer is greater than another if and only if
+          it has a greater digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class BinaryPred&gt;
+ForIterator min_element(ForIterator inputBegin,
+                        ForIterator inputEnd,
+                        BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="mismatch" name="mismatch">mismatch (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>pair&lt;InIterator1, InIterator2&gt; mismatch(inIter1Begin,
+      inIter1End, inIter2Begin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search the range <tt>[inIter1Begin,inInter1End)</tt> and the range
+        beginning at <tt>inIter2Begin</tt> for the first pair of mismatched
+        (unequal) values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         A <tt>pair</tt> of iterators pointing to the mismatched values in
+        both ranges. If no mismatched values are found it returns a pair of
+        iterators in which the first iterator is pointing to the end
+        (one-past-the-last) of the first range, and the second iterator is
+        pointing at the corresponding value in the second range. Note that
+        in this latter case this second iterator <em>may</em> also point to
+        the end of the second range, but doesn't have to, and won't if the
+        second range contains more values than the first.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The second range must contain at least as many values as the
+        first. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/mismatch1a.cpp2html">mismatch1a.cpp</a>
+          | <a
+          href="programs/algorithms/mismatch1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/mismatch1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find mismatched values in two ranges of
+          integers from two vectors of integers when simple equality is
+          used to determine if two integer values match.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2&gt;
+pair&lt;InIterator1, InIterator2&gt; mismatch(InIterator1 inputBegin1,
+                                        InIterator1 inputEnd1,
+                                        InIterator2 inputBegin2);
+</pre>
+      </dd>
+      <dt>pair&lt;InIterator1, InIterator2&gt; mismatch(inIter1Begin,
+      inIter1End, inIter2Begin, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case <tt>binPred</tt> is
+        applied to corresponding values from the two ranges to determine if
+        they match.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         A <tt>pair</tt> of iterators pointing to the mismatched values in
+        both ranges. If no mismatched values are found it returns a pair of
+        iterators in which the first iterator is pointing to the end
+        (one-past-the-last) of the first range, and the second iterator is
+        pointing at the corresponding value in the second range. Note that
+        in this latter case this second iterator <em>may</em> also point to
+        the end of the second range, but doesn't have to, and won't if the
+        second range contains more values than the first.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The second range must contain at least as many values as the
+        first. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/mismatch2a.cpp2html">mismatch2a.cpp</a>
+          | <a
+          href="programs/algorithms/mismatch2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/mismatch2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find mismatched values in two ranges of
+          integers from two vectors of integers when the sum of digits is
+          used to determine if two integer values match.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class BinaryPred&gt;
+pair&lt;InIterator1, InIterator2&gt; mismatch(InIterator1 inputBegin1,
+                                        InIterator1 inputEnd1,
+                                        InIterator2 inputBegin2,
+                                        BinaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="next_permutation" name="next_permutation">next_permutation
+    (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>next_permutation(biIterBegin, biIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Transform the sequence of values in the range
+        <tt>[biIterBegin,biIterEnd)</tt> into the next "largest"
+        lexicographic permutation of those values, or, if that next
+        permutation does not exist, transform the sequence of values into
+        the lexicographically smallest permutation of those values (i.e.,
+        sort the sequence to its first permutation).
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if in fact there was a next permutation, and
+        otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The permutations are generated assuming a range of values sorted
+        in ascending order. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/next_permutation1a.cpp2html">next_permutation1a.cpp</a>
+          | <a
+          href="programs/algorithms/next_permutation1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/next_permutation1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to generate all permutations of a vector of
+          integers, in order, and also to demonstrate what happens to the
+          return value of the algorithm when the "end" of a permutation
+          sequence is reached and we then "roll over" to begin a new
+          sequence.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator&gt;
+bool next_permutation(BiIterator inputBegin,
+                      BiIterator inputEnd);
+</pre>
+      </dd>
+      <dt>next_permutation(biIterBegin, biIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if in fact there was a next permutation, and
+        otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The permutations are generated assuming a range of values with an
+        order determined by <tt>binPred</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/next_permutation2a.cpp2html">next_permutation2a.cpp</a>
+          | <a
+          href="programs/algorithms/next_permutation2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/next_permutation2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to generate all permutations of a vector of
+          integers, in order, and also to demonstrate what happens to the
+          return value of the algorithm when the "end" of a permutation
+          sequence is reached and we then "roll over" to begin a new
+          sequence. In this case the order of the integers in a permutation
+          is determined by one integer preceding another if and only if it
+          has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator,
+         class BinaryPred&gt;
+bool next_permutation(BiIterator inputBegin,
+                      BiIterator inputEnd,
+                      BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="nth_element" name="nth_element">nth_element (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>nth_element(randIterBegin, randIterNthVal, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Partition the range <tt>[randIterBegin,randIterEnd)</tt> in such a
+        way that the value pointed to by the iterator
+        <tt>randIterNthVal</tt> is the same as the element that would be in
+        that position if the entire range had been sorted. Viewing this
+        value as the "Nth value" provides a rationale for the algorithm's
+        name.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         All values in the range <tt>[randIterBegin,randIterNthVal)</tt>
+        will be less than (or equal to) all values in the range
+        <tt>[randIterValue,randIterEnd)</tt>. Either or both ranges may be
+        sorted, but neither range is guaranteed to be. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/nth_element1a.cpp2html">nth_element1a.cpp</a>
+          | <a
+          href="programs/algorithms/nth_element1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/nth_element1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to partition a vector of integers of size 12
+          around its 7th element. The ranges on either side of this value
+          may or may not be sorted, but the algorithm does not guarantee
+          this, and you should not expect it.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void nth_element(RandIterator inputBegin,
+                 RandIterator inputNthVal,
+                 RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>nth_element(randIterBegin, randIterValue, randIterEnd,
+      binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         All values in the range <tt>[randIterBegin,randIterNthVal)</tt>
+        will precede (according to the given order), or be equal to, all
+        values in the range <tt>[randIterValue,randIterEnd)</tt>. Either or
+        both ranges may be ordered, but neither range is guaranteed to be. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/nth_element2a.cpp2html">nth_element2a.cpp</a>
+          | <a
+          href="programs/algorithms/nth_element2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/nth_element2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to partition a vector of integers of size 12
+          around its 7th element. The ranges on either side of this value
+          may or may not be sorted, but the algorithm does not guarantee
+          this, and you should not expect it. In this case the order of the
+          elements is determined by one integer preceding another if and
+          only if it has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void nth_element(RandIterator inputBegin,
+                 RandIterator inputNthVal,
+                 RandIterator inputEnd,
+                 BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="partial_sort" name="partial_sort">partial_sort (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>partial_sort(randIterBegin, randIterSortedEnd, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Partition the range <tt>[randIterBegin,randIterEnd)</tt> in such a
+        way that all values in the subrange
+        <tt>[randIterBegin,randIterSortedEnd)</tt> are less than or equal
+        to all values in the range <tt>[randIterSortedEnd,randIterEnd)</tt>
+        and the values in the range
+        <tt>[randIterBegin,randIterSortedEnd)</tt> are also sorted into
+        ascending order.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The values in the range <tt>[randIterSortedEnd,randIterEnd)</tt>
+        may also (by chance) be sorted, but it is unlikely. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/partial_sort1a.cpp2html">partial_sort1a.cpp</a>
+          | <a
+          href="programs/algorithms/partial_sort1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/partial_sort1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to partially sort a vector of integers of
+          size 12 by getting its 5 smallest values into ascending order at
+          the beginning of the vector. The following range of values may
+          also be sorted (by chance), but the algorithm does not guarantee
+          this, and you should not expect it.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void partial_sort(RandIterator inputBegin,
+                  RandIterator sortedEnd,
+                  RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>partial_sort(randIterBegin, randIterSortedEnd, randIterEnd,
+      binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values and the
+        values in the range <tt>[randIterBegin,randIterSortedEnd)</tt> are
+        ordered according to the order determined by <tt>binPred</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The values in the range <tt>[randIterSortedEnd,randIterEnd)</tt>
+        may also (by chance) be sorted, but it is unlikely. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/partial_sort2a.cpp2html">partial_sort2a.cpp</a>
+          | <a
+          href="programs/algorithms/partial_sort2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/partial_sort2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to partially order a vector of integers of
+          size 12 by moving the first 5 values in the given ordering to the
+          beginning of the vector, in the proper order. The range of values
+          following this value may also be ordered, but the algorithm does
+          not guarantee this, and you should not expect it. In this case
+          the order of the elements is determined by one integer preceding
+          another if and only if it has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void partial_sort(RandIterator inputBegin,
+                  RandIterator inputNthVal,
+                  RandIterator inputEnd,
+                  BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="partial_sort_copy"
+    name="partial_sort_copy">partial_sort_copy (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>partial_sort_copy(inIterBegin, inIterEnd, randIterBegin,
+      randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Sort the range <tt>[inIterBegin,inIterEnd)</tt> and copy as much
+        as will fit into the range <tt>[randIterBegin,randIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range, in this case
+        one position past the last copied value.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range may be smaller than the input range. The input
+        range is left unchanged. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/partial_sort_copy1a.cpp2html">partial_sort_copy1a.cpp</a>
+          | <a
+          href="programs/algorithms/partial_sort_copy1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/partial_sort_copy1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort a range of values from a vector of
+          integers of size 12 into ascending order and copy as many of them
+          as will fit into a range within a second vector of integers. The
+          contents of the initial vector are unchanged by this action.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class RandIterator&gt;
+RandIterator partial_sort_copy(InIterator inputBegin,
+                               InIterator inputEnd,
+                               RandIterator copiedOutputBegin,
+                               RandIterator copiedOutputEnd);
+</pre>
+      </dd>
+      <dt>partial_sort_copy(inIterBegin, inIterEnd, randIterBegin,
+      randIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Performs in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range, in this case
+        one position past the last copied value.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range may be smaller than the input range. The input
+        range is left unchanged. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/partial_sort_copy2a.cpp2html">partial_sort_copy2a.cpp</a>
+          | <a
+          href="programs/algorithms/partial_sort_copy2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/partial_sort_copy2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to order a range of values from a vector of
+          integers of size 12 into the order determined by increasing digit
+          sum, and copy as many of them as will fit into a range within a
+          second vector of integers. The contents of the initial vector are
+          unchanged by this action.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class RandIterator,
+         class BinaryPred&gt;
+RandIterator partial_sort_copy(InIterator inputBegin,
+                               InIterator inputEnd,
+                               RandIterator beginCopiedOutput,
+                               RandIterator endCopiedOutput,
+                               BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="partial_sum" name="partial_sum">partial_sum (from
+    &lt;numeric&gt;)</a></h3>
+    <dl>
+      <dt>partial_sum(inIterBegin, inIterEnd, outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Fill the range starting at <tt>outIterBegin</tt> with a running
+        total of the values in the range <tt>[inIterBegin,inIterEnd)</tt>.
+        That is, if x<sub>0</sub>, x<sub>1</sub>, x<sub>2</sub>, ... are
+        the first few values in the input sequence, and s<sub>0</sub>,
+        s<sub>1</sub>, s<sub>2</sub>, ... are the corresponding partial
+        sums in the output sequence written to the output range, then
+        s<sub>0</sub>=x<sub>0</sub>,
+        <tt>s<sub>1</sub>=s<sub>0</sub>+x<sub>1</sub></tt>,
+        <tt>s<sub>2</sub>=s<sub>1</sub>+x<sub>2</sub></tt>, ...
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range must be at least as large as the input range, and
+        may in fact <em>be</em> the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/partial_sum1a.cpp2html">partial_sum1a.cpp</a>
+          | <a
+          href="programs/algorithms/partial_sum1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/partial_sum1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the running totals of integer values
+          stored in a vector of integers and write those sums out to the
+          same vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator&gt;
+OutIterator partial_sum(InIterator inputBegin,
+                        InIterator inputEnd,
+                        OutIterator result);
+</pre>
+      </dd>
+      <dt>partial_sum(inIterBegin, inIterEnd, outIterBegin, binFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary function
+        binFunc replaces addition as the operator combining successive
+        values in the following way: if x<sub>0</sub>, x<sub>1</sub>,
+        x<sub>2</sub>, ... are the first few values in the input sequence,
+        and s<sub>0</sub>, s<sub>1</sub>, s<sub>2</sub>, ... are the
+        corresponding "partial sums" in the output sequence written to the
+        output range, then s<sub>0</sub>=x<sub>0</sub>,
+        <tt>s<sub>1</sub>=binFunc(s<sub>0</sub>,x<sub>1</sub>)</tt>,
+        <tt>s<sub>2</sub>=binFunc(s<sub>1</sub>,x<sub>2</sub>)</tt>, ...
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range must be at least as large as the input range, and
+        may in fact <em>be</em> the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/partial_sum2a.cpp2html">partial_sum2a.cpp</a>
+          | <a
+          href="programs/algorithms/partial_sum2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/partial_sum2a.txt">program_output
+          (text)</a></dt>
+          <dd>
+            Illustrates how to find the "running totals" of integer values
+            stored in a vector of integers and computed using 
+<pre xml:space="preserve">
+newOutputValue = 2 * oldOutputValue + newInputValue
+</pre>
+            and to write those computed values out to the same vector of
+            integers.
+          </dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class BinaryFunc&gt;
+OutIterator partial_sum(InIterator inputBegin,
+                        InIterator inputEnd,
+                        OutIterator result,
+                        BinaryFunc functor);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="partition" name="partition">partition (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>partition(biIterBegin, biIterEnd, unPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Partition the range <tt>[biIterBegin,biIterEnd)</tt> by using a
+        predicate <tt>unPred</tt>. The values that satisfy <tt>unPred</tt>
+        will come before the values that do not.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first element for which the predicate
+        <tt>unPred</tt> is <tt>false</tt>, or to the end of the range if
+        all values in it satisfy <tt>unPred</tt>.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/partition1a.cpp2html">partition1a.cpp</a>
+          | <a
+          href="programs/algorithms/partition1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/partition1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to partition the integer values in a vector of
+          integers into two groups: those that are divisible by 3, and
+          those that are not.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator,
+         class UnaryPred&gt;
+BiIterator partition(BiIterator inputBegin,
+                     BiIterator inputEnd,
+                     UnaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="pop_heap" name="pop_heap">pop_heap (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>pop_heap(randIterBegin, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Pop the top (or root) value from the heap (a maximum heap, by
+        default). (In detail, this algorithm exchanges the values at
+        <tt>randIterBegin</tt> and <tt>randIterEnd-1</tt>, and then
+        rebuilds the heap with the values in the range
+        <tt>[randIterBegin,randIterEnd-1)</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The value at <tt>randIterEnd-1</tt>, which is no longer part of
+        the heap, will nevertheless still be <i>in</i> the container
+        (vector or deque), unless it is explicitly removed. To understand
+        and make use of this algorithm you should already know what a heap
+        is and how it is represented in contiguous storage, or you should
+        look up this information elsewhere. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/pop_heap1a.cpp2html">pop_heap1a.cpp</a>
+          | <a
+          href="programs/algorithms/pop_heap1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/pop_heap1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to delete the top (root) (highest priority)
+          (largest) value from a (maximum) heap of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void pop_heap(RandIterator inputBegin,
+              RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>pop_heap(randIterBegin, randIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary
+        predicate <tt>binPred</tt> is used to determine the ordering of
+        values in the heap.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The value at <tt>randIterEnd-1</tt>, which is no longer part of
+        the heap, will nevertheless still be <i>in</i> the container
+        (vector or deque), unless it is explicitly removed. To understand
+        and make use of this algorithm you should already know what a heap
+        is and how it is represented in contiguous storage, or you should
+        look up this information elsewhere. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/pop_heap2a.cpp2html">pop_heap2a.cpp</a>
+          | <a
+          href="programs/algorithms/pop_heap2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/pop_heap2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to delete the top (root) (highest priority)
+          (smallest) value from a (minimum) heap of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void pop_heap(RandIterator inputBegin,
+              RandIterator inputEnd,
+              BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="prev_permutation" name="prev_permutation">prev_permutation
+    (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>prev_permutation(biIterBegin, biIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Transform the sequence of values in the range
+        <tt>[biIterBegin,biIterEnd)</tt> into the next "smallest"
+        lexicographic permutation of those values, or, if that next
+        permutation does not exist, transform the sequence of values into
+        the lexicographically largest permutation of those values (i.e.,
+        sort the sequence to its last permutation).
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if in fact there was a next permutation, and
+        otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The permutations are generated assuming a range of values sorted
+        in ascending order. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/prev_permutation1a.cpp2html">prev_permutation1a.cpp</a>
+          | <a
+          href="programs/algorithms/prev_permutation1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/prev_permutation1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to generate all permutations of a vector of
+          integers, in decreasing order, and also to demonstrate what
+          happens to the return value of the algorithm when the "end" of a
+          permutation sequence is reached and we then "roll over" to begin
+          a new sequence.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator&gt;
+bool prev_permutation(BiIterator inputBegin,
+                      BiIterator inputEnd);
+</pre>
+      </dd>
+      <dt>prev_permutation(biIterBegin, biIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the predicate
+        function <tt>binPred</tt> determines the order of values.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         <tt>true</tt> if in fact there was a next permutation, and
+        otherwise <tt>false</tt>.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The permutations are generated assuming a range of values with an
+        order determined by <tt>binPred</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/prev_permutation2a.cpp2html">prev_permutation2a.cpp</a>
+          | <a
+          href="programs/algorithms/prev_permutation2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/prev_permutation2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to generate all permutations of a vector of
+          integers, in decreasing order, and also to demonstrate what
+          happens to the return value of the algorithm when the "end" of a
+          permutation sequence is reached and we then "roll over" to begin
+          a new sequence. In this case the order of the integers in a
+          permutation is determined by one integer preceding another if and
+          only if it has a larger digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator,
+         class BinaryPred&gt;
+bool prev_permutation(BiIterator inputBegin,
+                      BiIterator inputEnd,
+                      BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="push_heap" name="push_heap">push_heap (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>push_heap(randIterBegin, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Insert a value into a heap. (In detail, this algorithm combines
+        the value at position <tt>randIterEnd-1</tt> into the (already
+        existing) heap consisting of the values in the range
+        <tt>[randIterBegin,randIterEnd-1)</tt> to make a heap of all values
+        in the range <tt>[randIterBegin,randIterEnd)</tt>.)
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Before applying this algorithm, the programmer should make sure to
+        have a heap in the (vector or deque) container, and then add the
+        new element to the end of the container via the
+        <tt>push_back()</tt> member function. To understand and make use of
+        this algorithm you should already know what a heap is and how it is
+        represented in contiguous storage, or you should look up this
+        information elsewhere. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/push_heap1a.cpp2html">push_heap1a.cpp</a>
+          | <a
+          href="programs/algorithms/push_heap1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/push_heap1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to add a value to a (maximum) heap of
+          integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void push_heap(RandIterator inputBegin,
+               RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>push_heap(randIterBegin, randIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary
+        predicate <tt>binPred</tt> is used to determine the ordering of
+        values in the heap.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Before applying this algorithm, the programmer should make sure to
+        have a heap in the (vector or deque) container, and then add the
+        new element to the end of the container via the
+        <tt>push_back()</tt> member function. To understand and make use of
+        this algorithm you should already know what a heap is and how it is
+        represented in contiguous storage, or you should look up this
+        information elsewhere. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/push_heap2a.cpp2html">push_heap2a.cpp</a>
+          | <a
+          href="programs/algorithms/push_heap2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/push_heap2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to add a value to a (minimum) heap of
+          integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void push_heap(RandIterator inputBegin,
+               RandIterator inputEnd,
+               BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="random_shuffle" name="random_shuffle">random_shuffle (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>random_shuffle(randIterBegin, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Place the values in the range <tt>[randIterBegin,randIterEnd)</tt>
+        in pseudorandom order.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         This version of the algorithm uses a built-in pseudorandom number
+        generator. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/random_shuffle1a.cpp2html">random_shuffle1a.cpp</a>
+          | <a
+          href="programs/algorithms/random_shuffle1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/random_shuffle1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to randomize the order of values in a vector
+          of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void random_shuffle(RandIterator inputBegin,
+                    RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>random_shuffle(randIterBegin, randIterEnd, genFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case <tt>genFunc</tt> is
+        used in generating the random sequence.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The generator function <tt>genFunc(num)</tt> must take an integer
+        argument and return a pseudorandom integer in the range
+        <tt>[0,num)</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/random_shuffle2a.cpp2html">random_shuffle2a.cpp</a>
+          | <a
+          href="programs/algorithms/random_shuffle2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/random_shuffle2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to randomize the order of values in a vector
+          of integers, this time with the aid of a programmer-supplied
+          pseudorandom number generator.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class GeneratorFunc&gt;
+void random_shuffle(RandIterator inputBegin,
+                    RandIterator inputEnd,
+                    GeneratorFunc&amp; genFunc);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="remove" name="remove">remove (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>remove(forIterBegin, forIterEnd, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Remove from the range <tt>[forIterBegin,forIterEnd)</tt> all
+        values that are equal to <tt>val</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the range of remaining values.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The algorithm is stable, in the sense that the relative order of
+        values that are not equal to <tt>val</tt> is preserved. However,
+        the algorithm does not behave in the way that you might expect. For
+        example, you might expect that after the values have been removed
+        the size of the container would reflect this. But this is not the
+        case. The remaining values are grouped at the beginning of the
+        container (in their same order, because of the "stability"
+        mentioned above) but the size of the container has not changed. Not
+        only this, the values at the end of the container are not even
+        (necessarily, at least) the removed values. In any case, when using
+        <tt>remove()</tt>, you should remember to adjust the size of the
+        container appropriately after the algorithm has finished. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/remove1a.cpp2html">remove1a.cpp</a> |
+          <a href="programs/algorithms/remove1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/remove1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to remove a given value from a vector of
+          integers and adjust the size of the vector appropriately after
+          the removal.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T&gt;
+ForIterator remove(ForIterator inputBegin,
+                   ForIterator inputEnd,
+                   const T&amp; valToRemove);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="remove_copy" name="remove_copy">remove_copy (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>remove_copy(inIterBegin, inIterEnd, outIterBegin, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy all values from the range <tt>[inIterBegin, inIterEnd)</tt>,
+        except those equal to <tt>val</tt>, to an output range beginning at
+        <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The algorithm is stable, in the sense that the relative order of
+        values that are not equal to <tt>val</tt> is preserved in copying
+        them from the input range to the output range. The output range
+        should be at least as large as the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/remove_copy1a.cpp2html">remove_copy1a.cpp</a>
+          | <a
+          href="programs/algorithms/remove_copy1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/remove_copy1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to copy all values except a particular value
+          from one vector of integers to another.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class T&gt;
+OutIterator remove_copy(InIterator inputBegin,
+                        InIterator inputEnd,
+                        OutIterator outputBegin,
+                        const T&amp; removedValue);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="remove_copy_if" name="remove_copy_if">remove_copy_if (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>remove_copy_if(inIterBegin, inIterEnd, outIterBegin, unPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy all values from the range <tt>[inIterBegin, inIterEnd)</tt>,
+        except those for which the unary predicate <tt>unPred</tt> is
+        <tt>true</tt>, to an output range beginning at
+        <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The algorithm is stable, in the sense that the relative order of
+        values that do not satisfy <tt>unPred</tt> is preserved in copying
+        them from the input range to the output range. The output range
+        should be at least as large as the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/remove_copy_if1a.cpp2html">remove_copy_if1a.cpp</a>
+          | <a
+          href="programs/algorithms/remove_copy_if1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/remove_copy_if1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates ...</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class UnaryPred&gt;
+OutIterator remove_copy_if(InIterator inputBegin,
+                           InIterator inputEnd,
+                           OutIterator outputBegin,
+                           UnaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="remove_if" name="remove_if">remove_if (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>remove_if(forIterBegin, forIterEnd, unPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Remove from the range <tt>[forIterBegin,forIterEnd)</tt> all
+        values for which <tt>unPred</tt> is <tt>true</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the range of remaining values.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The algorithm is stable, in the sense that the relative order of
+        values that are not removed is preserved. However,
+        the algorithm does not behave in the way that you might expect. For
+        example, you might expect that after the values have been removed
+        the size of the container would reflect this. But this is not the
+        case. The remaining values are grouped at the beginning of the
+        container (in their same order, because of the "stability"
+        mentioned above) but the size of the container has not changed. Not
+        only this, the values at the end of the container are not even
+        (necessarily, at least) the removed values. In any case, when using
+        <tt>remove_if()</tt>, you should remember to adjust the size of the
+        container appropriately after the algorithm has finished. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/remove_if1a.cpp2html">remove_if1a.cpp</a>
+          | <a
+          href="programs/algorithms/remove_if1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/remove_if1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to remove all values that are divisible by 3
+          from a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class UnaryPred&gt;
+ForIterator remove_if(ForIterator inputBegin,
+                      ForIterator inputEnd,
+                      UnaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="replace" name="replace">replace (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>replace(forIterBegin, forIterEnd, oldVal, newVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Replace all values in the range <tt>[forIterBegin,forIterEnd)</tt>
+        that are equal to <tt>oldVal</tt> with <tt>newVal</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/replace1a.cpp2html">replace1a.cpp</a> |
+          <a
+          href="programs/algorithms/replace1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/replace1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to replace all copies of a given value from a
+          vector of integers with another value.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T&gt;
+void replace(ForIterator inputBegin,
+             ForIterator inputEnd,
+             const T&amp; oldVal,
+             const T&amp; newVal);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="replace_copy" name="replace_copy">replace_copy (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>replace_copy(inIterBegin, inIterEnd, outIterBegin, oldVal,
+      newVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy the sequence <tt>[inIterBegin, inIterEnd)</tt> to a new
+        sequence beginning at <tt>outIterBegin</tt>, and simultaneously
+        replace all values that are equal to <tt>oldVal</tt> with
+        <tt>newVal</tt> in the output range.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/replace_copy1a.cpp2html">replace_copy1a.cpp</a>
+          | <a
+          href="programs/algorithms/replace_copy1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/replace_copy1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to copy all values from one vector of
+          integers to another and simultaneously replace, in the output,
+          all instances of a given value with another value.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class T&gt;
+OutIterator replace_copy(InIterator inputBegin,
+                         InIterator inputEnd,
+                         OutIterator outputBegin,
+                         const T&amp; oldVal,
+                         const T&amp; newVal);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="replace_copy_if" name="replace_copy_if">replace_copy_if
+    (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>replace_copy_if(inIterBegin, inIterEnd, outIterBegin, unPred,
+      newVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy the values in the range <tt>[inIterBegin,inIterEnd)</tt> to
+        an output range beginning at <tt>outIterBegin</tt>, and replace all
+        the values (in the output container) where <tt>unPred</tt> is true
+        with <tt>newVal</tt>, and
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range must be at least as large as the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/replace_copy_if1a.cpp2html">replace_copy_if1a.cpp</a>
+          | <a
+          href="programs/algorithms/replace_copy_if1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/replace_copy_if1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to copy all values from one vector of
+          integers to another and simultaneously replace, in the output,
+          all values that satisfy a given predicate with a given alternate
+          value.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class UnaryPred,
+         class T&gt;
+OutIterator replace_copy_if(InIterator inputBegin,
+                            InIterator inputEnd,
+                            OutIterator outputBegin,
+                            UnaryPred matchTestPred,
+                            const T&amp; newVal);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="replace_if" name="replace_if">replace_if (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>replace_if(forIterBegin, forIterEnd, unPred, newVal)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Replace all values in the range <tt>[forIterBegin,
+        forIterEnd)</tt> for which <tt>unPred</tt> is <tt>true</tt> with
+        <tt>newVal</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/replace_if1a.cpp2html">replace_if1a.cpp</a>
+          | <a
+          href="programs/algorithms/replace_if1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/replace_if1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to replace all copies of a given value in a
+          vector of integers that satisfy a given predicate with another
+          value.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class UnaryPred,
+         class T&gt;
+void replace_if(ForIterator inputBegin,
+                ForIterator inputEnd,
+                UnaryPred matchTestPred,
+                const T&amp; newVal);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="reverse" name="reverse">reverse (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>reverse(biIterBegin, biIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Reverses the order of all values in the range
+        <tt>[biIterBegin,biIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/reverse1a.cpp2html">reverse1a.cpp</a> |
+          <a
+          href="programs/algorithms/reverse1a.exe">Windows_executable</a> |
+          <a href="programs/algorithms/reverse1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to reverse the order of all, or just some, of
+          the values in a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator&gt;
+void reverse(BiIterator inputBegin,
+             BiIterator inputEnd);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="reverse_copy" name="reverse_copy">reverse_copy (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>reverse_copy(biIterBegin, biIterEnd, outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy the values in the range <tt>[biIterBegin, biIterEnd)</tt> to
+        an output range beginning at <tt>outIterBegin</tt>, and
+        simultaneously reverse the order of all values in the output range.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range must be at least as large as the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/reverse_copy1a.cpp2html">reverse_copy1a.cpp</a>
+          | <a
+          href="programs/algorithms/reverse_copy1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/reverse_copy1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to reverse the order of all, or just some, of
+          the values in a vector of integers while copying the values to an
+          output range in another vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator,
+         class OutIterator&gt;
+OutIterator reverse_copy(BiIterator inputBegin,
+                         BiIterator inputEnd,
+                         OutIterator outputBegin);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="rotate" name="rotate">rotate (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>rotate(forIterBegin, forIterIntermediate, forIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Rotate the values in the range <tt>[biIterBegin,biIterEnd)</tt> so
+        that the value pointed to by <tt>forIterIntermediate</tt> becomes
+        the new first value.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         xx 
+        <dl>
+          <dt><a
+          href="programs/algorithms/rotate1a.cpp2html">rotate1a.cpp</a> |
+          <a href="programs/algorithms/rotate1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/rotate1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to rotate the order of all, or just some, of
+          the values in a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator&gt;
+void rotate(ForIterator inputBegin,
+            ForIterator inputIntermediate,
+            ForIterator inputEnd);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="rotate_copy" name="rotate_copy">rotate_copy (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>rotate_copy(forIterBegin, forIterIntermediate, forIterEnd,
+      outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy the values from the range <tt>[forIterBegin,forIterEnd)</tt>
+        to an output range beginning at <tt>outIterBegin</tt>, and
+        simultaneously rotate all the values in the output range so that
+        the value pointed to by <tt>forIterIntermediate</tt> becomes the
+        new first value.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The output range must be at least as large as the input range. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/rotate_copy1a.cpp2html">rotate_copy1a.cpp</a>
+          | <a
+          href="programs/algorithms/rotate_copy1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/rotate_copy1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to rotate the order of all, or just some, of
+          the values in a vector of integers while copying the values to an
+          output range in another vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class OutIterator&gt;
+OutIterator rotate_copy(ForIterator inputBegin,
+                        ForIterator inputIntermediate,
+                        ForIterator inputEnd,
+                        OutIterator outputBegin);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="search" name="search">search (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>search(forIter1Begin, forIter1End, forIterBegin2,
+      forIterEnd2)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search for the first occurrence of the range of values given by
+        <tt>[forIter2Begin,forIter2End)</tt> within the range of values
+        given by <tt>[forIter1Begin,forIter1End)</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value of the matching range
+        within <tt>[forIter1Begin,forIter1End)</tt> if such a matching
+        range is found, and to <tt>forIter1End</tt> if there is no matching
+        range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         For a "matching range" to exist, corresponding values in the
+        ranges must be equal. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/search1a.cpp2html">search1a.cpp</a> |
+          <a href="programs/algorithms/search1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/search1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the first occurrence of one range of
+          integer values in a vector within another range of integer values
+          in a vector.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2&gt;
+ForIterator1 search(ForIterator1 searchRangeBegin,
+                    ForIterator1 searchRangeEnd,
+                    ForIterator2 targetRangeBegin,
+                    ForIterator2 targetRangeEnd);
+</pre>
+      </dd>
+      <dt>search(forIter1Begin, forIter1End, forIterBegin2, forIterEnd2,
+      binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the test applied to
+        corresponding elements to determine if the ranges match is
+        performed by <tt>binPred</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value of the matching range
+        within <tt>[forIter1Begin,forIter1End)</tt> if such a matching
+        range is found, and to <tt>forIter1End</tt> if there is no matching
+        range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         For a "matching range" to exist, <tt>binPred</tt> applied to
+        corresponding values from the two ranges must return <tt>true</tt>.
+        
+        <dl>
+          <dt><a
+          href="programs/algorithms/search2a.cpp2html">search2a.cpp</a> |
+          <a href="programs/algorithms/search2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/search2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the first occurrence of one range of
+          integer values in a vector within another range of integer values
+          in a vector, and for which corresponding values in the two ranges
+          match if and only if they have the same digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2,
+         class BinaryPred&gt;
+ForIterator1 search(ForIterator1 searchRangeBegin,
+                    ForIterator1 searchRangeEnd,
+                    ForIterator2 targetRangeBegin,
+                    ForIterator2 targetRangeEnd,
+                    BinaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="search_n" name="search_n">search_n (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>search_n(forIterBegin, forIterEnd, num, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Search in the range <tt>[forIterBegin,forIterEnd)</tt> for a
+        subsequence of <tt>num</tt> consecutive values each equal to
+        <tt>val</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value of the found subsequence,
+        or to <tt>forIterEnd</tt> if no such subsequence is found.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/search_n1a.cpp2html">search_n1a.cpp</a>
+          | <a
+          href="programs/algorithms/search_n1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/search_n1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find instances of a consecutive sequence
+          of identical values in a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class size_type,
+         class T&gt;
+ForIterator search_n(ForIterator inputBegin,
+                     ForIterator inputEnd,
+                     size_type num,
+                     const T&amp; val);
+</pre>
+      </dd>
+      <dt>search_n(forIterBegin, forIterEnd, i, val, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Performs in a manner analogous to the previous version of the
+        algorithm given above, except that in this case each of the
+        consecutive values <tt>containerVal</tt> from the input range must
+        satisfy <tt>binPred(val,containerVal) == true</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value of the found subsequence,
+        or to <tt>forIterEnd</tt> if no such subsequence is found.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/search_n2a.cpp2html">search_n2a.cpp</a>
+          | <a
+          href="programs/algorithms/search_n2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/search_n2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find instances of a consecutive sequence
+          of matching values in a vector of integers, where values match if
+          and only if they have the same digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class size_type,
+         class T,
+         class BinaryPred&gt;
+ForIterator search_n(ForIterator inputBegin,
+                     ForIterator inputEnd,
+                     size_type num,
+                     const T&amp; val,
+                     BinaryPred matchTestPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="set_difference" name="set_difference">set_difference (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>set_difference(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End, outIterBegin)</dt>
+      <dd>
+        <br />
+         <strong>Action:</strong>
+        <br />
+         Create a set of values that are in the range
+        <tt>[inIter1Begin,inIter1End)</tt> but are not in the range
+        <tt>[inIter2Begin,inIter2End)</tt>, and write the values out to a
+        range beginning at <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the "difference"
+        operation from mathematical set theory, with (excuse the pun) some
+        differences. First, the values in both input ranges must be sorted
+        in ascending order, and the output range will be similarly sorted
+        as well. The output range must be at least as large as the input
+        range. Duplicates in the output are possible, since the number of
+        times a value appears in the output is the number of times it
+        appears in the first range minus the number of times it appears in
+        the second, as long as this is a nonnegative number. If this number
+        is negative (implying the number of equal values is greater is the
+        second range), the given element will not appear in the output. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_difference1a.cpp2html">set_difference1a.cpp</a>
+          | <a
+          href="programs/algorithms/set_difference1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/set_difference1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers but not in a second vector of integers, and write
+          them out to a third vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator&gt;
+OutIterator set_difference(InIterator1 inputBegin1,
+                           InIterator1 inputEnd1,
+                           InIterator2 inputBegin2,
+                           InIterator2 inputEnd2,
+                           OutIterator outputBegin);
+</pre>
+      </dd>
+      <dt>set_difference(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End, outIterBegin, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary
+        predicate <tt>binPred</tt> is used as the sorting criterion.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the "difference"
+        operation from mathematical set theory, with (excuse the pun) some
+        differences. First, the values in both input ranges must be ordered
+        according to the order determined by <tt>binPred</tt>, and the
+        output range will be similarly ordered as well. The output range
+        must be at least as large as the input range. Duplicates in the
+        output are possible, since the number of times a value appears in
+        the output is the number of times it appears in the first range
+        minus the number of times it appears in the second, as long as this
+        is a nonnegative number. If this number is negative (implying the
+        number of equal values is greater is the second range), the given
+        element will not appear in the output. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_difference2a.cpp2html">set_difference2a.cpp</a>
+          | <a
+          href="programs/algorithms/set_difference2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/set_difference2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers but not in a second vector of integers, and write
+          them out to a third vector of integers. In this case the vectors
+          are ordered in the sense that one integer comes before another if
+          and only if it has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator,
+         class BinaryPred&gt;
+OutIterator set_difference(InIterator1 input1Begin,
+                           InIterator1 input1End,
+                           InIterator2 input2Begin,
+                           InIterator2 input2End,
+                           OutIterator outputBegin,
+                           BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="set_intersection" name="set_intersection">set_intersection
+    (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>set_intersection(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End, outIterBegin)</dt>
+      <dd>
+        <br />
+         <strong>Action:</strong>
+        <br />
+         Create a set of values that are in the range
+        <tt>[inIter1Begin,inIter1End)</tt> and also in the range
+        <tt>[inIter2Begin,inIter2End)</tt>, and write the values out to a
+        range beginning at <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the "intersection"
+        operation from mathematical set theory, with some differences.
+        First, the values in both input ranges must be sorted in ascending
+        order, and the output range will be similarly sorted as well. The
+        output range must be at least as large as the input range.
+        Duplicates in the output are possible, if a value appears more than
+        once in both input ranges. The number of times it appears in the
+        output is then the minimum number of times it appears in the two
+        input ranges. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_intersection1a.cpp2html">set_intersection1a.cpp</a>
+          | <a
+          href="programs/algorithms/set_intersection1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/set_intersection1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers and also in a second vector of integers, and write
+          them out to a third vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator&gt;
+OutIterator set_intersection(InIterator1 inputBegin1,
+                             InIterator1 inputEnd1,
+                             InIterator2 inputBegin2,
+                             InIterator2 inputEnd2,
+                             OutIterator outputBegin);
+</pre>
+      </dd>
+      <dt>set_intersection(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End, outIterBegin, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary
+        predicate <tt>binPred</tt> is used as the sorting criterion.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the "intersection"
+        operation from mathematical set theory, with some differences.
+        First, the values in both input ranges must be ordered according to
+        the order determined by <tt>binPred</tt>, and the output range will
+        be similarly ordered as well. The output range must be at least as
+        large as the input range. Duplicates in the output are possible, if
+        equal values according to the ordering criterion appear more than
+        once in both ranges. The number of times such a value appears in
+        the output is then the minimum number of times it appears in the two
+        input ranges. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_intersection2a.cpp2html">set_intersection2a.cpp</a>
+          | <a
+          href="programs/algorithms/set_intersection2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/set_intersection2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers and also in a second vector of integers, and write
+          them out to a third vector of integers. In this case the vectors
+          are ordered in the sense that one integer comes before another if
+          and only if it has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator,
+         class BinaryPred&gt;
+OutIterator set_intersection(InIterator1 inputBegin1,
+                             InIterator1 inputEnd1,
+                             InIterator2 inputBegin2,
+                             InIterator2 inputEnd2,
+                             OutIterator outputBegin,
+                             BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="set_symmetric_difference"
+    name="set_symmetric_difference">set_symmetric_difference (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>set_symmetric_difference(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End, outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Create a set of elements that are not in <em>both</em> sequences
+        <tt>[inIter1Begin,inIter1End)</tt> and
+        <tt>[inIter2Begin,inIter2End)</tt> (i.e., that are in one or the
+        other of the two sequences but not in both), and write them out to
+        a range beginning at <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the
+        "symmetric_difference" operation from mathematical set theory, with
+        some differences. First, the values in both input ranges must be
+        sorted in ascending order, and the output range will be similarly
+        sorted as well. The output range must be at least as large as the
+        input range. Duplicates in the output are possible, if a value
+        appears more times in one of the input ranges than in the other. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_symmetric_difference1a.cpp2html">set_symmetric_difference1a.cpp</a>
+          | <a
+          href="programs/algorithms/set_symmetric_difference1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/set_symmetric_difference1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers but not in a second vector of integers, as well as
+          those integers that are in the second vector but not in the
+          first, and write them out to a third vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator&gt;
+OutIterator set_symmetric_difference(InIterator1 inputBegin1,
+                                     InIterator1 inputEnd1,
+                                     InIterator2 inputBegin2,
+                                     InIterator2 inputEnd2,
+                                     OutIterator outputBegin);
+</pre>
+      </dd>
+      <dt>set_symmetric_difference(inIter1Begin, inIter1End, inIter2Begin,
+      inIter2End, outIterBegin, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary
+        predicate <tt>binPred</tt> is used as the sorting criterion.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the
+        "symmetric_difference" operation from mathematical set theory, with
+        some differences. First, the values in both input ranges must be
+        ordered according to the order determined by <tt>binPred</tt>, and
+        the output range will be similarly ordered as well. The output
+        range must be at least as large as the input range. Duplicates in
+        the output are possible, if a value appears more times in one of
+        the input ranges than in the other. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_symmetric_difference2a.cpp2html">set_symmetric_difference2a.cpp</a>
+          | <a
+          href="programs/algorithms/set_symmetric_difference2a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/set_symmetric_difference2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers but not in a second vector of integers, as well as
+          those integers that are in the second vector but not in the
+          first, and write them out to a third vector of integers. In this
+          case the vectors are ordered in the sense that one integer comes
+          before another if and only if it has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator,
+         class BinaryPred&gt;
+OutIterator set_symmetric_difference(InIterator1 inputBegin1,
+                                     InIterator1 inputEnd1,
+                                     InIterator2 inputBegin2,
+                                     InIterator2 inputEnd2,
+                                     OutIterator outputBegin,
+                                     BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="set_union" name="set_union">set_union (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>set_union(inIter1Begin, inIter1End, inIter2Begin, inIter2End,
+      outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Create a set of values that are in either the range
+        <tt>[inIter1Begin,inIter1End)</tt> or in the range
+        <tt>[inIter2Begin,inIter2End)</tt> (or in both), and and write them
+        out to a range beginning at <tt>outIterBegin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the "union" operation
+        from mathematical set theory, with some differences. First, the
+        values in both input ranges must be sorted in ascending order, and
+        the output range will be similarly sorted as well. The output range
+        must be at least as large as the input range. Duplicates in the
+        output are possible; the number of times a value that appear in
+        both input ranges appears in the output range is the maximum number
+        of times it appears in either of the two input ranges. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_union1a.cpp2html">set_union1a.cpp</a>
+          | <a
+          href="programs/algorithms/set_union1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/set_union1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers or in a second vector of integers (or in both), and
+          write them out to a third vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator&gt;
+OutIterator set_union(InIterator1 inputBegin1,
+                      InIterator1 inputEnd1,
+                      InIterator2 inputBegin2,
+                      InIterator2 inputEnd2,
+                      OutIterator ouputBegin);
+</pre>
+      </dd>
+      <dt>set_union(inIter1Begin, inIter1End, inIter2Begin, inIter2End,
+      outIterResult, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the binary
+        predicate <tt>binPred</tt> is used as the sorting criterion.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         Note that this algorithm "kind of" performs the "union" operation
+        from mathematical set theory, with some differences. First, the
+        values in both input ranges must be ordered according to the order
+        determined by <tt>binPred</tt>, and the output range will be
+        similarly ordered as well. The output range must be at least as
+        large as the input range. Duplicates in the output are possible;
+        the number of times a value that appear in both input ranges
+        appears in the output range is the maximum number of times it
+        appears in either of the two input ranges. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/set_union2a.cpp2html">set_union2a.cpp</a>
+          | <a
+          href="programs/algorithms/set_union2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/set_union2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the values that are in a first vector
+          of integers or in a second vector of integers (or in both), and
+          write them out to a third vector of integers. In this case the
+          vectors are ordered in the sense that one integer comes before
+          another if and only if it has a smaller digit sum.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator,
+         class BinaryPred&gt;
+OutIterator set_union(InIterator1 inputBegin1,
+                      InIterator1 inputEnd1,
+                      InIterator2 inputBegin2,
+                      InIterator2 inputEnd2,
+                      OutIterator result,
+                      BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="sort" name="sort">sort (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>sort(randIterBegin, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Sort, in place, into ascending order, the values in the range
+        <tt>[randIterBegin,randIterEnd)</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         <tt>operator&lt;</tt> must be defined for the values in the range
+        to be sorted. 
+        <dl>
+          <dt><a href="programs/algorithms/sort1a.cpp2html">sort1a.cpp</a>
+          | <a href="programs/algorithms/sort1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/sort1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort a vector of integers into ascending
+          order.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void sort(RandIterator inputBegin,
+          RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>sort(randIterBegin, randIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Sort, in place, the values in the range
+        <tt>[randIterBegin,randIterEnd)</tt>, using <tt>binPred</tt> to
+        determine when one value in the range precedes another.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         When the values in the range
+        <tt>[randIterBegin,randIterEnd)</tt>are being sorted, a value
+        <tt>val1</tt> precedes a value <tt>val2</tt> if and only if
+        <tt>binPred(val1,val2</tt>) returns <tt>true</tt>. 
+        <dl>
+          <dt><a href="programs/algorithms/sort2a.cpp2html">sort2a.cpp</a>
+          | <a href="programs/algorithms/sort2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/sort2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort a vector of integers, when a first
+          integer comes before a second if and only if the first has a
+          smaller digit sum than the second.</dd>
+          <dt><a href="programs/algorithms/sort2b.cpp2html">sort2b.cpp</a>
+          | <a href="programs/algorithms/sort2b.exe">Windows_executable</a>
+          | <a href="programs/algorithms/sort2b.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort a vector of integers into descending
+          order by using a built-in function object to change the default
+          order used by the <tt>sort()</tt> algorithm.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void sort(RandIterator inputBegin,
+          RandIterator inputEnd,
+          BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="sort_heap" name="sort_heap">sort_heap (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>sort_heap(randIterBegin, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Convert, in place, an already existing heap within the range
+        <tt>[randIterBegin,randIterEnd)</tt> into a sequence sorted in
+        ascending order.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this case <tt>operator&lt;</tt> is used to determine when one
+        value precedes another. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/sort_heap1a.cpp2html">sort_heap1a.cpp</a>
+          | <a
+          href="programs/algorithms/sort_heap1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/sort_heap1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort a maximum heap of integers stored
+          in a vector into ascending order.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void sort_heap(RandIterator inputBegin,
+               RandIterator inputEnd);
+</pre>
+      </dd>
+      <dt>sort_heap(randIterBegin, randIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the comparison
+        function <tt>binPred</tt> is used to determine when one value
+        precedes another.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this case <tt>val1</tt> precedes <tt>val2</tt> if and only if
+        <tt>binPred(val1,val2)</tt> returns <tt>true</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/sort_heap2a.cpp2html">sort_heap2a.cpp</a>
+          | <a
+          href="programs/algorithms/sort_heap2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/sort_heap2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort a minimum heap of integers stored
+          in a vector into descending order.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void sort_heap(RandIterator inputBegin,
+               RandIterator inputEnd,
+               BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="stable_partition" name="stable_partition">stable_partition
+    (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>stable_partition(biIterBegin, biIterEnd, unPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Partition the values in the range <tt>[biIterBegin,biIterEnd)</tt>
+        by using the unary predicate <tt>unPred</tt> in such a way that the
+        values that satisfy <tt>unPred</tt> come before the values that do
+        not satisfy the predicate.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the first value for which <tt>unPred</tt>
+        is <tt>false</tt>, or to the end of the input range if there is no
+        such value.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         This algorithm performs in a manner analogous to
+        <tt>partition()</tt>, except that the partitioning is stable, which
+        means that the algorithm is guaranteed to preserve the relative
+        order of values within each part of the partition. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/stable_partition1a.cpp2html">stable_partition1a.cpp</a>
+          | <a
+          href="programs/algorithms/stable_partition1a.exe">Windows_executable</a>
+          | <a
+          href="programs/algorithms/stable_partition1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates ...</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class BiIterator,
+         class UnaryPred&gt;
+ForIterator stable_partition(BiIterator inputBegin,
+                             BiIterator inputEnd,
+                             UnaryPred matchTest);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="stable_sort" name="stable_sort">stable_sort (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>stable_sort(randIterBegin, randIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Sort, in place, into ascending order, the values in the range
+        <tt>[randIterBegin,randIterEnd)</tt>, using a stable sort.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         This algorithm performs in a manner analogous to <tt>sort()</tt>,
+        except that in this case the sort is stable, which means that the
+        algorithm is guaranteed to preserve the relative order of equal
+        values. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/stable_sort1a.cpp2html">stable_sort1a.cpp</a>
+          | <a
+          href="programs/algorithms/stable_sort1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/stable_sort1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort Points, where one Point comes
+          before another if and only if its x-coordinate is less than
+          the x-coordinate of the second Point.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator&gt;
+void stable_sort(RandIterator randIterBegin,
+                 RandIterator randIterEnd);
+</pre>
+      </dd>
+      <dt>stable_sort(randIterBegin, randIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version of the
+        algorithm given above, except that in this case the comparison
+        function <tt>binPred</tt> is used to determine when one value
+        precedes another.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this case <tt>val1</tt> precedes <tt>val2</tt> if and only if
+        <tt>binPred(val1,val2)</tt> returns <tt>true</tt>. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/stable_sort2a.cpp2html">stable_sort2a.cpp</a>
+          | <a
+          href="programs/algorithms/stable_sort2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/stable_sort2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to sort a vector of integers, when a first
+          integer comes before a second if and only if the first has a
+          smaller digit sum than the second, and in such a way that
+          duplicate values retain their relative positions.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class RandIterator,
+         class BinaryPred&gt;
+void stable_sort(RandIterator inputBegin,
+                 RandIterator inputEnd,
+                 BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="swap" name="swap">swap (from &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>swap(val1, val2)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Exchange the values in <tt>val1</tt> and <tt>val2</tt>.
+        <br />
+         <strong>Return value:</strong> <tt>void</tt>
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a href="programs/algorithms/swap1a.cpp2html">swap1a.cpp</a>
+          | <a href="programs/algorithms/swap1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/swap1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to swap integer values, double values, and
+          string values in simple variables. It also illustrates the
+          swapping of integer values in a vector, using three different
+          ways to access the values.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class T&gt;
+void swap(T&amp; val1,
+          T&amp; val2);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="swap_ranges" name="swap_ranges">swap_ranges (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>swap_ranges(forIter1Begin, forIter1End, forIter2Begin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Swap each value in the range <tt>[forIter1Begin,forIter1End)</tt>
+        with the corresponding value in the range beginning at
+        <tt>forIter2Begin</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the second range (the one
+         that started at <tt>forIter2Begin</tt>).
+        <br />
+         <strong>Notes:</strong> The range of values beginning at
+         <tt>forIter2Begin</tt> must be at least as large as the range of values
+         given by <tt>[forIter1Begin,forIter1End)</tt>.
+        <dl>
+          <dt><a
+          href="programs/algorithms/swap_ranges1a.cpp2html">swap_ranges1a.cpp</a>
+          | <a
+          href="programs/algorithms/swap_ranges1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/swap_ranges1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to swap the values in a range of integers
+          within a vector of integers with the values in a range of integers
+          within a deque of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator1,
+         class ForIterator2&gt;
+ForIterator2 swap_ranges(ForIterator1 input1Begin,
+                         ForIterator1 input1End,
+                         ForIterator2 input2Begin);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="transform" name="transform">transform (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>transform(inIterBegin, inIterEnd, outIterBegin, unFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Transform the range <tt>[inIterBegin,inIterEnd)</tt> into a range
+         beginning at <tt>outIterBegin</tt> by applying a unary function 
+         <tt>unFunc</tt>. This function takes the current element as a
+         parameter and returns the "transformed value".
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the transformed range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The first and third parameters (<tt>inIterBegin</tt> and 
+         <tt>outIterBegin</tt>) can be the same, which means that the
+         input is modified. 
+        <dl>
+          <dt><a
+          href="programs/algorithms/transform1a.cpp2html">transform1a.cpp</a>
+          | <a
+          href="programs/algorithms/transform1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/transform1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to find the square root of each 
+          value in a range of integers, as well as the cube of each 
+          value in a range of integers. The square roots are found with
+          a built-in library function and placed in a different container
+          from the original values. The cubes are found with a
+          programmer-defined function and they overwrite the original
+          values.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class UnaryFunc&gt;
+OutIterator transform(InIterator inputBegin,
+                      InIterator inputEnd,
+                      OutIterator outIterBegin,
+                      UnaryFunc unFunc);
+</pre>
+      </dd>
+      <dt>transform(inIter1Begin, inIter1End, inIter2Begin, outIterBegin,
+      binFunc)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version, except
+        that in this case the binary function <tt>binFunc</tt> is used
+        instead of a unary function. This binary function takes the current
+        element of the first range <tt>[inIter1Begin,inIter1End)</tt> as
+        its first parameter, and the corresponding element from the second
+        range as its second parameter, and again returns the "transformed
+        value".
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the transformed range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The first and third parameters (<tt>inIterBegin</tt> and 
+         <tt>outIterBegin</tt>) can be the same, which means that the
+         input is modified.
+        <dl>
+          <dt><a
+          href="programs/algorithms/transform2a.cpp2html">transform2a.cpp</a>
+          | <a
+          href="programs/algorithms/transform2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/transform2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to multiply the values in a range of integers
+          from a vector with corresponding values in a range of integers from
+          a deque and write the products to a range within a list of
+          integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator1,
+         class InIterator2,
+         class OutIterator,
+         class BinaryFunc&gt;
+OutIterator transform(InIterator1 inputBegin1,
+                      InIterator1 inputEnd1,
+                      InIterator2 inputBegin2,
+                      OutIterator outIterBegin,
+                      BinaryFunc binFunc);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="unique" name="unique">unique (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>unique(forIterBegin, forIterEnd)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Collapse any instance of consecutive duplicate values in the
+         range <tt>[forIterBegin,forIterEnd)</tt> to a single value.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+          An iterator pointing to the end of the collapsed range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The algorithm is stable, meaning that the relative order of the
+         values that are not removed is preserved. Also, it is up to
+         the caller of this algorithm to use the "new end" of the
+         range of the remaining values rather than the "old end";
+         that is, the size of the container is not adjusted to reflect
+         a decrease due to removed values. [See also the remove() and
+         remove_if() algorithms.]
+        <dl>
+          <dt><a
+          href="programs/algorithms/unique1a.cpp2html">unique1a.cpp</a> |
+          <a href="programs/algorithms/unique1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/unique1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to remove adjacent duplicate copies of
+          integer values from a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator&gt;
+ForIterator unique(ForIterator inputBegin,
+                   ForIterator inputEnd);
+</pre>
+      </dd>
+      <dt>unique(forIterBegin, forIterEnd, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version, except
+        that in this case the binary predicate <tt>binPred</tt> determines
+        when values are duplicates.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the collapsed range.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         The algorithm is stable, meaning that the relative order of the
+         values that are not removed is preserved. Also, it is up to
+         the caller of this algorithm to use the "new end" of the
+         range of the remaining values rather than the "old end";
+         that is, the size of the container is not adjusted to reflect
+         a decrease due to removed values.
+        <dl>
+          <dt><a
+          href="programs/algorithms/unique2a.cpp2html">unique2a.cpp</a> |
+          <a href="programs/algorithms/unique2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/unique2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to remove adjacent duplicate copies of integer
+          values divisible by 3 from a vector of integers.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class BinaryPred&gt;
+ForIterator unique(ForIterator inputBegin,
+                   ForIterator inputEnd,
+                   BinaryPred matchTest);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="unique_copy" name="unique_copy">unique_copy (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>unique_copy(inIterBegin, inIterEnd, outIterBegin)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Copy the sequence <tt>[inIterBegin,inIterEnd)</tt> to a new
+        sequence beginning at <tt>outIterBegin</tt>, except that in any
+        consecutive group of duplicate values only the first one is copied.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong> The range of values beginning at
+         <tt>outIterBegin</tt> must be at least as large at the range given by
+         <tt>[inIterBegin,inIterEnd)</tt>.
+        <dl>
+          <dt><a
+          href="programs/algorithms/unique_copy1a.cpp2html">unique_copy1a.cpp</a>
+          | <a
+          href="programs/algorithms/unique_copy1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/unique_copy1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to remove adjacent duplicate copies of
+          integer values from a vector of integers, and simultaneously
+          copy the remaining values to another vector.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator&gt;
+OutIterator unique_copy(InIterator inputBegin,
+                        InIterator inputEnd,
+                        OutIterator outputBegin);
+</pre>
+      </dd>
+      <dt>unique_copy(inIterBegin, inIterEnd, outIterBegin, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version, except
+        that in this case the binary predicate <tt>binPred</tt> determines
+        when values are duplicates.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the end of the output range.
+        <br />
+         <strong>Notes:</strong> The range of values beginning at
+         <tt>outIterBegin</tt> must be at least as large at the range given by
+         <tt>[inIterBegin,inIterEnd)</tt>.
+        <dl>
+          <dt><a
+          href="programs/algorithms/unique_copy2a.cpp2html">unique_copy2a.cpp</a>
+          | <a
+          href="programs/algorithms/unique_copy2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/unique_copy2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how to remove adjacent duplicate copies of
+          integer values divisible by 3 from a vector of integers, and
+          simultaneously copy the remaining values to another vector.</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class InIterator,
+         class OutIterator,
+         class BinaryPred&gt;
+OutIterator unique_copy(InIterator inputBegin,
+                        InIterator inputEnd,
+                        OutIterator outputBegin,
+                        BinaryPred matchTest);
+</pre>
+      </dd>
+    </dl>
+    <h3><a id="upper_bound" name="upper_bound">upper_bound (from
+    &lt;algorithm&gt;)</a></h3>
+    <dl>
+      <dt>upper_bound(forIterBegin, forIterEnd, val)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Find the upper bound of <tt>val</tt> within the range
+        <tt>[forIterBegin,forIterEnd)</tt>, i.e., the first value in
+        the range that is greater than <tt>val</tt>.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the upper bound, or to <tt>forIterEnd</tt>
+         if the upper bound does not exist.
+        <br />
+         <strong>Notes:</strong> none 
+        <dl>
+          <dt><a
+          href="programs/algorithms/upper_bound1a.cpp2html">upper_bound1a.cpp</a>
+          | <a
+          href="programs/algorithms/upper_bound1a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/upper_bound1a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates ...</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T&gt;
+ForIterator upper_bound(ForIterator inputBegin,
+                        ForIterator inputEnd,
+                        const T&amp; targetValue);
+</pre>
+      </dd>
+      <dt>upper_bound(forIterBegin, forIterEnd, val, binPred)</dt>
+      <dd>
+        <strong>Action:</strong>
+        <br />
+         Perform in a manner analogous to the previous version, except
+        that in this case the binary predicate <tt>binPred</tt> determines
+        when one element comes before another.
+        <br />
+         <strong>Return value:</strong>
+        <br />
+         An iterator pointing to the upper bound, or to <tt>forIterEnd</tt>
+         if the upper bound does not exist.
+        <br />
+         <strong>Notes:</strong>
+        <br />
+         In this case <tt>val1</tt> precedes <tt>val2</tt> if and only if
+          <tt>binPred(val1,val2)</tt> returns <tt>true</tt>.  
+        <dl>
+          <dt><a
+          href="programs/algorithms/upper_bound2a.cpp2html">upper_bound2a.cpp</a>
+          | <a
+          href="programs/algorithms/upper_bound2a.exe">Windows_executable</a>
+          | <a href="programs/algorithms/upper_bound2a.txt">program_output
+          (text)</a></dt>
+          <dd>Illustrates how</dd>
+        </dl>
+<pre xml:space="preserve">
+template&lt;class ForIterator,
+         class T,
+         class BinaryPred&gt;
+ForIterator upper_bound(ForIterator inputBegin,
+                        ForIterator inputEnd,
+                        const T&amp; val,
+                        BinaryPred comparisonPred);
+</pre>
+      </dd>
+    </dl>
+  </body>
+</html>
+
+<!-- Localized -->

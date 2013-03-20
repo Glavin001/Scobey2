@@ -1,0 +1,241 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Container and Container Adaptor Class Typedefs</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material:
+    <br />
+     STL Container and Container Adaptor Class Typedefs</p>
+    <p>The STL makes very good use of the C++ <tt>typedef</tt> mechanism
+    for giving the same name to the same conceptual entity across different
+    container classes. The best example is the use of the term
+    <tt>iterator</tt>, a <tt>typedef</tt> alias for whatever default kind
+    of iterator a given class provides. For example,
+    <tt>vector&lt;int&gt;::iterator</tt> gives a random access iterator for
+    a vector of integers, while <tt>list&lt;string&gt;::iterator</tt> gives
+    a bidirectional iterator for a list of strings.</p>
+    <table border="5" cellspacing="0" cellpadding="3"
+    summary="Class typedefs">
+      <tr>
+        <th valign="middle" rowspan="3">typedef name</th>
+        <th colspan="4"><small>Does the typedef name appear in the class
+        <br />
+         (of the container or container adaptor)?</small></th>
+      </tr>
+      <tr>
+        <th colspan="3"><small>first-class containers</small></th>
+        <th><small>container adaptors</small></th>
+      </tr>
+      <tr>
+        <th valign="middle"><tt>vector
+        <br />
+         deque
+        <br />
+         list</tt></th>
+        <th valign="middle"><tt>map</tt>
+        <br />
+         <tt>multimap</tt></th>
+        <th valign="middle"><tt>set</tt>
+        <br />
+         <tt>multiset</tt></th>
+        <th valign="middle"><tt>stack</tt>
+        <br />
+         <tt>queue</tt>
+        <br />
+         <tt>priority_queue</tt></th>
+      </tr>
+      <tr>
+        <td valign="top"><tt>size_type</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>difference_type</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>reference</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>const_reference</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>iterator</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>const_iterator</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>reverse_iterator</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>const_reverse_iterator</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>pointer</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>const_pointer</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>value_type</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>allocator_type</tt></td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>mapped_type</tt></td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>key_type</tt></td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>key_compare</tt></td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>value_compare</tt></td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">Yes</td>
+        <td align="center" valign="top">No</td>
+      </tr>
+      <tr>
+        <td valign="top"><tt>container_type</tt></td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">No</td>
+        <td align="center" valign="top">Yes</td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">What does each typedef alias represent?</h3>
+    <dl>
+      <dt>size_type</dt>
+      <dd>An unsigned integer type, available in any first-class container
+      class, and in any container adaptor class, and sufficiently large to
+      hold the size of any object of that class.</dd>
+      <dt>difference_type</dt>
+      <dd>An unsigned integer type, available in any first-class container
+      class, and sufficiently large to hold the maximum difference between
+      two address values of two components of an object of the given
+      class.</dd>
+      <dt>reference</dt>
+      <dd>A reference to a component of a container object (i.e.,
+      <tt>T&amp;</tt>, where <tt>T</tt> is the component type of the
+      container object).</dd>
+      <dt>const_reference</dt>
+      <dd>A <tt>const</tt> reference to a component of a container object
+      (i.e., <tt>const T&amp;</tt>, where <tt>T</tt> is the component type
+      of the container object).</dd>
+      <dt>iterator</dt>
+      <dd>An iterator of the default type for a (first-class) container
+      type.</dd>
+      <dt>const_iterator</dt>
+      <dd>A <tt>const</tt> iterator of the default type for a (first-class)
+      container type.</dd>
+      <dt>reverse_iterator</dt>
+      <dd>A reverse iterator of the default type for a (first-class)
+      container type.</dd>
+      <dt>const_reverse_iterator</dt>
+      <dd>A <tt>const</tt> reverse iterator of the default type for a
+      (first-class) container type.</dd>
+      <dt>pointer</dt>
+      <dd>A pointer to a component of a (first-class) container object
+      (i.e., same as <tt>T*</tt>, where <tt>T</tt> is the component type of
+      the container object).</dd>
+      <dt>const_pointer</dt>
+      <dd>A <tt>const</tt> pointer to a component of a (first-class)
+      container object (i.e., same as <tt>const T*</tt>, where <tt>T</tt>
+      is the component type of the container object).</dd>
+      <dt>value_type</dt>
+      <dd>The same type as the type of the values stored in a container
+      object (i.e., the same as <tt>T</tt> for sequential containers and
+      container adaptors, but <tt>pair&lt;const KType, VType&gt;</tt>
+      for associative containers).</dd>
+      <dt>allocator_type</dt>
+      <dd>The type of the allocator used for the container class
+      (Allocators are the most infrequently used feature of the STL by the
+      average C++ programmer. It is almost always OK to go with the
+      "default allocator" for whatever container you are using.)</dd>
+      <dt>mapped_type</dt>
+      <dd>The same type as <tt>VType</tt> in <tt>pair&lt;KType,
+      VType&gt;</tt> for map and multimap container types.</dd>
+      <dt>key_type</dt>
+      <dd>The same type as <tt>KType</tt> in any associative container
+      class. For sets and multisets, it is equivalent to
+      <tt>value_type</tt>.</dd>
+      <dt>key_compare</dt>
+      <dd>The type of the comparitor in any associative container.</dd>
+      <dt>value_compare</dt>
+      <dd>The type of the comparitor for the whole component type in any
+      associative container. For sets and multisets, it is equivalent to
+      <tt>key_compare</tt>. For maps and multimaps it is an auxiliary
+      comparitor class that compares just the keys of two components.</dd>
+      <dt>container_type</dt>
+      <dd>The type of first-class container upon which a container adaptor
+      is based.</dd>
+    </dl>
+  </body>
+</html>
+
+<!-- Localized -->

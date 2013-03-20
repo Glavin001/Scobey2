@@ -1,0 +1,690 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>The STL vector Container</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL vector Container</p>
+    <p>The <tt>vector</tt> class implements a dynamic array that provides
+    fast insertion at the end, fast random access to its components, and
+    automatically resizes itself when components are inserted or
+    deleted.</p>
+    <ul class="hardleft">
+      <li><a href="#constructors">Constructors and destructor</a></li>
+      <li><a href="#overloaded_ops">Overloaded operators</a></li>
+      <li><a href="#access">Member functions for accessing values</a></li>
+      <li><a href="#status">Member functions for reporting status</a></li>
+      <li><a href="#insertion">Member functions for inserting one or more
+      values</a></li>
+      <li><a href="#deletion">Member functions for deleting one or more
+      values</a></li>
+      <li><a href="#misc_funs">Miscellaneous member functions</a></li>
+      <li><a href="#misc_notes">Miscellaneous notes</a></li>
+      <li><a href="#sample_programs">Sample programs</a></li>
+      <li><a href="#prototypes">Member function prototypes</a></li>
+    </ul>
+    <h3><a id="constructors" name="constructors">Constructors and
+    destructor</a></h3>
+    <p>Default Constructor</p>
+    <dl>
+      <dt>vector&lt;T&gt; v;</dt>
+      <dd>Construct an empty vector <tt>v</tt> which can hold values of
+      type <tt>T</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Copy Constructor</p>
+    <p>There is, of course, only one copy constructor, but there are two
+    syntactic forms that invoke it, and both are shown.</p>
+    <dl>
+      <dt>vector&lt;T&gt; v(otherVector);</dt>
+      <dd>Construct <tt>v</tt> as a copy of <tt>otherVector</tt>, whose
+      component type must be <tt>T</tt>. The copy has the same size as the
+      original, but the capacity of the copy will be the same as its size,
+      not equal to the capacity of the original.</dd>
+      <dt>vector&lt;T&gt; v = otherVector;</dt>
+      <dd>Copy constructor (alternate usage syntax).</dd>
+    </dl>
+    <hr />
+    <p>Other Constructors</p>
+    <dl>
+      <dt>vector&lt;T&gt; v(num);</dt>
+      <dd>Construct a vector <tt>v</tt> of size <tt>num</tt> and capacity
+      <tt>num</tt> containing <tt>num</tt> values, each equal to the
+      default value of type <tt>T</tt>.</dd>
+      <dt>vector&lt;T&gt; v(num, val);</dt>
+      <dd>Construct a vector <tt>v</tt> of size <tt>num</tt> and capacity
+      <tt>num</tt> containing <tt>num</tt> values, each equal to
+      <tt>val</tt>, which must be of type <tt>T</tt>, and which may be
+      supplied by a variable, a literal or named constant, or a function
+      call.</dd>
+      <dt>vector&lt;T&gt; v(inIterBegin, inIterEnd);</dt>
+      <dd>Construct <tt>v</tt> containing values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily vector)
+      container, but whose component type is the same as the component type
+      of <tt>v</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Destructor</p>
+    <dl>
+      <dt>v.~vector&lt;T&gt;()</dt>
+      <dd>Destroy all components of <tt>v</tt> and free the associated
+      memory.</dd>
+    </dl>
+    <h3><a id="overloaded_ops" name="overloaded_ops">Overloaded
+    operators</a></h3>
+    <p>Assignment operator</p>
+    <dl>
+      <dt>v1 = v2</dt>
+      <dd>Assign <tt>v2</tt> to <tt>v1</tt>, and return the common value.
+      The vector on the left of an assignment receives the values and size
+      of the one on the right. The capacity of the vector on the left will
+      be the maximum of its original capacity and the size of the vector on
+      the right. (The capacity of the vector on the right is
+      irrelevant.)</dd>
+    </dl>
+    <hr />
+    <p>Relational operators</p>
+    <p>Vectors are compared in the "lexicographic ordering" sense. This
+    essentially means that the two vectors are compared by comparing their
+    values pairwise, starting at the beginning, with each comparison
+    looking at two values in corresponding positions, until a determination
+    of the relationship between the two vectors can be made. Only vectors
+    of the same component type can be compared of course, and the
+    <tt>==</tt> and <tt>&lt;</tt> operators must be defined for the
+    component type.</p>
+    <dl>
+      <dt>v1 == v2</dt>
+      <dd>Return <tt>true</tt> if <tt>v1</tt> and <tt>v2</tt> have the same
+      component type and the same size, and the components in each pair of
+      corresponding locations have the same value; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>v1 != v2</dt>
+      <dd>Return <tt>true</tt> if <tt>v1==v2</tt> returns <tt>false</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>v1 &lt; v2</dt>
+      <dd>Return <tt>true</tt> if, in the pairwise comparison of values
+      from <tt>v1</tt> and <tt>v2</tt>, in the first pair in which the two
+      values differ, the one from <tt>v1</tt> is less than the one from
+      <tt>v2</tt>; otherwise return <tt>false</tt>.</dd>
+      <dt>v1 &lt;= v2</dt>
+      <dd>Return <tt>true</tt> if either <tt>v1&lt;v2</tt> or
+      <tt>v1==v2</tt> is <tt>true</tt>; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>v1 &gt; v2</dt>
+      <dd>Return <tt>true</tt> if <tt>v2&lt;v1</tt> is <tt>true</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>v1 &gt;= v2</dt>
+      <dd>Return <tt>true</tt> if either <tt>v1&gt;v2</tt> or
+      <tt>v1==v2</tt> is <tt>true</tt>, otherwise return
+      <tt>false</tt>.</dd>
+    </dl>
+    <hr />
+    <p>operator[ ]</p>
+    <dl>
+      <dt>v[i]</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      component of <tt>v</tt> with index <tt>i</tt>. (Index values start at
+      0, and there is no checking for an index out of bounds.)</dd>
+    </dl>
+    <h3><a id="access" name="access">Member functions for accessing
+    values</a></h3>
+    <p>Each of the member functions in this section has both a
+    <tt>const</tt> and a non-<tt>const</tt> version.</p>
+    <dl>
+      <dt>v.at(i)</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      component of <tt>v</tt> with index <tt>i</tt>. (Throws an
+      <tt>out_of_range</tt> exception if <tt>i</tt> is not a valid index
+      for <tt>v</tt>.)</dd>
+      <dt>v.front()</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      first component of <tt>v</tt>.</dd>
+      <dt>v.back()</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      last component of <tt>v</tt>.</dd>
+      <dt>v.begin()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to the first component of <tt>v</tt>.</dd>
+      <dt>v.end()</dt>
+      <dd>Return an <tt>iterator</tt> (or <tt>const_iterator</tt>) pointing
+      to one-past-the-last component of <tt>v</tt>.</dd>
+      <dt>v.rbegin()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to the last component of
+      <tt>v</tt>.</dd>
+      <dt>v.rend()</dt>
+      <dd>Return a <tt>reverse_iterator</tt> (or
+      <tt>const_reverse_iterator</tt>) pointing to one-before-the-first
+      component of <tt>v</tt>.</dd>
+    </dl>
+    <h3><a id="status" name="status">Member functions for reporting
+    status</a></h3>
+    <dl>
+      <dt>v.max_size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the maximum
+      possible size of <tt>v</tt>, which will depend on the size of the
+      component type <tt>T</tt> of the vector object, and the amount of
+      available memory.</dd>
+      <dt>v.size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the number of
+      values currently in <tt>v</tt>.</dd>
+      <dt>v.capacity()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the number of
+      values <tt>v</tt> can hold before reallocation becomes necessary to
+      accommodate additional values.</dd>
+      <dt>v.empty()</dt>
+      <dd>Return <tt>true</tt> if <tt>v</tt> is empty (contains zero
+      values); otherwise return <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="insertion" name="insertion">Member functions for inserting
+    one or more values</a></h3>
+    <p>Note that when values are assigned using <tt>assign()</tt>, the new
+    capacity is the maximum of the the old capacity and the new size. On
+    the other hand, when values are added using <tt>insert()</tt> or
+    <tt>push_back()</tt>, the capacity remains the same unless reallocation
+    must take place, in which case the new capacity will be determined by
+    the reallocation algorithm.</p>
+    <dl>
+      <dt>v.assign(num, val)</dt>
+      <dd>Assign <tt>num</tt> copies of <tt>val</tt> to <tt>v</tt>,
+      overwriting the entire previous contents of <tt>v</tt>.</dd>
+      <dt>v.assign(inIterBegin, inIterEnd)</dt>
+      <dd>Assign to <tt>v</tt> the values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily vector)
+      container, but whose values are also of type <tt>T</tt>, overwriting
+      the entire previous contents of <tt>v</tt>.</dd>
+      <dt>v.insert(iter, val)</dt>
+      <dd>Insert <tt>val</tt> into <tt>v</tt> immediately before the value
+      pointed to by <tt>iter</tt>, and return an <tt>iterator</tt> pointing
+      at the new component with value <tt>val</tt>.</dd>
+      <dt>v.insert(iter, num, val)</dt>
+      <dd>Insert <tt>num</tt> copies of <tt>val</tt> into <tt>v</tt>,
+      immediately before the value pointed to by <tt>iter</tt>.</dd>
+      <dt>v.insert(iter, inIterBegin, inIterEnd)</dt>
+      <dd>Insert into <tt>v</tt>, immediately before the value pointed to
+      by <tt>iter</tt>, values from the range
+      <tt>[inIterBegin,inIterEnd)</tt> in another (not necessarily vector)
+      container, but whose values must be of the same type as the values of
+      <tt>v</tt>.</dd>
+      <dt>v.push_back(val)</dt>
+      <dd>Add <tt>val</tt> to the end of <tt>v</tt>, increasing the size of
+      <tt>v</tt> by one, and also increasing the capacity of <tt>v</tt> if
+      <tt>v</tt> was full before the new value was added.</dd>
+    </dl>
+    <h3><a id="deletion" name="deletion">Member functions for deleting one
+    or more values</a></h3>
+    <dl>
+      <dt>v.clear()</dt>
+      <dd>Delete all values of <tt>v</tt>. The size of <tt>v</tt> is
+      reduced to zero, but the capacity of <tt>v</tt> is unaffected.</dd>
+      <dt>v.erase(iter)</dt>
+      <dd>Delete the value of <tt>v</tt> pointed to by <tt>iter</tt> and
+      return an <tt>iterator</tt> pointing at the following value, or to
+      one-past-the-last if the value deleted was the last one. The size of
+      <tt>v</tt> is reduced by one, but the capacity of <tt>v</tt> is
+      unaffected.</dd>
+      <dt>v.erase(iterBegin, iterEnd)</dt>
+      <dd>Delete all values of <tt>v</tt> from the range
+      <tt>[iterBegin,iterEnd)</tt> and return <tt>iterEnd</tt>. The size of
+      <tt>v</tt> is reduced by <tt>iterEnd-iterBegin</tt> (a value of type
+      <tt>difference_type</tt>), but the capacity of <tt>v</tt> is
+      unaffected.</dd>
+      <dt>v.pop_back()</dt>
+      <dd>Delete the last value of <tt>v</tt>. The size of <tt>v</tt> is
+      reduced by one, but the capacity of <tt>v</tt> is unaffected.</dd>
+    </dl>
+    <h3><a id="misc_funs" name="misc_funs">Miscellaneous member
+    functions</a></h3>
+    <dl>
+      <dt>v.reserve(num)</dt>
+      <dd>Set capacity of <tt>v</tt> to at least <tt>num</tt>. (If
+      <tt>num</tt> is less than the current capacity of <tt>v</tt>, nothing
+      happens.)</dd>
+      <dt>v.resize(num)</dt>
+      <dd>Change size of <tt>v</tt> to <tt>num</tt>. (If <tt>v</tt> must be
+      lengthened, default values of its component type are added to the end
+      of <tt>v</tt>. If <tt>v</tt> is shortened, values at the end are
+      lost.) If <tt>num</tt> &lt;= the current capacity of <tt>v</tt>, the
+      capacity of <tt>v</tt> remains the same; otherwise, the capacity of
+      <tt>v</tt> is &gt;= <tt>num</tt>.</dd>
+      <dt>v.resize(num, val)</dt>
+      <dd>Change size of <tt>v</tt> to <tt>num</tt>. (If <tt>v</tt> must be
+      lengthened, copies of <tt>val</tt> are added to the end of
+      <tt>v</tt>. If <tt>v</tt> is shortened, values at the end are lost,
+      and the value of <tt>val</tt> is not used.) If <tt>num</tt> &lt;= the
+      current capacity of <tt>v</tt>, the capacity of <tt>v</tt> remains
+      the same; otherwise, the capacity of <tt>v</tt> is &gt;=
+      <tt>num</tt>.</dd>
+      <dt>v.swap(otherVector)</dt>
+      <dd>Exchange values in <tt>v</tt> with those in <tt>otherVector</tt>.
+      The sizes and capacities are swapped as well.</dd>
+      <dt>v.getallocator()</dt>
+      <dd>Return the allocator of <tt>v</tt>. (This is possibly the most
+      infrequently used of all member functions of the vector class.)</dd>
+    </dl>
+    <h3 class="miscnotes"><a id="misc_notes"
+    name="misc_notes">Miscellaneous notes</a></h3>
+    <dl>
+      <dt>Differences in the use of v[i] and v.at(i)</dt>
+      <dd>The "safer" choice to access an element of <tt>v</tt> via an
+      index <tt>i</tt> is <tt>v.at(i)</tt> rather than <tt>v[i]</tt>. This
+      is because <tt>v.at(i)</tt> throws an <tt>out_of_range</tt> exception
+      if <tt>i</tt> is not a valid index value for <tt>v</tt>, unlike
+      <tt>v[i]</tt>, which behaves just as if <tt>v</tt> were an ordinary
+      array, and thus does not give you any warning if your index goes out
+      of bounds. If it does go out of bounds, you may get a run-time error,
+      or your program may simply use whatever is stored at the invalid
+      location as though it were a piece of valid data.</dd>
+      <dt>Reallocation caused by adding one or more values to a vector</dt>
+      <dd>
+        If one or more values are added to a vector object, a
+        <em>reallocation</em> may be necessary. In particular, for example,
+        if a new value is added to a full vector object via the
+        <tt>push_back()</tt> member function, a reallocation <em>will</em>
+        take place. Essentially, that process goes like this. First, new
+        memory is allocated. Then the original vector is copied to this new
+        memory and the new value is added to the end. Finally, the old
+        vector's memory is deallocated. 
+        <p>In order that this reallocation (which is clearly an "expensive"
+        operation) not take place each time a new value is added, the
+        reallocation algorithm generally creates more new memory space than
+        just enough required to hold the original vector plus the newly
+        added value. Doubling the memory required by the original vector
+        has been a common (but not universal) scheme. It is easy to check
+        empirically the algorithm used in your C++ implementation by
+        writing a short test program that displays the size and capacity of
+        a vector each time you add a new value, starting with an empty
+        vector. The observed sequence may not be "fixed", however; that is,
+        if you start with a vector that is not empty, and that has been
+        created with its size and capacity the same, and <em>then</em>
+        start to add values one at a time, you may get a different sequence
+        of capacities. It is the use of these reallocation algorithms that
+        gives the "amortized constant time" performance of value insertion
+        at the <em>end</em> of a vector object.</p>
+      </dd>
+      <dt>Danger of invalidation of iterators, references and pointers</dt>
+      <dd>Although it may not be strictly true in all situations, it is
+      probably safest to assume that any member function that inserts or
+      removes values or changes the size or capacity of a vector will
+      invalidate any iterators, references or pointers already associated
+      with values of that vector.</dd>
+      <dt>Implementation</dt>
+      <dd>Standard C++ does not say how the STL containers and algorithms
+      must be implemented. It does, however, state certain constraints,
+      such as complexity constraints, to which each implementation must
+      adhere. Thus it is much better to base your programs on the STL's
+      performance guarantees, rather than upon any assumption about how a
+      particular feature, like the <tt>vector</tt> class, may be
+      implemented.</dd>
+      <dt>Some performance and usage issues</dt>
+      <dd>Vector value insertion and deletion take place in "amortized
+      constant time" if performed at the end of a vector, and in linear
+      time if performed at the beginning or internally. A vector should be
+      used if the conceptual requirement of the application is a "dynamic
+      array", especially if fast random access is required and most or all
+      insertions and deletions need only happen at the end of the
+      container. If many insertions and deletions will need to be made at
+      both ends, a deque should be used instead of a vector.</dd>
+      <dt>The vector&lt;bool&gt; specialization</dt>
+      <dd>
+        This specialization of the vector class may occasionally be useful,
+        but you need to be aware that it is not exactly like a "normal"
+        vector. For example, a <tt>vector&lt;bool&gt;::iterator</tt> is not
+        a random access iterator. Thus template code that works with other
+        kinds of vectors might not work with <tt>vector&lt;bool&gt;</tt>.
+        The <tt>vector&lt;bool&gt;</tt> class does, however, add a
+        convenient member function: 
+        <dl>
+          <dt>v.flip()</dt>
+          <dd>Reverse all bits in a <tt>vector&lt;bool&gt;</tt> object
+          <tt>v</tt>. Somewhat surprisingly, perhaps, you can also "flip" a
+          single bit of a <tt>vector&lt;bool&gt;</tt> object using
+          <tt>v[i].flip()</tt>. (Note that, in this latter case, the
+          <tt>flip()</tt> being used is not the member function.)</dd>
+        </dl>
+      </dd>
+    </dl>
+    <h3 class="sampleprogs"><a id="sample_programs"
+    name="sample_programs">Sample programs</a></h3>
+    <p>There are two groups of sample programs. The first group involves
+    only STL vectors and generic C++, while the second group involves other
+    STL features in addition to vectors. The programs should be studied in
+    the sequence given, since the description of each new sample program in
+    the sequence mentions only the new features illustrated for the first
+    time in that particular program, and features seen in earlier sample
+    programs will continue to reappear in later programs.</p>
+    <p>All of the programs have been compiled and run successfully under
+    Microsoft Visual Studio .NET 2005.</p>
+    <h4>Programs involving only vectors (and generic C++)</h4>
+    <dl>
+      <dt><a href="programs/vector/vector01.cpp2html">vector01.cpp</a> | <a
+      href="programs/vector/vector01.exe">Windows_executable</a> | <a
+      href="programs/vector/vector01.txt">program_output (text)</a></dt>
+      <dd>Illustrates vector constructors, accessing vector values with
+      <tt>v[i]</tt>, the typedef <tt>vector&lt;T&gt;::size_type</tt>, and
+      the member functions <tt>size()</tt> and <tt>empty()</tt>. Also
+      illustrates how ordinary array pointers can be used, in certain
+      situations, in the same way that STL iterators are used.</dd>
+      <dt><a href="programs/vector/vector02.cpp2html">vector02.cpp</a> | <a
+      href="programs/vector/vector02.exe">Windows_executable</a> | <a
+      href="programs/vector/vector02.txt">program_output (text)</a></dt>
+      <dd>Illustrates the similarities and differences between
+      <tt>v[i]</tt> and <tt>v.at(i)</tt>.</dd>
+      <dt><a href="programs/vector/vector03.cpp2html">vector03.cpp</a> | <a
+      href="programs/vector/vector03.exe">Windows_executable</a> | <a
+      href="programs/vector/vector03.txt">program_output (text)</a></dt>
+      <dd>Illustrates member function <tt>max_size()</tt>, and how the
+      maximum size for a vector object depends on the size of its component
+      type.</dd>
+      <dt><a href="programs/vector/vector04.cpp2html">vector04.cpp</a> | <a
+      href="programs/vector/vector04.exe">Windows_executable</a> | <a
+      href="programs/vector/vector04.txt">program_output (text)</a></dt>
+      <dd>Illustrates <tt>push_back()</tt> and shows the difference between
+      <tt>size()</tt> and <tt>capacity()</tt>. Allows the user to
+      experiment with the reallocation algorithm for his or her C++
+      implementation.</dd>
+      <dt><a href="programs/vector/vector05.cpp2html">vector05.cpp</a> | <a
+      href="programs/vector/vector05.exe">Windows_executable</a> | <a
+      href="programs/vector/vector05.txt">program_output (text)</a></dt>
+      <dd>Illustrates typical uses of the default (random-access) iterator
+      for the vector class, shows additional uses of member functions
+      <tt>begin()</tt> and <tt>end()</tt>, and also shows the use of
+      operators =, +, -, <tt>++</tt>, <tt>--</tt>, <tt>!=</tt> and * with
+      vector class iterators.</dd>
+      <dt><a href="programs/vector/vector06.cpp2html">vector06.cpp</a> | <a
+      href="programs/vector/vector06.exe">Windows_executable</a> | <a
+      href="programs/vector/vector06.txt">program_output (text)</a></dt>
+      <dd>Illustrates the default (random-access) vector class iterator in
+      additional situations, and shows the use of operators <tt>-&gt;</tt>,
+      <tt>[ ]</tt>, &lt;, &gt;, <tt>&lt;=</tt>, <tt>&gt;=</tt>,
+      <tt>+=</tt>, <tt>-=</tt> and <tt>==</tt> with vector class
+      iterators.</dd>
+      <dt><a href="programs/vector/vector07.cpp2html">vector07.cpp</a> | <a
+      href="programs/vector/vector07.exe">Windows_executable</a> | <a
+      href="programs/vector/vector07.txt">program_output (text)</a></dt>
+      <dd>Illustrates reverse iterators for the vector class, as well as
+      member functions <tt>rbegin()</tt> and <tt>rend()</tt>.</dd>
+      <dt><a href="programs/vector/vector08.cpp2html">vector08.cpp</a> | <a
+      href="programs/vector/vector08.exe">Windows_executable</a> | <a
+      href="programs/vector/vector08.txt">program_output (text)</a></dt>
+      <dd>Illustrates a typical use of a <tt>const</tt> iterator.</dd>
+      <dt><a href="programs/vector/vector09.cpp2html">vector09.cpp</a> | <a
+      href="programs/vector/vector09.exe">Windows_executable</a> | <a
+      href="programs/vector/vector09.txt">program_output (text)</a></dt>
+      <dd>Illustrates member functions <tt>front()</tt> and
+      <tt>back()</tt>.</dd>
+      <dt><a href="programs/vector/vector10.cpp2html">vector10.cpp</a> | <a
+      href="programs/vector/vector10.exe">Windows_executable</a> | <a
+      href="programs/vector/vector10.txt">program_output (text)</a></dt>
+      <dd>Illustrates the overloaded assignment operator <tt>=</tt> and the
+      <tt>assign()</tt> member function.</dd>
+      <dt><a href="programs/vector/vector11.cpp2html">vector11.cpp</a> | <a
+      href="programs/vector/vector11.exe">Windows_executable</a> | <a
+      href="programs/vector/vector11.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>insert()</tt> member function.</dd>
+      <dt><a href="programs/vector/vector12.cpp2html">vector12.cpp</a> | <a
+      href="programs/vector/vector12.exe">Windows_executable</a> | <a
+      href="programs/vector/vector12.txt">program_output (text)</a></dt>
+      <dd>Illustrates <tt>clear()</tt>, <tt>erase()</tt> and
+      <tt>pop_back()</tt> member functions.</dd>
+      <dt><a href="programs/vector/vector13.cpp2html">vector13.cpp</a> | <a
+      href="programs/vector/vector13.exe">Windows_executable</a> | <a
+      href="programs/vector/vector13.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>reserve()</tt> and <tt>resize()</tt> member
+      functions.</dd>
+      <dt><a href="programs/vector/vector14.cpp2html">vector14.cpp</a> | <a
+      href="programs/vector/vector14.exe">Windows_executable</a> | <a
+      href="programs/vector/vector14.txt">program_output (text)</a></dt>
+      <dd>Illustrates the <tt>swap()</tt> member function.</dd>
+      <dt><a href="programs/vector/vector15.cpp2html">vector15.cpp</a> | <a
+      href="programs/vector/vector15.exe">Windows_executable</a> | <a
+      href="programs/vector/vector15.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to shrink the capacity of a vector. Shows how to
+      simulate the "missing" member functions "trim" and "reset".</dd>
+      <dt><a href="programs/vector/vector16.cpp2html">vector16.cpp</a> | <a
+      href="programs/vector/vector16.exe">Windows_executable</a> | <a
+      href="programs/vector/vector16.txt">program_output (text)</a></dt>
+      <dd>Illustrates a vector of vectors.</dd>
+      <dt><a href="programs/vector/vector17.cpp2html">vector17.cpp</a> | <a
+      href="programs/vector/vector17.exe">Windows_executable</a> | <a
+      href="programs/vector/vector17.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of a vector of strings to read and display a
+      file of text.</dd>
+      <dt><a href="programs/vector/vector18.cpp2html">vector18.cpp</a> | <a
+      href="programs/vector/vector18.exe">Windows_executable</a> | <a
+      href="programs/vector/vector18.txt">program_output (text)</a></dt>
+      <dd>Illustrates how the relational operators can be used to compare
+      one vector with another.</dd>
+    </dl>
+    <h4>Programs involving additional vector features and vectors in
+    combination with other STL features</h4>
+    <dl>
+      <dt><a href="programs/vector/vector_a.cpp2html">vector_a.cpp</a> | <a
+      href="programs/vector/vector_a.exe">Windows_executable</a> | <a
+      href="programs/vector/vector_a.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of stream iterators and the <tt>copy</tt>
+      algorithm for I/O of vector values.</dd>
+      <dt><a href="programs/vector/vector_b.cpp2html">vector_b.cpp</a> | <a
+      href="programs/vector/vector_b.exe">Windows_executable</a> | <a
+      href="programs/vector/vector_b.txt">program_output (text)</a></dt>
+      <dd>Illustrates how to display the name of the underlying type
+      represented by each typedef defined by a vector class.</dd>
+      <dt><a href="programs/vector/vector_c.cpp2html">vector_c.cpp</a> | <a
+      href="programs/vector/vector_c.exe">Windows_executable</a> | <a
+      href="programs/vector/vector_c.txt">program_output (text)</a></dt>
+      <dd>Illustrates initialization of a vector with values from
+      non-vector containers (in this case, a deque and a list).</dd>
+      <dt><a href="programs/vector/vector_d.cpp2html">vector_d.cpp</a> | <a
+      href="programs/vector/vector_d.exe">Windows_executable</a> | <a
+      href="programs/vector/vector_d.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of several STL algorithms
+      (<tt>accumulate</tt>, <tt>count</tt>, <tt>max</tt>,
+      <tt>max_element</tt>, <tt>min</tt>, <tt>min_element</tt>, and
+      <tt>sort</tt>) with vector objects.</dd>
+      <dt><a href="programs/vector/vector_e.cpp2html">vector_e.cpp</a> | <a
+      href="programs/vector/vector_e.exe">Windows_executable</a> | <a
+      href="programs/vector/vector_e.txt">program_output (text)</a></dt>
+      <dd>Illustrates the use of several additional STL algorithms
+      (<tt>count_if</tt>, <tt>for_each</tt>, and <tt>transform</tt>) with
+      vector objects, and also shows the use of a built-in function object,
+      as well as programmer-defined functions being passed as parameters to
+      an STL algorithm.</dd>
+      <dt><a href="programs/vector/vector_f.cpp2html">vector_f.cpp</a> | <a
+      href="programs/vector/vector_f.exe">Windows_executable</a> | <a
+      href="programs/vector/vector_f.txt">program_output (text)</a></dt>
+      <dd>Illustrates the specialized container type
+      <tt>vector&lt;bool&gt;</tt>.</dd>
+    </dl>
+    <h3 class="prototypes"><a id="prototypes" name="prototypes">Member
+    function prototypes</a></h3>
+    <p>For enhanced readability in each of the prototypes given below, each
+    parameter in each parameter list appears on a separate line. Also, some
+    formatting liberties are taken, in the interest of greater readability.
+    For example, rather than aligning all prototypes at the left margin,
+    <tt>const</tt> and non-<tt>const</tt> versions of a member function are
+    aligned in such a way as to allow the reader to more easily compare the
+    two visually.</p>
+    <hr />
+    <p>Template specification for the vector class</p>
+<pre xml:space="preserve">
+template&lt;class T,
+         class Allocator = allocator&lt;T&gt; &gt;
+class vector { ... }
+</pre>
+    <hr />
+    <p>Constructors</p>
+<pre xml:space="preserve">
+explicit vector(const Allocator&amp; a = Allocator());
+</pre>
+<pre xml:space="preserve">
+explicit vector(size_type num,
+                const T&amp; val = T(),
+                const Allocator&amp; a = Allocator());
+                
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+vector(InIterator inIterBegin,
+       InIterator inIterEnd,
+       const Allocator&amp; a = Allocator());
+</pre>
+    <hr />
+    <p>Copy Constructor</p>
+<pre xml:space="preserve">
+vector(const vector&lt;T, Allocator&gt;&amp; otherVector);
+</pre>
+    <hr />
+    <p>Destructor</p>
+<pre xml:space="preserve">
+~vector();
+</pre>
+    <hr />
+    <p>assign</p>
+<pre xml:space="preserve">
+void assign(size_type num,
+            const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void assign(InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>at</p>
+<pre xml:space="preserve">
+      reference at(size_type i);
+const_reference at(size_type i) const;
+</pre>
+    <hr />
+    <p>back</p>
+<pre xml:space="preserve">
+      reference back();
+const_reference back() const;
+</pre>
+    <hr />
+    <p>begin</p>
+<pre xml:space="preserve">
+      iterator begin();
+const_iterator begin() const;
+</pre>
+    <hr />
+    <p>capacity</p>
+<pre xml:space="preserve">
+size_type capacity() const;
+</pre>
+    <hr />
+    <p>clear</p>
+<pre xml:space="preserve">
+void clear();
+</pre>
+    <hr />
+    <p>empty</p>
+<pre xml:space="preserve">
+bool empty() const;
+</pre>
+    <hr />
+    <p>end</p>
+<pre xml:space="preserve">
+      iterator end();
+const_iterator end() const;
+</pre>
+    <hr />
+    <p>erase</p>
+<pre xml:space="preserve">
+iterator erase(iterator iter);
+iterator erase(iterator iterBegin,
+               iterator iterEnd);
+</pre>
+    <hr />
+    <p>front</p>
+<pre xml:space="preserve">
+      reference front();
+const_reference front() const;
+</pre>
+    <hr />
+    <p>get_allocator</p>
+<pre xml:space="preserve">
+allocator_type get_allocator() const;
+</pre>
+    <hr />
+    <p>insert</p>
+<pre xml:space="preserve">
+iterator insert(iterator iter,
+                const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+void insert(iterator iter,
+            size_type num,
+            const T&amp; val);
+</pre>
+<pre xml:space="preserve">
+template&lt;class InIterator&gt;
+void insert(iterator iter,
+            InIterator inIterBegin,
+            InIterator inIterEnd);
+</pre>
+    <hr />
+    <p>max_size</p>
+<pre xml:space="preserve">
+size_type max_size() const;
+</pre>
+    <hr />
+    <p>operator[ ]</p>
+<pre xml:space="preserve">
+      reference operator[](size_type i);
+const_reference operator[](size_type i) const;
+</pre>
+    <hr />
+    <p>pop_back</p>
+<pre xml:space="preserve">
+void pop_back();
+</pre>
+    <hr />
+    <p>push_back</p>
+<pre xml:space="preserve">
+void push_back(const T&amp; val);
+</pre>
+    <hr />
+    <p>rbegin</p>
+<pre xml:space="preserve">
+      reverse_iterator rbegin();
+const_reverse_iterator rbegin() const;
+</pre>
+    <hr />
+    <p>rend</p>
+<pre xml:space="preserve">
+      reverse_iterator rend();
+const_reverse_iterator rend() const;
+</pre>
+    <hr />
+    <p>reserve</p>
+<pre xml:space="preserve">
+void reserve(size_type num);
+</pre>
+    <hr />
+    <p>resize</p>
+<pre xml:space="preserve">
+void resize(size_type num,
+            T val = T());
+</pre>
+    <hr />
+    <p>size</p>
+<pre xml:space="preserve">
+size_type size() const;
+</pre>
+    <hr />
+    <p>swap</p>
+<pre xml:space="preserve">
+void swap(vector&lt;T, Allocator&gt;&amp; otherVector);
+</pre>
+  </body>
+</html>
+
+<!-- Localized -->

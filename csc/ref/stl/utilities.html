@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Utilities</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     STL Utilities</p>
+    <h3>Overview</h3>
+    <p>The STL <tt>&lt;utility&gt;</tt> header contains a small number of
+    templates that are used throughout the STL. In particular, it declares
+    the <tt>pair&lt;KType, VType&gt;</tt> template struct, which is
+    essential when using maps and multimaps, but also finds many uses in
+    everyday programming, whenever it is useful to treat two values as a
+    single unit. Also defined in this header is <tt>namespace rel-ops</tt>,
+    which is nested within <tt>namespace std</tt> and in turn defines the
+    other relational operators in terms of <tt>==</tt> and
+    <tt>&lt;</tt>.</p>
+    <h3>The <tt>pair</tt> template struct and the <tt>make_pair()</tt>
+    function</h3>
+    <p>Here is the definition of the <tt>pair</tt> struct:</p>
+<pre xml:space="preserve">
+template&lt;class KType, class VType&gt;
+struct pair
+{
+    typedef KType first_type;  //Type of key
+    typedef VType second_type; //Type of value
+    KType first;  //Contains the key
+    VType second; //Contains the value
+    //Constructors
+    pair();                                //1 Default constructor
+    pair(const KType&amp; k, const VType&amp; v);  //2 Supply key and value
+    template&lt;class A, class B&gt;
+    pair(const pair&lt;A, B&gt;&amp; pairObject);    //3 Copy constructor
+};
+</pre>
+    <p>Typical uses for the <tt>pair</tt> template struct include:</p>
+    <ul class="hardleft">
+      <li>Functions that return two values</li>
+      <li>STL maps and multimaps, which use pairs to manage their elements,
+      which are key/value pairs</li>
+      <li>Any usage that requires combining two items that logically go
+      together to form a "pair" of any kind</li>
+    </ul>
+    <p>And here is the prototype of the useful generic function
+    <tt>make_pair()</tt> for creating pairs:</p>
+<pre xml:space="preserve">
+template&lt;class KType, class VType&gt;
+pair&lt;KType, VType&gt; make_pair(const KType&amp; k, const VType&amp; v);
+</pre>
+    <p>Note that both the return value of the function call</p>
+<pre xml:space="preserve">
+make_pair(123, 'A')
+</pre>
+    <p>and the object created by the constructor call</p>
+<pre xml:space="preserve">
+pair&lt;int, char&gt;(123, 'A')
+</pre>
+    <p>give the same end result, but the first is shorter, and, one could
+    argue, clearer than the second.</p>
+    <h3>Comparing <tt>pair</tt> objects</h3>
+    <p>Two pair objects are equal if and only the first components of both
+    objects are equal and the second components of both objects are also
+    equal. A first pair object is less than a second pair object if either
+    of the following conditions is true:</p>
+    <ul class="hardleft">
+      <li>The first component of the first object is less than the first
+      component of the second object.</li>
+      <li>The first components of the two objects are equal, and the second
+      component of the first object is less than the second component of
+      the second object.</li>
+    </ul>
+    <p>The other relational operators are all defined in terms of these
+    two.</p>
+    <h3>Sample Programs</h3>
+    <dl>
+      <dt><a href="programs/utility/pair1.cpp2html">pair1.cpp</a> | <a
+      href="programs/utility/pair1.exe">Windows_executable</a> | <a
+      href="programs/utility/pair1.txt">program_output (text)</a></dt>
+      <dd>Illustrates the default, non-default, and copy constructors of
+      the <tt>pair</tt> template struct, as well as the
+      <tt>make_pair(</tt>) function.</dd>
+      <dt><a href="programs/utility/pair2.cpp2html">pair2.cpp</a> | <a
+      href="programs/utility/pair2.exe">Windows_executable</a> | <a
+      href="programs/utility/pair2.txt">program_output (text)</a></dt>
+      <dd>Illustrates comparison of <tt>pair</tt> objects.</dd>
+    </dl>
+  </body>
+</html>
+
+<!-- Localized -->

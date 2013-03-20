@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>STL Container Member Function Distribution Summary</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material:<br />
+    STL Container and Container Adaptor Classes<br />
+    Member Function Distribution Summary</p>
+    <p>This page contains five tables. The first gives a list of all member
+    functions common to all first-class containers (vector, deque, list,
+    map, multimap, set, multiset). The second gives a list of all additional
+    member functions common to all sequential containers (vector, deque, list).
+    The third ...</p>
+    <h3>Member functions common to all first-class STL containers</h3>
+    <table border="5" cellpadding="3" cellspacing="0" width="670"
+    summary="Member functions common to all containers">
+      <tr>
+        <td>default constructor</td>
+        <td>Constructs an empty container.<br />
+Containers will have other constructors as well.</td>
+      </tr>
+      <tr>
+        <td>copy constructor</td>
+        <td>Construct a copy of an already existing container of the same type.</td>
+      </tr>
+      <tr>
+        <td>destructor</td>
+        <td>Clean up when container no longer needed.</td>
+      </tr>
+      <tr>
+        <td><tt>operator=</tt></td>
+        <td>Assign one container to another.</td>
+      </tr>
+      <tr>
+        <td><tt>operator==</tt></td>
+        <td>Test for equality, lexicographically.</td>
+      </tr>
+      <tr>
+        <td><tt>operator!=</tt></td>
+        <td>Test for inequality, lexicographically.</td>
+      </tr>
+      <tr>
+        <td><tt>operator&lt;</tt></td>
+        <td>Test for less than, lexicographically.</td>
+      </tr>
+      <tr>
+        <td><tt>operator&lt;=</tt></td>
+        <td>Test for less than or equal to, lexicographically.</td>
+      </tr>
+      <tr>
+        <td><tt>operator&gt;</tt></td>
+        <td>Test for greater than, lexicographically.</td>
+      </tr>
+      <tr>
+        <td><tt>operator&gt;=</tt></td>
+        <td>Test for greater than or equal to, lexicographically.</td>
+      </tr>
+      <tr>
+        <td><tt>empty</tt></td>
+        <td>Test if container is empty.</td>
+      </tr>
+      <tr>
+        <td><tt>max_size</tt></td>
+        <td>Return maximum number of components container can hold.</td>
+      </tr>
+      <tr>
+        <td><tt>size</tt></td>
+        <td>Return number of elements container currently holds.</td>
+      </tr>
+      <tr>
+        <td><tt>swap</tt></td>
+        <td>Exchange all components with those of another container.</td>
+      </tr>
+      <tr>
+        <td><tt>insert</tt></td>
+        <td>Insert one or more components into a container.</td>
+      </tr>
+      <tr>
+        <td><tt>erase</tt></td>
+        <td>Erases one or more components from a container.</td>
+      </tr>
+      <tr>
+        <td><tt>clear</tt></td>
+        <td>Erases all components from a container.</td>
+      </tr>
+      <tr>
+        <td><tt>begin</tt></td>
+        <td>Return an <tt>iterator</tt> or <tt>const_iterator</tt> pointing
+        to the first component.</td>
+      </tr>
+      <tr>
+        <td><tt>end</tt></td>
+        <td>Return an <tt>iterator</tt> or <tt>const_iterator</tt> pointing
+        to one-past-the-last component.</td>
+      </tr>
+      <tr>
+        <td><tt>rbegin</tt></td>
+        <td>Return a <tt>reverse_iterator</tt> or
+        <tt>const_reverse_iterator</tt> pointing to the last component.</td>
+      </tr>
+      <tr>
+        <td><tt>rend</tt></td>
+        <td>Return a <tt>reverse_iterator</tt> or
+        <tt>const_reverse_iterator</tt> pointing to
+        one-before-the-first component.</td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">Member functions found only in sequential STL containers</h3>
+    <table border="5" cellpadding="3" cellspacing="0"
+    summary="Additional member common to all sequential STL containers">
+      <tr>
+        <td><tt>assign</tt></td>
+        <td>Overwrite all components of current container.</td>
+      </tr>
+      <tr>
+        <td><tt>front</tt></td>
+        <td>Return a reference to a container's first component.</td>
+      </tr>
+      <tr>
+        <td><tt>back</tt></td>
+        <td>Return a reference to a container's last component.</td>
+      </tr>
+      <tr>
+        <td><tt>push_back</tt></td>
+        <td>Add a value to the end of a container.</td>
+      </tr>
+      <tr>
+        <td><tt>pop_back</tt></td>
+        <td>Remove the value at the end of a container.</td>
+      </tr>
+      <tr>
+        <td><tt>resize</tt></td>
+        <td>Change the size of a container, adding or removing
+        values.</td>
+      </tr>
+    </table>
+    <h3>Member functions found only in associative STL containers</h3>
+    <table border="5" cellpadding="3" cellspacing="0"
+    summary="Member functions found only in associative STL containers">
+      <tr>
+        <td><tt>count</tt></td>
+        <td>Return number of key/value pairs in which the key matches a
+        given key.</td>
+      </tr>
+      <tr>
+        <td><tt>find</tt></td>
+        <td>Find a key/value pair with a given key.</td>
+      </tr>
+      <tr>
+        <td><tt>lower_bound</tt></td>
+        <td>Find first location where a key/value pair with a given key
+        could be inserted.</td>
+      </tr>
+      <tr>
+        <td><tt>upper_bound</tt></td>
+        <td>Find last location where a key/value pair with a given key
+        could be inserted.</td>
+      </tr>
+      <tr>
+        <td><tt>key_comp</tt></td>
+        <td>Return comparison object used for comparing keys of key/value
+        pairs.</td>
+      </tr>
+      <tr>
+        <td><tt>value_comp</tt></td>
+        <td>Return comparison object used for comparing values of key/value
+        pairs.</td>
+      </tr>
+    </table>
+    <h3>Member functions found only in STL container adaptors</h3>
+    <table border="5" cellpadding="3" cellspacing="0"
+    summary="Member functions found only in STL container adaptors">
+      <tr>
+        <td><tt>push</tt></td>
+        <td>Add a value to a container adaptor.</td>
+      </tr>
+      <tr>
+        <td><tt>pop</tt></td>
+        <td>Remove a value from a container adaptor.</td>
+      </tr>
+    </table>
+    <h3 class="pagebreak">Additional member functions found in various STL containers
+    <br />
+     and container adaptors but not common to any group</h3>
+    <table border="5" cellpadding="3" cellspacing="0"
+    summary="Additional member functions found in various STL containers">
+      <tr>
+        <th>container or
+        <br />
+        adaptor</th>
+        <th>member functions found in that container or adaptor</th>
+      </tr>
+      <tr>
+        <td><tt>vector</tt></td>
+        <td><tt>at</tt>, <tt>operator[]</tt>, <tt>reserve</tt>,
+        <tt>capacity</tt></td>
+      </tr>
+      <tr>
+        <td><tt>deque</tt></td>
+        <td><tt>operator[]</tt>, <tt>push_front</tt>,
+        <tt>pop_front</tt></td>
+      </tr>
+      <tr>
+        <td><tt>list</tt></td>
+        <td><tt>push_front</tt>, <tt>pop_front</tt>, <tt>remove</tt>,
+        <tt>unique</tt>, <tt>splice</tt>, <tt>merge</tt>, <tt>reverse</tt>,
+        <tt>sort</tt></td>
+      </tr>
+      <tr>
+        <td><tt>map</tt></td>
+        <td><tt>equal_range</tt>, <tt>operator[]</tt></td>
+      </tr>
+      <tr>
+        <td><tt>multimap</tt></td>
+        <td><tt>equal_range</tt></td>
+      </tr>
+      <tr>
+        <td><tt>set</tt></td>
+        <td><tt>equal_range</tt></td>
+      </tr>
+      <tr>
+        <td><tt>multiset</tt></td>
+        <td><tt>equal_range</tt></td>
+      </tr>
+      <tr>
+        <td><tt>stack</tt></td>
+        <td><tt>top</tt></td>
+      </tr>
+      <tr>
+        <td><tt>queue</tt></td>
+        <td><tt>front</tt>, <tt>back</tt></td>
+      </tr>
+      <tr>
+        <td><tt>priority_queue</tt></td>
+        <td><tt>top</tt></td>
+      </tr>
+    </table>
+  </body>
+</html>
+
+<!-- Localized -->

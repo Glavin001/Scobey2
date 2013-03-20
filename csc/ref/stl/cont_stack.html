@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type"
+    content="text/html; charset=iso-8859-1" />
+    <title>The STL stack Container Adaptor</title>
+    <link rel="StyleSheet" href="../../../css/stdlib.css"
+    type="text/css" />
+  </head>
+  <body>
+    <p class="pageheader">C++ Reference Material
+    <br />
+     The STL stack Container Adaptor</p>
+    <p>The STL <tt>stack</tt> is a <em>container adaptor</em>. That is, it
+    is not a "first-class" container, but instead simply "adapts" one of
+    the sequential first-class containers (by default, the <tt>deque</tt>)
+    for its own purposes. So, the <tt>deque</tt> interface is restricted
+    (i.e., much of it is hidden) so that the required LIFO (Last In, First
+    Out) stack-like behavior is provided.</p>
+    <ul class="hardleft">
+      <li><a href="#constructors">Constructors and destructor</a></li>
+      <li><a href="#overloaded_ops">Overloaded operators</a></li>
+      <li><a href="#access">Member function for accessing a value</a></li>
+      <li><a href="#status">Member functions for reporting status</a></li>
+      <li><a href="#insertion">Member function for inserting a
+      value</a></li>
+      <li><a href="#deletion">Member function for deleting a value</a></li>
+      <li><a href="#misc_notes">Miscellaneous notes</a></li>
+      <li><a href="#sample_programs">Sample programs</a></li>
+      <li><a href="#prototypes">Member function prototypes</a></li>
+    </ul>
+    <h3><a id="constructors" name="constructors">Constructors and
+    destructor</a></h3>
+    <p>Default Constructor</p>
+    <dl>
+      <dt>stack&lt;T&gt; s;</dt>
+      <dd>Construct an empty stack <tt>s</tt> which can hold values of type
+      <tt>T</tt>.</dd>
+    </dl>
+    <hr />
+    <p>Copy Constructor</p>
+    <p>There is, of course, only one copy constructor, but there are two
+    syntactic forms that invoke it, and both are shown.</p>
+    <dl>
+      <dt>stack&lt;T&gt; s(otherStack);</dt>
+      <dd>Construct <tt>s</tt> as a copy of <tt>otherStack</tt>, whose
+      component type must be <tt>T</tt>.</dd>
+      <dt>stack&lt;T&gt; s = otherStack;</dt>
+      <dd>Copy constructor (alternate usage syntax).</dd>
+    </dl>
+    <hr />
+    <p>Destructor</p>
+    <p>Any stack will have a container data member (by default, a deque)
+    which will hold its elements. That data member will have its own
+    destructor which will automatically be invoked when the stack goes out
+    of scope.</p>
+    <h3><a id="overloaded_ops" name="overloaded_ops">Overloaded
+    operators</a></h3>
+    <p>Assignment operator</p>
+    <dl>
+      <dt>s1 = s2</dt>
+      <dd>Assign <tt>s2</tt> to <tt>s1</tt>, and return the common value.
+      The stack on the left of an assignment receives the values and size
+      of the one on the right.</dd>
+    </dl>
+    <hr />
+    <p>Relational operators</p>
+    <p>Stacks are compared in the "lexicographic ordering" sense. This
+    essentially means that the two stacks are compared by comparing their
+    values pairwise, starting at the beginning, with each comparison
+    looking at two values in corresponding positions, until a determination
+    of the relationship between the two stacks can be made. Only stacks of
+    the same component type can be compared of course, and the <tt>==</tt>
+    and <tt>&lt;</tt> operators must be defined for the component type.</p>
+    <dl>
+      <dt>s1 == s2</dt>
+      <dd>Return <tt>true</tt> if <tt>s1</tt> and <tt>s2</tt> have the same
+      component type and the same size, and the components in each pair of
+      corresponding locations have the same value; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>s1 != s2</dt>
+      <dd>Return <tt>true</tt> if <tt>s1==s2</tt> returns <tt>false</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>s1 &lt; s2</dt>
+      <dd>Return <tt>true</tt> if, in the pairwise comparison of values
+      from <tt>s1</tt> and <tt>s2</tt>, in the first pair in which the two
+      values differ, the one from <tt>s1</tt> is less than the one from
+      <tt>s2</tt>; otherwise return <tt>false</tt>.</dd>
+      <dt>s1 &lt;= s2</dt>
+      <dd>Return <tt>true</tt> if either <tt>s1&lt;s2</tt> or
+      <tt>s1==s2</tt> is <tt>true</tt>; otherwise return
+      <tt>false</tt>.</dd>
+      <dt>s1 &gt; s2</dt>
+      <dd>Return <tt>true</tt> if <tt>s2&lt;s1</tt> is <tt>true</tt>;
+      otherwise return <tt>false</tt>.</dd>
+      <dt>s1 &gt;= s2</dt>
+      <dd>Return <tt>true</tt> if either <tt>s1&gt;s2</tt> or
+      <tt>s1==s2</tt> is <tt>true</tt>, otherwise return
+      <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="access" name="access">Member function for accessing a
+    value</a></h3>
+    <dl>
+      <dt>s.top()</dt>
+      <dd>Return a <tt>reference</tt> (or <tt>const_reference</tt>) to the
+      top component of <tt>s</tt>.</dd>
+    </dl>
+    <h3><a id="status" name="status">Member functions for reporting
+    status</a></h3>
+    <dl>
+      <dt>s.size()</dt>
+      <dd>Return a value of type <tt>size_type</tt> giving the number of
+      values currently in <tt>s</tt>.</dd>
+      <dt>s.empty()</dt>
+      <dd>Return <tt>true</tt> if <tt>s</tt> is empty (contains zero
+      values); otherwise return <tt>false</tt>.</dd>
+    </dl>
+    <h3><a id="insertion" name="insertion">Member function for inserting a
+    value</a></h3>
+    <dl>
+      <dt>s.push(val)</dt>
+      <dd>Add <tt>val</tt> to the top of <tt>s</tt>, increasing the size of
+      <tt>s</tt> by one.</dd>
+    </dl>
+    <h3><a id="deletion" name="deletion">Member function for deleting a
+    value</a></h3>
+    <dl>
+      <dt>s.pop()</dt>
+      <dd>Delete the top value of <tt>s</tt>, decreasing the size of
+      <tt>s</tt> is by one.</dd>
+    </dl>
+    <h3 class="miscnotes"><a id="misc_notes"
+    name="misc_notes">Miscellaneous notes</a></h3>
+    <dl>
+      <dt>Implementation</dt>
+      <dd>Standard C++ does not say how the STL containers and algorithms
+      must be implemented. It does, however, state certain constraints,
+      such as complexity constraints, to which each implementation must
+      adhere. Thus it is much better to base your programs on the STL's
+      performance guarantees, rather than upon any assumption about how a
+      particular feature, like the <tt>stack</tt> class, may be
+      implemented. The stack container adaptor is based by default on the
+      deque. Either a vector or a list could also be used, since all three
+      provide the <tt>push_back()</tt>, <tt>pop_back()</tt> and
+      <tt>back()</tt> operations that are necessary to support the stack
+      interface. An argument for the choice of deque as the default over
+      vector (for example) could be based on the fact that deques, unlike
+      vectors, free their memory when components are deleted, and neither
+      do they have to copy all components when reallocating.</dd>
+    </dl>
+    <h3 class="sampleprogs"><a id="sample_programs"
+    name="sample_programs">Sample programs</a></h3>
+    <p>All programs have been compiled and run successfully under Microsoft
+    Visual Studio .NET 2005, unless otherwise noted.</p>
+    <dl>
+      <dt><a href="programs/stack/stack01.cpp2html">stack01.cpp</a> | <a
+      href="programs/stack/stack01.exe">Windows_executable</a> | <a
+      href="programs/stack/stack01.txt">program_output (text)</a></dt>
+      <dd>Illustrates the "LIFO" (Last In, First Out) behavior of a simple
+      stack of characters, as well as its default constructor, its copy
+      constructor, and the stack push(), pop(), top(), empty(), and size()
+      member functions.</dd>
+      <dt><a href="programs/stack/stack02.cpp2html">stack02.cpp</a> | <a
+      href="programs/stack/stack02.exe">Windows_executable</a> | <a
+      href="programs/stack/stack02.txt">program_output (text)</a></dt>
+      <dd>Illustrates the creation of a stack using values from a deque
+      (when the underlying container is the default one, namely a deque),
+      and from a vector, when the underlying container is a vector.</dd>
+      <dt><a href="programs/stack/stack03.cpp2html">stack03.cpp</a> | <a
+      href="programs/stack/stack03.exe">Windows_executable</a> | <a
+      href="programs/stack/stack03.txt">program_output (text)</a></dt>
+      <dd>Illustrates the assignment of one stack to another, and the
+      comparison of stacks.</dd>
+      <dt><a href="programs/stack/stack04.cpp2html">stack04.cpp</a> | <a
+      href="programs/stack/stack04.exe">Windows_executable</a> | <a
+      href="programs/stack/stack04.txt">program_output (text)</a></dt>
+      <dd>Illustrates how *not* to access the components of a stack.</dd>
+    </dl>
+    <h3 class="prototypes"><a id="prototypes" name="prototypes">Member
+    function prototypes</a></h3>
+    <p>Template specification for the stack class</p>
+<pre xml:space="preserve">
+template&lt;class T,
+         class Allocator = allocator&lt;T&gt; &gt;
+class stack { ... }
+</pre>
+    <hr />
+    <p>Default Constructor</p>
+<pre xml:space="preserve">
+explicit stack(const Container&amp; c = Container());
+</pre>
+    <hr />
+    <p>Copy Constructor</p>
+<pre xml:space="preserve">
+stack(const Container&amp; otherContainer);
+</pre>
+    <hr />
+    <p>Destructor</p>
+<pre xml:space="preserve">
+~stack();
+</pre>
+    <hr />
+    <p>empty</p>
+<pre xml:space="preserve">
+bool empty() const;
+</pre>
+    <hr />
+    <p>pop</p>
+<pre xml:space="preserve">
+void pop();
+</pre>
+    <hr />
+    <p>push</p>
+<pre xml:space="preserve">
+void push(const T&amp; val);
+</pre>
+    <hr />
+    <p>size</p>
+<pre xml:space="preserve">
+size_type size() const;
+</pre>
+    <hr />
+    <p>top</p>
+<pre xml:space="preserve">
+      T&amp; top() const;
+const T&amp; top() const;
+</pre>
+  </body>
+</html>
+
+<!-- Localized -->
