@@ -41,32 +41,42 @@
       //console.log(this);
       var target = $(this).attr('target');
       var href = $(this).attr('href');
-      href = encodeURIComponent(href);
+      console.log("href:", href);
       if (target && target === "display_frame") // Originally sent to frame
       {
+        console.log("display_frame");
+        href = encodeURIComponent(href);
         $(this).attr('href', "#" + href);
         $(this).attr('target', "");
       }
       else if (href && href.indexOf("#") === 0) // Originally an in-page anchor
       {
+        console.log("#in-page anchor");
+        href = encodeURIComponent(href.substr(1));
         $(this).attr('href', "javascript:void(0);");
         $(this).attr('target', "");
-
+        $(this).attr('onclick', "navigator.scrollToAnchor('" + href + "');")
+        /*
         $(this).click(function() {
-          var jump = href;
+          var jump = "#" + href;
+          console.log("Jumping to " + jump);
           var new_position = $(jump).offset();
           window.scrollTo(new_position.left, new_position.top);
           return false;
         });
-
+        */
       }
-      else if ( target && target === "_blank")
+      else if (target && target === "_blank")
       {
+        console.log("_blank");
+        href = encodeURIComponent(href);
         $(this).attr('href', href);
         $(this).attr('target', "_blank");
       }
       else
       {
+        console.log("Else all");
+        href = encodeURIComponent(href);
         $(this).attr('href', "#" + href);
         $(this).attr('target', "");
       }

@@ -59,7 +59,7 @@
               data = $(data);
               //console.log("title:",title);
               $(".content-primary").html(data);
-              var fixedHTML = scobeyConverter.fixLinks( $(".content-primary") );
+              var fixedHTML = scobeyConverter.fixLinks($(".content-primary"));
               //console.log("fixed:",fixedHTML.html());
               $(".content-primary").html(fixedHTML.html());
               var title = $(".content-primary").find('title').text();
@@ -69,7 +69,7 @@
 
               // Make sure the menu is collapsed
             }});
-          document.location.hash = ("#"+href);
+          document.location.hash = ("#" + href);
 
           //$.mobile.loadPage("/m/" + href);
           //setPageUrl = setPage.hash == "" ? setPage.pathname : setPage.hash.replace('#', '');
@@ -83,8 +83,14 @@
     {
       console.log("Not string:", toPage);
     }
+  };
 
-
+  navigator.scrollToAnchor = function(anchor) {
+    var jump = "#" + anchor;
+    console.log("Jumping to " + jump);
+    var new_position = $(jump).offset();
+    window.scrollTo(new_position.left, new_position.top);
+    return false;
   };
 
 })(window.navigator = window.navigator || {});  
