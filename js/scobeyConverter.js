@@ -66,16 +66,17 @@
         });
         */
       }
-      else if (target && target === "_blank")
+      else if ( (target && target === "_blank") // Originally created a new tab/window for new page
+      || ( href.indexOf("http://") !== -1 ) )   // Originally an external page. Must load in new tab/window
       {
-        console.log("_blank");
-        href = encodeURIComponent(href);
+        console.log("New Page:",href);
+        //href = encodeURIComponent(href);
         $(this).attr('href', href);
         $(this).attr('target', "_blank");
       }
-      else
+      else                                      // Unknown. May not currently be supported.
       {
-        console.log("Else all");
+        console.log("Else all:",target, href);  // Log for debugging later. Try to directly support as many usages as possible.
         href = encodeURIComponent(href);
         $(this).attr('href', "#" + href);
         $(this).attr('target', "");
