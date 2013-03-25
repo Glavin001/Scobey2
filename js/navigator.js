@@ -17,6 +17,7 @@
       $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
       $(".content-secondary div ul a[href='" + document.location.hash + "']").parent().parent().parent().attr('data-theme', 'a').removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c").addClass("ui-btn-up-a"); // Select current page
 
+      $.mobile.showPageLoadingMsg();
 
       e.preventDefault();
     });
@@ -29,6 +30,7 @@
 
   // Public methods 
   navigator.goToPage = function(toPage) {
+
     console.log("goToPage(" + String(toPage) + ")");
     // Check if the module is already loaded
     //$.mobile.changePage("/m/" + moduleAddress); // , {data:{param1:'value1'}}
@@ -57,9 +59,13 @@
           console.log("Inserting " + href + " into DOM");
           //$.mobile.changePage("./" + href, {changeHash: false});
           //href = encodeURIComponent(href);
+
+          // Show loading spinner
+          $.mobile.showPageLoadingMsg();
           $.ajax({
             url: href,
             success: function(data) {
+
               console.log("Success");
               // Finished loading the new page
               data = $(data);
@@ -74,7 +80,24 @@
               $('.content-primary .pageheader').replaceWith($('<h1/>').html($('.content-primary .pageheader').html()));
 
               // Make sure the menu is collapsed
-            }});
+
+
+              // Hide Loading spinner
+              $.mobile.hidePageLoadingMsg();
+
+            },
+            error: function(err) {
+              console.log("Ajax error:", err);
+              // Hide Loading spinner
+              $.mobile.hidePageLoadingMsg();
+
+              // Show error message
+              $.mobile.showPageLoadingMsg($.mobile.pageLoadErrorMessageTheme, $.mobile.pageLoadErrorMessage, true);
+              // Hide after delay
+              setTimeout($.mobile.hidePageLoadingMsg, 1500);
+
+            }
+          });
           document.location.hash = ("#" + encodeURIComponent(href));
 
           //$.mobile.loadPage("/m/" + href);
