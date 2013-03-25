@@ -11,7 +11,8 @@
     $(document).on('pagebeforechange', function(e, data) {
       console.log('Page before change: ', data.toPage);
       // Go to the Module
-      navigator.goToPage(data.toPage);
+      var toPage = (typeof data.toPage === "string") ? data.toPage : data.toPage.jqmData("url") || "";
+      navigator.goToPage(toPage);
 
       // Select this newly loaded page in the nav menu
       $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
@@ -68,12 +69,13 @@
               console.log("Success");
               // Finished loading the new page
               data = $(data);
-              //console.log("title:",title);
               $(".content-primary").html(data);
               var fixedHTML = scobeyConverter.fixLinks($(".content-primary"));
               //console.log("fixed:",fixedHTML.html());
+              console.log("fixedLinks");
               $(".content-primary").html(fixedHTML.html());
               var title = $(".content-primary").find('title').text();
+              console.log("title:", title);
               $.mobile.activePage.find("h1").text(title);
               $("#headTitle").text(title);
               $('.content-primary .pageheader').replaceWith($('<h1/>').html($('.content-primary .pageheader').html()));
@@ -83,7 +85,7 @@
 
               // Hide Loading spinner
               $.mobile.hidePageLoadingMsg();
-
+              
             },
             error: function(err) {
               console.log("Ajax error:", err);

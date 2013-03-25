@@ -14,10 +14,14 @@
   scobeyConverter.menuHTML = "";
 
   scobeyConverter.init = function() {
-    var hash = location.hash || home;
-    //$.mobile.changePage(hash);
-    navigator.goToPage(hash);
-
+    var hash = location.hash;
+    if (hash)
+    {
+      navigator.goToPage(hash);
+    }
+    else {
+      $.mobile.changePage(home);
+    }
     // Select this newly loaded page in the nav menu
     $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
     $(".content-secondary div ul a[href='" + document.location.hash + "']").parent().parent().parent().attr('data-theme', 'a').removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c").addClass("ui-btn-up-a"); // Select current page
