@@ -1,0 +1,26 @@
+/* 
+    Document   : menu
+    Created on : Mar 25, 2013, 3:31:30 AM
+    Author     : glavin
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+root { 
+  display: block;
+}
+
+.content-secondary ul li div.ui-li {
+  height: 20px;
+}
+
+
+.content-secondary ul li div.ui-li.ui-btn-inner div a.ui-link-inherit {
+  padding-top: 2px;
+  padding-bottom: 0px;
+}
+
+.content-secondary ul li.ui-li-divider.ui-li[data-role="list-divider"] {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
