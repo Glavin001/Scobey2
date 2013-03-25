@@ -12,6 +12,12 @@
       console.log('Page before change: ', data.toPage);
       // Go to the Module
       navigator.goToPage(data.toPage);
+
+      // Select this newly loaded page in the nav menu
+      $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
+      $(".content-secondary div ul a[href='" + document.location.hash + "']").parent().parent().parent().attr('data-theme', 'a').removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c").addClass("ui-btn-up-a"); // Select current page
+
+
       e.preventDefault();
     });
 
@@ -74,6 +80,7 @@
           //$.mobile.loadPage("/m/" + href);
           //setPageUrl = setPage.hash == "" ? setPage.pathname : setPage.hash.replace('#', '');
           //page.attr({'data-url': setPageUrl});
+
         }
       }
       console.log(href);

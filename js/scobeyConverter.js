@@ -17,9 +17,15 @@
     var hash = location.hash || home;
     //$.mobile.changePage(hash);
     navigator.goToPage(hash);
+
+    // Select this newly loaded page in the nav menu
+    $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
+    $(".content-secondary div ul a[href='" + document.location.hash + "']").parent().parent().parent().attr('data-theme', 'a').removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c").addClass("ui-btn-up-a"); // Select current page
+
   };
 
   scobeyConverter.loadMenu = function() {
+    console.log("loadMenu");
     $.ajax({
       url: "menu.html",
       success: function(data) {
@@ -36,53 +42,53 @@
     console.log("fixLinks", typeof(data));
     var html = $(data); //(typeof(data) === "object")?(data):$(data);
     scobeyConverter.menuHTML = html;
-    console.log("Started:", html);
+    //console.log("Started:", html);
     $.each(html.find("a"), function() {
       //console.log(this);
       var target = $(this).attr('target');
       var href = $(this).attr('href');
-      console.log("href:", href);
+      //console.log("href:", href);
       if (target && target === "display_frame") // Originally sent to frame
       {
-        console.log("display_frame");
+        //console.log("display_frame");
         href = encodeURIComponent(href);
         $(this).attr('href', "#" + href);
         $(this).attr('target', "");
       }
       else if (href && href.indexOf("#") === 0) // Originally an in-page anchor
       {
-        console.log("#in-page anchor");
+        //console.log("#in-page anchor");
         href = encodeURIComponent(href.substr(1));
         $(this).attr('href', "javascript:void(0);");
         $(this).attr('target', "");
         $(this).attr('onclick', "navigator.scrollToAnchor('" + href + "');")
         /*
-        $(this).click(function() {
-          var jump = "#" + href;
-          console.log("Jumping to " + jump);
-          var new_position = $(jump).offset();
-          window.scrollTo(new_position.left, new_position.top);
-          return false;
-        });
-        */
+         $(this).click(function() {
+         var jump = "#" + href;
+         console.log("Jumping to " + jump);
+         var new_position = $(jump).offset();
+         window.scrollTo(new_position.left, new_position.top);
+         return false;
+         });
+         */
       }
-      else if ( (target && target === "_blank") // Originally created a new tab/window for new page
-      || ( href.indexOf("http://") !== -1 ) )   // Originally an external page. Must load in new tab/window
+      else if ((target && target === "_blank") // Originally created a new tab/window for new page
+              || (href && href.indexOf("http://") !== -1))   // Originally an external page. Must load in new tab/window
       {
-        console.log("New Page:",href);
+        //console.log("New Page:",href);
         //href = encodeURIComponent(href);
         $(this).attr('href', href);
         $(this).attr('target', "_blank");
       }
       else                                      // Unknown. May not currently be supported.
       {
-        console.log("Else all:",target, href);  // Log for debugging later. Try to directly support as many usages as possible.
+        //console.log("Else all:",target, href);  // Log for debugging later. Try to directly support as many usages as possible.
         href = encodeURIComponent(href);
         $(this).attr('href', "#" + href);
         $(this).attr('target', "");
       }
     });
-    console.log("Finished:", html);
+    //console.log("Finished:", html);
     return html;
   };
 
