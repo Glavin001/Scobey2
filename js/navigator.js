@@ -30,7 +30,6 @@
 
   // Public methods 
   navigator.goToPage = function(toPage) {
-
     console.log("goToPage(" + String(toPage) + ")");
     // Check if the module is already loaded
     //$.mobile.changePage("/m/" + moduleAddress); // , {data:{param1:'value1'}}
@@ -80,7 +79,7 @@
               $('.content-primary .pageheader').replaceWith($('<h1/>').html($('.content-primary .pageheader').html()));
 
               // Make sure the menu is collapsed
-
+              $('.content-secondary div[data-role="collapsible"]').trigger('collapse');
 
               // Hide Loading spinner
               $.mobile.hidePageLoadingMsg();
