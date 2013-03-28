@@ -35,7 +35,7 @@
       success: function(data) {
         scobeyConverter.menuHTML = $(data);
         console.log(scobeyConverter.menuHTML);
-        scobeyConverter.menuHTML = tableToList(scobeyConverter.menuHTML);
+        scobeyConverter.menuHTML = menuTableToList(scobeyConverter.menuHTML);
         scobeyConverter.menuHTML = scobeyConverter.fixLinks(scobeyConverter.menuHTML);
         $(".content-secondary .menu").replaceWith(scobeyConverter.menuHTML);
         $(".menu").listview().listview('refresh');
@@ -97,8 +97,8 @@
   };
 
   // private method  
-  function tableToList(tableData) {
-    console.log("tableToList", tableData);
+  function menuTableToList(tableData) {
+    console.log("menuTableToList", tableData);
     /*
      <li data-role="list-divider">Overview</li>
      <li data-theme="a"><a href="../../docs/about/intro.html">Intro to jQuery Mobile</a></li>
@@ -115,6 +115,7 @@
         // It's a font element
         el.attr('data-role', 'list-divider');
         el.text($($(value).find("font")[0]).text());
+        el.css({color: $($(value).find("font")[0]).attr('color') });
         //el.html(contents);
       }
       // Deal with anchor elements
@@ -138,7 +139,7 @@
          */
         a.attr('href', $($(value).find("a")[0]).attr('href'));
         a.attr('target', $($(value).find("a")[0]).attr('target'));
-
+        a.addClass( $($(value).find("a")[0]).attr('class') ); // Retain classes
         a.text($($(value).find("a")[0]).text());
         el.append(a);
       }
