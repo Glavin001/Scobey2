@@ -30,8 +30,13 @@
 
   scobeyConverter.loadMenu = function() {
     console.log("loadMenu");
+     var href = "menu.html";
+     //var base = $('base').attr('data-url');
+     // href = base + href;
+     // console.log(href);
+     
     $.ajax({
-      url: "menu.html",
+      url: href,
       success: function(data) {
         scobeyConverter.menuHTML = $(data);
         console.log(scobeyConverter.menuHTML);

@@ -48,6 +48,10 @@
 
       if (href.search("#") !== -1) {// Check if it is a module
         href = href.replace(/[^#]*#/, "");
+        //var base = $('base').attr('data-url');
+        //href = base + href;
+        //console.log(href);
+
         if (!href) {
           //link was an empty hash meant purely
           //for interaction, so we ignore it.
@@ -85,7 +89,7 @@
 
               // Hide Loading spinner
               $.mobile.hidePageLoadingMsg();
-              
+
             },
             error: function(err) {
               console.log("Ajax error:", err);
