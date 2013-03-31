@@ -22,19 +22,17 @@
     else {
       $.mobile.changePage(home);
     }
-    // Select this newly loaded page in the nav menu
-    $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
-    $(".content-secondary div ul a[href='" + document.location.hash + "']").parent().parent().parent().attr('data-theme', 'a').removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c").addClass("ui-btn-up-a"); // Select current page
+    navigator.selectNavMenuItem();
 
   };
 
   scobeyConverter.loadMenu = function() {
     console.log("loadMenu");
-     var href = "menu.html";
-     //var base = $('base').attr('data-url');
-     // href = base + href;
-     // console.log(href);
-     
+    var href = "menu.html";
+    //var base = $('base').attr('data-url');
+    // href = base + href;
+    // console.log(href);
+
     $.ajax({
       url: href,
       success: function(data) {
@@ -120,7 +118,7 @@
         // It's a font element
         el.attr('data-role', 'list-divider');
         el.text($($(value).find("font")[0]).text());
-        el.css({color: $($(value).find("font")[0]).attr('color') });
+        el.css({color: $($(value).find("font")[0]).attr('color')});
         //el.html(contents);
       }
       // Deal with anchor elements
@@ -144,7 +142,7 @@
          */
         a.attr('href', $($(value).find("a")[0]).attr('href'));
         a.attr('target', $($(value).find("a")[0]).attr('target'));
-        a.addClass( $($(value).find("a")[0]).attr('class') ); // Retain classes
+        a.addClass($($(value).find("a")[0]).attr('class')); // Retain classes
         a.text($($(value).find("a")[0]).text());
         el.append(a);
       }

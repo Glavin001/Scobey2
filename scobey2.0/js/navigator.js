@@ -14,9 +14,7 @@
       var toPage = (typeof data.toPage === "string") ? data.toPage : data.toPage.jqmData("url") || "";
       navigator.goToPage(toPage);
 
-      // Select this newly loaded page in the nav menu
-      $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
-      $(".content-secondary div ul a[href='" + document.location.hash + "']").parent().parent().parent().attr('data-theme', 'a').removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c").addClass("ui-btn-up-a"); // Select current page
+      navigator.selectNavMenuItem();
 
       $.mobile.showPageLoadingMsg();
 
@@ -26,6 +24,7 @@
     // Init 
     scobeyConverter.loadMenu();
     scobeyConverter.init();
+
 
   });
 
@@ -87,6 +86,8 @@
               // Make sure the menu is collapsed
               $('.content-secondary div[data-role="collapsible"]').trigger('collapse');
 
+              navigator.selectNavMenuItem();
+
               // Hide Loading spinner
               $.mobile.hidePageLoadingMsg();
 
@@ -127,5 +128,12 @@
     window.scrollTo(new_position.left, new_position.top);
     return false;
   };
+
+  navigator.selectNavMenuItem = function() {
+    console.log("Select Nav Menu Item");
+    // Select this newly loaded page in the nav menu
+    $(".content-secondary div ul a").parent().parent().parent().attr('data-theme', 'c').removeClass("ui-btn-up-a").addClass("ui-btn-up-c"); // Select current page
+    $(".content-secondary div ul a[href='" + document.location.hash + "']").parent().parent().parent().attr('data-theme', 'a').removeClass("ui-btn-up-c").removeClass("ui-btn-hover-c").addClass("ui-btn-up-a"); // Select current page
+  }
 
 })(window.navigator = window.navigator || {});  
