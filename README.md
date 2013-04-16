@@ -9,3 +9,6 @@ Instead, I am creating this website as a layer to his original, such that change
 http://glavin001.github.com/Scobey2.0/csc/342/2012/new_index.html
 ##Demo (Current, 2013): 
 http://glavin001.github.com/Scobey2.0/csc/342/2013/new_index.html
+
+##Download
+Zip download coming soon.
